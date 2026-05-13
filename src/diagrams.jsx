@@ -1,4 +1,4 @@
-// Iconography & diagram components — updated to use PNG icons from public/icons/
+// Iconography & diagram components — updated to use PNG icons from graphics/icons/
 
 function IconLine({ children, color = "#3B82F6", size = 28 }) {
   return (
@@ -9,19 +9,19 @@ function IconLine({ children, color = "#3B82F6", size = 28 }) {
 }
 
 const Icons = {
-  tag:     (c) => <IconLine color={c}><path d="M20.6 13.4l-7.2 7.2a2 2 0 01-2.8 0l-7-7a2 2 0 01-.6-1.4V5a2 2 0 012-2h7.2a2 2 0 011.4.6l7 7a2 2 0 010 2.8z" /><circle cx="8.5" cy="8.5" r="1.6" /></IconLine>,
-  cloud:   (c) => <IconLine color={c}><path d="M7 18a4 4 0 010-8 6 6 0 0111.5 1.5A4 4 0 0117 19H7z" /></IconLine>,
-  sheet:   (c) => <IconLine color={c}><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z" /><path d="M14 3v5h5" /><path d="M12 11v8M8 15h8" /></IconLine>,
+  tag: (c) => <IconLine color={c}><path d="M20.6 13.4l-7.2 7.2a2 2 0 01-2.8 0l-7-7a2 2 0 01-.6-1.4V5a2 2 0 012-2h7.2a2 2 0 011.4.6l7 7a2 2 0 010 2.8z" /><circle cx="8.5" cy="8.5" r="1.6" /></IconLine>,
+  cloud: (c) => <IconLine color={c}><path d="M7 18a4 4 0 010-8 6 6 0 0111.5 1.5A4 4 0 0117 19H7z" /></IconLine>,
+  sheet: (c) => <IconLine color={c}><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z" /><path d="M14 3v5h5" /><path d="M12 11v8M8 15h8" /></IconLine>,
   percent: (c) => <IconLine color={c}><circle cx="12" cy="12" r="9" /><path d="M8.5 15.5l7-7" /><circle cx="9" cy="9" r="1.2" /><circle cx="15" cy="15" r="1.2" /></IconLine>,
-  bars:    (c) => <IconLine color={c}><path d="M5 20V11M12 20V5M19 20v-7M3 20h18" /></IconLine>,
+  bars: (c) => <IconLine color={c}><path d="M5 20V11M12 20V5M19 20v-7M3 20h18" /></IconLine>,
   invoice: (c) => <IconLine color={c}><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z" /><path d="M14 3v5h5M9 13h6M9 17h4" /></IconLine>,
-  trend:   (c) => <IconLine color={c}><path d="M3 17l6-6 4 4 8-8" /><path d="M14 7h7v7" /></IconLine>,
-  target:  (c) => <IconLine color={c}><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" fill={c} /></IconLine>,
-  layers:  (c) => <IconLine color={c}><path d="M12 3l9 5-9 5-9-5 9-5z" /><path d="M3 13l9 5 9-5M3 18l9 5 9-5" /></IconLine>,
-  shield:  (c) => <IconLine color={c}><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" /></IconLine>,
-  scale:   (c) => <IconLine color={c}><path d="M12 4v16M5 9h14M5 14h14" /><circle cx="12" cy="4" r="1.5" fill={c} /></IconLine>,
-  filter:  (c) => <IconLine color={c}><path d="M3 5h18l-7 8v6l-4-2v-4L3 5z" /></IconLine>,
-  settings:(c) => <IconLine color={c}><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" /></IconLine>,
+  trend: (c) => <IconLine color={c}><path d="M3 17l6-6 4 4 8-8" /><path d="M14 7h7v7" /></IconLine>,
+  target: (c) => <IconLine color={c}><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" fill={c} /></IconLine>,
+  layers: (c) => <IconLine color={c}><path d="M12 3l9 5-9 5-9-5 9-5z" /><path d="M3 13l9 5 9-5M3 18l9 5 9-5" /></IconLine>,
+  shield: (c) => <IconLine color={c}><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" /></IconLine>,
+  scale: (c) => <IconLine color={c}><path d="M12 4v16M5 9h14M5 14h14" /><circle cx="12" cy="4" r="1.5" fill={c} /></IconLine>,
+  filter: (c) => <IconLine color={c}><path d="M3 5h18l-7 8v6l-4-2v-4L3 5z" /></IconLine>,
+  settings: (c) => <IconLine color={c}><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" /></IconLine>,
 };
 
 function PngIcon({ src, size = 22 }) {
@@ -40,19 +40,19 @@ function CheckCircle({ color = "#5B7BFF", size = 15 }) {
 // ---- Operating-system diagram (hero) ----
 function OperatingSystemDiagram() {
   const inputs = [
-    { label: "Usage Data",     sub: "Real-time",  src: "public/icons/ProblemLimitedIcon.png" },
-    { label: "Vendor Pricing", sub: "AWS, Azure", src: "public/icons/ProblemCustomerIcon.png" },
-    { label: "Contracts",      sub: "Agreements", src: "public/icons/ProblemBillingIcon.png" },
+    { label: "Usage Data", sub: "Real-time", src: "graphics/icons/ProblemLimitedIcon.png" },
+    { label: "Vendor Pricing", sub: "AWS, Azure", src: "graphics/icons/ProblemCustomerIcon.png" },
+    { label: "Contracts", sub: "Agreements", src: "graphics/icons/ProblemBillingIcon.png" },
   ];
   const outputs = [
-    { label: "Invoices",            sub: "Accurate",   src: "public/icons/ProblemBillingIcon.png" },
-    { label: "Margin Intelligence", sub: "Actionable", src: "public/icons/ProblemLimitedIcon.png" },
+    { label: "Invoices", sub: "Accurate", src: "graphics/icons/ProblemBillingIcon.png" },
+    { label: "Margin Intelligence", sub: "Actionable", src: "graphics/icons/ProblemLimitedIcon.png" },
   ];
   const coreRows = [
-    { t: "Pricing Logic",             s: "Pricing rules that adapt",       src: null,   svgI: "settings", c: "#5B7BFF" },
-    { t: "Discount Engine",           s: "Automated discounts",            src: "public/icons/ProblemMisappliedIcon.png", c: "#F59E0B" },
-    { t: "Billing System",            s: "Accurate. Automated. Aligned.",  src: "public/icons/ProblemBillingIcon.png",    c: "#A855F7" },
-    { t: "Margin Intelligence Layer", s: "Real-time margin visibility",    src: "public/icons/ProblemLimitedIcon.png",    c: "#5B7BFF" },
+    { t: "Pricing Logic", s: "Pricing rules that adapt", src: null, svgI: "settings", c: "#5B7BFF" },
+    { t: "Discount Engine", s: "Automated discounts", src: "graphics/icons/ProblemMisappliedIcon.png", c: "#F59E0B" },
+    { t: "Billing System", s: "Accurate. Automated. Aligned.", src: "graphics/icons/ProblemBillingIcon.png", c: "#A855F7" },
+    { t: "Margin Intelligence Layer", s: "Real-time margin visibility", src: "graphics/icons/ProblemLimitedIcon.png", c: "#5B7BFF" },
   ];
 
   const Connector = ({ dir = "in" }) => (
@@ -124,8 +124,8 @@ function OperatingSystemDiagram() {
             <p className="eyebrow text-center text-[9px] tracking-[0.2em] mb-2">Controls</p>
             <div className="grid grid-cols-2 gap-1.5">
               {[
-                { label: "Margin Rules",      sub: "Active",   src: "public/icons/ProblemBLicon.png" },
-                { label: "Discount Policies", sub: "Enforced", src: "public/icons/ProblemMisappliedIcon.png" },
+                { label: "Margin Rules", sub: "Active", src: "graphics/icons/ProblemBLicon.png" },
+                { label: "Discount Policies", sub: "Enforced", src: "graphics/icons/ProblemMisappliedIcon.png" },
               ].map((ctrl) => (
                 <div key={ctrl.label} className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-line-soft">
                   <PngIcon src={ctrl.src} size={14} />
@@ -192,7 +192,7 @@ function TrustBar() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-xl border border-line-soft bg-bg-tertiary/40 grid place-items-center shrink-0">
-            <PngIcon src="public/icons/HeroCloudProcessedAnnuallyIcon.png" size={30} />
+            <PngIcon src="graphics/icons/HeroCloudProcessedAnnuallyIcon.png" size={30} />
           </div>
           <div className="leading-tight">
             <p className="text-[20px] font-bold grad-text-bp">Over $100M</p>
@@ -211,7 +211,7 @@ function TrustBar() {
         </div>
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-xl border border-line-soft bg-bg-tertiary/40 grid place-items-center shrink-0">
-            <PngIcon src="public/icons/HeroPurposeBuiltIcon.png" size={30} />
+            <PngIcon src="graphics/icons/HeroPurposeBuiltIcon.png" size={30} />
           </div>
           <div className="leading-tight">
             <p className="text-[12px] text-ink-muted">Purpose-built for</p>
@@ -227,10 +227,10 @@ function TrustBar() {
 function SolutionTimeline() {
   const TCOL = 28; // timeline column px — line and dot both centered here
   const items = [
-    { t: "Accurate, Automated Invoicing", b: "Consistent, customer-ready invoices aligned to pricing.",    src: "public/icons/ProblemBillingIcon.png",    c: "#3B82F6" },
-    { t: "Cloud Discount Management",     b: "Apply discount programs by customer and capture savings.",    src: "public/icons/ProblemMisappliedIcon.png", c: "#22D3EE" },
-    { t: "Margin Visibility by Customer", b: "Track margin performance and identify where to adjust.",      src: "public/icons/ProblemLimitedIcon.png",    c: "#A855F7" },
-    { t: "Pricing Advantage",             b: "Set pricing with full visibility into cost, discounts, and margin.", src: null, svgI: "trend",              c: "#5B7BFF" },
+    { t: "Accurate, Automated Invoicing", b: "Consistent, customer-ready invoices aligned to pricing.", src: "graphics/icons/ProblemBillingIcon.png", c: "#3B82F6" },
+    { t: "Cloud Discount Management", b: "Apply discount programs by customer and capture savings.", src: "graphics/icons/ProblemMisappliedIcon.png", c: "#22D3EE" },
+    { t: "Margin Visibility by Customer", b: "Track margin performance and identify where to adjust.", src: "graphics/icons/ProblemLimitedIcon.png", c: "#A855F7" },
+    { t: "Pricing Advantage", b: "Set pricing with full visibility into cost, discounts, and margin.", src: null, svgI: "trend", c: "#5B7BFF" },
   ];
   return (
     <div className="relative">
@@ -279,9 +279,9 @@ function SolutionTimeline() {
 // ---- Before → After results table ----
 function ResultsList() {
   const rows = [
-    ["Unknown Margins","Clear Profitability"],["Manual Billing","Automated Invoicing"],
-    ["Missed Discounts","Captured Savings"],["Reactive Pricing","Competitive Advantage"],
-    ["Operational Bottlenecks","Scalable Growth"],["Ad Hoc FinOps","Managed Service"],
+    ["Unknown Margins", "Clear Profitability"], ["Manual Billing", "Automated Invoicing"],
+    ["Missed Discounts", "Captured Savings"], ["Reactive Pricing", "Competitive Advantage"],
+    ["Operational Bottlenecks", "Scalable Growth"], ["Ad Hoc FinOps", "Managed Service"],
   ];
   return (
     <div>
@@ -305,21 +305,21 @@ function ResultsList() {
 function FinopsSplit() {
   const items = [
     { t: "Customer Cost Visibility", b: "Clear cloud budgeting and reporting", c: "#3B82F6" },
-    { t: "Rate Reduction",           b: "Reduce rates for customers",          c: "#A855F7" },
-    { t: "Infrastructure Efficiency",b: "Optimize resource usage and reduce waste", c: "#5B7BFF" },
+    { t: "Rate Reduction", b: "Reduce rates for customers", c: "#A855F7" },
+    { t: "Infrastructure Efficiency", b: "Optimize resource usage and reduce waste", c: "#5B7BFF" },
   ];
   return (
     <div className="flex flex-col items-center text-center">
       {/* Moneta cloud icon */}
       <div className="w-14 h-14 rounded-full border border-accent-indigo/40 bg-bg-tertiary grid place-items-center"
-           style={{ boxShadow: "0 0 20px rgba(91,123,255,0.3)" }}>
+        style={{ boxShadow: "0 0 20px rgba(91,123,255,0.3)" }}>
         <img src="assets/moneta-icon.png" alt="moneta" width="34" height="34" style={{ objectFit: "contain", transform: "translateY(-3px)" }} />
       </div>
       {/* Dashed connector */}
       <div style={{ width: 2, height: 36, borderLeft: "2px dashed #22D3EE", opacity: 0.6, margin: "6px 0" }} />
       {/* Your Managed Service box */}
       <div className="btn-grad-border px-8 py-4 w-full max-w-[340px]"
-           style={{ boxShadow: "0 0 28px rgba(91,123,255,0.2)" }}>
+        style={{ boxShadow: "0 0 28px rgba(91,123,255,0.2)" }}>
         <p className="text-[20px] md:text-[23px] font-bold grad-text-bp">Your Managed Service</p>
       </div>
       {/* Dashed connector */}
@@ -349,18 +349,18 @@ function FinopsSplit() {
 function CoreSystemLayers() {
   const TCOL = 24; // timeline column px
   const items = [
-    { t: "Pricing Layer",             b: "Holds customer-specific pricing models and ensures pricing reflects agreements, cost structures, and strategy.", c: "#3B82F6" },
-    { t: "Discount Layer",            b: "Applies cloud discount programs across customers and aligns discounts with both cost and pricing.",              c: "#22D3EE" },
-    { t: "Billing Layer",             b: "Generates customer-ready invoices directly from usage, pricing, and discount data — without reconciliation.",    c: "#5B7BFF" },
+    { t: "Pricing Layer", b: "Holds customer-specific pricing models and ensures pricing reflects agreements, cost structures, and strategy.", c: "#3B82F6" },
+    { t: "Discount Layer", b: "Applies cloud discount programs across customers and aligns discounts with both cost and pricing.", c: "#22D3EE" },
+    { t: "Billing Layer", b: "Generates customer-ready invoices directly from usage, pricing, and discount data — without reconciliation.", c: "#5B7BFF" },
     { t: "Margin Intelligence Layer", b: "Provides visibility into margin performance across every customer, continuously updated as billing and pricing change.", c: "#A855F7" },
   ];
   return (
     <div className="card !rounded-2xl p-6 md:p-8"
-         style={{ boxShadow: "0 0 0 1px rgba(91,123,255,0.35), 0 20px 50px -10px rgba(91,123,255,0.28)" }}>
+      style={{ boxShadow: "0 0 0 1px rgba(91,123,255,0.35), 0 20px 50px -10px rgba(91,123,255,0.28)" }}>
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <span className="block w-[3px] h-5 rounded-full flex-shrink-0"
-              style={{ background: "linear-gradient(180deg,#3B82F6,#A855F7)" }} />
+          style={{ background: "linear-gradient(180deg,#3B82F6,#A855F7)" }} />
         <p className="eyebrow text-[11px] tracking-[0.2em]">Core System Layers</p>
       </div>
       {/* Timeline — line centered in TCOL column */}
@@ -401,19 +401,19 @@ function CoreSystemLayers() {
 // ---- System Flow horizontal — no card, matches Platform.png ----
 function SystemFlowHorizontal() {
   const steps = [
-    { t: "Cloud Data",          sub: "(Continuous)", b: "Cloud billing data is continuously ingested across all customer accounts.", c: "#3B82F6" },
-    { t: "Pricing & Discounts", sub: "(Aligned)",    b: "Pricing models and discount programs are applied automatically and aligned with cost.", c: "#22D3EE" },
-    { t: "Invoicing",           sub: "(Continuous)", b: "Accurate, customer-ready invoices are generated based on aligned billing and pricing.", c: "#5B7BFF" },
-    { t: "Margin Visibility",   sub: "(Real-Time)",  b: "Margin performance is updated in real time across every customer for complete visibility and control.", c: "#A855F7" },
+    { t: "Cloud Data", sub: "(Continuous)", b: "Cloud billing data is continuously ingested across all customer accounts.", c: "#3B82F6" },
+    { t: "Pricing & Discounts", sub: "(Aligned)", b: "Pricing models and discount programs are applied automatically and aligned with cost.", c: "#22D3EE" },
+    { t: "Invoicing", sub: "(Continuous)", b: "Accurate, customer-ready invoices are generated based on aligned billing and pricing.", c: "#5B7BFF" },
+    { t: "Margin Visibility", sub: "(Real-Time)", b: "Margin performance is updated in real time across every customer for complete visibility and control.", c: "#A855F7" },
   ];
   return (
     <div>
       {/* Horizontal flow line */}
       <div className="relative h-6 mb-8">
         <div className="absolute top-1/2 left-0 right-6 h-[2px] -translate-y-1/2 rounded-full"
-             style={{ background: "linear-gradient(90deg,#3B82F6,#22D3EE 33%,#5B7BFF 66%,#A855F7 100%)" }} />
+          style={{ background: "linear-gradient(90deg,#3B82F6,#22D3EE 33%,#5B7BFF 66%,#A855F7 100%)" }} />
         <div className="absolute top-1/2 left-0 right-6 -translate-y-1/2 flex justify-between"
-             style={{ paddingLeft: "6%", paddingRight: "6%" }}>
+          style={{ paddingLeft: "6%", paddingRight: "6%" }}>
           {steps.map((s, i) => (
             <span key={i} style={{
               width: 14, height: 14, borderRadius: "50%", display: "block", flexShrink: 0,
@@ -443,10 +443,10 @@ function SystemFlowHorizontal() {
 function WhyMonetaDiagram({ onCta }) {
   const outcomes = ["Clear profitability", "Automated invoicing", "Captures savings"];
   const steps = [
-    { label: "Billing",   c: "#3B82F6" },
-    { label: "Pricing",   c: "#22D3EE" },
+    { label: "Billing", c: "#3B82F6" },
+    { label: "Pricing", c: "#22D3EE" },
     { label: "Discounts", c: "#5B7BFF" },
-    { label: "Margin",    c: "#A855F7" },
+    { label: "Margin", c: "#A855F7" },
   ];
   return (
     <div>
@@ -468,7 +468,7 @@ function WhyMonetaDiagram({ onCta }) {
         </div>
         {/* System box */}
         <div className="card !rounded-2xl p-5 md:p-7"
-             style={{ boxShadow: "0 0 0 1px rgba(91,123,255,0.35), 0 20px 50px -10px rgba(91,123,255,0.28)" }}>
+          style={{ boxShadow: "0 0 0 1px rgba(91,123,255,0.35), 0 20px 50px -10px rgba(91,123,255,0.28)" }}>
           <div className="flex flex-col items-center mb-5">
             <div className="flex items-center gap-1.5 mb-1.5">
               <img src="assets/moneta-icon.png" alt="" width="22" height="22" style={{ objectFit: "contain", transform: "translateY(-2px)" }} />
@@ -479,9 +479,9 @@ function WhyMonetaDiagram({ onCta }) {
           {/* Flow line */}
           <div className="relative h-4 mb-4">
             <div className="absolute top-1/2 left-0 right-4 h-px -translate-y-1/2"
-                 style={{ background: "linear-gradient(90deg,#3B82F6,#22D3EE 33%,#5B7BFF 66%,#A855F7 100%)" }} />
+              style={{ background: "linear-gradient(90deg,#3B82F6,#22D3EE 33%,#5B7BFF 66%,#A855F7 100%)" }} />
             <div className="absolute top-1/2 -translate-y-1/2 left-0 right-4 flex justify-between"
-                 style={{ paddingLeft: "6.25%", paddingRight: "6.25%" }}>
+              style={{ paddingLeft: "6.25%", paddingRight: "6.25%" }}>
               {steps.map((s) => (
                 <span key={s.label} style={{
                   width: 10, height: 10, borderRadius: "50%", background: s.c, display: "block",

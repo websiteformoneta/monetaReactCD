@@ -40,11 +40,11 @@ function HeroSplit({ tagline, title, accentWord, description, ctaLabel, onCta, r
 
 // ---- Problem cards with PNG icons ----
 const PROBLEM_ROWS = [
-  { t: "Discount programs are hard to track and inconsistently applied", src: "public/icons/ProblemDiscountIcon.png" },
-  { t: "Customer pricing is disconnected from actual cloud costs",       src: "public/icons/ProblemCustomerIcon.png" },
-  { t: "Billing relies on spreadsheets and manual work",                 src: "public/icons/ProblemBillingIcon.png"  },
-  { t: "Misapplied discounts and pricing gaps reduce margins",           src: "public/icons/ProblemMisappliedIcon.png" },
-  { t: "Limited visibility into margin performance by customer",         src: "public/icons/ProblemLimitedIcon.png"  },
+  { t: "Discount programs are hard to track and inconsistently applied", src: "graphics/icons/ProblemDiscountIcon.png" },
+  { t: "Customer pricing is disconnected from actual cloud costs", src: "graphics/icons/ProblemCustomerIcon.png" },
+  { t: "Billing relies on spreadsheets and manual work", src: "graphics/icons/ProblemBillingIcon.png" },
+  { t: "Misapplied discounts and pricing gaps reduce margins", src: "graphics/icons/ProblemMisappliedIcon.png" },
+  { t: "Limited visibility into margin performance by customer", src: "graphics/icons/ProblemLimitedIcon.png" },
 ];
 
 // ---------- HOME ----------
@@ -61,7 +61,7 @@ function HomePage({ onDemoClick }) {
         right={
           <div className="w-full flex items-center justify-center">
             <img
-              src="public/examples/HeroGraphic.png"
+              src="graphics/examples/HeroGraphic.png"
               alt="moneta operating system diagram"
               className="w-full h-auto"
               style={{ maxWidth: 580, display: "block" }}
@@ -116,7 +116,7 @@ function HomePage({ onDemoClick }) {
         <div className="mt-14 card !rounded-2xl px-7 py-7 md:px-10 md:py-8" style={{ borderColor: "rgba(34,211,238,0.35)" }}>
           <div className="flex items-center gap-6">
             <div className="w-16 h-16 rounded-xl grid place-items-center shrink-0 border border-line bg-bg-tertiary/40">
-              <img src="public/icons/ProblemBLicon.png" alt="" width="40" height="40" style={{ objectFit: "contain" }} />
+              <img src="graphics/icons/ProblemBLicon.png" alt="" width="40" height="40" style={{ objectFit: "contain" }} />
             </div>
             <div className="border-l border-line-soft pl-6">
               <p className="eyebrow text-[11px] mb-2" style={{ color: "#22D3EE" }}>The Bottom Line</p>
@@ -151,7 +151,7 @@ function HomePage({ onDemoClick }) {
         <div className="mt-14 card !rounded-2xl px-7 py-7 md:px-10 md:py-8" style={{ borderColor: "rgba(168,85,247,0.4)" }}>
           <div className="flex items-center gap-6">
             <div className="w-14 h-14 rounded-xl grid place-items-center shrink-0">
-              <img src="public/icons/SolutionIcon.png" alt="" width="50" height="50" style={{ objectFit: "contain" }} />
+              <img src="graphics/icons/SolutionIcon.png" alt="" width="50" height="50" style={{ objectFit: "contain" }} />
             </div>
             <div className="border-l border-line-soft pl-6">
               <p className="text-[20px] md:text-[24px] font-semibold leading-[1.3] text-balance">
@@ -340,10 +340,10 @@ function FinOpsPage({ onDemoClick }) {
             <p className="eyebrow grad-text-bp">FinOps With moneta</p>
           </div>
           {[
-            ["One-off cost analysis",                   "Continuous FinOps delivery across every customer account",     "#3B82F6"],
-            ["Cost, pricing, and billing disconnected",  "A single system of record across cost, pricing, and invoicing","#5B7BFF"],
-            ["Manual, reactive optimization",            "Continuous, system-driven optimization across every customer", "#6366F1"],
-            ["One-time engagement",                      "Recurring FinOps service delivered at scale",                  "#A855F7"],
+            ["One-off cost analysis", "Continuous FinOps delivery across every customer account", "#3B82F6"],
+            ["Cost, pricing, and billing disconnected", "A single system of record across cost, pricing, and invoicing", "#5B7BFF"],
+            ["Manual, reactive optimization", "Continuous, system-driven optimization across every customer", "#6366F1"],
+            ["One-time engagement", "Recurring FinOps service delivered at scale", "#A855F7"],
           ].map(([a, b, c]) => (
             <React.Fragment key={a}>
               <div className="md:col-start-1 self-center">
@@ -375,10 +375,10 @@ function FinOpsPage({ onDemoClick }) {
           </div>
           <div className="lg:col-span-7 space-y-3">
             {[
-              { t: "Customer review reporting",    b: "Branded, repeatable cost & savings reviews built from real billing data.", c: "#3B82F6" },
-              { t: "Optimization playbooks",       b: "Rightsizing, commitment planning, and anomaly detection out of the box.",  c: "#22D3EE" },
-              { t: "Discount earn-back tracking",  b: "Show customers exactly what their commitments earned this quarter.",       c: "#A855F7" },
-              { t: "One source of truth",          b: "Same data behind invoices powers FinOps insights — no parallel pipeline.", c: "#5B7BFF" },
+              { t: "Customer review reporting", b: "Branded, repeatable cost & savings reviews built from real billing data.", c: "#3B82F6" },
+              { t: "Optimization playbooks", b: "Rightsizing, commitment planning, and anomaly detection out of the box.", c: "#22D3EE" },
+              { t: "Discount earn-back tracking", b: "Show customers exactly what their commitments earned this quarter.", c: "#A855F7" },
+              { t: "One source of truth", b: "Same data behind invoices powers FinOps insights — no parallel pipeline.", c: "#5B7BFF" },
             ].map((f, i) => (
               <div key={f.t} className="card flex items-start gap-5 px-5 py-4">
                 <span className="font-semibold text-[12px] mt-0.5" style={{ color: f.c }}>0{i + 1}</span>
@@ -438,9 +438,9 @@ function WhyPage({ onDemoClick }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { t: "Cost and price share one ledger", b: "Vendor invoices and customer invoices reconcile inside the system, not in spreadsheets.", c: "#3B82F6", i: "layers" },
-            { t: "Discounts are first-class",       b: "EDP, PPA, RI/SP, and custom commitments are modeled — not patched in at month-end.",      c: "#22D3EE", i: "percent" },
-            { t: "Per-customer margin is live",     b: "Margin is a real-time number, visible while it can still be acted on.",                   c: "#A855F7", i: "bars" },
-            { t: "Built for multi-customer scale",  b: "Hundreds of customers, dozens of contracts, one operating ledger.",                        c: "#5B7BFF", i: "scale" },
+            { t: "Discounts are first-class", b: "EDP, PPA, RI/SP, and custom commitments are modeled — not patched in at month-end.", c: "#22D3EE", i: "percent" },
+            { t: "Per-customer margin is live", b: "Margin is a real-time number, visible while it can still be acted on.", c: "#A855F7", i: "bars" },
+            { t: "Built for multi-customer scale", b: "Hundreds of customers, dozens of contracts, one operating ledger.", c: "#5B7BFF", i: "scale" },
           ].map((f) => (
             <div key={f.t} className="card p-7">
               <div className="icon-tile mb-5">{Icons[f.i](f.c)}</div>
@@ -499,10 +499,10 @@ function WhyPage({ onDemoClick }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { t: "Designed for fan-out",  b: "Hundreds of customer accounts and dozens of vendor agreements as the default shape.",     c: "#3B82F6", i: "scale" },
-            { t: "Discount-aware",        b: "Commitments and discount programs are modeled directly in the data — not in side-tables.", c: "#22D3EE", i: "filter" },
-            { t: "Continuous, not batch", b: "Pricing, reconciliation, and margin all run in real time. No monthly close marathon.",     c: "#A855F7", i: "bars" },
-            { t: "Replaces, not layers",  b: "moneta is the operating system — not another dashboard pointed at the existing one.",      c: "#5B7BFF", i: "layers" },
+            { t: "Designed for fan-out", b: "Hundreds of customer accounts and dozens of vendor agreements as the default shape.", c: "#3B82F6", i: "scale" },
+            { t: "Discount-aware", b: "Commitments and discount programs are modeled directly in the data — not in side-tables.", c: "#22D3EE", i: "filter" },
+            { t: "Continuous, not batch", b: "Pricing, reconciliation, and margin all run in real time. No monthly close marathon.", c: "#A855F7", i: "bars" },
+            { t: "Replaces, not layers", b: "moneta is the operating system — not another dashboard pointed at the existing one.", c: "#5B7BFF", i: "layers" },
           ].map((f) => (
             <div key={f.t} className="card p-7">
               <div className="icon-tile mb-5">{Icons[f.i](f.c)}</div>
