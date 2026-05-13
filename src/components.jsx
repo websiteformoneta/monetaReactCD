@@ -99,7 +99,7 @@ function Header({ onDemoClick }) {
   return (
     <header className={"fixed top-0 left-0 right-0 z-40 transition-all duration-200 " + (scrolled ? "bg-bg-primary/80 backdrop-blur-xl border-b border-line-soft" : "bg-transparent border-b border-transparent")}>
       <div className="container-x h-[72px] flex items-center justify-between">
-        <a href="#/" aria-label="moneta home" className="flex items-center gap-2.5"><MonetaMark size={30} /><span className="text-[17px] font-semibold tracking-tight text-white">moneta</span></a>
+        <a href="#/" aria-label="moneta home" className="flex items-center gap-1"><MonetaMark size={30} /><span className="text-[17px] font-semibold tracking-tight text-white">moneta</span></a>
         <nav className="hidden md:flex items-center gap-9">
           {NAV.map((n) => {
             const active = hash.startsWith(n.href);
