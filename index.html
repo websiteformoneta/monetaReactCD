@@ -19,9 +19,7 @@
               accent: { blue: "#3B82F6", indigo: "#5B7BFF", purple: "#A855F7", violet: "#8B5CF6", cyan: "#22D3EE", orange: "#F59E0B", success: "#34D399" },
               line: { DEFAULT: "#1A2030", soft: "#11151F", hover: "#2A3145" },
             },
-            fontFamily: {
-              sans: ["Inter", "-apple-system", "system-ui", "sans-serif"],
-            },
+            fontFamily: { sans: ["Inter", "-apple-system", "system-ui", "sans-serif"] },
           },
         },
       };
@@ -29,15 +27,13 @@
     <style>
       html, body { background: #05060A; color: #FFFFFF; }
       body { font-family: Inter, -apple-system, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-      ::selection { background: rgba(91, 123, 255, 0.4); color: #FFFFFF; }
+      ::selection { background: rgba(91,123,255,0.4); color: #FFFFFF; }
 
-      /* Type scale matching the inspiration */
       .text-hero { font-size: clamp(44px, 5.6vw, 76px); line-height: 1.04; letter-spacing: -0.03em; font-weight: 700; }
       .text-h1   { font-size: clamp(36px, 4.4vw, 60px); line-height: 1.08; letter-spacing: -0.025em; font-weight: 700; }
       .text-h2   { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.12; letter-spacing: -0.02em; font-weight: 700; }
       .text-h3   { font-size: 22px; line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; }
 
-      /* Brand gradient — used on display words */
       .grad-text {
         background: linear-gradient(92deg, #3B82F6 0%, #6366F1 38%, #A855F7 100%);
         -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -46,24 +42,18 @@
         background: linear-gradient(92deg, #3B82F6 0%, #A855F7 100%);
         -webkit-background-clip: text; background-clip: text; color: transparent;
       }
-      .grad-line {
-        background: linear-gradient(90deg, #3B82F6 0%, #A855F7 100%);
-      }
+      .grad-line { background: linear-gradient(90deg, #3B82F6 0%, #A855F7 100%); }
 
-      /* Eyebrow: uppercase + underline rule beneath */
       .eyebrow {
-        font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
-        color: #5B7BFF;
+        font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #5B7BFF;
       }
       .eyebrow-rule {
         height: 1px; width: 88px; margin-top: 10px;
-        background: linear-gradient(90deg, #3B82F6, #A855F7);
-        border-radius: 2px;
+        background: linear-gradient(90deg, #3B82F6, #A855F7); border-radius: 2px;
       }
 
       .container-x { max-width: 1240px; margin-inline: auto; padding-inline: clamp(20px, 4vw, 40px); }
 
-      /* Subtle dotted accent corners (like inspiration's right-edge dots) */
       .dot-corner {
         position: absolute; inset: 0; pointer-events: none; opacity: .45;
         background-image: radial-gradient(rgba(91,123,255,0.35) 1px, transparent 1.4px);
@@ -78,7 +68,6 @@
         mask-image: linear-gradient(45deg, #000 0%, transparent 30%);
         -webkit-mask-image: linear-gradient(45deg, #000 0%, transparent 30%);
       }
-
       .glow-hero {
         position: absolute; inset: -10% -10% auto -10%; height: 720px;
         background:
@@ -86,8 +75,6 @@
           radial-gradient(50% 50% at 85% 10%, rgba(168,85,247,0.18), transparent 70%);
         pointer-events: none;
       }
-
-      /* CTA: bordered with gradient stroke, transparent fill — matches inspiration */
       .btn-grad-border {
         position: relative; isolation: isolate; border-radius: 10px;
         background: linear-gradient(#0B0E17, #0B0E17) padding-box,
@@ -95,32 +82,23 @@
         border: 1px solid transparent;
         transition: transform .15s ease, box-shadow .2s ease;
       }
-      .btn-grad-border:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 30px -10px rgba(91,123,255,0.45);
-      }
+      .btn-grad-border:hover { transform: translateY(-1px); box-shadow: 0 10px 30px -10px rgba(91,123,255,0.45); }
       .btn-solid-blue {
         background: linear-gradient(180deg, #3B82F6 0%, #2563EB 100%);
         box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset, 0 8px 24px -8px rgba(59,130,246,0.55);
       }
       .btn-solid-blue:hover { filter: brightness(1.05); transform: translateY(-1px); }
-
-      /* Card styles */
       .card {
         background: linear-gradient(180deg, #0B0E17 0%, #080A11 100%);
-        border: 1px solid #1A2030;
-        border-radius: 14px;
+        border: 1px solid #1A2030; border-radius: 14px;
         transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
       }
       .card:hover { border-color: #2A3145; }
-
       .icon-tile {
         width: 56px; height: 56px; border-radius: 12px;
         background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.0));
-        border: 1px solid #1A2030;
-        display: grid; place-items: center;
+        border: 1px solid #1A2030; display: grid; place-items: center;
       }
-
       .timeline-dot {
         width: 14px; height: 14px; border-radius: 50%;
         background: #5B7BFF;
@@ -130,24 +108,19 @@
         background: #A855F7;
         box-shadow: 0 0 0 4px rgba(168,85,247,0.18), 0 0 20px rgba(168,85,247,0.55);
       }
-
-      @keyframes pulseDot { 0%, 100% { opacity: .4 } 50% { opacity: 1 } }
+      @keyframes pulseDot { 0%,100%{opacity:.4}50%{opacity:1} }
       .pulse-dot { animation: pulseDot 1.8s ease-in-out infinite; }
-      @keyframes flow { 0% { stroke-dashoffset: 24 } 100% { stroke-dashoffset: 0 } }
+      @keyframes flow { 0%{stroke-dashoffset:24}100%{stroke-dashoffset:0} }
       .flow-line { stroke-dasharray: 4 4; animation: flow 1.4s linear infinite; }
-
-      a, button { -webkit-tap-highlight-color: transparent; }
-
+      a,button { -webkit-tap-highlight-color: transparent; }
       .text-balance { text-wrap: balance; }
     </style>
   </head>
   <body>
     <div id="root"></div>
-
     <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-
     <script type="text/babel" src="src/components.jsx"></script>
     <script type="text/babel" src="src/diagrams.jsx"></script>
     <script type="text/babel" src="src/pages.jsx"></script>

@@ -7,7 +7,6 @@ const NAV = [
 ];
 
 function MonetaMark({ size = 28 }) {
-  // Real moneta cloud icon — nudged up slightly to optically center with text baseline
   return (
     <img
       src="assets/moneta-icon.png"
@@ -24,10 +23,8 @@ function Logo({ size = 30 }) {
   return (
     <a href="#/" className="inline-flex items-center group" aria-label="moneta home" style={{ gap: 2 }}>
       <MonetaMark size={size} />
-      <span
-        className="font-semibold tracking-tight text-ink-primary"
-        style={{ fontSize: Math.round(size * 0.72), lineHeight: 1, display: "inline-block", marginLeft: -2 }}
-      >
+      <span className="font-semibold tracking-tight text-ink-primary"
+        style={{ fontSize: Math.round(size * 0.72), lineHeight: 1, display: "inline-block", marginLeft: -2 }}>
         moneta
       </span>
     </a>
@@ -65,19 +62,11 @@ function Eyebrow({ children, className = "" }) {
   );
 }
 
-// Bordered "Review your billing, pricing, and margins" CTA — pattern repeats across the site
 function ReviewCTA({ onClick, label = "Review Your Billing, Pricing, and Margins", stack = true, className = "" }) {
   return (
-    <button
-      onClick={onClick}
-      className={`btn-grad-border inline-flex items-start gap-4 px-6 py-5 text-left ${className}`}
-    >
-      <span className="mt-0.5 grad-text-bp">
-        <ArrowRight size={20} />
-      </span>
-      <span className={`font-semibold text-white text-[15.5px] leading-[1.35] ${stack ? "max-w-[200px]" : ""}`}>
-        {label}
-      </span>
+    <button onClick={onClick} className={`btn-grad-border inline-flex items-start gap-4 px-6 py-5 text-left ${className}`}>
+      <span className="mt-0.5 grad-text-bp"><ArrowRight size={20} /></span>
+      <span className={`font-semibold text-white text-[15.5px] leading-[1.35] ${stack ? "max-w-[200px]" : ""}`}>{label}</span>
     </button>
   );
 }
@@ -115,11 +104,8 @@ function Header({ onDemoClick }) {
           {NAV.map((n) => {
             const active = hash.startsWith(n.href);
             return (
-              <a
-                key={n.href}
-                href={n.href}
-                className={"relative text-[14.5px] font-medium transition-colors " + (active ? "text-white" : "text-ink-secondary hover:text-white")}
-              >
+              <a key={n.href} href={n.href}
+                className={"relative text-[14.5px] font-medium transition-colors " + (active ? "text-white" : "text-ink-secondary hover:text-white")}>
                 {n.label}
                 {active && <span className="absolute -bottom-1.5 left-0 right-0 h-[2px] grad-line rounded-full" />}
               </a>
@@ -127,25 +113,19 @@ function Header({ onDemoClick }) {
           })}
         </nav>
         <div className="flex items-center gap-3">
-          <button
-            onClick={onDemoClick}
+          <button onClick={onDemoClick}
             className="hidden sm:inline-flex items-center gap-2 grad-text-bp font-semibold text-[14.5px] hover:opacity-90 px-4 py-2 rounded-md bg-bg-primary"
-            style={{
-              border: "1.5px solid transparent",
-              borderImage: "linear-gradient(135deg,#3B82F6,#A855F7) 1",
-              borderImageSlice: 1,
-            }}
-          >
+            style={{ border: "1.5px solid transparent", borderImage: "linear-gradient(135deg,#3B82F6,#A855F7) 1", borderImageSlice: 1 }}>
             Book a Demo <ArrowRight size={13} />
           </button>
-          <button className="md:hidden w-10 h-10 grid place-items-center rounded-md border border-line text-ink-secondary" onClick={() => setOpen(v => !v)} aria-label="Menu">
+          <button className="md:hidden w-10 h-10 grid place-items-center rounded-md border border-line text-ink-secondary"
+            onClick={() => setOpen(v => !v)} aria-label="Menu">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
             </svg>
           </button>
         </div>
       </div>
-
       {open && (
         <div className="md:hidden border-t border-line-soft bg-bg-primary/95 backdrop-blur-xl">
           <div className="container-x py-4 flex flex-col gap-1">
@@ -177,7 +157,6 @@ function Footer({ onDemoClick }) {
       { label: "Documentation", href: "#" }, { label: "Security", href: "#" }, { label: "Changelog", href: "#" },
     ]},
   ];
-
   return (
     <footer className="bg-bg-secondary border-t border-line-soft mt-12">
       <div className="container-x pt-16 pb-8">
@@ -188,9 +167,7 @@ function Footer({ onDemoClick }) {
               The financial infrastructure for AWS and Azure resellers — billing, pricing, and margin control in one system.
             </p>
             <div className="mt-6">
-              <Button variant="gradient" onClick={onDemoClick} className="!px-5 !py-2.5">
-                Book a Demo <ArrowRight />
-              </Button>
+              <Button variant="gradient" onClick={onDemoClick} className="!px-5 !py-2.5">Book a Demo <ArrowRight /></Button>
             </div>
           </div>
           <div className="md:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -199,9 +176,7 @@ function Footer({ onDemoClick }) {
                 <h4 className="text-[13px] font-semibold text-white mb-4">{c.heading}</h4>
                 <ul className="space-y-3">
                   {c.links.map((l) => (
-                    <li key={l.label}>
-                      <a href={l.href} className="text-[14px] text-ink-secondary hover:text-white transition-colors">{l.label}</a>
-                    </li>
+                    <li key={l.label}><a href={l.href} className="text-[14px] text-ink-secondary hover:text-white transition-colors">{l.label}</a></li>
                   ))}
                 </ul>
               </div>
@@ -262,8 +237,7 @@ function DemoModal({ isOpen, onClose }) {
   };
 
   const inputCls = (err) =>
-    "w-full h-12 bg-bg-primary border rounded-md px-4 text-[15px] text-white placeholder:text-ink-muted " +
-    "focus:outline-none transition-colors " +
+    "w-full h-12 bg-bg-primary border rounded-md px-4 text-[15px] text-white placeholder:text-ink-muted focus:outline-none transition-colors " +
     (err ? "border-red-500 focus:border-red-400" : "border-line focus:border-accent-indigo");
 
   return (
@@ -273,25 +247,20 @@ function DemoModal({ isOpen, onClose }) {
         <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 w-9 h-9 grid place-items-center rounded-md text-ink-muted hover:text-white hover:bg-bg-tertiary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 6l12 12M18 6L6 18" /></svg>
         </button>
-
         {submitted ? (
           <div className="py-10 text-center">
             <div className="w-14 h-14 mx-auto rounded-full grad-line grid place-items-center mb-5">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7" /></svg>
             </div>
             <h2 className="text-h3 mb-2">Request received</h2>
-            <p className="text-[15px] text-ink-secondary max-w-sm mx-auto">
-              Thanks — we'll follow up within one business day to schedule your billing and margin review.
-            </p>
+            <p className="text-[15px] text-ink-secondary max-w-sm mx-auto">Thanks — we'll follow up within one business day to schedule your billing and margin review.</p>
             <Button variant="primary" onClick={onClose} className="mt-6">Close</Button>
           </div>
         ) : (
           <React.Fragment>
             <Eyebrow className="mb-4">Book a Demo</Eyebrow>
             <h2 id="demo-modal-title" className="text-h3 mb-2">Review Your Billing, Pricing, and Margins</h2>
-            <p className="text-[14.5px] text-ink-secondary mb-7 leading-[1.6]">
-              Tell us a bit about your cloud resale business and we'll follow up to schedule a working session.
-            </p>
+            <p className="text-[14.5px] text-ink-secondary mb-7 leading-[1.6]">Tell us a bit about your cloud resale business and we'll follow up to schedule a working session.</p>
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               <div className="grid grid-cols-2 gap-4">
                 <FormField label="First name"><input name="firstName" className={inputCls(errors.firstName)} /></FormField>
@@ -316,7 +285,7 @@ function DemoModal({ isOpen, onClose }) {
   );
 }
 
-// ----- Final CTA section -----
+// ----- Final CTA -----
 function FinalCTA({ title, description, ctaLabel = "Book a Demo", onCta }) {
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
@@ -326,9 +295,7 @@ function FinalCTA({ title, description, ctaLabel = "Book a Demo", onCta }) {
           <h2 className="text-h1 text-balance">{title}</h2>
           {description && <p className="mt-6 text-[19px] leading-[1.6] text-ink-secondary max-w-[680px]">{description}</p>}
           <div className="mt-9">
-            <Button variant="primary" onClick={onCta} className="!px-7 !py-4 !text-[15px]">
-              {ctaLabel} <ArrowRight />
-            </Button>
+            <Button variant="primary" onClick={onCta} className="!px-7 !py-4 !text-[15px]">{ctaLabel} <ArrowRight /></Button>
           </div>
         </div>
       </div>

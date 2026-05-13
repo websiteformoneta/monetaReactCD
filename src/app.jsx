@@ -1,10 +1,10 @@
 // App entry — hash router + modal state
 
 const ROUTES = {
-  "#/":                 { Component: () => window.HomePage,    label: "Home" },
-  "#/platform":         { Component: () => window.PlatformPage, label: "Platform" },
-  "#/finops-services":  { Component: () => window.FinOpsPage,   label: "FinOps Services" },
-  "#/why-moneta":       { Component: () => window.WhyPage,      label: "Why moneta" },
+  "#/":                { Component: () => window.HomePage,     label: "Home" },
+  "#/platform":        { Component: () => window.PlatformPage, label: "Platform" },
+  "#/finops-services": { Component: () => window.FinOpsPage,   label: "FinOps Services" },
+  "#/why-moneta":      { Component: () => window.WhyPage,      label: "Why moneta" },
 };
 
 function useHashRoute() {
