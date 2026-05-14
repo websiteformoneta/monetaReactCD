@@ -508,18 +508,15 @@ function WhyPage({ onDemoClick }) {
         <div className="glow-hero" />
         <div className="dot-corner-left" />
         <div className="container-x relative">
-          <Eyebrow className="mb-7">Why moneta</Eyebrow>
+          <Eyebrow className="mb-7">Why Cloud Resellers Choose moneta</Eyebrow>
           <h1 className="text-hero max-w-[1100px] text-balance">
-            Why Existing Solutions Fail <span className="grad-text-bp">Cloud Reseller Billing</span>
+            The System <span className="grad-text-bp">Behind</span> the Outcomes
           </h1>
-          <p className="mt-7 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary max-w-[700px]">
-            moneta is the billing infrastructure built for how AWS and Azure resellers actually operate —
-            multi-customer, multi-vendor, and continuously reconciled.
+          <p className="mt-7 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary max-w-[760px]">
+            Cloud reseller outcomes don't come from tools — they come from an aligned system.
           </p>
-          <div className="mt-8">
-            <Button variant="primary" onClick={onDemoClick} className="!px-7 !py-4 !text-[15px]">
-              Book a Demo <ArrowRight />
-            </Button>
+          <div className="mt-10">
+            <WhyMonetaDiagram onCta={onDemoClick} />
           </div>
         </div>
       </section>
@@ -566,20 +563,6 @@ function WhyPage({ onDemoClick }) {
             <p>moneta replaces that operational debt with a system that owns the cost-to-invoice loop end to end.</p>
           </div>
         </div>
-      </SectionShell>
-
-      {/* Why Cloud Resellers Choose moneta — WhyMonetaDiagram */}
-      <SectionShell dotsRight>
-        <div className="mb-10 max-w-[820px]">
-          <Eyebrow className="mb-6">Why Cloud Resellers Choose moneta</Eyebrow>
-          <h2 className="text-h1 text-balance">
-            The System <span className="grad-text-bp">Behind</span> the Outcomes
-          </h2>
-          <p className="mt-5 text-[16.5px] leading-[1.7] text-ink-secondary">
-            Cloud reseller outcomes don't come from tools — they come from an aligned system.
-          </p>
-        </div>
-        <WhyMonetaDiagram onCta={onDemoClick} />
       </SectionShell>
 
       {/* Built for multi-customer */}
