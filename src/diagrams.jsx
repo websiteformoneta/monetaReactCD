@@ -353,9 +353,7 @@ function CoreSystemLayers() {
     <div className="card !rounded-2xl p-6 md:p-8"
       style={{ boxShadow: "0 0 0 1px rgba(91,123,255,0.35), 0 20px 50px -10px rgba(91,123,255,0.28)" }}>
       {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <span className="block w-[3px] h-5 rounded-full flex-shrink-0"
-          style={{ background: "linear-gradient(180deg,#3B82F6,#A855F7)" }} />
+      <div className="mb-6">
         <p className="eyebrow text-[11px] tracking-[0.2em]">Core System Layers</p>
       </div>
       {/* Timeline — line centered in TCOL column */}
