@@ -241,9 +241,10 @@ function DemoModal({ isOpen, onClose }) {
     (err ? "border-red-500 focus:border-red-400" : "border-line focus:border-accent-indigo");
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center px-4 md:px-6 py-10 md:py-14 overflow-y-auto overscroll-contain" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
-      <div className="absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} />
-      <div ref={dialogRef} className="relative w-full max-w-[540px] card !rounded-2xl p-6 sm:p-8 shadow-[0_24px_60px_rgba(0,0,0,0.6)] my-auto">
+    <React.Fragment>
+      <div className="fixed inset-0 z-40 bg-black/85 backdrop-blur-md" onClick={onClose} />
+      <div className="fixed inset-0 z-50 flex items-start justify-center px-4 md:px-6 py-8 md:py-10 overflow-y-auto overscroll-contain" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" onClick={onClose}>
+      <div ref={dialogRef} onClick={(e) => e.stopPropagation()} className="relative w-full max-w-[540px] card !rounded-2xl p-6 sm:p-8 shadow-[0_24px_60px_rgba(0,0,0,0.6)] my-auto">
         <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 w-9 h-9 grid place-items-center rounded-md text-ink-muted hover:text-white hover:bg-bg-tertiary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 6l12 12M18 6L6 18" /></svg>
         </button>
@@ -281,7 +282,8 @@ function DemoModal({ isOpen, onClose }) {
           </React.Fragment>
         )}
       </div>
-    </div>
+      </div>
+    </React.Fragment>
   );
 }
 
