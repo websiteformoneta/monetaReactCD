@@ -302,21 +302,118 @@ function PlatformPage({ onDemoClick }) {
 function FinOpsPage({ onDemoClick }) {
   return (
     <React.Fragment>
-      <section className="relative pt-[110px] md:pt-[140px] pb-12 overflow-hidden">
+      <section className="relative pt-[110px] md:pt-[140px] pb-16 overflow-hidden">
         <div className="glow-hero" />
         <div className="dot-corner" />
-        <div className="container-x relative">
-          <Eyebrow className="mb-7">Cloud FinOps</Eyebrow>
-          <h1 className="text-hero max-w-[1000px] text-balance">
-            Cloud FinOps,<br />
-            Delivered as a <span className="grad-text-bp">Managed Service.</span>
+        <div className="container-x relative text-center">
+          <Eyebrow className="mb-7 flex flex-col items-center">FinOps for Cloud Resellers</Eyebrow>
+          <h1 className="max-w-[900px] mx-auto" style={{ fontSize: "clamp(36px, 4.2vw, 58px)", fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.025em" }}>
+            Deliver FinOps Consistently<br />Across <span className="grad-text-bp">Every Customer</span>
           </h1>
-          <p className="mt-7 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary max-w-[640px]">
-            With billing, pricing, and margin aligned in a single system, Cloud FinOps becomes structured, repeatable,
-            and scalable across every customer.
+          <p className="mt-6 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary max-w-[580px] mx-auto">
+            A structured, repeatable FinOps service—without added operational burden.
           </p>
-          <div className="mt-8">
-            <ReviewCTA onClick={onDemoClick} />
+
+          {/* Diagram */}
+          <div className="mt-14 max-w-[1040px] mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <MonetaMark size={26} />
+              <span className="text-[19px] font-semibold tracking-tight text-white">moneta</span>
+            </div>
+            <p className="eyebrow text-ink-muted mb-6">The Billing Infrastructure</p>
+
+            <div className="flex items-center relative">
+
+              {/* Left: pain points — each row's vertical CENTER aligns to a connector stub (top/middle/bottom of the 200px column) */}
+              <div className="shrink-0 w-[160px] text-left relative" style={{ height: 200 }}>
+                <p className="absolute left-0 text-[12px] leading-tight whitespace-nowrap" style={{ top: -40 }}>
+                  <span className="text-white font-semibold">Today </span>
+                  <span className="font-semibold" style={{ color: "#22D3EE" }}>Hard to Provide FinOps</span>
+                </p>
+                {/* faint dividers between rows (at 25% and 75% — midpoints between row centers) */}
+                <div className="absolute left-0 right-2" style={{ top: "25%", height: 1, background: "rgba(180, 186, 200, 0.12)" }} />
+                <div className="absolute left-0 right-2" style={{ top: "75%", height: 1, background: "rgba(180, 186, 200, 0.12)" }} />
+                {[
+                  { label: "One-off analysis for each customer", y: 6 },
+                  { label: "Manual process and reporting",       y: 100 },
+                  { label: "Difficult to scale across customers", y: 194 },
+                ].map(({ label, y }) => (
+                  <p
+                    key={label}
+                    className="absolute left-0 right-0 text-[12px] text-ink-secondary leading-[1.35]"
+                    style={{ top: y, transform: "translateY(-50%)" }}
+                  >
+                    {label}
+                  </p>
+                ))}
+              </div>
+
+              {/* Connector bracket — SVG so stub length is tunable; 3 dashed arrows on the left meeting at a junction dot, one solid arrow on the right into the box */}
+              <svg width="80" height="200" viewBox="0 0 80 200" fill="none" className="shrink-0" aria-hidden="true">
+                {/* vertical spine (right side of bracket) */}
+                <line x1="62" y1="6" x2="62" y2="194" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="3 4" />
+                {/* top stub (long, with left-pointing arrowhead) */}
+                <line x1="62" y1="6" x2="14" y2="6" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="3 4" />
+                <polyline points="14,2 8,6 14,10" fill="none" stroke="#3B82F6" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+                {/* middle stub */}
+                <line x1="62" y1="100" x2="14" y2="100" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="3 4" />
+                <polyline points="14,96 8,100 14,104" fill="none" stroke="#3B82F6" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+                {/* bottom stub */}
+                <line x1="62" y1="194" x2="14" y2="194" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="3 4" />
+                <polyline points="14,190 8,194 14,198" fill="none" stroke="#3B82F6" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+                {/* junction dot on the spine, at the middle */}
+                <circle cx="62" cy="100" r="3.5" fill="#3B82F6" />
+                {/* right stub into the pipeline box */}
+                <line x1="62" y1="100" x2="78" y2="100" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="3 4" />
+              </svg>
+
+              {/* Pipeline box — with glow */}
+              <div className="flex-1 ml-1 rounded-xl flex flex-col min-h-[180px]"
+                style={{ border: "1px solid #1A2030", background: "#0B0E17", boxShadow: "0 0 40px 8px rgba(91,123,255,0.12), 0 0 80px 16px rgba(168,85,247,0.08)" }}>
+                <div className="px-8 pt-6 pb-2 relative">
+                  {/* gradient timeline line — extends past the right edge of the box to meet the external arrow seamlessly */}
+                  <div className="absolute left-8" style={{ top: "calc(1.5rem + 5px)", right: -2, height: 1.5, background: "linear-gradient(90deg, #3B82F6, #22D3EE, #6366F1, #A855F7)" }} />
+                  <div className="flex items-start justify-between relative z-10">
+                    {[
+                      { label: "Billing",   color: "#3B82F6" },
+                      { label: "Pricing",   color: "#22D3EE" },
+                      { label: "Discounts", color: "#6366F1" },
+                      { label: "Margin",    color: "#A855F7" },
+                    ].map(({ label, color }) => (
+                      <div key={label} className="flex flex-col items-center gap-2">
+                        <div className="w-2.5 h-2.5 rounded-full" style={{ background: color, boxShadow: `0 0 8px ${color}cc` }} />
+                        <span className="text-[13px] font-medium text-white">{label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex-1 flex items-center justify-center px-8 pb-6 pt-2">
+                  <p className="text-center text-[13px] text-ink-secondary leading-[1.55]">
+                    Continuously aligning billing, pricing,<br />discounts, and margin.
+                  </p>
+                </div>
+              </div>
+
+              {/* Right cluster: arrow flush against box at timeline level + outcome text vertically centered on arrow */}
+              <div className="shrink-0 self-start flex items-start" style={{ paddingTop: 35, marginLeft: -4 }}>
+                <svg width="56" height="12" viewBox="0 0 56 12" fill="none" className="shrink-0 block" preserveAspectRatio="none" style={{ display: "block" }}>
+                  <line x1="0" y1="6" x2="50" y2="6" stroke="#A855F7" strokeWidth="1.5" />
+                  <polyline points="45,2 51,6 45,10" fill="none" stroke="#A855F7" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+                </svg>
+                <p className="ml-2 text-[13px] font-semibold leading-[1.5] text-white text-left" style={{ marginTop: -23, width: 120 }}>
+                  Continuous<br />FinOps across<br /><span style={{ color: "#22D3EE" }}>every customer.</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom CTA line */}
+            <div className="mt-10 flex items-center justify-center gap-2">
+              <span className="grad-text-bp text-[17px] font-semibold">→</span>
+              <p className="text-[16px] text-white">
+                <span className="font-semibold">Make FinOps Possible at Scale.</span>{" "}
+                <span className="text-ink-secondary">moneta makes it simple.</span>
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -373,7 +470,7 @@ function FinOpsPage({ onDemoClick }) {
               pricing models, and discount programs.
             </h2>
           </div>
-          <div className="lg:col-span-7 space-y-3">
+          <div className="lg:col-span-7 lg:self-center space-y-3">
             {[
               { t: "Customer review reporting", b: "Branded, repeatable cost & savings reviews built from real billing data.", c: "#3B82F6" },
               { t: "Optimization playbooks", b: "Rightsizing, commitment planning, and anomaly detection out of the box.", c: "#22D3EE" },
@@ -523,4 +620,187 @@ function WhyPage({ onDemoClick }) {
   );
 }
 
-Object.assign(window, { HomePage, PlatformPage, FinOpsPage, WhyPage });
+function FinOpsForCloudResellersPage({ onDemoClick }) {
+  return (
+    <React.Fragment>
+      {/* Hero */}
+      <section className="relative pt-[110px] md:pt-[140px] pb-16 overflow-hidden">
+        <div className="glow-hero" />
+        <div className="dot-corner" />
+        <div className="container-x relative text-center">
+          <Eyebrow className="mb-7 flex flex-col items-center">FinOps for Cloud Resellers</Eyebrow>
+          <h1 className="max-w-[900px] mx-auto" style={{ fontSize: "clamp(36px, 4.2vw, 58px)", fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.025em" }}>
+            Deliver FinOps Consistently<br />Across <span className="grad-text-bp">Every Customer</span>
+          </h1>
+          <p className="mt-6 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary max-w-[580px] mx-auto">
+            A structured, repeatable FinOps service—without added operational burden.
+          </p>
+
+          {/* Diagram */}
+          <div className="mt-14 max-w-[1040px] mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <MonetaMark size={26} />
+              <span className="text-[19px] font-semibold tracking-tight text-white">moneta</span>
+            </div>
+            <p className="eyebrow text-ink-muted mb-6">The Billing Infrastructure</p>
+
+            <div className="flex items-center">
+              {/* Left: bracket + pain points */}
+              <div className="shrink-0 w-[200px] text-left">
+                <p className="text-[11px] mb-4 leading-tight">
+                  <span className="text-white font-semibold">Today </span>
+                  <span className="font-semibold" style={{ color: "#F59E0B" }}>Hard to Provide FinOps</span>
+                </p>
+                <div className="flex items-stretch gap-0">
+                  <div className="flex flex-col justify-between gap-4 flex-1">
+                    {["One-off analysis for each customer", "Manual process and reporting", "Difficult to scale across customers"].map((label) => (
+                      <p key={label} className="text-[12px] text-ink-secondary leading-[1.35]">{label}</p>
+                    ))}
+                  </div>
+                  <svg width="36" height="110" viewBox="0 0 36 110" fill="none" className="shrink-0 ml-2" style={{ overflow: "visible" }}>
+                    <line x1="8" y1="10" x2="8" y2="100" stroke="#6B7385" strokeWidth="1.5" strokeDasharray="3 3" />
+                    <line x1="8" y1="10"  x2="28" y2="10"  stroke="#6B7385" strokeWidth="1.5" strokeDasharray="3 3" />
+                    <line x1="8" y1="55"  x2="28" y2="55"  stroke="#6B7385" strokeWidth="1.5" strokeDasharray="3 3" />
+                    <line x1="8" y1="100" x2="28" y2="100" stroke="#6B7385" strokeWidth="1.5" strokeDasharray="3 3" />
+                    <polyline points="24,6 28,10 24,14"    fill="none" stroke="#6B7385" strokeWidth="1.5" strokeLinejoin="round" />
+                    <polyline points="24,51 28,55 24,59"   fill="none" stroke="#6B7385" strokeWidth="1.5" strokeLinejoin="round" />
+                    <polyline points="24,96 28,100 24,104" fill="none" stroke="#6B7385" strokeWidth="1.5" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Pipeline box — with glow */}
+              <div className="flex-1 mx-3 rounded-xl flex flex-col min-h-[180px]"
+                style={{ border: "1px solid #1A2030", background: "#0B0E17", boxShadow: "0 0 40px 8px rgba(91,123,255,0.12), 0 0 80px 16px rgba(168,85,247,0.08)" }}>
+                <div className="px-8 pt-6 pb-2 relative">
+                  <div className="absolute left-8 right-8" style={{ top: "calc(1.5rem + 5px)", height: 1, background: "linear-gradient(90deg, #3B82F6, #22D3EE, #6366F1, #A855F7)" }} />
+                  <div className="flex items-start justify-between relative z-10">
+                    {[
+                      { label: "Billing",   color: "#3B82F6" },
+                      { label: "Pricing",   color: "#22D3EE" },
+                      { label: "Discounts", color: "#6366F1" },
+                      { label: "Margin",    color: "#A855F7" },
+                    ].map(({ label, color }) => (
+                      <div key={label} className="flex flex-col items-center gap-2">
+                        <div className="w-2.5 h-2.5 rounded-full" style={{ background: color, boxShadow: `0 0 8px ${color}cc` }} />
+                        <span className="text-[13px] font-medium text-white">{label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex-1 flex items-center justify-center px-8 pb-6 pt-2">
+                  <p className="text-center text-[13px] text-ink-secondary leading-[1.55]">
+                    Continuously aligning billing, pricing,<br />discounts, and margin.
+                  </p>
+                </div>
+              </div>
+
+              {/* Right connector: purple arrow */}
+              <svg width="36" height="12" viewBox="0 0 36 12" fill="none" className="shrink-0">
+                <line x1="0" y1="6" x2="30" y2="6" stroke="#A855F7" strokeWidth="1.5" />
+                <polyline points="25,2 31,6 25,10" fill="none" stroke="#A855F7" strokeWidth="1.5" strokeLinejoin="round" />
+              </svg>
+
+              {/* Right: outcome */}
+              <div className="text-left w-[120px] shrink-0 ml-1">
+                <p className="text-[13px] font-semibold leading-[1.5] text-white">
+                  Continuous<br />FinOps across<br /><span style={{ color: "#22D3EE" }}>every customer.</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom CTA line */}
+            <div className="mt-10 flex items-center justify-center gap-2">
+              <span className="grad-text-bp text-[17px] font-semibold">→</span>
+              <p className="text-[16px] text-white">
+                <span className="font-semibold">Make FinOps Possible at Scale.</span>{" "}
+                <span className="text-ink-secondary">moneta makes it simple.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionShell>
+        <div className="text-center max-w-[820px] mx-auto">
+          <h2 className="text-h1 text-balance">
+            FinOps <span className="grad-text-bp">cannot</span> scale without infrastructure.
+          </h2>
+          <p className="mt-5 text-[16.5px] leading-[1.7] text-ink-secondary">
+            Without system-level alignment, FinOps depends on disconnected tools, manual reconciliation, and one-time analysis.
+          </p>
+        </div>
+
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-y-6 gap-x-10">
+          <div className="md:col-start-1">
+            <p className="eyebrow text-ink-muted">FinOps Without Infrastructure</p>
+          </div>
+          <div></div>
+          <div>
+            <p className="eyebrow grad-text-bp">FinOps With moneta</p>
+          </div>
+          {[
+            ["One-off cost analysis", "Continuous FinOps delivery across every customer account", "#3B82F6"],
+            ["Cost, pricing, and billing disconnected", "A single system of record across cost, pricing, and invoicing", "#5B7BFF"],
+            ["Manual, reactive optimization", "Continuous, system-driven optimization across every customer", "#6366F1"],
+            ["One-time engagement", "Recurring FinOps service delivered at scale", "#A855F7"],
+          ].map(([a, b, c]) => (
+            <React.Fragment key={a}>
+              <div className="md:col-start-1 self-center">
+                <p className="text-[16.5px] text-ink-secondary leading-[1.5]">{a}</p>
+              </div>
+              <div className="hidden md:flex items-center justify-center text-ink-muted text-[20px]">→</div>
+              <div className="self-center">
+                <p className="text-[16.5px] font-semibold leading-[1.45]" style={{ color: c }}>{b}</p>
+              </div>
+              <div className="md:col-span-3 h-px bg-line-soft" />
+            </React.Fragment>
+          ))}
+        </div>
+
+        <p className="mt-10 text-[16px] leading-[1.7] text-ink-secondary max-w-[860px]">
+          When billing, pricing, and discount data operate within a single system, FinOps no longer depends on
+          manual reconciliation or disconnected tools.
+        </p>
+      </SectionShell>
+
+      <SectionShell className="bg-bg-secondary border-t border-line-soft">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-5">
+            <Eyebrow className="mb-7">Why moneta</Eyebrow>
+            <h2 className="text-h1 text-balance">
+              Built for <span className="grad-text-bp">AWS and Azure</span> resellers operating across multiple customers,
+              pricing models, and discount programs.
+            </h2>
+          </div>
+          <div className="lg:col-span-7 lg:self-center space-y-3">
+            {[
+              { t: "Customer review reporting", b: "Branded, repeatable cost & savings reviews built from real billing data.", c: "#3B82F6" },
+              { t: "Optimization playbooks", b: "Rightsizing, commitment planning, and anomaly detection out of the box.", c: "#22D3EE" },
+              { t: "Discount earn-back tracking", b: "Show customers exactly what their commitments earned this quarter.", c: "#A855F7" },
+              { t: "One source of truth", b: "Same data behind invoices powers FinOps insights — no parallel pipeline.", c: "#5B7BFF" },
+            ].map((f, i) => (
+              <div key={f.t} className="card flex items-start gap-5 px-5 py-4">
+                <span className="font-semibold text-[12px] mt-0.5" style={{ color: f.c }}>0{i + 1}</span>
+                <span className="block w-px self-stretch bg-line-soft" />
+                <div>
+                  <h4 className="text-[16px] font-semibold mb-1">{f.t}</h4>
+                  <p className="text-[14.5px] text-ink-secondary leading-[1.6]">{f.b}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </SectionShell>
+
+      <FinalCTA
+        title="Build a FinOps practice on your own billing data."
+        description="See how resellers are productizing cloud financial management with moneta as the spine."
+        ctaLabel="Book a Demo"
+        onCta={onDemoClick}
+      />
+    </React.Fragment>
+  );
+}
+
+Object.assign(window, { HomePage, PlatformPage, FinOpsPage, FinOpsForCloudResellersPage, WhyPage });

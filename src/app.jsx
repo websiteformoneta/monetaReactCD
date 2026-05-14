@@ -1,10 +1,11 @@
 // App entry — hash router + modal state
 
 const ROUTES = {
-  "#/":                { Component: () => window.HomePage,     label: "Home" },
-  "#/platform":        { Component: () => window.PlatformPage, label: "Platform" },
-  "#/finops-services": { Component: () => window.FinOpsPage,   label: "FinOps Services" },
-  "#/why-moneta":      { Component: () => window.WhyPage,      label: "Why moneta" },
+  "#/":                           { Component: () => window.HomePage,                    label: "Home" },
+  "#/platform":                   { Component: () => window.PlatformPage,                label: "Platform" },
+  "#/finops-services":            { Component: () => window.FinOpsPage,                  label: "FinOps Services" },
+  "#/finops-for-cloud-resellers": { Component: () => window.FinOpsForCloudResellersPage, label: "FinOps for Cloud Resellers" },
+  "#/why-moneta":                 { Component: () => window.WhyPage,                     label: "Why moneta" },
 };
 
 function useHashRoute() {
@@ -28,10 +29,11 @@ function App() {
 
   React.useEffect(() => {
     const titles = {
-      "#/":                "moneta — Cloud Reseller Billing",
-      "#/platform":        "Platform — moneta",
-      "#/finops-services": "FinOps Managed Services — moneta",
-      "#/why-moneta":      "Why moneta — moneta",
+      "#/":                           "moneta — Cloud Reseller Billing",
+      "#/platform":                   "Platform — moneta",
+      "#/finops-services":            "FinOps Managed Services — moneta",
+      "#/finops-for-cloud-resellers": "FinOps for Cloud Resellers — moneta",
+      "#/why-moneta":                 "Why moneta — moneta",
     };
     document.title = titles[hash] || titles["#/"];
   }, [hash]);

@@ -176,12 +176,7 @@ function AwsLogo() {
 
 function AzureLogo() {
   return (
-    <svg viewBox="0 0 40 36" width="40" height="36" aria-hidden="true">
-      {/* Left face — lighter blue */}
-      <path d="M16 0 L25 0 L13 26 L3 26 Z" fill="#50C8EE" />
-      {/* Right face — darker blue */}
-      <path d="M13 26 L25 0 L40 36 L20 36 Z" fill="#0078D4" />
-    </svg>
+    <img src="graphics/icons/azureIcon.png" alt="Microsoft Azure" width="40" height="40" style={{ objectFit: "contain", mixBlendMode: "screen" }} />
   );
 }
 
