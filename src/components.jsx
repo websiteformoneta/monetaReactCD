@@ -237,13 +237,13 @@ function DemoModal({ isOpen, onClose }) {
   };
 
   const inputCls = (err) =>
-    "w-full h-12 bg-bg-primary border rounded-md px-4 text-[15px] text-white placeholder:text-ink-muted focus:outline-none transition-colors " +
+    "w-full h-11 bg-bg-primary border rounded-md px-4 text-[15px] text-white placeholder:text-ink-muted focus:outline-none transition-colors " +
     (err ? "border-red-500 focus:border-red-400" : "border-line focus:border-accent-indigo");
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start md:items-center justify-center p-4 md:p-6 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+    <div className="fixed inset-0 z-50 flex items-start md:items-center justify-center px-4 md:px-6 pt-16 pb-6 md:py-10 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
       <div className="absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} />
-      <div ref={dialogRef} className="relative w-full max-w-[580px] card !rounded-2xl p-7 sm:p-10 my-8 shadow-[0_24px_60px_rgba(0,0,0,0.6)]">
+      <div ref={dialogRef} className="relative w-full max-w-[540px] card !rounded-2xl p-6 sm:p-8 shadow-[0_24px_60px_rgba(0,0,0,0.6)]">
         <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 w-9 h-9 grid place-items-center rounded-md text-ink-muted hover:text-white hover:bg-bg-tertiary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 6l12 12M18 6L6 18" /></svg>
         </button>
@@ -258,25 +258,25 @@ function DemoModal({ isOpen, onClose }) {
           </div>
         ) : (
           <React.Fragment>
-            <Eyebrow className="mb-4">Book a Demo</Eyebrow>
+            <Eyebrow className="mb-3">Book a Demo</Eyebrow>
             <h2 id="demo-modal-title" className="text-h3 mb-2">Review Your Billing, Pricing, and Margins</h2>
-            <p className="text-[14.5px] text-ink-secondary mb-7 leading-[1.6]">Tell us a bit about your cloud resale business and we'll follow up to schedule a working session.</p>
-            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-              <div className="grid grid-cols-2 gap-4">
+            <p className="text-[14.5px] text-ink-secondary mb-5 leading-[1.55]">Tell us a bit about your cloud resale business and we'll follow up to schedule a working session.</p>
+            <form onSubmit={handleSubmit} className="space-y-3" noValidate>
+              <div className="grid grid-cols-2 gap-3">
                 <FormField label="First name"><input name="firstName" className={inputCls(errors.firstName)} /></FormField>
                 <FormField label="Last name"><input name="lastName" className={inputCls(errors.lastName)} /></FormField>
               </div>
               <FormField label="Business email"><input name="email" type="email" className={inputCls(errors.email)} /></FormField>
               <FormField label="Phone number"><input name="phone" type="tel" className={inputCls()} /></FormField>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 <FormField label="Company"><input name="company" className={inputCls(errors.company)} /></FormField>
                 <FormField label="Title"><input name="title" className={inputCls()} /></FormField>
               </div>
               <FormField label="Message">
-                <textarea name="message" rows={4} className="w-full bg-bg-primary border border-line rounded-md px-4 py-3 text-[15px] text-white placeholder:text-ink-muted focus:outline-none focus:border-accent-indigo transition-colors resize-none" />
+                <textarea name="message" rows={3} className="w-full bg-bg-primary border border-line rounded-md px-4 py-2.5 text-[15px] text-white placeholder:text-ink-muted focus:outline-none focus:border-accent-indigo transition-colors resize-none" />
               </FormField>
-              <Button type="submit" variant="primary" className="w-full !py-4 mt-2">Submit</Button>
-              <p className="text-[12px] text-ink-muted text-center mt-2">By submitting you agree to moneta's privacy policy.</p>
+              <Button type="submit" variant="primary" className="w-full !py-3.5 mt-1">Submit</Button>
+              <p className="text-[12px] text-ink-muted text-center mt-1.5">By submitting you agree to moneta's privacy policy.</p>
             </form>
           </React.Fragment>
         )}
