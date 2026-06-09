@@ -542,66 +542,120 @@ function FinOpsPage({ onDemoClick }) {
 function WhyPage({ onDemoClick }) {
   return (
     <React.Fragment>
-      <section className="relative pt-[110px] md:pt-[140px] pb-12 overflow-hidden">
+      <section className="relative pt-[95px] md:pt-[120px] pb-16 overflow-hidden">
         <div className="glow-hero" />
         <div className="dot-corner-left" />
-        <div className="container-x relative">
-          <Eyebrow className="mb-7">Why moneta</Eyebrow>
-          <h1 className="text-hero max-w-[1100px] text-balance">
-            Why Existing Solutions Fail <span className="grad-text-bp">Cloud Reseller Billing</span>
-          </h1>
-          <p className="mt-7 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary max-w-[700px]">
-            moneta is the billing infrastructure built for how AWS and Azure resellers actually operate —
-            multi-customer, multi-vendor, and continuously reconciled.
-          </p>
-          <div className="mt-8">
-            <Button variant="primary" onClick={onDemoClick} className="!px-7 !py-4 !text-[15px]">
-              Book a Demo <ArrowRight />
-            </Button>
-          </div>
+        <div className="container-x relative text-center flex flex-col items-center">
+            <Eyebrow className="mb-6">Why moneta</Eyebrow>
+            <h1 className="text-hero text-balance max-w-[1100px]">
+              Why Existing Solutions Fail <span className="grad-text-bp">Cloud Reseller Billing</span>
+            </h1>
+            <p className="mt-7 text-[18px] md:text-[19px] leading-[1.65] text-ink-secondary max-w-[780px]">
+              moneta is the billing infrastructure built for how AWS and Azure resellers actually operate —
+              multi-customer, multi-vendor, and continuously reconciled.
+            </p>
+            <div className="mt-8 flex flex-col items-center gap-4">
+              <div className="flex items-center gap-6">
+                {[
+                  { n: "Multi-customer", d: "by design" },
+                  { n: "Real-time",      d: "margin visibility" },
+                  { n: "Zero",           d: "manual reconciliation" },
+                ].map(({ n, d }, i, arr) => (
+                  <React.Fragment key={n}>
+                    <div className="text-left">
+                      <p className="text-[14px] font-semibold grad-text-bp leading-none">{n}</p>
+                      <p className="text-[11px] text-ink-muted mt-0.5">{d}</p>
+                    </div>
+                    {i < arr.length - 1 && <span className="w-px h-6 bg-line-soft" />}
+                  </React.Fragment>
+                ))}
+              </div>
+              <Button variant="primary" onClick={onDemoClick} className="!px-7 !py-4 !text-[15px] w-full">
+                Book a Demo <ArrowRight />
+              </Button>
+            </div>
         </div>
       </section>
 
       {/* The Difference */}
       <SectionShell className="border-t border-line-soft" style={{ background: "#0C0F17" }}>
-        <div className="mb-10 max-w-[760px]">
-          <Eyebrow className="mb-6">The Difference</Eyebrow>
-          <h2 className="text-h1 text-balance">
-            What makes moneta a <span className="grad-text-bp">system</span>, not a tool.
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[
-            { t: "Cost and price share one ledger", b: "Vendor invoices and customer invoices reconcile inside the system, not in spreadsheets.", c: "#3B82F6", i: "layers" },
-            { t: "Discounts are first-class", b: "EDP, PPA, RI/SP, and custom commitments are modeled — not patched in at month-end.", c: "#22D3EE", i: "percent" },
-            { t: "Per-customer margin is live", b: "Margin is a real-time number, visible while it can still be acted on.", c: "#A855F7", i: "bars" },
-            { t: "Built for multi-customer scale", b: "Hundreds of customers, dozens of contracts, one operating ledger.", c: "#5B7BFF", i: "scale" },
-          ].map((f) => (
-            <div key={f.t} className="card p-7">
-              <div className="icon-tile mb-5">{Icons[f.i](f.c)}</div>
-              <h3 className="text-[18px] font-semibold mb-2" style={{ color: f.c }}>{f.t}</h3>
-              <p className="text-[14.5px] text-ink-secondary leading-[1.65]">{f.b}</p>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-4">
+            <Eyebrow className="mb-5">The Difference</Eyebrow>
+            <h2 className="text-h2 text-balance">
+              What makes moneta a <span className="grad-text-bp">system</span>, not a tool.
+            </h2>
+          </div>
+          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-3 lg:pt-10">
+            {[
+              { t: "Cost and price share one ledger", b: "Vendor invoices and customer invoices reconcile inside the system, not in spreadsheets.", c: "#3B82F6" },
+              { t: "Discounts are first-class",       b: "EDP, PPA, RI/SP, and custom commitments are modeled — not patched in at month-end.", c: "#22D3EE" },
+              { t: "Per-customer margin is live",     b: "Margin is a real-time number, visible while it can still be acted on.", c: "#A855F7" },
+              { t: "Built for multi-customer scale",  b: "Hundreds of customers, dozens of contracts, one operating ledger.", c: "#5B7BFF" },
+            ].map((f) => (
+              <div key={f.t} className="rounded-xl p-5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid #1A2030", borderLeft: `3px solid ${f.c}` }}>
+                <h3 className="text-[15px] font-semibold mb-2" style={{ color: f.c }}>{f.t}</h3>
+                <p className="text-[13.5px] text-ink-secondary leading-[1.6]">{f.b}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </SectionShell>
 
       {/* The Reality */}
-      <SectionShell className="border-t border-line-soft" style={{ background: "#0A0D14" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <SectionShell className="border-t border-line-soft overflow-hidden" style={{ background: "#0A0D14" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          {/* Left — large heading */}
           <div className="lg:col-span-5">
-            <Eyebrow className="mb-7">The Reality</Eyebrow>
-            <h2 className="text-h1 text-balance">
+            <Eyebrow className="mb-6">The Reality</Eyebrow>
+            <h2 className="text-hero text-balance leading-[1.05]">
               Most reseller stacks are held together <span className="grad-text-bp">by people.</span>
             </h2>
           </div>
-          <div className="lg:col-span-7 space-y-5 text-[16.5px] leading-[1.7] text-ink-secondary">
-            <p>
-              Talk to any reseller's finance team and a pattern shows up: monthly close runs on tribal knowledge,
-              custom scripts, and shared spreadsheets. It works — until it doesn't, and the cost is invisible
-              until margin reports are reconciled at quarter-end.
-            </p>
-            <p>moneta replaces that operational debt with a system that owns the cost-to-invoice loop end to end.</p>
+
+          {/* Right — body text + tool chaos diagram */}
+          <div className="lg:col-span-7 relative">
+            {/* Vertical divider */}
+            <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-px" style={{ background: "linear-gradient(180deg, transparent, rgba(91,123,255,0.3) 30%, rgba(91,123,255,0.3) 70%, transparent)" }} />
+            <div className="lg:pl-10 space-y-5 text-[17px] leading-[1.75] text-ink-secondary">
+              <p>
+                Talk to any reseller's finance team and a pattern shows up: monthly close runs on tribal knowledge,
+                custom scripts, and shared spreadsheets. It works — until it doesn't, and the cost is invisible
+                until margin reports are reconciled at quarter-end.
+              </p>
+              <p>moneta replaces that operational debt with a system that owns the cost-to-invoice loop end to end.</p>
+            </div>
+
+            {/* Tool chaos diagram — icon tiles connected by dashed lines */}
+            <div className="lg:pl-10 mt-10 relative" style={{ height: 140 }} aria-hidden="true">
+              {/* SVG lines only — positioned absolutely behind the tiles */}
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 560 140" preserveAspectRatio="none" fill="none">
+                <line x1="100" y1="70"  x2="196" y2="70"  stroke="rgba(91,123,255,0.3)" strokeWidth="1" strokeDasharray="4 3" />
+                <line x1="196" y1="70"  x2="316" y2="28"  stroke="rgba(91,123,255,0.3)" strokeWidth="1" strokeDasharray="4 3" />
+                <line x1="196" y1="70"  x2="316" y2="110" stroke="rgba(91,123,255,0.3)" strokeWidth="1" strokeDasharray="4 3" />
+                <line x1="316" y1="28"  x2="448" y2="70"  stroke="rgba(91,123,255,0.3)" strokeWidth="1" strokeDasharray="4 3" />
+                <line x1="316" y1="110" x2="448" y2="70"  stroke="rgba(91,123,255,0.3)" strokeWidth="1" strokeDasharray="4 3" />
+                {[[196,70],[316,28],[316,110]].map(([x,y]) => (
+                  <circle key={`${x}-${y}`} cx={x} cy={y} r="3" fill="rgba(91,123,255,0.45)" />
+                ))}
+              </svg>
+              {/* Icon tiles — positioned absolutely */}
+              {[
+                { label: "Spreadsheet", icon: "sheet",   left: "8%",  top: 50 },
+                { label: "Custom Script",icon: "settings",left: "30%", top: 46 },
+                { label: "Billing Tool", icon: "invoice", left: "52%", top: 4  },
+                { label: "Data Export",  icon: "filter",  left: "52%", top: 84 },
+                { label: "Reporting",    icon: "bars",    left: "75%", top: 46 },
+              ].map(({ label, icon, left, top }) => (
+                <div key={label} className="absolute flex flex-col items-center gap-1" style={{ left, top }}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center"
+                    style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(91,123,255,0.22)" }}>
+                    {Icons[icon]("rgba(180,186,200,0.5)")}
+                  </div>
+                  <span className="text-[9px] text-ink-muted whitespace-nowrap">{label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </SectionShell>

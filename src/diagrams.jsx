@@ -610,74 +610,89 @@ function SystemFlowHorizontal() {
 
 // ---- Why Moneta system diagram — matches WhyMoneta.png ----
 function WhyMonetaDiagram({ onCta }) {
-  const outcomes = ["Clear profitability", "Automated invoicing", "Captures savings"];
+  const outcomes = [
+    { label: "Clear profitability",   icon: "trend",   c: "#3B82F6" },
+    { label: "Automated invoicing",   icon: "invoice", c: "#22D3EE" },
+    { label: "Captures savings",      icon: "shield",  c: "#A855F7" },
+  ];
   const steps = [
-    { label: "Billing", c: "#3B82F6" },
-    { label: "Pricing", c: "#22D3EE" },
-    { label: "Discounts", c: "#5B7BFF" },
-    { label: "Margin", c: "#A855F7" },
+    { label: "Billing",   sub: "Accurate usage captured and billed on your terms.",         c: "#3B82F6" },
+    { label: "Pricing",   sub: "Flexible pricing models that reflect your strategy.",        c: "#22D3EE" },
+    { label: "Discounts", sub: "Consistent discount management aligned to your goals.",      c: "#5B7BFF" },
+    { label: "Margin",    sub: "Stronger margins through visibility and control.",           c: "#A855F7" },
   ];
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-8 items-center">
-        {/* OUTCOMES column */}
-        <div>
-          <p className="eyebrow text-[10px] mb-4" style={{ color: "#22D3EE" }}>Outcomes</p>
-          <ul className="space-y-0">
-            {outcomes.map((o, i) => (
-              <li key={o} className={`flex items-center gap-3 py-4 ${i < outcomes.length - 1 ? "border-b border-line-soft" : ""}`}>
-                <svg width="26" height="10" viewBox="0 0 26 10" className="hidden md:block shrink-0" aria-hidden="true">
-                  <line x1="0" y1="5" x2="20" y2="5" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="3 2" />
-                  <polygon points="20,2 26,5 20,8" fill="#3B82F6" />
-                </svg>
-                <span className="text-[15px] text-ink-secondary">{o}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        {/* System box */}
-        <div className="card !rounded-2xl p-5 md:p-7"
-          style={{ boxShadow: "0 0 0 1px rgba(91,123,255,0.35), 0 20px 50px -10px rgba(91,123,255,0.28)" }}>
-          <div className="flex flex-col items-center mb-5">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <img src="assets/moneta-icon.png" alt="" width="22" height="22" style={{ objectFit: "contain", transform: "translateY(-2px)" }} />
-              <span className="font-bold text-white text-[16px]">moneta</span>
+      <div className="flex items-stretch gap-0">
+
+        {/* OUTCOMES — left column */}
+        <div className="shrink-0 w-[200px] flex flex-col justify-center space-y-0">
+          {outcomes.map((o, i) => (
+            <div key={o.label}>
+              <div className="flex items-center gap-3 py-4">
+                <div className="w-10 h-10 rounded-xl shrink-0 flex items-center justify-center"
+                  style={{ background: `${o.c}18`, border: `1.5px solid ${o.c}40` }}>
+                  {Icons[o.icon](o.c)}
+                </div>
+                <span className="text-[15px] font-semibold text-white leading-[1.3]">{o.label}</span>
+              </div>
+              {i < outcomes.length - 1 && <hr className="border-line-soft" />}
             </div>
-            <p className="eyebrow text-[9.5px] tracking-[0.18em] text-ink-muted">The Billing Infrastructure for Cloud Resellers</p>
+          ))}
+        </div>
+
+        {/* CONNECTOR — dashed arrows from each outcome into the box */}
+        <div className="shrink-0 w-16 relative">
+          <svg width="100%" height="100%" viewBox="0 0 64 180" preserveAspectRatio="none" fill="none" aria-hidden="true"
+            style={{ position: "absolute", inset: 0 }}>
+            <line x1="4" y1="30"  x2="44" y2="30"  stroke="#3B82F6" strokeWidth="1" strokeDasharray="4 3" opacity="0.55" />
+            <line x1="4" y1="90"  x2="44" y2="90"  stroke="#22D3EE" strokeWidth="1" strokeDasharray="4 3" opacity="0.55" />
+            <line x1="4" y1="150" x2="44" y2="150" stroke="#A855F7" strokeWidth="1" strokeDasharray="4 3" opacity="0.55" />
+            <line x1="44" y1="30" x2="44" y2="150" stroke="rgba(91,123,255,0.2)" strokeWidth="1" />
+            <line x1="44" y1="90" x2="60" y2="90"  stroke="#22D3EE" strokeWidth="1.5" />
+            <path d="M57,87 L63,90 L57,93" fill="none" stroke="#22D3EE" strokeWidth="1.4" strokeLinejoin="miter" strokeLinecap="square" />
+          </svg>
+        </div>
+
+        {/* SYSTEM BOX */}
+        <div className="flex-1 rounded-2xl"
+          style={{ border: "1px solid rgba(91,123,255,0.4)", background: "linear-gradient(160deg,#0E1122 0%,#0B0E1A 100%)", boxShadow: "0 0 50px 8px rgba(91,123,255,0.12), 0 0 80px 16px rgba(168,85,247,0.08)" }}>
+          {/* Header */}
+          <div className="flex flex-col items-center pt-6 pb-4 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+            <div className="flex items-center gap-2 mb-1">
+              <img src="assets/moneta-icon.png" alt="" width="22" height="22" style={{ objectFit: "contain" }} />
+              <span className="font-bold text-white text-[17px]">moneta</span>
+            </div>
+            <p className="eyebrow text-[9px] tracking-[0.2em] text-ink-muted">The Billing Infrastructure for Cloud Resellers</p>
           </div>
-          {/* Flow line */}
-          <div className="relative h-4 mb-4">
-            <div className="absolute top-1/2 left-0 right-4 h-px -translate-y-1/2"
-              style={{ background: "linear-gradient(90deg,#3B82F6,#22D3EE 33%,#5B7BFF 66%,#A855F7 100%)" }} />
-            <div className="absolute top-1/2 -translate-y-1/2 left-0 right-4 flex justify-between"
-              style={{ paddingLeft: "6.25%", paddingRight: "6.25%" }}>
+          {/* Flow line + dots */}
+          <div className="px-6 pt-6 pb-2 relative">
+            <div className="absolute" style={{
+              top: "calc(1.5rem + 5px)", left: "calc(1.5rem + 12px)", right: "calc(1.5rem + 12px)",
+              height: 1.5, background: "linear-gradient(90deg,#3B82F6,#22D3EE 33%,#5B7BFF 66%,#A855F7 88%, transparent 100%)"
+            }} />
+            <div className="flex justify-between relative z-10">
               {steps.map((s) => (
-                <span key={s.label} style={{
-                  width: 10, height: 10, borderRadius: "50%", background: s.c, display: "block",
-                  boxShadow: `0 0 0 2px ${s.c}28, 0 0 8px ${s.c}80`
-                }} />
+                <div key={s.label} className="flex flex-col items-center gap-2.5" style={{ width: "23%" }}>
+                  <div style={{ width: 12, height: 12, borderRadius: "50%", background: s.c, boxShadow: `0 0 8px ${s.c}90` }} />
+                  <p className="text-[13px] font-semibold text-center" style={{ color: s.c }}>{s.label}</p>
+                  <p className="text-[11.5px] text-ink-secondary leading-[1.4] text-center">{s.sub}</p>
+                </div>
               ))}
             </div>
-            <svg className="absolute right-0 top-1/2 -translate-y-1/2" width="10" height="8" viewBox="0 0 10 8">
-              <path d="M10 4L0 0v8z" fill="#A855F7" />
-            </svg>
           </div>
-          <div className="grid grid-cols-4 gap-2 mb-4">
-            {steps.map((s) => (
-              <p key={s.label} className="text-center text-[13px] font-semibold" style={{ color: s.c }}>{s.label}</p>
-            ))}
+          <div className="flex justify-center px-6 pb-5 pt-3 border-t" style={{ borderColor: "rgba(255,255,255,0.05)" }}>
+            <p className="text-[12.5px] text-ink-muted">Continuously aligning billing, pricing, discounts, and margin.</p>
           </div>
-          <hr className="border-line-soft mb-4" />
-          <p className="text-center text-[13.5px] text-ink-secondary leading-[1.6]">
-            Continuously aligning billing, pricing, discounts, and margin.
-          </p>
         </div>
       </div>
+
       {/* CTA */}
-      <div className="mt-8 pt-5 border-t border-line-soft">
-        <button onClick={onCta} className="btn-grad-border inline-flex items-center gap-4 px-6 py-4">
-          <span className="grad-text-bp"><ArrowRight size={18} /></span>
+      <div className="mt-8">
+        <button onClick={onCta} className="btn-grad-border w-full flex items-center justify-center gap-4 px-6 py-4">
+          <span className="grad-text-bp">{Icons["bars"]("#3B82F6")}</span>
           <span className="font-semibold text-white text-[15px]">Review Your Billing, Pricing, and Margins</span>
+          <ArrowRight size={16} className="text-white opacity-60" />
         </button>
       </div>
     </div>

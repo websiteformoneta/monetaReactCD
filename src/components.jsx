@@ -243,41 +243,41 @@ function DemoModal({ isOpen, onClose }) {
   return (
     <React.Fragment>
       <div className="fixed inset-0 z-40 bg-black/85 backdrop-blur-md" onClick={onClose} />
-      <div className="fixed inset-0 z-50 flex items-start justify-center px-4 md:px-6 py-8 md:py-10 overflow-y-auto overscroll-contain" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" onClick={onClose}>
-      <div ref={dialogRef} onClick={(e) => e.stopPropagation()} className="relative w-full max-w-[540px] card !rounded-2xl p-6 sm:p-8 shadow-[0_24px_60px_rgba(0,0,0,0.6)] my-auto">
-        <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 w-9 h-9 grid place-items-center rounded-md text-ink-muted hover:text-white hover:bg-bg-tertiary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      <div className="fixed inset-0 z-50 flex items-start justify-center px-4 md:px-6" style={{ paddingTop: "clamp(16px, 4vh, 48px)" }} role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" onClick={onClose}>
+      <div ref={dialogRef} onClick={(e) => e.stopPropagation()} className="relative w-full max-w-[520px] card !rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.6)]" style={{ padding: "20px 24px" }}>
+        <button onClick={onClose} aria-label="Close" className="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-md text-ink-muted hover:text-white hover:bg-bg-tertiary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 6l12 12M18 6L6 18" /></svg>
         </button>
         {submitted ? (
-          <div className="py-10 text-center">
-            <div className="w-14 h-14 mx-auto rounded-full grad-line grid place-items-center mb-5">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7" /></svg>
+          <div className="py-8 text-center">
+            <div className="w-12 h-12 mx-auto rounded-full grad-line grid place-items-center mb-4">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7" /></svg>
             </div>
             <h2 className="text-h3 mb-2">Request received</h2>
-            <p className="text-[15px] text-ink-secondary max-w-sm mx-auto">Thanks — we'll follow up within one business day to schedule your billing and margin review.</p>
-            <Button variant="primary" onClick={onClose} className="mt-6">Close</Button>
+            <p className="text-[14px] text-ink-secondary max-w-sm mx-auto">Thanks — we'll follow up within one business day to schedule your billing and margin review.</p>
+            <Button variant="primary" onClick={onClose} className="mt-5">Close</Button>
           </div>
         ) : (
           <React.Fragment>
-            <Eyebrow className="mb-3">Book a Demo</Eyebrow>
-            <h2 id="demo-modal-title" className="text-h3 mb-2">Review Your Billing, Pricing, and Margins</h2>
-            <p className="text-[14.5px] text-ink-secondary mb-5 leading-[1.55]">Tell us a bit about your cloud resale business and we'll follow up to schedule a working session.</p>
-            <form onSubmit={handleSubmit} className="space-y-3" noValidate>
-              <div className="grid grid-cols-2 gap-3">
+            <Eyebrow className="mb-2">Book a Demo</Eyebrow>
+            <h2 id="demo-modal-title" className="mb-1" style={{ fontSize: 20, fontWeight: 700 }}>Review Your Billing, Pricing, and Margins</h2>
+            <p className="text-[13px] text-ink-secondary mb-4 leading-[1.5]">Tell us a bit about your cloud resale business and we'll follow up to schedule a working session.</p>
+            <form onSubmit={handleSubmit} className="space-y-2.5" noValidate>
+              <div className="grid grid-cols-2 gap-2.5">
                 <FormField label="First name"><input name="firstName" className={inputCls(errors.firstName)} /></FormField>
                 <FormField label="Last name"><input name="lastName" className={inputCls(errors.lastName)} /></FormField>
               </div>
               <FormField label="Business email"><input name="email" type="email" className={inputCls(errors.email)} /></FormField>
               <FormField label="Phone number"><input name="phone" type="tel" className={inputCls()} /></FormField>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2.5">
                 <FormField label="Company"><input name="company" className={inputCls(errors.company)} /></FormField>
                 <FormField label="Title"><input name="title" className={inputCls()} /></FormField>
               </div>
               <FormField label="Message">
-                <textarea name="message" rows={3} className="w-full bg-bg-primary border border-line rounded-md px-4 py-2.5 text-[15px] text-white placeholder:text-ink-muted focus:outline-none focus:border-accent-indigo transition-colors resize-none" />
+                <textarea name="message" rows={2} className="w-full bg-bg-primary border border-line rounded-md px-3 py-2 text-[14px] text-white placeholder:text-ink-muted focus:outline-none focus:border-accent-indigo transition-colors resize-none" />
               </FormField>
-              <Button type="submit" variant="primary" className="w-full !py-3.5 mt-1">Submit</Button>
-              <p className="text-[12px] text-ink-muted text-center mt-1.5">By submitting you agree to moneta's privacy policy.</p>
+              <Button type="submit" variant="primary" className="w-full !py-3 mt-1">Submit</Button>
+              <p className="text-[11px] text-ink-muted text-center">By submitting you agree to moneta's privacy policy.</p>
             </form>
           </React.Fragment>
         )}
