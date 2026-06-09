@@ -14,12 +14,12 @@ function HeroSplit({ tagline, title, accentWord, description, ctaLabel, onCta, r
     );
   };
   return (
-    <section className="relative pt-[110px] md:pt-[140px] pb-12 md:pb-16 overflow-hidden">
+    <section className="relative pt-[95px] md:pt-[120px] pb-12 md:pb-16 overflow-hidden">
       <div className="glow-hero" />
       <div className="dot-corner" />
       <div className="container-x relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          <div className="lg:col-span-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <div className="lg:col-span-5">
             {tagline && <Eyebrow className="mb-6">{tagline}</Eyebrow>}
             <h1 className="text-hero text-balance">{renderTitle()}</h1>
             {description && (
@@ -31,7 +31,7 @@ function HeroSplit({ tagline, title, accentWord, description, ctaLabel, onCta, r
               </Button>
             </div>
           </div>
-          <div className="lg:col-span-6">{right}</div>
+          <div className="lg:col-span-7">{right}</div>
         </div>
       </div>
     </section>
@@ -64,19 +64,19 @@ function HomePage({ onDemoClick }) {
               src="graphics/examples/HeroGraphic.png"
               alt="moneta operating system diagram"
               className="w-full h-auto"
-              style={{ maxWidth: 580, display: "block" }}
+              style={{ display: "block", marginTop: "-24px" }}
             />
           </div>
         }
       />
 
       {/* Trust bar */}
-      <section className="container-x relative -mt-2 md:-mt-4">
+      <section className="container-x relative -mt-2 md:-mt-4 mb-10 md:mb-14">
         <TrustBar />
       </section>
 
       {/* PROBLEM */}
-      <SectionShell dotsRight>
+      <SectionShell className="border-t border-line-soft" dotsRight style={{ background: "#0C0F17" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-stretch">
           <div className="lg:col-span-5 flex flex-col">
             <Eyebrow className="mb-5">The Problem</Eyebrow>
@@ -129,7 +129,7 @@ function HomePage({ onDemoClick }) {
       </SectionShell>
 
       {/* SOLUTION */}
-      <SectionShell className="bg-bg-secondary border-t border-line-soft" dotsRight>
+      <SectionShell className="border-t border-line-soft" dotsRight style={{ background: "#101420" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-stretch">
           <div className="lg:col-span-5 flex flex-col">
             <Eyebrow className="mb-5">The Solution</Eyebrow>
@@ -164,7 +164,7 @@ function HomePage({ onDemoClick }) {
       </SectionShell>
 
       {/* RESULTS */}
-      <SectionShell dotsLeft>
+      <SectionShell className="border-t border-line-soft" dotsLeft style={{ background: "#141828" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
             <Eyebrow className="mb-7">Results</Eyebrow>
@@ -185,7 +185,7 @@ function HomePage({ onDemoClick }) {
       </SectionShell>
 
       {/* FINOPS PREVIEW */}
-      <SectionShell className="bg-bg-secondary border-t border-line-soft" dotsLeft>
+      <SectionShell className="border-t border-line-soft" dotsLeft style={{ background: "#101420" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
             <Eyebrow className="mb-7">FinOps Managed Services</Eyebrow>
@@ -229,7 +229,7 @@ function PlatformPage({ onDemoClick }) {
         <div className="glow-hero" />
         <div className="dot-corner-left" />
         <div className="container-x relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
             {/* LEFT — matches Platform.png left column exactly */}
             <div className="lg:col-span-6">
@@ -249,27 +249,34 @@ function PlatformPage({ onDemoClick }) {
                 <ReviewCTA onClick={onDemoClick} />
               </div>
 
-              {/* "A System Built for Cloud Resale Operations" — matches Platform.png left column */}
-              <div className="mt-10 pt-8 border-t border-line-soft">
-                <Eyebrow className="mb-5">A System Built for Cloud Resale Operations</Eyebrow>
-                <div className="border-l-2 border-line pl-5 space-y-4 text-[15px] leading-[1.75] text-ink-secondary">
-                  <p>Cloud resellers operate across complex billing, pricing, and margin environments.</p>
-                  <p>moneta brings these into a single system purpose-built for AWS and Azure resale models.</p>
-                  <p>Billing, pricing, and profitability remain aligned across every customer account — without spreadsheets or manual reconciliation.</p>
-                </div>
-              </div>
             </div>
 
             {/* RIGHT — CoreSystemLayers */}
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-6 lg:sticky lg:top-32">
               <CoreSystemLayers />
             </div>
           </div>
         </div>
       </section>
 
+      {/* A System Built for Cloud Resale Operations */}
+      <SectionShell className="border-t border-line-soft" style={{ background: "#0C0F17" }}>
+        <Eyebrow className="mb-8">A System Built for Cloud Resale Operations</Eyebrow>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="border-l-2 pl-5" style={{ borderColor: "#3B82F6" }}>
+            <p className="text-[15.5px] leading-[1.75] text-ink-secondary">Cloud resellers operate across complex billing, pricing, and margin environments.</p>
+          </div>
+          <div className="border-l-2 pl-5" style={{ borderColor: "#5B7BFF" }}>
+            <p className="text-[15.5px] leading-[1.75] text-ink-secondary">moneta brings these into a single system purpose-built for AWS and Azure resale models.</p>
+          </div>
+          <div className="border-l-2 pl-5" style={{ borderColor: "#A855F7" }}>
+            <p className="text-[15.5px] leading-[1.75] text-ink-secondary">Billing, pricing, and profitability remain aligned across every customer account — without spreadsheets or manual reconciliation.</p>
+          </div>
+        </div>
+      </SectionShell>
+
       {/* System Flow */}
-      <SectionShell className="bg-bg-secondary border-t border-line-soft" dotsRight>
+      <SectionShell className="border-t border-line-soft" style={{ background: "#080A10" }} dotsRight>
         <div className="mb-10">
           <Eyebrow className="mb-6">System Flow</Eyebrow>
           <h2 className="text-h1 text-balance">One System. Continuous Flow.</h2>
@@ -298,6 +305,135 @@ function PlatformPage({ onDemoClick }) {
   );
 }
 
+function FinOpsDiagram() {
+  const steps = [
+    { label: "Billing",   sub: "Accurate usage\nand invoicing",        color: "#3B82F6", icon: "invoice" },
+    { label: "Pricing",   sub: "Flexible, customer-\nspecific pricing", color: "#22D3EE", icon: "tag"     },
+    { label: "Discounts", sub: "Consistent discount\nmanagement",       color: "#6366F1", icon: "percent" },
+    { label: "Margin",    sub: "Sustainable margins\nat scale",         color: "#A855F7", icon: "trend"   },
+  ];
+  return (
+    <div className="mt-12 max-w-[1060px] mx-auto">
+      <div className="flex items-center justify-center gap-2 mb-1">
+        <MonetaMark size={22} />
+        <span className="text-[17px] font-semibold tracking-tight text-white">moneta</span>
+      </div>
+      <p className="eyebrow text-ink-muted mb-3 text-[10px] tracking-[0.2em]">The Billing Infrastructure</p>
+
+      <div className="flex items-stretch gap-0">
+
+        {/* LEFT CARD */}
+        <div className="shrink-0 w-[175px] rounded-2xl text-left p-5 flex flex-col justify-center"
+          style={{ background: "#0B0D16", border: "1px solid #1E2235" }}>
+          <p className="text-[10px] font-semibold tracking-[0.15em] uppercase mb-1.5" style={{ color: "#22D3EE" }}>Today</p>
+          <p className="text-[12.5px] font-semibold mb-5 leading-[1.35] text-white">Hard to scale FinOps operations</p>
+          <div className="space-y-3.5">
+            {[
+              { label: "One-off analysis per customer", icon: "bars"   },
+              { label: "Manual process and reporting",  icon: "scale"  },
+              { label: "Difficult to scale",            icon: "layers" },
+            ].map(({ label, icon }) => (
+              <div key={label} className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg shrink-0 flex items-center justify-center"
+                  style={{ background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.25)" }}>
+                  {Icons[icon]("#3B82F6")}
+                </div>
+                <p className="text-[11.5px] text-ink-secondary leading-[1.3]">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CONNECTOR LEFT */}
+        <div className="shrink-0 w-20 relative">
+          <svg width="100%" height="100%" viewBox="0 0 80 200" preserveAspectRatio="none" fill="none" aria-hidden="true"
+            style={{ position: "absolute", inset: 0 }}>
+            <line x1="4"  y1="58"  x2="52" y2="58"  stroke="#3B82F6" strokeWidth="1" strokeDasharray="3 3" opacity="0.45" />
+            <line x1="4"  y1="100" x2="52" y2="100" stroke="#22D3EE" strokeWidth="1" strokeDasharray="3 3" opacity="0.45" />
+            <line x1="4"  y1="142" x2="52" y2="142" stroke="#5B7BFF" strokeWidth="1" strokeDasharray="3 3" opacity="0.45" />
+            <line x1="52" y1="58"  x2="52" y2="142" stroke="rgba(91,123,255,0.22)" strokeWidth="1" />
+            <line x1="52" y1="100" x2="74" y2="100" stroke="#22D3EE" strokeWidth="1.5" />
+            <polyline points="68,96 74,100 68,104" fill="none" stroke="#22D3EE" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+          </svg>
+        </div>
+
+        {/* CENTER BOX */}
+        <div className="flex-1 rounded-2xl flex flex-col"
+          style={{ border: "1px solid rgba(91,123,255,0.45)", background: "linear-gradient(160deg,#0E1122 0%,#0B0E1A 100%)", boxShadow: "0 0 50px 8px rgba(91,123,255,0.14), 0 0 80px 16px rgba(168,85,247,0.09)" }}>
+          <div className="px-8 pt-8 pb-4 relative">
+            {/* connecting line between circles — runs center-to-center between first and last */}
+            <div className="absolute" style={{
+              top: "calc(2rem + 23px)",
+              left: "calc(2rem + 24px)",
+              right: "calc(2rem + 24px)",
+              height: 1.5,
+              background: "linear-gradient(90deg,#3B82F6,#22D3EE,#6366F1,#A855F7)",
+              opacity: 0.6,
+            }} />
+            <div className="flex items-start justify-between relative z-10">
+              {steps.map(({ label, sub, color, icon }, i) => (
+                <React.Fragment key={label}>
+                  <div className="flex flex-col items-center gap-2.5" style={{ width: 90 }}>
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center"
+                      style={{ background: `linear-gradient(135deg,#1a1d2e,#0f1220)`, border: `2px solid ${color}80`, boxShadow: `0 0 18px ${color}60, 0 0 36px ${color}25`, position: "relative", zIndex: 20 }}>
+                      {Icons[icon](color)}
+                    </div>
+                    <span className="text-[13px] font-semibold text-white">{label}</span>
+                    <span className="text-[11px] text-ink-secondary leading-[1.35] text-center whitespace-pre-line">{sub}</span>
+                  </div>
+                  {/* small dot between steps */}
+                  {i < steps.length - 1 && (
+                    <div className="flex items-center justify-center shrink-0" style={{ width: 16, height: 48, zIndex: 20, position: "relative" }}>
+                      <svg width="8" height="10" viewBox="0 0 8 10" fill="none" aria-hidden="true">
+                        <path d="M1,2 L6,5 L1,8" stroke="rgba(255,255,255,0.35)" strokeWidth="1.2" strokeLinejoin="miter" strokeLinecap="square" />
+                      </svg>
+                    </div>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+          <div className="flex items-center justify-center px-6 pb-5 pt-2">
+            <p className="text-[12px] text-ink-muted">Continuously aligning billing, pricing, discounts, and margin.</p>
+          </div>
+        </div>
+
+        {/* CONNECTOR RIGHT */}
+        <div className="shrink-0 w-20 relative">
+          <svg width="100%" height="100%" viewBox="0 0 80 40" preserveAspectRatio="none" fill="none" aria-hidden="true"
+            style={{ position: "absolute", inset: 0 }}>
+            <line x1="0" y1="20" x2="60" y2="20" stroke="#A855F7" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.65" />
+            <path d="M60,18 L66,20 L60,22" fill="none" stroke="#A855F7" strokeWidth="1.4" strokeLinejoin="miter" strokeLinecap="square" />
+          </svg>
+        </div>
+
+        {/* RIGHT CARD */}
+        <div className="shrink-0 w-[155px] rounded-2xl flex flex-col items-center justify-center p-5 text-center"
+          style={{ background: "#0B0D16", border: "1px solid rgba(168,85,247,0.4)", boxShadow: "0 0 28px rgba(168,85,247,0.12)" }}>
+          <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4"
+            style={{ background: "linear-gradient(135deg,rgba(168,85,247,0.3),rgba(168,85,247,0.15))", border: "2px solid rgba(168,85,247,0.6)", boxShadow: "0 0 20px rgba(168,85,247,0.4)" }}>
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M4 11l5 5L18 6" stroke="#A855F7" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <p className="text-[12.5px] font-semibold text-white leading-[1.45]">
+            Continuous FinOps across{" "}
+            <span style={{ color: "#22D3EE" }}>every customer.</span>
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-8 flex items-center justify-center gap-2">
+        <span className="grad-text-bp text-[17px] font-semibold">→</span>
+        <p className="text-[15.5px] text-white">
+          <span className="font-semibold">Make FinOps Possible at Scale.</span>{" "}
+          <span className="text-ink-secondary">moneta makes it simple.</span>
+        </p>
+      </div>
+    </div>
+  );
+}
+
 // ---------- FINOPS ----------
 function FinOpsPage({ onDemoClick }) {
   return (
@@ -314,111 +450,11 @@ function FinOpsPage({ onDemoClick }) {
             A structured, repeatable FinOps service—without added operational burden.
           </p>
 
-          {/* Diagram */}
-          <div className="mt-14 max-w-[1040px] mx-auto">
-            <div className="flex items-center justify-center gap-2 mb-1">
-              <MonetaMark size={26} />
-              <span className="text-[19px] font-semibold tracking-tight text-white">moneta</span>
-            </div>
-            <p className="eyebrow text-ink-muted mb-6">The Billing Infrastructure</p>
-
-            <div className="flex items-center relative">
-
-              {/* Left: pain points — each row's vertical CENTER aligns to a connector stub (top/middle/bottom of the 200px column) */}
-              <div className="shrink-0 w-[160px] text-left relative" style={{ height: 200 }}>
-                <p className="absolute left-0 text-[12px] leading-tight whitespace-nowrap" style={{ top: -40 }}>
-                  <span className="text-white font-semibold">Today </span>
-                  <span className="font-semibold" style={{ color: "#22D3EE" }}>Hard to Provide FinOps</span>
-                </p>
-                {/* faint dividers between rows (at 25% and 75% — midpoints between row centers) */}
-                <div className="absolute left-0 right-2" style={{ top: "25%", height: 1, background: "rgba(180, 186, 200, 0.12)" }} />
-                <div className="absolute left-0 right-2" style={{ top: "75%", height: 1, background: "rgba(180, 186, 200, 0.12)" }} />
-                {[
-                  { label: "One-off analysis for each customer", y: 6 },
-                  { label: "Manual process and reporting",       y: 100 },
-                  { label: "Difficult to scale across customers", y: 194 },
-                ].map(({ label, y }) => (
-                  <p
-                    key={label}
-                    className="absolute left-0 right-0 text-[12px] text-ink-secondary leading-[1.35]"
-                    style={{ top: y, transform: "translateY(-50%)" }}
-                  >
-                    {label}
-                  </p>
-                ))}
-              </div>
-
-              {/* Connector bracket — SVG so stub length is tunable; 3 dashed arrows on the left meeting at a junction dot, one solid arrow on the right into the box */}
-              <svg width="80" height="200" viewBox="0 0 80 200" fill="none" className="shrink-0" aria-hidden="true">
-                {/* vertical spine (right side of bracket) */}
-                <line x1="62" y1="6" x2="62" y2="194" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="3 4" />
-                {/* top stub (long, with left-pointing arrowhead) */}
-                <line x1="62" y1="6" x2="14" y2="6" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="3 4" />
-                <polyline points="14,2 8,6 14,10" fill="none" stroke="#3B82F6" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
-                {/* middle stub */}
-                <line x1="62" y1="100" x2="14" y2="100" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="3 4" />
-                <polyline points="14,96 8,100 14,104" fill="none" stroke="#3B82F6" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
-                {/* bottom stub */}
-                <line x1="62" y1="194" x2="14" y2="194" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="3 4" />
-                <polyline points="14,190 8,194 14,198" fill="none" stroke="#3B82F6" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
-                {/* junction dot on the spine, at the middle */}
-                <circle cx="62" cy="100" r="3.5" fill="#3B82F6" />
-                {/* right stub into the pipeline box */}
-                <line x1="62" y1="100" x2="78" y2="100" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="3 4" />
-              </svg>
-
-              {/* Pipeline box — with glow */}
-              <div className="flex-1 ml-1 rounded-xl flex flex-col min-h-[180px]"
-                style={{ border: "1px solid #1A2030", background: "#0B0E17", boxShadow: "0 0 40px 8px rgba(91,123,255,0.12), 0 0 80px 16px rgba(168,85,247,0.08)" }}>
-                <div className="px-8 pt-6 pb-2 relative">
-                  {/* gradient timeline line — extends past the right edge of the box to meet the external arrow seamlessly */}
-                  <div className="absolute left-8" style={{ top: "calc(1.5rem + 5px)", right: -2, height: 1.5, background: "linear-gradient(90deg, #3B82F6, #22D3EE, #6366F1, #A855F7)" }} />
-                  <div className="flex items-start justify-between relative z-10">
-                    {[
-                      { label: "Billing",   color: "#3B82F6" },
-                      { label: "Pricing",   color: "#22D3EE" },
-                      { label: "Discounts", color: "#6366F1" },
-                      { label: "Margin",    color: "#A855F7" },
-                    ].map(({ label, color }) => (
-                      <div key={label} className="flex flex-col items-center gap-2">
-                        <div className="w-2.5 h-2.5 rounded-full" style={{ background: color, boxShadow: `0 0 8px ${color}cc` }} />
-                        <span className="text-[13px] font-medium text-white">{label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex-1 flex items-center justify-center px-8 pb-6 pt-2">
-                  <p className="text-center text-[13px] text-ink-secondary leading-[1.55]">
-                    Continuously aligning billing, pricing,<br />discounts, and margin.
-                  </p>
-                </div>
-              </div>
-
-              {/* Right cluster: arrow flush against box at timeline level + outcome text vertically centered on arrow */}
-              <div className="shrink-0 self-start flex items-start" style={{ paddingTop: 35, marginLeft: -4 }}>
-                <svg width="56" height="12" viewBox="0 0 56 12" fill="none" className="shrink-0 block" preserveAspectRatio="none" style={{ display: "block" }}>
-                  <line x1="0" y1="6" x2="50" y2="6" stroke="#A855F7" strokeWidth="1.5" />
-                  <polyline points="45,2 51,6 45,10" fill="none" stroke="#A855F7" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
-                </svg>
-                <p className="ml-2 text-[13px] font-semibold leading-[1.5] text-white text-left" style={{ marginTop: -23, width: 120 }}>
-                  Continuous<br />FinOps across<br /><span style={{ color: "#22D3EE" }}>every customer.</span>
-                </p>
-              </div>
-            </div>
-
-            {/* Bottom CTA line */}
-            <div className="mt-10 flex items-center justify-center gap-2">
-              <span className="grad-text-bp text-[17px] font-semibold">→</span>
-              <p className="text-[16px] text-white">
-                <span className="font-semibold">Make FinOps Possible at Scale.</span>{" "}
-                <span className="text-ink-secondary">moneta makes it simple.</span>
-              </p>
-            </div>
-          </div>
+          <FinOpsDiagram />
         </div>
       </section>
 
-      <SectionShell>
+      <SectionShell className="border-t border-line-soft" style={{ background: "#0C0F17" }}>
         <div className="text-center max-w-[820px] mx-auto">
           <h2 className="text-h1 text-balance">
             FinOps <span className="grad-text-bp">cannot</span> scale without infrastructure.
@@ -428,61 +464,63 @@ function FinOpsPage({ onDemoClick }) {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-y-6 gap-x-10">
-          <div className="md:col-start-1">
-            <p className="eyebrow text-ink-muted">FinOps Without Infrastructure</p>
-          </div>
-          <div></div>
-          <div>
-            <p className="eyebrow grad-text-bp">FinOps With moneta</p>
+        <div className="mt-12 rounded-2xl overflow-hidden border border-line-soft">
+          {/* Header row */}
+          <div className="grid grid-cols-[1fr_40px_1fr] px-6 py-3 border-b border-line-soft" style={{ background: "rgba(255,255,255,0.03)" }}>
+            <p className="eyebrow text-[10px] text-ink-muted">Without Infrastructure</p>
+            <div />
+            <p className="eyebrow text-[10px] grad-text-bp">With moneta</p>
           </div>
           {[
-            ["One-off cost analysis", "Continuous FinOps delivery across every customer account", "#3B82F6"],
+            ["One-off cost analysis",                  "Continuous FinOps delivery across every customer account", "#3B82F6"],
             ["Cost, pricing, and billing disconnected", "A single system of record across cost, pricing, and invoicing", "#5B7BFF"],
-            ["Manual, reactive optimization", "Continuous, system-driven optimization across every customer", "#6366F1"],
-            ["One-time engagement", "Recurring FinOps service delivered at scale", "#A855F7"],
-          ].map(([a, b, c]) => (
-            <React.Fragment key={a}>
-              <div className="md:col-start-1 self-center">
-                <p className="text-[16.5px] text-ink-secondary leading-[1.5]">{a}</p>
+            ["Manual, reactive optimization",          "Continuous, system-driven optimization across every customer", "#6366F1"],
+            ["One-time engagement",                    "Recurring FinOps service delivered at scale", "#A855F7"],
+          ].map(([a, b, c], i, arr) => (
+            <div key={a} className={`grid grid-cols-[1fr_40px_1fr] items-center px-6 py-4 ${i < arr.length - 1 ? "border-b border-line-soft" : ""}`}
+              style={{ background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)" }}>
+              <p className="text-[15px] text-ink-secondary leading-[1.5]">{a}</p>
+              <div className="flex items-center justify-center">
+                <svg width="20" height="10" viewBox="0 0 20 10" fill="none" aria-hidden="true">
+                  <line x1="0" y1="5" x2="14" y2="5" stroke={c} strokeWidth="1" opacity="0.5" />
+                  <path d="M12,3 L16,5 L12,7" fill="none" stroke={c} strokeWidth="1" strokeLinejoin="miter" strokeLinecap="square" />
+                </svg>
               </div>
-              <div className="hidden md:flex items-center justify-center text-ink-muted text-[20px]">→</div>
-              <div className="self-center">
-                <p className="text-[16.5px] font-semibold leading-[1.45]" style={{ color: c }}>{b}</p>
-              </div>
-              <div className="md:col-span-3 h-px bg-line-soft" />
-            </React.Fragment>
+              <p className="text-[15px] font-semibold leading-[1.45]" style={{ color: c }}>{b}</p>
+            </div>
           ))}
         </div>
 
-        <p className="mt-10 text-[16px] leading-[1.7] text-ink-secondary max-w-[860px]">
+        <p className="mt-8 text-[15px] leading-[1.7] text-ink-muted max-w-[760px]">
           When billing, pricing, and discount data operate within a single system, FinOps no longer depends on
           manual reconciliation or disconnected tools.
         </p>
       </SectionShell>
 
-      <SectionShell className="bg-bg-secondary border-t border-line-soft">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <SectionShell className="border-t border-line-soft" style={{ background: "#080A10" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
-            <Eyebrow className="mb-7">Why moneta</Eyebrow>
-            <h2 className="text-h1 text-balance">
-              Built for <span className="grad-text-bp">AWS and Azure</span> resellers operating across multiple customers,
-              pricing models, and discount programs.
+            <Eyebrow className="mb-5">Why moneta</Eyebrow>
+            <h2 className="text-balance" style={{ fontSize: "clamp(28px, 3vw, 42px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
+              Built for <span className="grad-text-bp">AWS and Azure</span> resellers managing multiple customers, pricing models, and discount programs.
             </h2>
+            <p className="mt-5 text-[15.5px] leading-[1.7] text-ink-secondary">
+              Every feature is shaped by how resellers actually operate — not adapted from single-tenant tools.
+            </p>
           </div>
-          <div className="lg:col-span-7 lg:self-center space-y-3">
+          <div className="lg:col-span-7 space-y-2.5">
             {[
-              { t: "Customer review reporting", b: "Branded, repeatable cost & savings reviews built from real billing data.", c: "#3B82F6" },
-              { t: "Optimization playbooks", b: "Rightsizing, commitment planning, and anomaly detection out of the box.", c: "#22D3EE" },
+              { t: "Customer review reporting",   b: "Branded, repeatable cost & savings reviews built from real billing data.", c: "#3B82F6" },
+              { t: "Optimization playbooks",      b: "Rightsizing, commitment planning, and anomaly detection out of the box.", c: "#22D3EE" },
               { t: "Discount earn-back tracking", b: "Show customers exactly what their commitments earned this quarter.", c: "#A855F7" },
-              { t: "One source of truth", b: "Same data behind invoices powers FinOps insights — no parallel pipeline.", c: "#5B7BFF" },
+              { t: "One source of truth",         b: "Same data behind invoices powers FinOps insights — no parallel pipeline.", c: "#5B7BFF" },
             ].map((f, i) => (
-              <div key={f.t} className="card flex items-start gap-5 px-5 py-4">
-                <span className="font-semibold text-[12px] mt-0.5" style={{ color: f.c }}>0{i + 1}</span>
-                <span className="block w-px self-stretch bg-line-soft" />
+              <div key={f.t} className="flex items-start gap-4 px-5 py-4 rounded-xl"
+                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid #1A2030", borderLeft: `3px solid ${f.c}` }}>
+                <span className="text-[11px] font-bold mt-0.5 shrink-0" style={{ color: f.c }}>0{i + 1}</span>
                 <div>
-                  <h4 className="text-[16px] font-semibold mb-1">{f.t}</h4>
-                  <p className="text-[14.5px] text-ink-secondary leading-[1.6]">{f.b}</p>
+                  <h4 className="text-[15px] font-semibold mb-1 text-white">{f.t}</h4>
+                  <p className="text-[13.5px] text-ink-secondary leading-[1.6]">{f.b}</p>
                 </div>
               </div>
             ))}
@@ -525,7 +563,7 @@ function WhyPage({ onDemoClick }) {
       </section>
 
       {/* The Difference */}
-      <SectionShell>
+      <SectionShell className="border-t border-line-soft" style={{ background: "#0C0F17" }}>
         <div className="mb-10 max-w-[760px]">
           <Eyebrow className="mb-6">The Difference</Eyebrow>
           <h2 className="text-h1 text-balance">
@@ -549,7 +587,7 @@ function WhyPage({ onDemoClick }) {
       </SectionShell>
 
       {/* The Reality */}
-      <SectionShell className="bg-bg-secondary border-t border-line-soft">
+      <SectionShell className="border-t border-line-soft" style={{ background: "#0A0D14" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
             <Eyebrow className="mb-7">The Reality</Eyebrow>
@@ -569,7 +607,7 @@ function WhyPage({ onDemoClick }) {
       </SectionShell>
 
       {/* Why Cloud Resellers Choose moneta — WhyMonetaDiagram */}
-      <SectionShell dotsRight>
+      <SectionShell className="border-t border-line-soft" dotsRight style={{ background: "#0C0F17" }}>
         <div className="mb-10 max-w-[820px]">
           <Eyebrow className="mb-6">Why Cloud Resellers Choose moneta</Eyebrow>
           <h2 className="text-h1 text-balance">
@@ -583,7 +621,7 @@ function WhyPage({ onDemoClick }) {
       </SectionShell>
 
       {/* Built for multi-customer */}
-      <SectionShell className="bg-bg-secondary border-t border-line-soft">
+      <SectionShell className="border-t border-line-soft" style={{ background: "#080A10" }}>
         <div className="mb-10 max-w-[820px]">
           <Eyebrow className="mb-6">Why moneta</Eyebrow>
           <h2 className="text-h1 text-balance">
@@ -636,92 +674,11 @@ function FinOpsForCloudResellersPage({ onDemoClick }) {
             A structured, repeatable FinOps service—without added operational burden.
           </p>
 
-          {/* Diagram */}
-          <div className="mt-14 max-w-[1040px] mx-auto">
-            <div className="flex items-center justify-center gap-2 mb-1">
-              <MonetaMark size={26} />
-              <span className="text-[19px] font-semibold tracking-tight text-white">moneta</span>
-            </div>
-            <p className="eyebrow text-ink-muted mb-6">The Billing Infrastructure</p>
-
-            <div className="flex items-center">
-              {/* Left: bracket + pain points */}
-              <div className="shrink-0 w-[200px] text-left">
-                <p className="text-[11px] mb-4 leading-tight">
-                  <span className="text-white font-semibold">Today </span>
-                  <span className="font-semibold" style={{ color: "#F59E0B" }}>Hard to Provide FinOps</span>
-                </p>
-                <div className="flex items-stretch gap-0">
-                  <div className="flex flex-col justify-between gap-4 flex-1">
-                    {["One-off analysis for each customer", "Manual process and reporting", "Difficult to scale across customers"].map((label) => (
-                      <p key={label} className="text-[12px] text-ink-secondary leading-[1.35]">{label}</p>
-                    ))}
-                  </div>
-                  <svg width="36" height="110" viewBox="0 0 36 110" fill="none" className="shrink-0 ml-2" style={{ overflow: "visible" }}>
-                    <line x1="8" y1="10" x2="8" y2="100" stroke="#6B7385" strokeWidth="1.5" strokeDasharray="3 3" />
-                    <line x1="8" y1="10"  x2="28" y2="10"  stroke="#6B7385" strokeWidth="1.5" strokeDasharray="3 3" />
-                    <line x1="8" y1="55"  x2="28" y2="55"  stroke="#6B7385" strokeWidth="1.5" strokeDasharray="3 3" />
-                    <line x1="8" y1="100" x2="28" y2="100" stroke="#6B7385" strokeWidth="1.5" strokeDasharray="3 3" />
-                    <polyline points="24,6 28,10 24,14"    fill="none" stroke="#6B7385" strokeWidth="1.5" strokeLinejoin="round" />
-                    <polyline points="24,51 28,55 24,59"   fill="none" stroke="#6B7385" strokeWidth="1.5" strokeLinejoin="round" />
-                    <polyline points="24,96 28,100 24,104" fill="none" stroke="#6B7385" strokeWidth="1.5" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
-
-              {/* Pipeline box — with glow */}
-              <div className="flex-1 mx-3 rounded-xl flex flex-col min-h-[180px]"
-                style={{ border: "1px solid #1A2030", background: "#0B0E17", boxShadow: "0 0 40px 8px rgba(91,123,255,0.12), 0 0 80px 16px rgba(168,85,247,0.08)" }}>
-                <div className="px-8 pt-6 pb-2 relative">
-                  <div className="absolute left-8 right-8" style={{ top: "calc(1.5rem + 5px)", height: 1, background: "linear-gradient(90deg, #3B82F6, #22D3EE, #6366F1, #A855F7)" }} />
-                  <div className="flex items-start justify-between relative z-10">
-                    {[
-                      { label: "Billing",   color: "#3B82F6" },
-                      { label: "Pricing",   color: "#22D3EE" },
-                      { label: "Discounts", color: "#6366F1" },
-                      { label: "Margin",    color: "#A855F7" },
-                    ].map(({ label, color }) => (
-                      <div key={label} className="flex flex-col items-center gap-2">
-                        <div className="w-2.5 h-2.5 rounded-full" style={{ background: color, boxShadow: `0 0 8px ${color}cc` }} />
-                        <span className="text-[13px] font-medium text-white">{label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex-1 flex items-center justify-center px-8 pb-6 pt-2">
-                  <p className="text-center text-[13px] text-ink-secondary leading-[1.55]">
-                    Continuously aligning billing, pricing,<br />discounts, and margin.
-                  </p>
-                </div>
-              </div>
-
-              {/* Right connector: purple arrow */}
-              <svg width="36" height="12" viewBox="0 0 36 12" fill="none" className="shrink-0">
-                <line x1="0" y1="6" x2="30" y2="6" stroke="#A855F7" strokeWidth="1.5" />
-                <polyline points="25,2 31,6 25,10" fill="none" stroke="#A855F7" strokeWidth="1.5" strokeLinejoin="round" />
-              </svg>
-
-              {/* Right: outcome */}
-              <div className="text-left w-[120px] shrink-0 ml-1">
-                <p className="text-[13px] font-semibold leading-[1.5] text-white">
-                  Continuous<br />FinOps across<br /><span style={{ color: "#22D3EE" }}>every customer.</span>
-                </p>
-              </div>
-            </div>
-
-            {/* Bottom CTA line */}
-            <div className="mt-10 flex items-center justify-center gap-2">
-              <span className="grad-text-bp text-[17px] font-semibold">→</span>
-              <p className="text-[16px] text-white">
-                <span className="font-semibold">Make FinOps Possible at Scale.</span>{" "}
-                <span className="text-ink-secondary">moneta makes it simple.</span>
-              </p>
-            </div>
-          </div>
+          <FinOpsDiagram />
         </div>
       </section>
 
-      <SectionShell>
+      <SectionShell className="border-t border-line-soft" style={{ background: "#0C0F17" }}>
         <div className="text-center max-w-[820px] mx-auto">
           <h2 className="text-h1 text-balance">
             FinOps <span className="grad-text-bp">cannot</span> scale without infrastructure.
@@ -731,61 +688,63 @@ function FinOpsForCloudResellersPage({ onDemoClick }) {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-y-6 gap-x-10">
-          <div className="md:col-start-1">
-            <p className="eyebrow text-ink-muted">FinOps Without Infrastructure</p>
-          </div>
-          <div></div>
-          <div>
-            <p className="eyebrow grad-text-bp">FinOps With moneta</p>
+        <div className="mt-12 rounded-2xl overflow-hidden border border-line-soft">
+          {/* Header row */}
+          <div className="grid grid-cols-[1fr_40px_1fr] px-6 py-3 border-b border-line-soft" style={{ background: "rgba(255,255,255,0.03)" }}>
+            <p className="eyebrow text-[10px] text-ink-muted">Without Infrastructure</p>
+            <div />
+            <p className="eyebrow text-[10px] grad-text-bp">With moneta</p>
           </div>
           {[
-            ["One-off cost analysis", "Continuous FinOps delivery across every customer account", "#3B82F6"],
+            ["One-off cost analysis",                  "Continuous FinOps delivery across every customer account", "#3B82F6"],
             ["Cost, pricing, and billing disconnected", "A single system of record across cost, pricing, and invoicing", "#5B7BFF"],
-            ["Manual, reactive optimization", "Continuous, system-driven optimization across every customer", "#6366F1"],
-            ["One-time engagement", "Recurring FinOps service delivered at scale", "#A855F7"],
-          ].map(([a, b, c]) => (
-            <React.Fragment key={a}>
-              <div className="md:col-start-1 self-center">
-                <p className="text-[16.5px] text-ink-secondary leading-[1.5]">{a}</p>
+            ["Manual, reactive optimization",          "Continuous, system-driven optimization across every customer", "#6366F1"],
+            ["One-time engagement",                    "Recurring FinOps service delivered at scale", "#A855F7"],
+          ].map(([a, b, c], i, arr) => (
+            <div key={a} className={`grid grid-cols-[1fr_40px_1fr] items-center px-6 py-4 ${i < arr.length - 1 ? "border-b border-line-soft" : ""}`}
+              style={{ background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)" }}>
+              <p className="text-[15px] text-ink-secondary leading-[1.5]">{a}</p>
+              <div className="flex items-center justify-center">
+                <svg width="20" height="10" viewBox="0 0 20 10" fill="none" aria-hidden="true">
+                  <line x1="0" y1="5" x2="14" y2="5" stroke={c} strokeWidth="1" opacity="0.5" />
+                  <path d="M12,3 L16,5 L12,7" fill="none" stroke={c} strokeWidth="1" strokeLinejoin="miter" strokeLinecap="square" />
+                </svg>
               </div>
-              <div className="hidden md:flex items-center justify-center text-ink-muted text-[20px]">→</div>
-              <div className="self-center">
-                <p className="text-[16.5px] font-semibold leading-[1.45]" style={{ color: c }}>{b}</p>
-              </div>
-              <div className="md:col-span-3 h-px bg-line-soft" />
-            </React.Fragment>
+              <p className="text-[15px] font-semibold leading-[1.45]" style={{ color: c }}>{b}</p>
+            </div>
           ))}
         </div>
 
-        <p className="mt-10 text-[16px] leading-[1.7] text-ink-secondary max-w-[860px]">
+        <p className="mt-8 text-[15px] leading-[1.7] text-ink-muted max-w-[760px]">
           When billing, pricing, and discount data operate within a single system, FinOps no longer depends on
           manual reconciliation or disconnected tools.
         </p>
       </SectionShell>
 
-      <SectionShell className="bg-bg-secondary border-t border-line-soft">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <SectionShell className="border-t border-line-soft" style={{ background: "#080A10" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
-            <Eyebrow className="mb-7">Why moneta</Eyebrow>
-            <h2 className="text-h1 text-balance">
-              Built for <span className="grad-text-bp">AWS and Azure</span> resellers operating across multiple customers,
-              pricing models, and discount programs.
+            <Eyebrow className="mb-5">Why moneta</Eyebrow>
+            <h2 className="text-balance" style={{ fontSize: "clamp(28px, 3vw, 42px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
+              Built for <span className="grad-text-bp">AWS and Azure</span> resellers managing multiple customers, pricing models, and discount programs.
             </h2>
+            <p className="mt-5 text-[15.5px] leading-[1.7] text-ink-secondary">
+              Every feature is shaped by how resellers actually operate — not adapted from single-tenant tools.
+            </p>
           </div>
-          <div className="lg:col-span-7 lg:self-center space-y-3">
+          <div className="lg:col-span-7 space-y-2.5">
             {[
-              { t: "Customer review reporting", b: "Branded, repeatable cost & savings reviews built from real billing data.", c: "#3B82F6" },
-              { t: "Optimization playbooks", b: "Rightsizing, commitment planning, and anomaly detection out of the box.", c: "#22D3EE" },
+              { t: "Customer review reporting",   b: "Branded, repeatable cost & savings reviews built from real billing data.", c: "#3B82F6" },
+              { t: "Optimization playbooks",      b: "Rightsizing, commitment planning, and anomaly detection out of the box.", c: "#22D3EE" },
               { t: "Discount earn-back tracking", b: "Show customers exactly what their commitments earned this quarter.", c: "#A855F7" },
-              { t: "One source of truth", b: "Same data behind invoices powers FinOps insights — no parallel pipeline.", c: "#5B7BFF" },
+              { t: "One source of truth",         b: "Same data behind invoices powers FinOps insights — no parallel pipeline.", c: "#5B7BFF" },
             ].map((f, i) => (
-              <div key={f.t} className="card flex items-start gap-5 px-5 py-4">
-                <span className="font-semibold text-[12px] mt-0.5" style={{ color: f.c }}>0{i + 1}</span>
-                <span className="block w-px self-stretch bg-line-soft" />
+              <div key={f.t} className="flex items-start gap-4 px-5 py-4 rounded-xl"
+                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid #1A2030", borderLeft: `3px solid ${f.c}` }}>
+                <span className="text-[11px] font-bold mt-0.5 shrink-0" style={{ color: f.c }}>0{i + 1}</span>
                 <div>
-                  <h4 className="text-[16px] font-semibold mb-1">{f.t}</h4>
-                  <p className="text-[14.5px] text-ink-secondary leading-[1.6]">{f.b}</p>
+                  <h4 className="text-[15px] font-semibold mb-1 text-white">{f.t}</h4>
+                  <p className="text-[13.5px] text-ink-secondary leading-[1.6]">{f.b}</p>
                 </div>
               </div>
             ))}

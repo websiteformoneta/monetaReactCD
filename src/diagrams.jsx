@@ -302,16 +302,17 @@ function ResultsList() {
   ];
   return (
     <div>
-      <div className="space-y-4">
+      <div className="space-y-2">
         {rows.map(([a, b]) => (
-          <div key={a} className="grid grid-cols-[1fr_28px_1fr] items-center gap-4 py-3 border-b border-line-soft last:border-b-0">
-            <span className="text-[17px] text-ink-secondary">{a}</span>
-            <span className="text-ink-muted text-[20px] text-center">→</span>
-            <span className="text-[17px] font-semibold grad-text-bp">{b}</span>
+          <div key={a} className="grid grid-cols-[1fr_28px_1fr] items-center gap-4 px-5 py-3.5 rounded-xl border"
+            style={{ background: "rgba(255,255,255,0.02)", borderColor: "#0D1020" }}>
+            <span className="text-[16px] text-ink-secondary">{a}</span>
+            <span className="text-ink-muted text-[18px] text-center">→</span>
+            <span className="text-[16px] font-semibold grad-text-bp">{b}</span>
           </div>
         ))}
       </div>
-      <p className="mt-7 pt-5 border-t border-line-soft text-[15.5px] text-ink-secondary leading-[1.65]">
+      <p className="mt-7 pt-5 border-t text-[15.5px] text-ink-secondary leading-[1.65]" style={{ borderColor: "#0D1020" }}>
         Built for <span className="grad-text-bp font-semibold">AWS and Azure</span> resellers — aligning <span className="grad-text-bp font-semibold">multi-customer</span> billing, pricing, and margin in a <span className="grad-text-bp font-semibold">single system</span>.
       </p>
     </div>
@@ -354,20 +355,15 @@ function FinopsSplit() {
           <stop offset="0%" stopColor="#A855F7" />
           <stop offset="100%" stopColor="#5B7BFF" />
         </linearGradient>
+        <marker id="tg-arrow" markerWidth="4" markerHeight="4" refX="3.5" refY="2" orient="auto">
+          <path d="M0,0 L4,2 L0,4 Z" fill="#5B7BFF" />
+        </marker>
       </defs>
       <polyline
-        points="6,12 22,22 36,18 52,34 72,46"
-        stroke="url(#tg)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"
+        points="6,10 24,22 40,16 58,36 72,48"
+        stroke="url(#tg)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="miter"
+        markerEnd="url(#tg-arrow)"
       />
-      <polyline
-        points="66,40 72,46 66,50"
-        stroke="#A855F7" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"
-      />
-      {[
-        [6, 12], [22, 22], [36, 18], [52, 34], [72, 46],
-      ].map(([cx, cy], i) => (
-        <circle key={i} cx={cx} cy={cy} r="2" fill="#A855F7" />
-      ))}
     </svg>
   );
 
@@ -446,25 +442,32 @@ function FinopsSplit() {
         <p className="text-[20px] md:text-[23px] font-bold grad-text-bp">Your Managed Service</p>
       </div>
 
-      {/* Distribution lines down to three columns */}
+      {/* Distribution lines — single SVG so lines are guaranteed to connect.
+          viewBox 0 0 600 44. Column centers (gap-3 = 12px assumed on 420px max):
+          col width = (420-24)/3 = 132. centers at 66, 210, 354 → as % of 420 → 15.7%, 50%, 84.3%
+          In viewBox 600: x = 94, 300, 506  */}
       <svg
-        viewBox="0 0 300 36"
+        viewBox="0 0 600 44"
         width="100%"
-        height="36"
+        height="44"
         preserveAspectRatio="none"
         aria-hidden="true"
-        style={{ maxWidth: 420, marginTop: 4 }}
+        style={{ marginTop: 4, display: "block" }}
       >
-        <line x1="150" y1="0" x2="150" y2="10" stroke="rgba(34,211,238,0.55)" strokeWidth="1.5" />
-        <line x1="50"  y1="10" x2="250" y2="10" stroke="rgba(34,211,238,0.55)" strokeWidth="1.5" />
-        <line x1="50"  y1="10" x2="50"  y2="32" stroke="rgba(34,211,238,0.55)" strokeWidth="1.5" />
-        <line x1="150" y1="10" x2="150" y2="32" stroke="rgba(34,211,238,0.55)" strokeWidth="1.5" />
-        <line x1="250" y1="10" x2="250" y2="32" stroke="rgba(34,211,238,0.55)" strokeWidth="1.5" />
-        {[50, 150, 250].map((x) => (
+        {/* stem from card down to horizontal */}
+        <line x1="300" y1="0"  x2="300" y2="10" stroke="rgba(34,211,238,0.55)" strokeWidth="2" />
+        {/* horizontal bar */}
+        <line x1="94"  y1="10" x2="506" y2="10" stroke="rgba(34,211,238,0.55)" strokeWidth="2" />
+        {/* verticals down */}
+        <line x1="94"  y1="10" x2="94"  y2="36" stroke="rgba(34,211,238,0.55)" strokeWidth="2" />
+        <line x1="300" y1="10" x2="300" y2="36" stroke="rgba(34,211,238,0.55)" strokeWidth="2" />
+        <line x1="506" y1="10" x2="506" y2="36" stroke="rgba(34,211,238,0.55)" strokeWidth="2" />
+        {/* arrowheads */}
+        {[94, 300, 506].map((x) => (
           <polyline
             key={x}
-            points={`${x - 4},28 ${x},34 ${x + 4},28`}
-            fill="none" stroke="rgba(34,211,238,0.85)" strokeWidth="1.5"
+            points={`${x - 6},32 ${x},40 ${x + 6},32`}
+            fill="none" stroke="rgba(34,211,238,0.9)" strokeWidth="2"
             strokeLinecap="round" strokeLinejoin="round"
           />
         ))}
@@ -523,14 +526,10 @@ function CoreSystemLayers() {
       {/* Timeline — line centered in TCOL column */}
       <div className="relative">
         <div className="absolute top-1" style={{
-          left: TCOL / 2 - 1, width: 2, height: "calc(100% - 18px)",
-          background: "linear-gradient(180deg,#3B82F6 0%,#22D3EE 33%,#5B7BFF 66%,#A855F7 100%)",
+          left: TCOL / 2 - 1, width: 2, height: "calc(100% - 8px)",
+          background: "linear-gradient(180deg,#3B82F6 0%,#22D3EE 33%,#5B7BFF 66%,#A855F7 85%, transparent 100%)",
           borderRadius: 2
         }} />
-        {/* Down arrow at bottom of line */}
-        <svg className="absolute" style={{ left: TCOL / 2 - 7, bottom: -4 }} width="14" height="10" viewBox="0 0 14 10" aria-hidden="true">
-          <path d="M7 10L0 0h14z" fill="#A855F7" />
-        </svg>
         <ul className="space-y-0">
           {items.map((it, idx) => (
             <li key={it.t} className="flex">
@@ -560,27 +559,40 @@ function SystemFlowHorizontal() {
   const steps = [
     { t: "Cloud Data", sub: "(Continuous)", b: "Cloud billing data is continuously ingested across all customer accounts.", c: "#3B82F6" },
     { t: "Pricing & Discounts", sub: "(Aligned)", b: "Pricing models and discount programs are applied automatically and aligned with cost.", c: "#22D3EE" },
-    { t: "Invoicing", sub: "(Continuous)", b: "Accurate, customer-ready invoices are generated based on aligned billing and pricing.", c: "#5B7BFF" },
+    { t: "Invoicing", sub: "(Automated)", b: "Accurate, customer-ready invoices are generated based on aligned billing and pricing.", c: "#5B7BFF" },
     { t: "Margin Visibility", sub: "(Real-Time)", b: "Margin performance is updated in real time across every customer for complete visibility and control.", c: "#A855F7" },
   ];
   return (
     <div>
-      {/* Horizontal flow line */}
-      <div className="relative h-6 mb-8">
-        <div className="absolute top-1/2 left-0 right-6 h-[2px] -translate-y-1/2 rounded-full"
-          style={{ background: "linear-gradient(90deg,#3B82F6,#22D3EE 33%,#5B7BFF 66%,#A855F7 100%)" }} />
-        <div className="absolute top-1/2 left-0 right-6 -translate-y-1/2 flex justify-between"
-          style={{ paddingLeft: "6%", paddingRight: "6%" }}>
+      {/* Line + dots. Dots use the same 4-col grid so they're always centered over titles. */}
+      <div className="relative mb-6" style={{ height: 24 }}>
+        {/* Base line with fade edges */}
+        <div className="absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2"
+          style={{ background: "linear-gradient(90deg, transparent 0%, #3B82F6 8%, #22D3EE 33%, #5B7BFF 66%, #A855F7 92%, transparent 100%)", opacity: 0.5 }} />
+        {/* Chevron arrows spaced evenly between dots */}
+        <div className="absolute inset-0 grid grid-cols-4 gap-5 md:gap-6">
           {steps.map((s, i) => (
-            <span key={i} style={{
-              width: 14, height: 14, borderRadius: "50%", display: "block", flexShrink: 0,
-              background: s.c, boxShadow: `0 0 0 3px ${s.c}28, 0 0 14px ${s.c}80`
-            }} />
+            <div key={s.t} className="flex items-center justify-end" style={{ paddingRight: i === steps.length - 1 ? 0 : undefined }}>
+              {i < steps.length - 1 && (
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"
+                  style={{ animation: `chevron-pulse 1.8s ease-in-out ${i * 0.3}s infinite`, opacity: 0.7 }}>
+                  <polyline points="2,1 8,5 2,9" stroke={s.c} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
+            </div>
           ))}
         </div>
-        <svg className="absolute right-0 top-1/2 -translate-y-1/2" width="14" height="11" viewBox="0 0 14 11">
-          <path d="M14 5.5L0 0v11z" fill="#A855F7" />
-        </svg>
+        {/* Dots — same 4-col grid, each dot centered in its column */}
+        <div className="absolute inset-0 grid grid-cols-4 gap-5 md:gap-6">
+          {steps.map((s) => (
+            <div key={s.t} className="flex items-center justify-center">
+              <span style={{
+                width: 13, height: 13, borderRadius: "50%", display: "block",
+                background: s.c, boxShadow: `0 0 0 3px ${s.c}30, 0 0 10px ${s.c}80`,
+              }} />
+            </div>
+          ))}
+        </div>
       </div>
       {/* Step descriptions */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">

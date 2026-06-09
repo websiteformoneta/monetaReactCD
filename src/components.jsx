@@ -71,9 +71,9 @@ function ReviewCTA({ onClick, label = "Review Your Billing, Pricing, and Margins
   );
 }
 
-function SectionShell({ children, className = "", id, dotsRight = false, dotsLeft = false }) {
+function SectionShell({ children, className = "", id, dotsRight = false, dotsLeft = false, style }) {
   return (
-    <section id={id} className={`relative py-20 md:py-28 ${className}`}>
+    <section id={id} className={`relative py-14 md:py-20 ${className}`} style={style}>
       {dotsRight && <div className="dot-corner" />}
       {dotsLeft && <div className="dot-corner-left" />}
       <div className="container-x relative">{children}</div>
@@ -114,8 +114,8 @@ function Header({ onDemoClick }) {
         </nav>
         <div className="flex items-center gap-3">
           <button onClick={onDemoClick}
-            className="hidden sm:inline-flex items-center gap-2 grad-text-bp font-semibold text-[14.5px] hover:opacity-90 px-4 py-2 rounded-md bg-bg-primary"
-            style={{ border: "1.5px solid transparent", borderImage: "linear-gradient(135deg,#3B82F6,#A855F7) 1", borderImageSlice: 1 }}>
+            className="hidden sm:inline-flex items-center justify-center gap-2 text-white font-semibold text-[14.5px] hover:opacity-90 px-4 py-2 rounded-md"
+            style={{ border: "1.5px solid #3B82F6", background: "#05060A" }}>
             Book a Demo <ArrowRight size={13} />
           </button>
           <button className="md:hidden w-10 h-10 grid place-items-center rounded-md border border-line text-ink-secondary"
@@ -290,16 +290,14 @@ function DemoModal({ isOpen, onClose }) {
 // ----- Final CTA -----
 function FinalCTA({ title, description, ctaLabel = "Book a Demo", onCta }) {
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
+    <section className="relative py-10 md:py-14 overflow-hidden">
       <div className="dot-corner" />
-      <div className="container-x relative">
-        <div className="max-w-[920px]">
-          <h2 className="text-h1 text-balance">{title}</h2>
-          {description && <p className="mt-6 text-[19px] leading-[1.6] text-ink-secondary max-w-[680px]">{description}</p>}
+      <div className="container-x relative text-center flex flex-col items-center">
+          <h2 className="text-h1 text-balance max-w-[760px]">{title}</h2>
+          {description && <p className="mt-6 text-[19px] leading-[1.6] text-ink-secondary max-w-[560px]">{description}</p>}
           <div className="mt-9">
             <Button variant="primary" onClick={onCta} className="!px-7 !py-4 !text-[15px]">{ctaLabel} <ArrowRight /></Button>
           </div>
-        </div>
       </div>
     </section>
   );
