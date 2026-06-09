@@ -77,33 +77,33 @@ function HomePage({ onDemoClick }) {
 
       {/* PROBLEM */}
       <SectionShell dotsRight>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-5">
-            <Eyebrow className="mb-7">The Problem</Eyebrow>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-stretch">
+          <div className="lg:col-span-5 flex flex-col">
+            <Eyebrow className="mb-5">The Problem</Eyebrow>
             <h2 className="text-h1 text-balance">
               Margin Loss Is Built Into <span className="grad-text-bp">Cloud Reseller Billing</span>
             </h2>
-            <span className="block mt-6 h-[3px] w-32 grad-line rounded-full" />
-            <div className="mt-10 flex items-center gap-2 text-accent-cyan text-[12px] font-semibold tracking-[0.18em] uppercase">
+            <span className="block mt-5 h-[3px] w-32 grad-line rounded-full" />
+            <div className="mt-7 flex items-center gap-2 text-accent-cyan text-[12px] font-semibold tracking-[0.18em] uppercase">
               <ArrowRight size={14} /> Why It Happens
             </div>
-            <p className="mt-4 text-[16px] leading-[1.7] text-ink-secondary">
+            <p className="mt-3 text-[15px] leading-[1.6] text-ink-secondary">
               Resellers operate in complex pricing and discount environments — but billing, pricing, and cost rarely align.
             </p>
-            <p className="mt-3 text-[16px] leading-[1.7] text-white font-semibold">Hidden margin loss is the result.</p>
-            <hr className="my-7 border-line-soft" />
-            <p className="text-[16px] leading-[1.7] text-ink-secondary">
+            <p className="mt-2 text-[15px] leading-[1.6] text-white font-semibold">Hidden margin loss is the result.</p>
+            <hr className="my-5 border-line-soft" />
+            <p className="text-[15px] leading-[1.6] text-ink-secondary">
               Without the right system, billing is manual and discounts are inconsistent.
             </p>
-            <p className="mt-3 text-[16px] leading-[1.7] text-white font-semibold">Margins lack visibility and control.</p>
+            <p className="mt-2 text-[15px] leading-[1.6] text-white font-semibold">Margins lack visibility and control.</p>
           </div>
 
           {/* Problem cards with PNG icons */}
-          <div className="lg:col-span-7 space-y-3">
+          <div className="lg:col-span-7 flex flex-col gap-3">
             {PROBLEM_ROWS.map((row) => (
-              <div key={row.t} className="card flex items-center gap-5 px-5 py-4 hover:border-line-hover">
-                <div className="w-14 h-14 grid place-items-center shrink-0">
-                  <img src={row.src} alt="" width="44" height="44" style={{ objectFit: "contain" }} />
+              <div key={row.t} className="card flex items-center gap-5 px-5 py-3 hover:border-line-hover flex-1">
+                <div className="w-12 h-12 grid place-items-center shrink-0">
+                  <img src={row.src} alt="" width="40" height="40" style={{ objectFit: "contain" }} />
                 </div>
                 <span className="block w-px self-stretch bg-line-soft" />
                 <p className="text-[15px] md:text-[16px] text-ink-primary leading-[1.5]">{row.t}</p>
@@ -113,14 +113,14 @@ function HomePage({ onDemoClick }) {
         </div>
 
         {/* Bottom line callout — ProblemBLicon.png */}
-        <div className="mt-14 card !rounded-2xl px-7 py-7 md:px-10 md:py-8" style={{ borderColor: "rgba(34,211,238,0.35)" }}>
+        <div className="mt-6 card !rounded-2xl px-7 py-5 md:px-8 md:py-5" style={{ borderColor: "rgba(34,211,238,0.35)" }}>
           <div className="flex items-center gap-6">
-            <div className="w-16 h-16 rounded-xl grid place-items-center shrink-0 border border-line bg-bg-tertiary/40">
-              <img src="graphics/icons/ProblemBLicon.png" alt="" width="40" height="40" style={{ objectFit: "contain" }} />
+            <div className="w-14 h-14 rounded-xl grid place-items-center shrink-0 border border-line bg-bg-tertiary/40">
+              <img src="graphics/icons/ProblemBLicon.png" alt="" width="36" height="36" style={{ objectFit: "contain" }} />
             </div>
             <div className="border-l border-line-soft pl-6">
-              <p className="eyebrow text-[11px] mb-2" style={{ color: "#22D3EE" }}>The Bottom Line</p>
-              <p className="text-[20px] md:text-[26px] font-semibold leading-[1.25] text-balance">
+              <p className="eyebrow text-[11px] mb-1.5" style={{ color: "#22D3EE" }}>The Bottom Line</p>
+              <p className="text-[19px] md:text-[23px] font-semibold leading-[1.25] text-balance">
                 Margin loss <span style={{ color: "#22D3EE" }}>compounds</span> across every customer.
               </p>
             </div>
@@ -130,31 +130,31 @@ function HomePage({ onDemoClick }) {
 
       {/* SOLUTION */}
       <SectionShell className="bg-bg-secondary border-t border-line-soft" dotsRight>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-5">
-            <Eyebrow className="mb-7">The Solution</Eyebrow>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-stretch">
+          <div className="lg:col-span-5 flex flex-col">
+            <Eyebrow className="mb-5">The Solution</Eyebrow>
             <h2 className="text-h1 text-balance">
               Billing, Pricing, and Margin Control in <span className="grad-text-bp">One System</span>
             </h2>
-            <span className="block mt-6 h-[3px] w-40 grad-line rounded-full" />
-            <p className="mt-9 text-[16.5px] leading-[1.7] text-ink-secondary max-w-[460px]">
+            <span className="block mt-5 h-[3px] w-40 grad-line rounded-full" />
+            <p className="mt-7 text-[16px] leading-[1.65] text-ink-secondary max-w-[460px]">
               <span className="grad-text-bp font-semibold">moneta</span> aligns billing, pricing, and discounts in a single system —
               so invoices are accurate, discounts are applied correctly, and margins are fully visible.
             </p>
           </div>
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 flex flex-col justify-center lg:pt-14">
             <SolutionTimeline />
           </div>
         </div>
 
         {/* Bottom callout — SolutionIcon.png */}
-        <div className="mt-14 card !rounded-2xl px-7 py-7 md:px-10 md:py-8" style={{ borderColor: "rgba(168,85,247,0.4)" }}>
+        <div className="mt-6 card !rounded-2xl px-7 py-5 md:px-8 md:py-5" style={{ borderColor: "rgba(168,85,247,0.4)" }}>
           <div className="flex items-center gap-6">
             <div className="w-14 h-14 rounded-xl grid place-items-center shrink-0">
-              <img src="graphics/icons/SolutionIcon.png" alt="" width="50" height="50" style={{ objectFit: "contain" }} />
+              <img src="graphics/icons/SolutionIcon.png" alt="" width="44" height="44" style={{ objectFit: "contain" }} />
             </div>
             <div className="border-l border-line-soft pl-6">
-              <p className="text-[20px] md:text-[24px] font-semibold leading-[1.3] text-balance">
+              <p className="text-[19px] md:text-[22px] font-semibold leading-[1.3] text-balance">
                 One system. Everything <span style={{ color: "#22D3EE" }}>aligned</span>. Margins{" "}
                 <span style={{ color: "#A855F7" }}>controlled</span> at scale.
               </p>
@@ -178,7 +178,7 @@ function HomePage({ onDemoClick }) {
               <ReviewCTA onClick={onDemoClick} />
             </div>
           </div>
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 lg:pt-4">
             <ResultsList />
           </div>
         </div>

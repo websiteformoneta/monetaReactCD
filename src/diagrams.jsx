@@ -234,21 +234,43 @@ function SolutionTimeline() {
         <p className="text-[15px] font-semibold"><span className="text-white">moneta</span> <span className="grad-text-bp">system</span></p>
         <span className="h-px flex-1 grad-line opacity-60" />
       </div>
-      {/* Outer wrapper — line positioned at center of TCOL */}
+      {/* Outer wrapper — single continuous line from first dot center to last dot center */}
       <div className="relative">
-        <div className="absolute top-3 bottom-3" style={{
-          left: TCOL / 2 - 1, width: 2,
-          background: "linear-gradient(180deg,#3B82F6 0%,#6366F1 50%,#A855F7 100%)"
-        }} />
         <ul className="space-y-0">
           {items.map((it, idx) => (
-            <li key={it.t} className="flex">
-              {/* Timeline column — dot centered at 50% = same as line */}
+            <li key={it.t} className="flex relative">
+              {/* Timeline column — dot + line segment that connects to next item's dot */}
               <div className="relative shrink-0" style={{ width: TCOL }}>
+                {/* Line BEFORE this dot (skipped on first item) */}
+                {idx > 0 && (
+                  <div
+                    className="absolute"
+                    style={{
+                      left: TCOL / 2 - 1,
+                      width: 2,
+                      top: 0,
+                      height: 18,
+                      background: "linear-gradient(180deg,#3B82F6 0%,#6366F1 50%,#A855F7 100%)",
+                    }}
+                  />
+                )}
+                {/* Line AFTER this dot (skipped on last item) — extends to bottom of li */}
+                {idx < items.length - 1 && (
+                  <div
+                    className="absolute"
+                    style={{
+                      left: TCOL / 2 - 1,
+                      width: 2,
+                      top: 18,
+                      bottom: 0,
+                      background: "linear-gradient(180deg,#3B82F6 0%,#6366F1 50%,#A855F7 100%)",
+                    }}
+                  />
+                )}
                 <span className={"absolute top-3 left-1/2 -translate-x-1/2 timeline-dot " + (idx % 2 === 1 ? "timeline-dot-purple" : "")} />
               </div>
               {/* Content */}
-              <div className="flex-1 pl-5 pb-7">
+              <div className="flex-1 pl-5 pb-5">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 shrink-0 flex items-center justify-center">
                     {it.src
@@ -261,7 +283,7 @@ function SolutionTimeline() {
                     <p className="text-[14px] text-ink-secondary leading-[1.6]">{it.b}</p>
                   </div>
                 </div>
-                {idx < items.length - 1 && <hr className="border-line-soft mt-6" />}
+                {idx < items.length - 1 && <hr className="border-line-soft mt-5" />}
               </div>
             </li>
           ))}
@@ -296,44 +318,186 @@ function ResultsList() {
   );
 }
 
-// ---- FinOps split: moneta → Your Managed Service — matches FinOpsMSsGraphic.png ----
+// ---- FinOps split: glassmorphism pipeline — Your Managed Service ----
 function FinopsSplit() {
+  const glass = {
+    background: "rgba(255, 255, 255, 0.03)",
+    backdropFilter: "blur(10px)",
+    WebkitBackdropFilter: "blur(10px)",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+  };
+
+  // Abstract bar chart — no numbers, no labels
+  const BarChartGraphic = () => (
+    <svg viewBox="0 0 80 56" width="80" height="56" aria-hidden="true">
+      <defs>
+        <linearGradient id="bcg" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stopColor="#22D3EE" stopOpacity="0.25" />
+          <stop offset="100%" stopColor="#22D3EE" stopOpacity="1" />
+        </linearGradient>
+      </defs>
+      {[
+        { x: 6,  h: 20 }, { x: 20, h: 32 }, { x: 34, h: 16 },
+        { x: 48, h: 40 }, { x: 62, h: 28 },
+      ].map(({ x, h }, i) => (
+        <rect key={i} x={x} y={52 - h} width="8" height={h} rx="1.5" fill="url(#bcg)" />
+      ))}
+      <line x1="2" y1="53" x2="78" y2="53" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+    </svg>
+  );
+
+  // Downward trend — purely graphic
+  const TrendGraphic = () => (
+    <svg viewBox="0 0 80 56" width="80" height="56" aria-hidden="true" fill="none">
+      <defs>
+        <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#A855F7" />
+          <stop offset="100%" stopColor="#5B7BFF" />
+        </linearGradient>
+      </defs>
+      <polyline
+        points="6,12 22,22 36,18 52,34 72,46"
+        stroke="url(#tg)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"
+      />
+      <polyline
+        points="66,40 72,46 66,50"
+        stroke="#A855F7" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"
+      />
+      {[
+        [6, 12], [22, 22], [36, 18], [52, 34], [72, 46],
+      ].map(([cx, cy], i) => (
+        <circle key={i} cx={cx} cy={cy} r="2" fill="#A855F7" />
+      ))}
+    </svg>
+  );
+
+  // Clean 3D server rack — no labels
+  const ServerRackGraphic = () => (
+    <svg viewBox="0 0 80 56" width="80" height="56" aria-hidden="true" fill="none">
+      <defs>
+        <linearGradient id="srf" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="rgba(91,123,255,0.35)" />
+          <stop offset="100%" stopColor="rgba(91,123,255,0.08)" />
+        </linearGradient>
+        <linearGradient id="srt" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="rgba(91,123,255,0.45)" />
+          <stop offset="100%" stopColor="rgba(91,123,255,0.15)" />
+        </linearGradient>
+      </defs>
+      {/* Top face (parallelogram) */}
+      <path d="M 22 12 L 58 12 L 68 6 L 32 6 Z" fill="url(#srt)" stroke="#5B7BFF" strokeWidth="1" />
+      {/* Front face */}
+      <rect x="22" y="12" width="36" height="40" rx="2" fill="url(#srf)" stroke="#5B7BFF" strokeWidth="1" />
+      {/* Side face */}
+      <path d="M 58 12 L 68 6 L 68 46 L 58 52 Z" fill="rgba(91,123,255,0.15)" stroke="#5B7BFF" strokeWidth="1" />
+      {/* Server slots (front) */}
+      {[18, 26, 34, 42].map((y) => (
+        <g key={y}>
+          <line x1="26" y1={y} x2="54" y2={y} stroke="rgba(255,255,255,0.18)" strokeWidth="0.8" />
+          <circle cx="51" cy={y} r="1" fill="#22D3EE" />
+        </g>
+      ))}
+    </svg>
+  );
+
   const items = [
-    { t: "Customer Cost Visibility", b: "Clear cloud budgeting and reporting", c: "#3B82F6" },
-    { t: "Rate Reduction", b: "Reduce rates for customers", c: "#A855F7" },
-    { t: "Infrastructure Efficiency", b: "Optimize resource usage and reduce waste", c: "#5B7BFF" },
+    { t: "Customer Cost Visibility",  b: "Clear cloud budgeting and reporting",     g: <BarChartGraphic /> },
+    { t: "Rate Reduction",            b: "Reduce rates for customers",              g: <TrendGraphic /> },
+    { t: "Infrastructure Efficiency", b: "Optimize resource usage and reduce waste", g: <ServerRackGraphic /> },
   ];
+
   return (
-    <div className="flex flex-col items-center text-center">
-      {/* Moneta cloud icon */}
-      <div className="w-14 h-14 rounded-full border border-accent-indigo/40 bg-bg-tertiary grid place-items-center"
-        style={{ boxShadow: "0 0 20px rgba(91,123,255,0.3)" }}>
-        <img src="assets/moneta-icon.png" alt="moneta" width="34" height="34" style={{ objectFit: "contain", transform: "translateY(-3px)" }} />
+    <div className="w-full flex flex-col items-center text-center">
+      {/* Top glowing cloud icon */}
+      <div className="relative" style={{ width: 77, height: 77 }}>
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(34,211,238,0.45) 0%, rgba(34,211,238,0) 70%)",
+            filter: "blur(6px)",
+          }}
+        />
+        <img
+          src="assets/moneta-icon.png"
+          alt="moneta"
+          width="77"
+          height="77"
+          style={{
+            objectFit: "contain",
+            position: "relative",
+            filter: "drop-shadow(0 0 14px rgba(34,211,238,0.55))",
+          }}
+        />
       </div>
-      {/* Dashed connector */}
-      <div style={{ width: 2, height: 36, borderLeft: "2px dashed #22D3EE", opacity: 0.6, margin: "6px 0" }} />
-      {/* Your Managed Service box */}
-      <div className="btn-grad-border px-8 py-4 w-full max-w-[340px]"
-        style={{ boxShadow: "0 0 28px rgba(91,123,255,0.2)" }}>
+
+      {/* Vertical pipeline line */}
+      <div
+        style={{
+          width: 2, height: 28, marginTop: 6,
+          background: "linear-gradient(180deg, rgba(34,211,238,0.6), rgba(91,123,255,0.6))",
+        }}
+      />
+
+      {/* "Your Managed Service" glass card */}
+      <div
+        className="px-8 py-4 w-full max-w-[420px] rounded-xl"
+        style={{ ...glass, boxShadow: "0 0 28px rgba(91,123,255,0.2)" }}
+      >
         <p className="text-[20px] md:text-[23px] font-bold grad-text-bp">Your Managed Service</p>
       </div>
-      {/* Dashed connector */}
-      <div style={{ width: 2, height: 36, borderLeft: "2px dashed #22D3EE", opacity: 0.6, margin: "6px 0" }} />
-      {/* 3 outcome columns */}
-      <div className="grid grid-cols-3 gap-4 w-full mt-2">
+
+      {/* Distribution lines down to three columns */}
+      <svg
+        viewBox="0 0 300 36"
+        width="100%"
+        height="36"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+        style={{ maxWidth: 420, marginTop: 4 }}
+      >
+        <line x1="150" y1="0" x2="150" y2="10" stroke="rgba(34,211,238,0.55)" strokeWidth="1.5" />
+        <line x1="50"  y1="10" x2="250" y2="10" stroke="rgba(34,211,238,0.55)" strokeWidth="1.5" />
+        <line x1="50"  y1="10" x2="50"  y2="32" stroke="rgba(34,211,238,0.55)" strokeWidth="1.5" />
+        <line x1="150" y1="10" x2="150" y2="32" stroke="rgba(34,211,238,0.55)" strokeWidth="1.5" />
+        <line x1="250" y1="10" x2="250" y2="32" stroke="rgba(34,211,238,0.55)" strokeWidth="1.5" />
+        {[50, 150, 250].map((x) => (
+          <polyline
+            key={x}
+            points={`${x - 4},28 ${x},34 ${x + 4},28`}
+            fill="none" stroke="rgba(34,211,238,0.85)" strokeWidth="1.5"
+            strokeLinecap="round" strokeLinejoin="round"
+          />
+        ))}
+      </svg>
+
+      {/* Three columns */}
+      <div className="grid grid-cols-3 gap-3 w-full mt-2">
         {items.map((it) => (
-          <div key={it.t} className="text-center">
-            <p className="text-[14px] md:text-[15px] font-semibold text-white leading-[1.3]">{it.t}</p>
-            <span className="block mx-auto my-2.5 h-[2px] w-10 rounded-full" style={{ background: it.c }} />
-            <p className="text-[12.5px] text-ink-secondary leading-[1.55]">{it.b}</p>
+          <div key={it.t} className="flex flex-col items-center text-center">
+            <p className="text-[13.5px] md:text-[14.5px] font-semibold text-white leading-[1.25] mb-3 min-h-[36px] flex items-center justify-center">
+              {it.t}
+            </p>
+            <div
+              className="w-full rounded-xl flex items-center justify-center"
+              style={{ ...glass, padding: "14px 10px" }}
+            >
+              {it.g}
+            </div>
+            <p className="text-[12px] md:text-[12.5px] text-ink-secondary leading-[1.5] mt-3 px-1">
+              {it.b}
+            </p>
           </div>
         ))}
       </div>
-      {/* Bottom note */}
-      <div className="mt-8 pt-5 border-t border-line-soft w-full">
-        <p className="text-[14.5px] text-ink-secondary leading-[1.65]">
+
+      {/* Bottom anchor card */}
+      <div
+        className="w-full mt-6 px-6 py-5 rounded-xl"
+        style={{ ...glass }}
+      >
+        <p className="text-[14px] md:text-[15px] text-ink-secondary leading-[1.65]">
           Deliver Cloud FinOps as a repeatable service that strengthens customer relationships and enables{" "}
-          <span className="grad-text-bp font-semibold">recurring services revenue.</span>
+          <span className="grad-text-bp font-semibold">recurring services revenue</span>.
         </p>
       </div>
     </div>
