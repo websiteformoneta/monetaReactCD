@@ -100,18 +100,19 @@ function Header({ onDemoClick }) {
     <header className={"fixed top-0 left-0 right-0 z-40 transition-all duration-200 " + (scrolled ? "bg-bg-primary/80 backdrop-blur-xl border-b border-line-soft" : "bg-transparent border-b border-transparent")}>
       <div className="container-x h-[72px] flex items-center justify-between">
         <a href="#/" aria-label="moneta home" className="flex items-center gap-1"><MonetaMark size={30} /><span className="text-[17px] font-semibold tracking-tight text-white">moneta</span></a>
-        <nav className="hidden md:flex items-center gap-9">
-          {NAV.map((n) => {
-            const active = hash.startsWith(n.href);
-            return (
-              <a key={n.href} href={n.href}
-                className={"relative text-[14.5px] font-medium transition-colors " + (active ? "text-white" : "text-ink-secondary hover:text-white")}>
-                {n.label}
-                {active && <span className="absolute -bottom-1.5 left-0 right-0 h-[2px] grad-line rounded-full" />}
-              </a>
-            );
-          })}
-        </nav>
+        <div className="flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8">
+            {NAV.map((n) => {
+              const active = hash.startsWith(n.href);
+              return (
+                <a key={n.href} href={n.href}
+                  className={"relative text-[14.5px] font-medium transition-colors " + (active ? "text-white" : "text-ink-secondary hover:text-white")}>
+                  {n.label}
+                  {active && <span className="absolute -bottom-1.5 left-0 right-0 h-[2px] grad-line rounded-full" />}
+                </a>
+              );
+            })}
+          </nav>
         <div className="flex items-center gap-3">
           <button onClick={onDemoClick}
             className="hidden sm:inline-flex items-center justify-center gap-2 text-white font-semibold text-[14.5px] hover:opacity-90 px-4 py-2 rounded-md"
@@ -124,6 +125,7 @@ function Header({ onDemoClick }) {
               {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
             </svg>
           </button>
+        </div>
         </div>
       </div>
       {open && (

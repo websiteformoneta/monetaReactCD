@@ -449,6 +449,11 @@ function FinOpsPage({ onDemoClick }) {
           <p className="mt-6 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary max-w-[580px] mx-auto">
             A structured, repeatable FinOps service—without added operational burden.
           </p>
+          <div className="mt-8">
+            <Button variant="primary" onClick={onDemoClick} className="!px-7 !py-4 !text-[15px]">
+              Book a Demo <ArrowRight />
+            </Button>
+          </div>
 
           <FinOpsDiagram />
         </div>
@@ -727,6 +732,11 @@ function FinOpsForCloudResellersPage({ onDemoClick }) {
           <p className="mt-6 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary max-w-[580px] mx-auto">
             A structured, repeatable FinOps service—without added operational burden.
           </p>
+          <div className="mt-8">
+            <Button variant="primary" onClick={onDemoClick} className="!px-7 !py-4 !text-[15px]">
+              Book a Demo <ArrowRight />
+            </Button>
+          </div>
 
           <FinOpsDiagram />
         </div>
