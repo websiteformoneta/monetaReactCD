@@ -1,7 +1,7 @@
 // Shared UI primitives — Header, Footer, Modal, Button, layout pieces
 
 const NAV = [
-  { label: "Platform", href: "#/platform" },
+  { label: "System", href: "#/platform" },
   { label: "Cloud FinOps", href: "#/finops-services" },
   { label: "Why moneta", href: "#/why-moneta" },
 ];
@@ -98,15 +98,15 @@ function Header({ onDemoClick }) {
 
   return (
     <header className={"fixed top-0 left-0 right-0 z-40 transition-all duration-200 " + (scrolled ? "bg-bg-primary/80 backdrop-blur-xl border-b border-line-soft" : "bg-transparent border-b border-transparent")}>
-      <div className="container-x h-[72px] flex items-center justify-between">
-        <a href="#/" aria-label="moneta home" className="flex items-center gap-1"><MonetaMark size={30} /><span className="text-[17px] font-semibold tracking-tight text-white">moneta</span></a>
-        <div className="flex items-center gap-8">
-          <nav className="hidden md:flex items-center gap-8">
+      <div className="container-x h-[84px] flex items-center justify-between">
+        <a href="#/" aria-label="moneta home" className="flex items-center gap-1.5"><MonetaMark size={36} /><span className="text-[20px] font-semibold tracking-tight text-white">moneta</span></a>
+        <div className="flex items-center gap-10">
+          <nav className="hidden md:flex items-center gap-10">
             {NAV.map((n) => {
               const active = hash.startsWith(n.href);
               return (
                 <a key={n.href} href={n.href}
-                  className={"relative text-[14.5px] font-medium transition-colors " + (active ? "text-white" : "text-ink-secondary hover:text-white")}>
+                  className={"relative text-[16px] font-medium transition-colors " + (active ? "text-white" : "text-ink-secondary hover:text-white")}>
                   {n.label}
                   {active && <span className="absolute -bottom-1.5 left-0 right-0 h-[2px] grad-line rounded-full" />}
                 </a>
@@ -115,9 +115,9 @@ function Header({ onDemoClick }) {
           </nav>
         <div className="flex items-center gap-3">
           <button onClick={onDemoClick}
-            className="hidden sm:inline-flex items-center justify-center gap-2 text-white font-semibold text-[14.5px] hover:opacity-90 px-4 py-2 rounded-md"
+            className="hidden sm:inline-flex items-center justify-center gap-2 text-white font-semibold text-[16px] hover:opacity-90 px-5 py-2.5 rounded-md"
             style={{ border: "1.5px solid #3B82F6", background: "#05060A" }}>
-            Book a Demo <ArrowRight size={13} />
+            Book a Demo <ArrowRight size={15} />
           </button>
           <button className="md:hidden w-10 h-10 grid place-items-center rounded-md border border-line text-ink-secondary"
             onClick={() => setOpen(v => !v)} aria-label="Menu">

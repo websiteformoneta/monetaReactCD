@@ -603,54 +603,170 @@ function WhyPage({ onDemoClick }) {
       </SectionShell>
 
       {/* The Reality */}
-      <SectionShell className="border-t border-line-soft overflow-hidden" style={{ background: "#0A0D14" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left — large heading */}
-          <div className="lg:col-span-4">
-            <Eyebrow className="mb-5">The Reality</Eyebrow>
-            <h2 className="text-balance leading-[1.08]" style={{ fontSize: "clamp(28px, 3vw, 42px)", fontWeight: 700, letterSpacing: "-0.02em" }}>
+      <SectionShell className="border-t border-line-soft overflow-hidden relative" style={{
+        background: "radial-gradient(ellipse 55% 65% at 78% 35%, rgba(91,123,255,0.14) 0%, rgba(168,85,247,0.07) 45%, transparent 80%), #06070D"
+      }}>
+        {/* Faint grid overlay — covers entire section, fades from left to right */}
+        <div className="pointer-events-none" style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: "linear-gradient(rgba(180,186,200,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(180,186,200,0.5) 1px, transparent 1px)", backgroundSize: "32px 32px", maskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.4) 30%, black 60%, black 100%)", WebkitMaskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.4) 30%, black 60%, black 100%)" }} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-10 items-start relative">
+
+          {/* LEFT */}
+          <div>
+            <Eyebrow className="mb-6">The Reality</Eyebrow>
+            <h2 className="mb-8" style={{ fontSize: "clamp(32px, 3.6vw, 52px)", fontWeight: 700, lineHeight: 1.06, letterSpacing: "-0.025em" }}>
               Most reseller stacks are held together <span className="grad-text-bp">by people.</span>
             </h2>
-          </div>
-
-          {/* Right — body text + diagram */}
-          <div className="lg:col-span-8">
-            <div className="space-y-5 text-[17px] leading-[1.75] text-ink-secondary">
-              <p>
-                Talk to any reseller's finance team and a pattern shows up: monthly close runs on tribal knowledge,
-                custom scripts, and shared spreadsheets. It works — until it doesn't, and the cost is invisible
-                until margin reports are reconciled at quarter-end.
-              </p>
-              <p><span className="grad-text-bp font-semibold">moneta</span> replaces that operational debt with a system that owns the cost-to-invoice loop end to end.</p>
+            <div className="space-y-5 text-[15.5px] leading-[1.75]" style={{ color: "rgba(180,186,200,0.72)" }}>
+              <p>Talk to any reseller's finance team and a pattern shows up: monthly close runs on tribal knowledge, custom scripts, and shared spreadsheets. It works — until it doesn't, and the cost is invisible until margin reports are reconciled at quarter-end.</p>
+              <p>moneta replaces that operational debt with a system that owns the cost-to-invoice loop end to end.</p>
             </div>
 
-            {/* Tool chaos diagram */}
-            <div className="mt-8 relative" style={{ height: 170 }}>
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 170" fill="none" preserveAspectRatio="xMidYMid meet">
-                <line x1="80"  y1="85"  x2="180" y2="85"  stroke="rgba(180,186,200,0.2)" strokeWidth="1.5" strokeDasharray="5 4" />
-                <line x1="180" y1="85"  x2="300" y2="38"  stroke="rgba(180,186,200,0.2)" strokeWidth="1.5" strokeDasharray="5 4" />
-                <line x1="180" y1="85"  x2="300" y2="132" stroke="rgba(180,186,200,0.2)" strokeWidth="1.5" strokeDasharray="5 4" />
-                <line x1="300" y1="38"  x2="415" y2="85"  stroke="rgba(180,186,200,0.2)" strokeWidth="1.5" strokeDasharray="5 4" />
-                <line x1="300" y1="132" x2="415" y2="85"  stroke="rgba(180,186,200,0.2)" strokeWidth="1.5" strokeDasharray="5 4" />
-                {[[180,85],[300,38],[300,132]].map(([x,y]) => (
-                  <circle key={`${x}-${y}`} cx={x} cy={y} r="3.5" fill="rgba(91,123,255,0.5)" />
-                ))}
+            {/* Warning bar */}
+            <div className="mt-8 flex items-center gap-3 px-5 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                <path d="M12 3L2 21h20L12 3z" stroke="rgba(245,158,11,0.7)" strokeWidth="1.5" strokeLinejoin="round"/>
+                <line x1="12" y1="10" x2="12" y2="15" stroke="rgba(245,158,11,0.7)" strokeWidth="1.5" strokeLinecap="round"/>
+                <circle cx="12" cy="18" r="0.6" fill="rgba(245,158,11,0.7)" stroke="rgba(245,158,11,0.7)"/>
               </svg>
-              {[
-                { label: "Spreadsheet",  icon: "sheet",    left: "3%",  top: 60  },
-                { label: "Custom Script",icon: "settings", left: "29%", top: 57  },
-                { label: "Billing Tool", icon: "invoice",  left: "55%", top: 10  },
-                { label: "Data Export",  icon: "filter",   left: "55%", top: 103 },
-                { label: "Reporting",    icon: "bars",     left: "76%", top: 57  },
-              ].map(({ label, icon, left, top }) => (
-                <div key={label} className="absolute flex flex-col items-center gap-1.5" style={{ left, top }}>
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center"
-                    style={{ background: "linear-gradient(135deg,#141826,#0e1118)", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 4px 16px rgba(0,0,0,0.4)" }}>
-                    {Icons[icon]("rgba(200,206,220,0.75)")}
+              <p className="text-[13.5px]" style={{ color: "rgba(180,186,200,0.75)" }}>When systems don't connect, <span className="text-white font-semibold">people pay the price.</span></p>
+            </div>
+          </div>
+
+          {/* RIGHT — diagram + moneta panel */}
+          <div className="flex items-start gap-4">
+
+            {/* Diagram column */}
+            <div className="flex-1 min-w-0">
+              {/* Top pill label — centered over diagram */}
+              <div className="flex justify-center mb-4">
+                <span className="text-[10px] font-semibold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full" style={{ color: "rgba(180,186,200,0.55)", border: "1px solid rgba(180,186,200,0.18)", background: "rgba(255,255,255,0.02)" }}>
+                  Fragmented. Manual. Unreliable.
+                </span>
+              </div>
+
+              {/* Diagram area */}
+              <div className="relative" style={{ height: 520 }}>
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }} viewBox="0 0 480 520" fill="none" preserveAspectRatio="none">
+                  <g stroke="rgba(180,186,200,0.32)" strokeWidth="1.1" strokeDasharray="5 4" fill="none">
+                    {/* MANUAL HANDOFF — inverted-U between top cards' bottoms */}
+                    <path d="M 175 115 L 175 160 L 305 160 L 305 115" />
+
+                    {/* SILOS & MISMATCHES — vertical from Spreadsheets bottom-left to Exports top */}
+                    <path d="M 50 115 L 50 400" />
+                    {/* Horizontal stub into Billing Tools left edge (enters at vertical center) */}
+                    <path d="M 50 262 L 132 262" />
+
+                    {/* ERRORS & REWORK — vertical from Custom Scripts bottom-right to Reporting top */}
+                    <path d="M 430 115 L 430 400" />
+                    {/* Horizontal stub into Billing Tools right edge (enters at vertical center) */}
+                    <path d="M 430 262 L 348 262" />
+
+                    {/* DELAYED VISIBILITY — from Billing Tools bottom down, horizontal spans Exports↔Reporting tops */}
+                    <path d="M 240 315 L 240 365" />
+                    {/* Horizontal trunk connecting Exports top to Reporting top */}
+                    <path d="M 145 365 L 335 365" />
+                    {/* Drop into Exports top */}
+                    <path d="M 145 365 L 145 400" />
+                    {/* Drop into Reporting top */}
+                    <path d="M 335 365 L 335 400" />
+                  </g>
+
+                  {/* Junction dots at corner bends */}
+                  {[[175,160],[305,160],[50,262],[132,262],[348,262],[430,262],[240,365],[145,365],[335,365]].map(([x,y],i)=>(
+                    <circle key={`j${i}`} cx={x} cy={y} r="2.6" fill="rgba(180,186,200,0.6)" />
+                  ))}
+
+                  {/* Warning triangles */}
+                  {[
+                    [240, 160],  // Manual handoff
+                    [91, 262],   // Silos & mismatches
+                    [389, 262],  // Errors & rework
+                    [287, 365],  // Delayed visibility
+                  ].map(([x,y],i) => (
+                    <g key={`w${i}`}>
+                      <circle cx={x} cy={y} r="9.5" fill="rgba(245,158,11,0.16)" stroke="rgba(245,158,11,0.45)" strokeWidth="0.8"/>
+                      <text x={x} y={y+3.5} fontSize="10" fill="rgba(245,158,11,0.95)" textAnchor="middle">⚠</text>
+                    </g>
+                  ))}
+
+                  {/* ✕ marks at outer corners */}
+                  <text x="14" y="180" fontSize="11" fill="rgba(180,186,200,0.3)" textAnchor="middle">✕</text>
+                  <text x="466" y="180" fontSize="11" fill="rgba(180,186,200,0.3)" textAnchor="middle">✕</text>
+                  <text x="14" y="385" fontSize="11" fill="rgba(180,186,200,0.3)" textAnchor="middle">✕</text>
+                  <text x="466" y="385" fontSize="11" fill="rgba(180,186,200,0.3)" textAnchor="middle">✕</text>
+
+                  {/* Labels — positioned beside each ⚠ with clear breathing room */}
+                  {/* Manual handoff — above its ⚠ (x=240, y=160) */}
+                  <text x="240" y="138" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="middle" fontFamily="Inter,sans-serif">Manual</text>
+                  <text x="240" y="150" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="middle" fontFamily="Inter,sans-serif">handoff</text>
+
+                  {/* Silos & mismatches — below the left ⚠ (x=91, y=262), centered under it */}
+                  <text x="91"  y="288" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="middle" fontFamily="Inter,sans-serif">Silos &amp;</text>
+                  <text x="91"  y="300" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="middle" fontFamily="Inter,sans-serif">mismatches</text>
+
+                  {/* Errors & rework — to the right of the right ⚠ (x=389, y=262), aligned vertically with it */}
+                  <text x="412" y="259" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="start" fontFamily="Inter,sans-serif">Errors &amp;</text>
+                  <text x="412" y="271" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="start" fontFamily="Inter,sans-serif">rework</text>
+
+                  {/* Delayed visibility — to the right of its ⚠ (x=287, y=365) */}
+                  <text x="310" y="362" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="start" fontFamily="Inter,sans-serif">Delayed</text>
+                  <text x="310" y="374" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="start" fontFamily="Inter,sans-serif">visibility</text>
+                </svg>
+
+                {/* Cards */}
+                {[
+                  { title: "Spreadsheets",   desc: "Manual downloads and edits create versioning issues.",   tag: ".XLSX",      icon: "sheetBox",     c: "#22C55E", s: { left: "3%",  top: 5,   width: "40%" } },
+                  { title: "Custom Scripts", desc: "Brittle scripts connect systems that don't talk.",       tag: "PY / JS",    icon: "code",         c: "#A855F7", s: { right: "3%", top: 5,   width: "40%" } },
+                  { title: "Billing Tools",  desc: "Inconsistent configuration across accounts and teams.", tag: "POINT TOOL", icon: "dollar",       c: "#22D3EE", s: { left: "22%", top: 210, width: "56%" } },
+                  { title: "Exports",        desc: "Point-in-time exports that quickly go stale.",          tag: "CSV",        icon: "externalLink", c: "#22C55E", s: { left: "3%",  top: 400, width: "40%" } },
+                  { title: "Reporting",      desc: "Reconciliation happens days (or weeks) later.",         tag: "LOOKBACK",   icon: "bars",         c: "#A855F7", s: { right: "3%", top: 400, width: "40%" } },
+                ].map(({ title, desc, tag, icon, c, s }) => (
+                  <div key={title} className="absolute rounded-xl p-3" style={{ ...s, background: "#0B0E1A", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 4px 24px rgba(0,0,0,0.5)", zIndex: 2 }}>
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <div className="w-[28px] h-[28px] rounded-md shrink-0 flex items-center justify-center" style={{ background: `${c}18`, border: `1px solid ${c}38` }}>
+                        {Icons[icon](c)}
+                      </div>
+                      <span className="text-[11.5px] font-semibold text-white whitespace-nowrap">{title}</span>
+                    </div>
+                    <p className="text-[10.5px] leading-[1.4] mb-2" style={{ color: "rgba(180,186,200,0.58)" }}>{desc}</p>
+                    <span className="inline-block text-[8px] px-1.5 py-0.5 rounded font-bold tracking-[0.08em]" style={{ background: `${c}12`, color: c, border: `1px solid ${c}28` }}>{tag}</span>
                   </div>
-                  <span className="text-[9.5px] text-ink-muted whitespace-nowrap">{label}</span>
+                ))}
+              </div>
+
+            </div>
+
+            {/* Double chevron + moneta card column */}
+            <div className="shrink-0 flex items-center gap-5 self-start" style={{ marginTop: 185 }}>
+              <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ border: "1px solid rgba(91,123,255,0.5)", background: "rgba(91,123,255,0.06)" }}>
+                <svg width="18" height="18" viewBox="0 0 26 34" fill="none">
+                  <path d="M3,8 L13,17 L3,26" stroke="#5B7BFF" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"/>
+                  <path d="M11,8 L21,17 L11,26" stroke="#A855F7" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"/>
+                </svg>
+              </div>
+
+              <div className="w-[200px] rounded-2xl flex flex-col overflow-hidden" style={{ background: "#0B0E1A", border: "1.5px solid rgba(34,211,238,0.55)", boxShadow: "0 0 50px rgba(34,211,238,0.22), 0 0 100px rgba(91,123,255,0.18)" }}>
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-4">
+                    <MonetaMark size={18} />
+                    <span className="text-[14px] font-bold text-white">moneta</span>
+                  </div>
+                  <div className="space-y-2.5">
+                    {["One system of record","Real-time margin visibility","Automated reconciliation","Built for scale"].map(item => (
+                      <div key={item} className="flex items-center gap-2">
+                        <div className="shrink-0 w-[15px] h-[15px] rounded-full flex items-center justify-center" style={{ background: "#3B82F6" }}>
+                          <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2L7.5 2" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        </div>
+                        <span className="text-[11px] font-medium text-white leading-[1.3]">{item}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+                <div className="px-3 py-2 text-center" style={{ background: "rgba(34,211,238,0.1)", borderTop: "1px solid rgba(34,211,238,0.35)" }}>
+                  <p className="text-[8px] font-black tracking-[0.18em] uppercase" style={{ color: "#22D3EE" }}>Connected. Reliable. Confident.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
