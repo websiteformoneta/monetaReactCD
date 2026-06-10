@@ -187,34 +187,40 @@ function AzureLogo() {
 // ---- Trust Bar — uses PNG icons ----
 function TrustBar() {
   return (
-    <div className="card !rounded-2xl px-6 md:px-10 py-8 md:py-10">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center">
-        <div className="flex items-center justify-center gap-5">
-          <div className="w-16 h-16 rounded-xl border border-line-soft bg-bg-tertiary/40 grid place-items-center shrink-0">
-            <PngIcon src="graphics/icons/HeroCloudProcessedAnnuallyIcon.png" size={38} />
-          </div>
-          <div className="leading-tight">
-            <p className="text-[24px] font-bold grad-text-bp">Over $100M</p>
-            <p className="text-[14px] text-ink-muted mt-0.5">processed annually</p>
+    <div className="card !rounded-2xl px-6 md:px-10 overflow-hidden" style={{ height: 88 }}>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center h-full">
+        <div className="flex items-center justify-center" style={{ transform: "scale(1.15)", transformOrigin: "center" }}>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl border border-line-soft bg-bg-tertiary/40 grid place-items-center shrink-0">
+              <PngIcon src="graphics/icons/HeroCloudProcessedAnnuallyIcon.png" size={28} />
+            </div>
+            <div className="leading-tight">
+              <p className="text-[20px] font-bold grad-text-bp">Over $100M</p>
+              <p className="text-[12px] text-ink-muted mt-0.5">processed annually</p>
+            </div>
           </div>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center" style={{ transform: "scale(1.15)", transformOrigin: "center" }}>
           <AwsLogo />
         </div>
-        <div className="flex items-center justify-center gap-4">
-          <AzureLogo />
-          <div className="leading-tight">
-            <p className="text-[12px] uppercase tracking-[0.16em] text-ink-muted">Microsoft</p>
-            <p className="text-[22px] font-semibold text-white -mt-0.5">Azure</p>
+        <div className="flex items-center justify-center" style={{ transform: "scale(1.15)", transformOrigin: "center" }}>
+          <div className="flex items-center gap-3">
+            <AzureLogo />
+            <div className="leading-tight">
+              <p className="text-[11px] uppercase tracking-[0.16em] text-ink-muted">Microsoft</p>
+              <p className="text-[18px] font-semibold text-white -mt-0.5">Azure</p>
+            </div>
           </div>
         </div>
-        <div className="flex items-center justify-center gap-5">
-          <div className="w-16 h-16 rounded-xl border border-line-soft bg-bg-tertiary/40 grid place-items-center shrink-0">
-            <PngIcon src="graphics/icons/HeroPurposeBuiltIcon.png" size={38} />
-          </div>
-          <div className="leading-tight">
-            <p className="text-[14px] text-ink-muted">Purpose-built for</p>
-            <p className="text-[20px] font-semibold grad-text-bp -mt-0.5">Cloud Resellers</p>
+        <div className="flex items-center justify-center" style={{ transform: "scale(1.15)", transformOrigin: "center" }}>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl border border-line-soft bg-bg-tertiary/40 grid place-items-center shrink-0">
+              <PngIcon src="graphics/icons/HeroPurposeBuiltIcon.png" size={28} />
+            </div>
+            <div className="leading-tight">
+              <p className="text-[12px] text-ink-muted">Purpose-built for</p>
+              <p className="text-[16px] font-semibold grad-text-bp -mt-0.5">Cloud Resellers</p>
+            </div>
           </div>
         </div>
       </div>
