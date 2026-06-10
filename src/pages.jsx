@@ -305,7 +305,7 @@ function PlatformPage({ onDemoClick }) {
   );
 }
 
-function FinOpsDiagram() {
+function FinOpsDiagram({ onDemoClick }) {
   const steps = [
     { label: "Billing",   sub: "Accurate usage\nand invoicing",        color: "#3B82F6", icon: "invoice" },
     { label: "Pricing",   sub: "Flexible, customer-\nspecific pricing", color: "#22D3EE", icon: "tag"     },
@@ -423,13 +423,14 @@ function FinOpsDiagram() {
         </div>
       </div>
 
-      <div className="mt-8 flex items-center justify-center gap-2">
-        <span className="grad-text-bp text-[17px] font-semibold">→</span>
-        <p className="text-[15.5px] text-white">
-          <span className="font-semibold">Make FinOps Possible at Scale.</span>{" "}
-          <span className="text-ink-secondary">moneta makes it simple.</span>
-        </p>
-      </div>
+      {onDemoClick && (
+        <div className="mt-6 flex justify-center">
+          <button onClick={onDemoClick} className="btn-grad-border inline-flex items-center gap-3 px-7 py-4">
+            <span className="font-semibold text-white text-[15px]">Review Your Billing, Pricing, and Margins</span>
+            <ArrowRight size={15} className="text-white opacity-70" />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -449,13 +450,7 @@ function FinOpsPage({ onDemoClick }) {
           <p className="mt-6 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary max-w-[580px] mx-auto">
             A structured, repeatable FinOps service—without added operational burden.
           </p>
-          <div className="mt-8">
-            <Button variant="primary" onClick={onDemoClick} className="!px-7 !py-4 !text-[15px]">
-              Book a Demo <ArrowRight />
-            </Button>
-          </div>
-
-          <FinOpsDiagram />
+          <FinOpsDiagram onDemoClick={onDemoClick} />
         </div>
       </section>
 
@@ -609,55 +604,51 @@ function WhyPage({ onDemoClick }) {
 
       {/* The Reality */}
       <SectionShell className="border-t border-line-soft overflow-hidden" style={{ background: "#0A0D14" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left — large heading */}
-          <div className="lg:col-span-5">
-            <Eyebrow className="mb-6">The Reality</Eyebrow>
-            <h2 className="text-hero text-balance leading-[1.05]">
+          <div className="lg:col-span-4">
+            <Eyebrow className="mb-5">The Reality</Eyebrow>
+            <h2 className="text-balance leading-[1.08]" style={{ fontSize: "clamp(28px, 3vw, 42px)", fontWeight: 700, letterSpacing: "-0.02em" }}>
               Most reseller stacks are held together <span className="grad-text-bp">by people.</span>
             </h2>
           </div>
 
-          {/* Right — body text + tool chaos diagram */}
-          <div className="lg:col-span-7 relative">
-            {/* Vertical divider */}
-            <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-px" style={{ background: "linear-gradient(180deg, transparent, rgba(91,123,255,0.3) 30%, rgba(91,123,255,0.3) 70%, transparent)" }} />
-            <div className="lg:pl-10 space-y-5 text-[17px] leading-[1.75] text-ink-secondary">
+          {/* Right — body text + diagram */}
+          <div className="lg:col-span-8">
+            <div className="space-y-5 text-[17px] leading-[1.75] text-ink-secondary">
               <p>
                 Talk to any reseller's finance team and a pattern shows up: monthly close runs on tribal knowledge,
                 custom scripts, and shared spreadsheets. It works — until it doesn't, and the cost is invisible
                 until margin reports are reconciled at quarter-end.
               </p>
-              <p>moneta replaces that operational debt with a system that owns the cost-to-invoice loop end to end.</p>
+              <p><span className="grad-text-bp font-semibold">moneta</span> replaces that operational debt with a system that owns the cost-to-invoice loop end to end.</p>
             </div>
 
-            {/* Tool chaos diagram — icon tiles connected by dashed lines */}
-            <div className="lg:pl-10 mt-10 relative" style={{ height: 140 }} aria-hidden="true">
-              {/* SVG lines only — positioned absolutely behind the tiles */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 560 140" preserveAspectRatio="none" fill="none">
-                <line x1="100" y1="70"  x2="196" y2="70"  stroke="rgba(91,123,255,0.3)" strokeWidth="1" strokeDasharray="4 3" />
-                <line x1="196" y1="70"  x2="316" y2="28"  stroke="rgba(91,123,255,0.3)" strokeWidth="1" strokeDasharray="4 3" />
-                <line x1="196" y1="70"  x2="316" y2="110" stroke="rgba(91,123,255,0.3)" strokeWidth="1" strokeDasharray="4 3" />
-                <line x1="316" y1="28"  x2="448" y2="70"  stroke="rgba(91,123,255,0.3)" strokeWidth="1" strokeDasharray="4 3" />
-                <line x1="316" y1="110" x2="448" y2="70"  stroke="rgba(91,123,255,0.3)" strokeWidth="1" strokeDasharray="4 3" />
-                {[[196,70],[316,28],[316,110]].map(([x,y]) => (
-                  <circle key={`${x}-${y}`} cx={x} cy={y} r="3" fill="rgba(91,123,255,0.45)" />
+            {/* Tool chaos diagram */}
+            <div className="mt-8 relative" style={{ height: 170 }}>
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 170" fill="none" preserveAspectRatio="xMidYMid meet">
+                <line x1="80"  y1="85"  x2="180" y2="85"  stroke="rgba(180,186,200,0.2)" strokeWidth="1.5" strokeDasharray="5 4" />
+                <line x1="180" y1="85"  x2="300" y2="38"  stroke="rgba(180,186,200,0.2)" strokeWidth="1.5" strokeDasharray="5 4" />
+                <line x1="180" y1="85"  x2="300" y2="132" stroke="rgba(180,186,200,0.2)" strokeWidth="1.5" strokeDasharray="5 4" />
+                <line x1="300" y1="38"  x2="415" y2="85"  stroke="rgba(180,186,200,0.2)" strokeWidth="1.5" strokeDasharray="5 4" />
+                <line x1="300" y1="132" x2="415" y2="85"  stroke="rgba(180,186,200,0.2)" strokeWidth="1.5" strokeDasharray="5 4" />
+                {[[180,85],[300,38],[300,132]].map(([x,y]) => (
+                  <circle key={`${x}-${y}`} cx={x} cy={y} r="3.5" fill="rgba(91,123,255,0.5)" />
                 ))}
               </svg>
-              {/* Icon tiles — positioned absolutely */}
               {[
-                { label: "Spreadsheet", icon: "sheet",   left: "8%",  top: 50 },
-                { label: "Custom Script",icon: "settings",left: "30%", top: 46 },
-                { label: "Billing Tool", icon: "invoice", left: "52%", top: 4  },
-                { label: "Data Export",  icon: "filter",  left: "52%", top: 84 },
-                { label: "Reporting",    icon: "bars",    left: "75%", top: 46 },
+                { label: "Spreadsheet",  icon: "sheet",    left: "3%",  top: 60  },
+                { label: "Custom Script",icon: "settings", left: "29%", top: 57  },
+                { label: "Billing Tool", icon: "invoice",  left: "55%", top: 10  },
+                { label: "Data Export",  icon: "filter",   left: "55%", top: 103 },
+                { label: "Reporting",    icon: "bars",     left: "76%", top: 57  },
               ].map(({ label, icon, left, top }) => (
-                <div key={label} className="absolute flex flex-col items-center gap-1" style={{ left, top }}>
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center"
-                    style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(91,123,255,0.22)" }}>
-                    {Icons[icon]("rgba(180,186,200,0.5)")}
+                <div key={label} className="absolute flex flex-col items-center gap-1.5" style={{ left, top }}>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center"
+                    style={{ background: "linear-gradient(135deg,#141826,#0e1118)", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 4px 16px rgba(0,0,0,0.4)" }}>
+                    {Icons[icon]("rgba(200,206,220,0.75)")}
                   </div>
-                  <span className="text-[9px] text-ink-muted whitespace-nowrap">{label}</span>
+                  <span className="text-[9.5px] text-ink-muted whitespace-nowrap">{label}</span>
                 </div>
               ))}
             </div>
@@ -732,13 +723,7 @@ function FinOpsForCloudResellersPage({ onDemoClick }) {
           <p className="mt-6 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary max-w-[580px] mx-auto">
             A structured, repeatable FinOps service—without added operational burden.
           </p>
-          <div className="mt-8">
-            <Button variant="primary" onClick={onDemoClick} className="!px-7 !py-4 !text-[15px]">
-              Book a Demo <ArrowRight />
-            </Button>
-          </div>
-
-          <FinOpsDiagram />
+          <FinOpsDiagram onDemoClick={onDemoClick} />
         </div>
       </section>
 

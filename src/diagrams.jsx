@@ -688,10 +688,9 @@ function WhyMonetaDiagram({ onCta }) {
       </div>
 
       {/* CTA */}
-      <div className="mt-8">
-        <button onClick={onCta} className="btn-grad-border w-full flex items-center justify-center gap-4 px-6 py-4">
-          <span className="grad-text-bp">{Icons["bars"]("#3B82F6")}</span>
-          <span className="font-semibold text-white text-[15px]">Review Your Billing, Pricing, and Margins</span>
+      <div className="mt-8 flex justify-center">
+        <button onClick={onCta} className="btn-grad-border inline-flex items-center gap-3 px-7 py-4">
+          <span className="font-semibold text-white text-[15px]">Strengthen The System Behind Your Margins</span>
           <ArrowRight size={16} className="text-white opacity-60" />
         </button>
       </div>
