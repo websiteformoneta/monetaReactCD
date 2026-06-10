@@ -97,7 +97,7 @@
       .btn-grad-border:hover { transform: translateY(-1px); box-shadow: 0 10px 30px -10px rgba(91,123,255,0.45); }
       .btn-solid-blue {
         background: linear-gradient(180deg, #3B82F6 0%, #2563EB 100%);
-        box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset, 0 8px 24px -8px rgba(59,130,246,0.55);
+        box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset;
       }
       .btn-solid-blue:hover { filter: brightness(1.05); transform: translateY(-1px); }
       .card {
@@ -144,6 +144,12 @@
       }
       .light-section .card:hover { border-color: #CBD5E1 !important; }
       .light-section .icon-tile { background: #F1F5F9 !important; border-color: #E2E8F0 !important; }
+      .light-section .btn-grad-border {
+        background: linear-gradient(#FFFFFF, #FFFFFF) padding-box,
+                    linear-gradient(92deg, #3B82F6, #A855F7) border-box !important;
+      }
+      .light-section .btn-grad-border span, .light-section .btn-grad-border { color: #0F172A !important; }
+      .light-section .btn-solid-blue { color: #FFFFFF !important; }
     </style>
   </head>
   <body>

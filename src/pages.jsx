@@ -260,7 +260,7 @@ function PlatformPage({ onDemoClick }) {
       </section>
 
       {/* A System Built for Cloud Resale Operations */}
-      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#F8FAFC" }}>
+      <SectionShell className="border-t border-line-soft" style={{ background: "#0F2040" }}>
         <Eyebrow className="mb-8">A System Built for Cloud Resale Operations</Eyebrow>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="border-l-2 pl-5" style={{ borderColor: "#3B82F6" }}>
@@ -287,7 +287,7 @@ function PlatformPage({ onDemoClick }) {
         </div>
         <SystemFlowHorizontal />
         {/* Bottom callout quote — matches Platform.png */}
-        <div className="mt-14 p-7 md:p-8 rounded-2xl border border-line-soft bg-bg-primary/40">
+        <div className="mt-14 p-7 md:p-8 rounded-2xl" style={{ background: "#F0F4FF", border: "1px solid #C7D4F0" }}>
           <p className="text-[17px] md:text-[19px] leading-[1.65] text-ink-secondary">
             Built specifically for AWS and Azure resellers operating across multiple customers,
             pricing models, and discount programs — where billing, pricing, and margin must remain continuously aligned.
@@ -497,7 +497,7 @@ function FinOpsPage({ onDemoClick }) {
         </p>
       </SectionShell>
 
-      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#FFFFFF" }}>
+      <SectionShell className="border-t border-line-soft" style={{ background: "#0F2040" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
             <Eyebrow className="mb-5">Why moneta</Eyebrow>
@@ -516,7 +516,7 @@ function FinOpsPage({ onDemoClick }) {
               { t: "One source of truth",         b: "Same data behind invoices powers FinOps insights — no parallel pipeline.", c: "#5B7BFF" },
             ].map((f, i) => (
               <div key={f.t} className="flex items-start gap-4 px-5 py-4 rounded-xl"
-                style={{ background: "#F8FAFC", border: "1px solid #E2E8F0", borderLeft: `3px solid ${f.c}` }}>
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderLeft: `3px solid ${f.c}` }}>
                 <span className="text-[11px] font-bold mt-0.5 shrink-0" style={{ color: f.c }}>0{i + 1}</span>
                 <div>
                   <h4 className="text-[15px] font-semibold mb-1 text-white">{f.t}</h4>
@@ -886,7 +886,7 @@ function FinOpsForCloudResellersPage({ onDemoClick }) {
         </p>
       </SectionShell>
 
-      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#FFFFFF" }}>
+      <SectionShell className="border-t border-line-soft" style={{ background: "#0F2040" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
             <Eyebrow className="mb-5">Why moneta</Eyebrow>
@@ -905,7 +905,7 @@ function FinOpsForCloudResellersPage({ onDemoClick }) {
               { t: "One source of truth",         b: "Same data behind invoices powers FinOps insights — no parallel pipeline.", c: "#5B7BFF" },
             ].map((f, i) => (
               <div key={f.t} className="flex items-start gap-4 px-5 py-4 rounded-xl"
-                style={{ background: "#F8FAFC", border: "1px solid #E2E8F0", borderLeft: `3px solid ${f.c}` }}>
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderLeft: `3px solid ${f.c}` }}>
                 <span className="text-[11px] font-bold mt-0.5 shrink-0" style={{ color: f.c }}>0{i + 1}</span>
                 <div>
                   <h4 className="text-[15px] font-semibold mb-1 text-white">{f.t}</h4>

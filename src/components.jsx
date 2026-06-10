@@ -64,9 +64,9 @@ function Eyebrow({ children, className = "" }) {
 
 function ReviewCTA({ onClick, label = "Review Your Billing, Pricing, and Margins", stack = true, className = "" }) {
   return (
-    <button onClick={onClick} className={`btn-grad-border inline-flex items-start gap-4 px-6 py-5 text-left ${className}`}>
-      <span className="mt-0.5 grad-text-bp"><ArrowRight size={20} /></span>
-      <span className={`font-semibold text-white text-[15.5px] leading-[1.35] ${stack ? "max-w-[200px]" : ""}`}>{label}</span>
+    <button onClick={onClick} className={`btn-grad-border inline-flex items-center gap-4 px-6 py-5 text-left ${className}`}>
+      <span className="font-semibold text-white text-[15.5px] leading-[1.35]">{label}</span>
+      <span className="shrink-0"><ArrowRight size={20} /></span>
     </button>
   );
 }
@@ -99,7 +99,7 @@ function Header({ onDemoClick }) {
   return (
     <header className={"fixed top-0 left-0 right-0 z-40 transition-all duration-200 " + (scrolled ? "bg-bg-primary/80 backdrop-blur-xl border-b border-line-soft" : "bg-transparent border-b border-transparent")}>
       <div className="container-x h-[84px] flex items-center justify-between">
-        <a href="#/" aria-label="moneta home" className="flex items-center gap-1.5"><MonetaMark size={36} /><span className="text-[20px] font-semibold tracking-tight text-white">moneta</span></a>
+        <a href="#/" aria-label="moneta home" className="flex items-center gap-0"><MonetaMark size={36} /><span className="text-[20px] font-semibold tracking-tight text-white" style={{ marginLeft: -1, transform: "translateY(0.2px)" }}>moneta</span></a>
         <div className="flex items-center gap-10">
           <nav className="hidden md:flex items-center gap-10">
             {NAV.map((n) => {
@@ -164,7 +164,7 @@ function Footer({ onDemoClick }) {
       <div className="container-x pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
-            <Logo />
+            <a href="#/" aria-label="moneta home" className="flex items-center gap-0"><MonetaMark size={36} /><span className="text-[20px] font-semibold tracking-tight text-white" style={{ marginLeft: -1, transform: "translateY(0.2px)" }}>moneta</span></a>
             <p className="mt-4 text-[14px] leading-[1.65] text-ink-muted max-w-sm">
               The financial infrastructure for AWS and Azure resellers — billing, pricing, and margin control in one system.
             </p>
@@ -292,7 +292,7 @@ function DemoModal({ isOpen, onClose }) {
 // ----- Final CTA -----
 function FinalCTA({ title, description, ctaLabel = "Book a Demo", onCta }) {
   return (
-    <section className="relative py-10 md:py-14 overflow-hidden">
+    <section className="relative pt-10 md:pt-14 pb-2 md:pb-3 overflow-hidden">
       <div className="dot-corner" />
       <div className="container-x relative text-center flex flex-col items-center">
           <h2 className="text-h1 text-balance max-w-[760px]">{title}</h2>

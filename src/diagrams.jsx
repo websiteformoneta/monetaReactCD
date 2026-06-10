@@ -104,8 +104,8 @@ function OperatingSystemDiagram() {
           boxShadow: "0 0 0 1px rgba(91,123,255,0.3), 0 24px 60px -20px rgba(91,123,255,0.4)"
         }}>
           <div className="flex items-center justify-center gap-1.5 mb-3 pb-3 border-b border-line-soft">
-            <img src="assets/moneta-icon.png" alt="" width="22" height="22" style={{ objectFit: "contain", transform: "translateY(-2px)" }} />
-            <span style={{ fontSize: 12, lineHeight: 1 }}>
+            <img src="assets/moneta-icon.png" alt="" width="27" height="27" style={{ objectFit: "contain", transform: "translateY(-2px)" }} />
+            <span style={{ fontSize: 14, lineHeight: 1 }}>
               <b className="text-white">moneta</b>{" "}
               <span className="grad-text-bp font-semibold">operating system</span>
             </span>
