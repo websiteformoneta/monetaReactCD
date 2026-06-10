@@ -49,16 +49,26 @@ const PROBLEM_ROWS = [
 
 // ---------- MARGIN INTELLIGENCE CARD ----------
 const CUSTOMERS = [
-  { name: "Acme Co.",        amount: "$284,392", widthPct: 85, bar: "#22c55e", pct: "+18.2%", pctColor: "#22c55e" },
-  { name: "Northvale Labs",  amount: "$92,408",  widthPct: 60, bar: "#22c55e", pct: "+14.0%", pctColor: "#22c55e", highlight: true },
-  { name: "Ridgepoint Inc.", amount: "$38,910",  widthPct: 38, bar: "#eab308", pct: "+6.4%",  pctColor: "#eab308" },
-  { name: "Saltcliff Media", amount: "$24,118",  widthPct: 20, bar: "#ef4444", pct: "−2.1%",  pctColor: "#ef4444", alert: true },
+  { name: "Acme Co.",        base: 284392, widthPct: 85, bar: "#22c55e", pct: "+18.2%", pctColor: "#22c55e",  tickRate: 26 },
+  { name: "Northvale Labs",  base: 92408,  widthPct: 60, bar: "#22c55e", pct: "+14.0%", pctColor: "#22c55e",  tickRate: 9,  highlight: true },
+  { name: "Ridgepoint Inc.", base: 38910,  widthPct: 38, bar: "#eab308", pct: "+6.4%",  pctColor: "#eab308",  tickRate: 4 },
+  { name: "Saltcliff Media", base: 24118,  widthPct: 20, bar: "#ef4444", pct: "−2.1%",  pctColor: "#ef4444",  tickRate: 2,  alert: true },
 ];
 
-const STATS = [
-  { label: "Customer Cost", target: 508645, prefix: "$", color: "#f1f5f9" },
-  { label: "Margin $",      target: 84623,  prefix: "$", color: "#22c55e", glow: "rgba(34,197,94,0.25)" },
-  { label: "At Risk",       target: 6418,   prefix: "$", color: "#f97316", glow: "rgba(249,115,22,0.25)", pulse: true },
+function getVisitMultiplier() {
+  try {
+    const key = "moneta_visits";
+    const visits = Math.min(parseInt(localStorage.getItem(key) || "0", 10) + 1, 40);
+    localStorage.setItem(key, visits);
+    return 1 + (visits - 1) * 0.008;
+  } catch (e) { return 1; }
+}
+
+const VISIT_MULT = getVisitMultiplier();
+const BASE_STATS = [
+  { label: "Customer Cost", base: 508645, prefix: "$", color: "#f1f5f9",                                        tickRate: 47  },
+  { label: "Margin $",      base: 84623,  prefix: "$", color: "#22c55e", glow: "rgba(34,197,94,0.25)",          tickRate: 8   },
+  { label: "At Risk",       base: 6418,   prefix: "$", color: "#f97316", glow: "rgba(249,115,22,0.25)", pulse: true, tickRate: 1 },
 ];
 
 function useCountUp(target, duration = 1200, active = false) {
@@ -78,9 +88,28 @@ function useCountUp(target, duration = 1200, active = false) {
   return val;
 }
 
-function StatTile({ label, target, prefix, color, glow, pulse, active }) {
-  const val = useCountUp(target, 1200, active);
-  const formatted = prefix + val.toLocaleString();
+function useLiveTick(initialTarget, tickRate, active) {
+  const [live, setLive] = React.useState(initialTarget);
+  React.useEffect(() => {
+    if (!active) return;
+    const schedule = () => {
+      const delay = 3000 + Math.random() * 7000;
+      return setTimeout(() => {
+        const delta = Math.round(tickRate * (0.5 + Math.random() * 1.0));
+        setLive(v => v + delta);
+        timerRef.current = schedule();
+      }, delay);
+    };
+    const timerRef = { current: schedule() };
+    return () => clearTimeout(timerRef.current);
+  }, [active, tickRate]);
+  return live;
+}
+
+function StatTile({ label, base, prefix, color, glow, pulse, active }) {
+  const initialTarget = Math.round(base * VISIT_MULT);
+  const live = useLiveTick(initialTarget, base === 508645 ? 47 : base === 84623 ? 8 : 1, active);
+  const formatted = prefix + live.toLocaleString();
   return (
     <div style={{ background: "#1a2236", border: "1px solid #1f2d45", borderRadius: 10, padding: 16 }}>
       <p style={{ color: "#64748b", fontSize: 10, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "Inter, monospace", marginBottom: 8 }}>{label}</p>
@@ -93,9 +122,26 @@ function StatTile({ label, target, prefix, color, glow, pulse, active }) {
   );
 }
 
+function CustomerRow({ c, i, hovered, mounted, setHovered }) {
+  const liveAmount = useLiveTick(Math.round(c.base * VISIT_MULT), c.tickRate, mounted);
+  return (
+    <div
+      onMouseEnter={(e) => { e.stopPropagation(); setHovered(i); }}
+      onMouseLeave={(e) => { e.stopPropagation(); setHovered(null); }}
+      style={{ display: "grid", gridTemplateColumns: "1fr 88px 110px 52px", alignItems: "center", gap: 10, padding: "9px 10px", borderRadius: 8, cursor: "default", transition: "background 0.15s", background: hovered === i ? "rgba(56,189,248,0.07)" : "transparent" }}>
+      <span style={{ color: "#e2e8f0", fontSize: 13, fontWeight: 400, fontFamily: "Inter, sans-serif", borderLeft: c.highlight ? "2px solid #38bdf8" : "2px solid transparent", paddingLeft: 8 }}>{c.name}</span>
+      <span style={{ color: "#64748b", fontSize: 12, textAlign: "right", fontFamily: "Inter, monospace", fontVariantNumeric: "tabular-nums" }}>${liveAmount.toLocaleString()}</span>
+      <div style={{ background: "#1e293b", borderRadius: 999, height: 5, overflow: "hidden" }}>
+        <div style={{ width: mounted ? `${c.widthPct}%` : "0%", height: "100%", borderRadius: 999, background: c.bar, transition: `width 0.9s cubic-bezier(0.4,0,0.2,1) ${i * 0.12}s` }} />
+      </div>
+      <span style={{ fontSize: 12, fontWeight: 500, textAlign: "right", color: c.pctColor, fontFamily: "Inter, monospace", fontVariantNumeric: "tabular-nums" }}>{c.pct}</span>
+    </div>
+  );
+}
+
 function MarginIntelligenceCard() {
   const [hovered, setHovered] = React.useState(null);
-  const [alertHovered, setAlertHovered] = React.useState(false);
+  const [cardHovered, setCardHovered] = React.useState(false);
   const [mounted, setMounted] = React.useState(false);
   const ref = React.useRef(null);
 
@@ -116,7 +162,7 @@ function MarginIntelligenceCard() {
           from { width: 0; }
         }
       `}</style>
-      <div ref={ref} style={{ position: "relative", width: "100%", maxWidth: 520, margin: "0 auto", paddingBottom: 52 }}>
+      <div ref={ref} onMouseEnter={() => setCardHovered(true)} onMouseLeave={() => { setCardHovered(false); setHovered(null); }} style={{ position: "relative", width: "100%", maxWidth: 520, margin: "0 auto", paddingBottom: 52 }}>
 
         {/* Card with gradient top border */}
         <div style={{
@@ -129,7 +175,7 @@ function MarginIntelligenceCard() {
             {/* Header */}
             <p style={{ color: "#38bdf8", fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 6, fontFamily: "Inter, sans-serif" }}>Margin Intelligence</p>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 22 }}>
-              <span style={{ color: "#f1f5f9", fontSize: 18, fontWeight: 400, fontFamily: "Inter, sans-serif" }}>7 customers · May 2026</span>
+              <span style={{ color: "#f1f5f9", fontSize: 18, fontWeight: 400, fontFamily: "Inter, sans-serif" }}>7 customers · June 2026</span>
               <span style={{ background: "#0f2e1a", border: "1px solid rgba(34,197,94,0.27)", color: "#22c55e", fontSize: 11, fontWeight: 500, padding: "4px 11px", borderRadius: 999, display: "flex", alignItems: "center", gap: 5, fontFamily: "Inter, sans-serif" }}>
                 <span style={{ fontSize: 7 }}>●</span> 16.6% blended
               </span>
@@ -137,44 +183,26 @@ function MarginIntelligenceCard() {
 
             {/* Stats */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10, marginBottom: 22 }}>
-              {STATS.map(s => <StatTile key={s.label} {...s} active={mounted} />)}
+              {BASE_STATS.map(s => <StatTile key={s.label} {...s} active={mounted} />)}
             </div>
 
             {/* Customer rows */}
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
               {CUSTOMERS.map((c, i) => (
-                <div key={c.name}
-                  onMouseEnter={() => setHovered(i)}
-                  onMouseLeave={() => setHovered(null)}
-                  style={{ display: "grid", gridTemplateColumns: "1fr 88px 110px 52px", alignItems: "center", gap: 10, padding: "9px 10px", borderRadius: 8, cursor: "default", transition: "background 0.15s", background: hovered === i ? "rgba(56,189,248,0.07)" : "transparent" }}>
-                  <span style={{ color: "#e2e8f0", fontSize: 13, fontWeight: 400, fontFamily: "Inter, sans-serif", borderLeft: c.highlight ? "2px solid #38bdf8" : "2px solid transparent", paddingLeft: 8 }}>{c.name}</span>
-                  <span style={{ color: "#64748b", fontSize: 12, textAlign: "right", fontFamily: "Inter, monospace", fontVariantNumeric: "tabular-nums" }}>{c.amount}</span>
-                  <div style={{ background: "#1e293b", borderRadius: 999, height: 5, overflow: "hidden" }}>
-                    <div style={{
-                      width: mounted ? `${c.widthPct}%` : "0%",
-                      height: "100%", borderRadius: 999, background: c.bar,
-                      transition: `width 0.9s cubic-bezier(0.4,0,0.2,1) ${i * 0.12}s`,
-                    }} />
-                  </div>
-                  <span style={{ fontSize: 12, fontWeight: 500, textAlign: "right", color: c.pctColor, fontFamily: "Inter, monospace", fontVariantNumeric: "tabular-nums" }}>{c.pct}</span>
-                </div>
+                <CustomerRow key={c.name} c={c} i={i} hovered={hovered} mounted={mounted} setHovered={setHovered} />
               ))}
             </div>
           </div>
         </div>
 
-        {/* Alert popup */}
-        <div
-          onMouseEnter={() => setAlertHovered(true)}
-          onMouseLeave={() => setAlertHovered(false)}
-          style={{
+        {/* Alert popup — always pointerEvents:none to avoid cursor conflicts */}
+        <div style={{
           position: "absolute", bottom: 0, left: 20,
           background: "#ffffff", borderRadius: 12, padding: "13px 16px", width: 290,
           boxShadow: "0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(234,88,12,0.12)",
-          opacity: alertHovered ? 0 : hovered === null ? 1 : hovered === 3 ? 1 : 0,
-          transition: "opacity 0.2s, transform 0.2s",
-          transform: hovered === 3 ? "translateY(-2px)" : "translateY(0)",
-          pointerEvents: alertHovered ? "none" : "auto",
+          opacity: cardHovered ? 0 : 1,
+          transition: "opacity 0.25s",
+          pointerEvents: "none",
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
             <span style={{ fontSize: 14 }}>⚠️</span>
@@ -261,36 +289,62 @@ function HomePage({ onDemoClick }) {
       </SectionShell>
 
       {/* SOLUTION */}
-      <SectionShell className="border-t border-line-soft light-section" dotsRight style={{ background: "#F8FAFC" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-stretch">
-          <div className="lg:col-span-5 flex flex-col">
+      <SectionShell className="border-t border-line-soft" dotsRight style={{ background: "#060B18" }}>
+        {/* Top text row */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
+          <div className="lg:col-span-4">
             <Eyebrow className="mb-5">The Solution</Eyebrow>
-            <h2 className="text-h1 text-balance">
-              Billing, Pricing, and Margin Control in <span className="grad-text-bp">One System</span>
+            <h2 className="text-balance" style={{ fontSize: "clamp(26px, 2.6vw, 38px)", fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+              Align billing, pricing, discounts, and margins in <span className="grad-text-bp">one system.</span>
             </h2>
-            <span className="block mt-5 h-[3px] w-40 grad-line rounded-full" />
-            <p className="mt-7 text-[16px] leading-[1.65] text-ink-secondary max-w-[460px]">
-              <span className="grad-text-bp font-semibold">moneta</span> aligns billing, pricing, and discounts in a single system —
-              so invoices are accurate, discounts are applied correctly, and margins are fully visible.
-            </p>
           </div>
-          <div className="lg:col-span-7 flex flex-col justify-center lg:pt-14">
-            <SolutionTimeline />
+          <div className="lg:col-span-8 flex flex-col justify-end gap-4 lg:pt-0">
+            <p className="text-[16px] leading-[1.7] text-ink-secondary">
+              moneta connects cloud billing data, customer pricing rules, discount programs, and margin visibility in one platform, helping resellers operate with better control across every customer account.
+            </p>
+            <p className="text-[16px] leading-[1.7] text-ink-secondary">
+              Instead of treating billing, pricing, discounts, and margin reporting as separate workflows, moneta brings them together into a connected operating layer for cloud reseller operations.
+            </p>
           </div>
         </div>
 
-        {/* Bottom callout — SolutionIcon.png */}
-        <div className="mt-6 card !rounded-2xl px-7 py-5 md:px-8 md:py-5" style={{ borderColor: "rgba(168,85,247,0.4)" }}>
+        {/* Graphic */}
+        <ReconciliationLoop />
+
+        {/* Bottom callout */}
+        <div className="mt-8 card !rounded-2xl px-7 py-5 md:px-8 md:py-5" style={{ borderColor: "rgba(168,85,247,0.4)" }}>
           <div className="flex items-center gap-6">
-            <div className="w-14 h-14 rounded-xl grid place-items-center shrink-0">
-              <img src="graphics/icons/SolutionIcon.png" alt="" width="44" height="44" style={{ objectFit: "contain" }} />
+            <div className="flex items-center gap-0 shrink-0">
+              <MonetaMark size={36} />
+              <span className="text-[20px] font-semibold tracking-tight text-white" style={{ marginLeft: -1, transform: "translateY(0.2px)" }}>moneta</span>
             </div>
             <div className="border-l border-line-soft pl-6">
               <p className="text-[19px] md:text-[22px] font-semibold leading-[1.3] text-balance">
-                One system. Everything <span style={{ color: "#22D3EE" }}>aligned</span>. Margins{" "}
-                <span style={{ color: "#A855F7" }}>controlled</span> at scale.
+                One System. Everything <span className="grad-text-bp">Aligned.</span>
               </p>
             </div>
+          </div>
+        </div>
+      </SectionShell>
+
+      {/* OPERATING SYSTEM */}
+      <SectionShell className="border-t border-line-soft" style={{ background: "#060B18" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-4">
+            <Eyebrow className="mb-5">Operating System</Eyebrow>
+            <h2 className="text-h1 text-balance">
+              One System. <span className="grad-text-bp">Every Layer.</span>
+            </h2>
+            <span className="block mt-5 h-[3px] w-32 grad-line rounded-full" />
+            <p className="mt-6 text-[16px] leading-[1.65] text-ink-secondary">
+              moneta connects every layer of cloud reseller billing — from raw usage data and vendor pricing to customer invoices and real-time margin visibility.
+            </p>
+            <p className="mt-4 text-[16px] leading-[1.65] text-ink-secondary">
+              Not a dashboard. Not a plugin. A purpose-built operating system for how resellers actually run.
+            </p>
+          </div>
+          <div className="lg:col-span-8">
+            <OperatingSystemDiagram />
           </div>
         </div>
       </SectionShell>

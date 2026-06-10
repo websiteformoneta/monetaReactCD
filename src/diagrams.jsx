@@ -68,8 +68,8 @@ function OperatingSystemDiagram() {
         </>
       ) : (
         <>
-          <line x1="8" y1="7" x2="36" y2="7" stroke="#22D3EE" strokeWidth="1.4" strokeDasharray="4 3" />
-          <polygon points="8,3.5 0,7 8,10.5" fill="#A855F7" />
+          <line x1="0" y1="7" x2="28" y2="7" stroke="#22D3EE" strokeWidth="1.4" strokeDasharray="4 3" />
+          <polygon points="28,3.5 36,7 28,10.5" fill="#A855F7" />
         </>
       )}
     </svg>
@@ -232,10 +232,10 @@ function TrustBar() {
 function SolutionTimeline() {
   const TCOL = 28; // timeline column px — line and dot both centered here
   const items = [
-    { t: "Accurate, Automated Invoicing", b: "Consistent, customer-ready invoices aligned to pricing.", src: "graphics/icons/ProblemBillingIcon.png", c: "#3B82F6" },
-    { t: "Cloud Discount Management", b: "Apply discount programs by customer and capture savings.", src: "graphics/icons/ProblemMisappliedIcon.png", c: "#22D3EE" },
-    { t: "Margin Visibility by Customer", b: "Track margin performance and identify where to adjust.", src: "graphics/icons/ProblemLimitedIcon.png", c: "#A855F7" },
-    { t: "Pricing Advantage", b: "Set pricing with full visibility into cost, discounts, and margin.", src: null, svgI: "trend", c: "#5B7BFF" },
+    { t: "Cloud Billing", b: "Consistent, customer-ready invoices aligned to pricing.", src: "graphics/icons/ProblemBillingIcon.png", c: "#3B82F6" },
+    { t: "Discounts", b: "Apply discount programs by customer and capture savings.", src: "graphics/icons/ProblemMisappliedIcon.png", c: "#22D3EE" },
+    { t: "Customer Pricing", b: "Set pricing with full visibility into cost, discounts, and margin.", src: null, svgI: "trend", c: "#5B7BFF" },
+    { t: "Margin Intelligence", b: "Track margin performance and identify where to adjust.", src: "graphics/icons/ProblemLimitedIcon.png", c: "#A855F7" },
   ];
   return (
     <div className="relative">
@@ -708,7 +708,140 @@ function WhyMonetaDiagram({ onCta }) {
   );
 }
 
+// ---- Reconciliation Loop graphic ----
+function ReconciliationLoop() {
+  const [active, setActive] = React.useState(0);
+
+  React.useEffect(() => {
+    const t = setInterval(() => setActive(a => (a + 1) % 5), 2200);
+    return () => clearInterval(t);
+  }, []);
+
+  const steps = [
+    {
+      label: "Cloud Billing", sub: "AWS · Azure · GCP", num: "01",
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6H16a5 5 0 011 9.9M8 17l4-4 4 4M12 13v8"/></svg>,
+      color: "#38bdf8", stats: [{ k: "rows", v: "14.2M" }, { k: "providers", v: "3" }],
+    },
+    {
+      label: "Customer Pricing", sub: "Rules & agreements", num: "02",
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M7 7h10M7 12h6M7 17h4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>,
+      color: "#a78bfa", stats: [{ k: "rules", v: "150" }, { k: "customers", v: "7" }],
+    },
+    {
+      label: "Discounts", sub: "SPs · RIs · MACC", num: "03",
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="9" r="2"/><circle cx="15" cy="15" r="2"/><path d="M7 17L17 7"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>,
+      color: "#34d399", stats: [{ k: "applied", v: "$124K", vc: "#34d399" }, { k: "coverage", v: "93.5%" }],
+    },
+    {
+      label: "Invoice-ready", sub: "Per customer", num: "04",
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>,
+      color: "#60a5fa", stats: [{ k: "invoices", v: "7 / 7" }, { k: "lines", v: "15,580" }],
+    },
+    {
+      label: "Margin Intelligence", sub: "By customer", num: "05",
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-4 4"/></svg>,
+      color: "#f472b6", stats: [{ k: "blended", v: "17.5%", vc: "#34d399" }, { k: "margin $", v: "$90,150", vc: "#34d399" }],
+    },
+  ];
+
+  return (
+    <div style={{ background: "linear-gradient(160deg,#0d1425 0%,#0a1020 100%)", border: "1px solid rgba(56,189,248,0.2)", borderRadius: 16, padding: "28px 28px 20px", boxShadow: "0 0 60px rgba(56,189,248,0.06)" }}>
+
+      {/* Header row */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24 }}>
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation: "spin 3s linear infinite" }}><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>
+            <span style={{ color: "#38bdf8", fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Continuous Reconciliation Loop</span>
+          </div>
+          <p style={{ color: "#f1f5f9", fontSize: 17, fontWeight: 600, fontFamily: "Inter, sans-serif" }}>Billing, pricing, discounts, and margin — aligned every cycle.</p>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, whiteSpace: "nowrap" }}>
+          <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#22c55e", display: "inline-block", boxShadow: "0 0 6px #22c55e" }} />
+          <span style={{ color: "#64748b", fontSize: 12, fontFamily: "Inter, sans-serif" }}>Live &nbsp;·&nbsp; last sync · 2 min ago</span>
+        </div>
+      </div>
+
+      {/* Step nodes + connector line */}
+      <div style={{ position: "relative", display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 0 }}>
+        {/* dashed connector line — animated left to right */}
+        <div style={{ position: "absolute", top: 22, left: "10%", right: "10%", height: 2, zIndex: 0, overflow: "hidden" }}>
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(90deg, rgba(56,189,248,0.55) 0px, rgba(56,189,248,0.55) 8px, transparent 8px, transparent 16px)", backgroundSize: "16px 2px", animation: "dashFlow 1.2s linear infinite" }} />
+        </div>
+
+        {steps.map((s, i) => (
+          <div key={s.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: `${100/5}%`, cursor: "pointer", zIndex: 2, position: "relative" }} onClick={() => setActive(i)}>
+            {/* circle node */}
+            <div style={{
+              width: 44, height: 44, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
+              background: "#0d1425",
+              border: `2px solid ${active === i ? s.color : "rgba(255,255,255,0.1)"}`,
+              color: active === i ? s.color : "rgba(180,186,200,0.4)",
+              boxShadow: active === i ? `0 0 20px ${s.color}60` : "none",
+              transition: "all 0.3s",
+              marginBottom: 0,
+              isolation: "isolate",
+            }}>
+              {s.icon}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Cards row */}
+      <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+        {steps.map((s, i) => (
+          <div key={s.label} onClick={() => setActive(i)} style={{
+            flex: 1, borderRadius: 10, padding: "14px 14px 12px",
+            background: active === i ? `linear-gradient(160deg,${s.color}12,rgba(10,16,32,0.9))` : "rgba(255,255,255,0.02)",
+            border: `1px solid ${active === i ? s.color + "55" : "rgba(255,255,255,0.07)"}`,
+            cursor: "pointer", transition: "all 0.3s",
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
+              <span style={{ color: active === i ? "#f1f5f9" : "#94a3b8", fontSize: 13, fontWeight: 600, fontFamily: "Inter, sans-serif", lineHeight: 1.2 }}>{s.label}</span>
+              <span style={{ color: "rgba(100,116,139,0.5)", fontSize: 10, fontFamily: "Inter, monospace" }}>{s.num}</span>
+            </div>
+            <p style={{ color: "#475569", fontSize: 11, fontFamily: "Inter, sans-serif", marginBottom: 12 }}>{s.sub}</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+              {s.stats.map(st => (
+                <div key={st.k} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ color: "#475569", fontSize: 11, fontFamily: "Inter, monospace" }}>{st.k}</span>
+                  <span style={{ color: st.vc || "#94a3b8", fontSize: 12, fontWeight: 600, fontFamily: "Inter, monospace", fontVariantNumeric: "tabular-nums" }}>{st.v}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Footer */}
+      <div style={{ marginTop: 16, display: "flex", justifyContent: "center" }}>
+        <span style={{ color: "#475569", fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", fontFamily: "Inter, sans-serif", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 999, padding: "5px 16px" }}>
+          Re-syncs hourly · <span style={{ color: "#38bdf8" }}>No manual reconciliation</span>
+        </span>
+      </div>
+
+      {/* Curved return loop */}
+      <div style={{ position: "relative", marginTop: 8, height: 48, width: "100%" }}>
+        <svg width="100%" height="48" viewBox="0 0 800 48" preserveAspectRatio="none" fill="none" style={{ display: "block" }}>
+          <path d="M 720 4 C 720 44, 600 44, 400 44 C 200 44, 80 44, 80 4" stroke="rgba(56,189,248,0.45)" strokeWidth="1.5" strokeDasharray="8 6" fill="none">
+            <animate attributeName="stroke-dashoffset" from="28" to="0" dur="1.2s" repeatCount="indefinite" />
+          </path>
+          {/* arrowhead pointing up into first node */}
+          <polygon points="80,2 74,14 86,14" fill="rgba(56,189,248,0.6)" />
+        </svg>
+      </div>
+
+      <style>{`
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes dashFlow { from { background-position: 0 0; } to { background-position: 16px 0; } }
+      `}</style>
+    </div>
+  );
+}
+
 Object.assign(window, {
   Icons, PngIcon, OperatingSystemDiagram, TrustBar, SolutionTimeline, ResultsList,
-  FinopsSplit, CoreSystemLayers, SystemFlowHorizontal, WhyMonetaDiagram,
+  FinopsSplit, CoreSystemLayers, SystemFlowHorizontal, WhyMonetaDiagram, ReconciliationLoop,
 });
