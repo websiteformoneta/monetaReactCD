@@ -76,7 +76,7 @@ function HomePage({ onDemoClick }) {
       </section>
 
       {/* PROBLEM */}
-      <SectionShell className="border-t border-line-soft" dotsRight style={{ background: "#0C0F17" }}>
+      <SectionShell className="border-t border-line-soft" dotsRight style={{ background: "#0F2040" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-stretch">
           <div className="lg:col-span-5 flex flex-col">
             <Eyebrow className="mb-5">The Problem</Eyebrow>
@@ -129,7 +129,7 @@ function HomePage({ onDemoClick }) {
       </SectionShell>
 
       {/* SOLUTION */}
-      <SectionShell className="border-t border-line-soft" dotsRight style={{ background: "#101420" }}>
+      <SectionShell className="border-t border-line-soft light-section" dotsRight style={{ background: "#F8FAFC" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-stretch">
           <div className="lg:col-span-5 flex flex-col">
             <Eyebrow className="mb-5">The Solution</Eyebrow>
@@ -164,7 +164,7 @@ function HomePage({ onDemoClick }) {
       </SectionShell>
 
       {/* RESULTS */}
-      <SectionShell className="border-t border-line-soft" dotsLeft style={{ background: "#141828" }}>
+      <SectionShell className="border-t border-line-soft" dotsLeft style={{ background: "#0F2040" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
             <Eyebrow className="mb-7">Results</Eyebrow>
@@ -185,7 +185,7 @@ function HomePage({ onDemoClick }) {
       </SectionShell>
 
       {/* FINOPS PREVIEW */}
-      <SectionShell className="border-t border-line-soft" dotsLeft style={{ background: "#101420" }}>
+      <SectionShell className="border-t border-line-soft light-section" dotsLeft style={{ background: "#F8FAFC" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
             <Eyebrow className="mb-7">FinOps Managed Services</Eyebrow>
@@ -212,7 +212,7 @@ function HomePage({ onDemoClick }) {
 
       <FinalCTA
         title="Stop discovering margin at quarter-end."
-        description="Bring your own billing structure. We'll show you what moneta would do with it — in 45 minutes."
+        description="Bring your own resell environment. We'll show you what the moneta operating system can do with it – in 45 minutes."
         ctaLabel="See Your Margin Gaps"
         onCta={onDemoClick}
       />
@@ -233,7 +233,7 @@ function PlatformPage({ onDemoClick }) {
 
             {/* LEFT — matches Platform.png left column exactly */}
             <div className="lg:col-span-6">
-              <Eyebrow className="mb-7">Platform</Eyebrow>
+              <Eyebrow className="mb-7">System</Eyebrow>
               <h1 className="text-hero text-balance">
                 The Financial Infrastructure <br className="hidden md:block" />
                 for <span className="grad-text-bp">Cloud Resellers</span>
@@ -260,7 +260,7 @@ function PlatformPage({ onDemoClick }) {
       </section>
 
       {/* A System Built for Cloud Resale Operations */}
-      <SectionShell className="border-t border-line-soft" style={{ background: "#0C0F17" }}>
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#F8FAFC" }}>
         <Eyebrow className="mb-8">A System Built for Cloud Resale Operations</Eyebrow>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="border-l-2 pl-5" style={{ borderColor: "#3B82F6" }}>
@@ -276,7 +276,7 @@ function PlatformPage({ onDemoClick }) {
       </SectionShell>
 
       {/* System Flow */}
-      <SectionShell className="border-t border-line-soft" style={{ background: "#080A10" }} dotsRight>
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#FFFFFF" }} dotsRight>
         <div className="mb-10">
           <Eyebrow className="mb-6">System Flow</Eyebrow>
           <h2 className="text-h1 text-balance">One System. Continuous Flow.</h2>
@@ -454,7 +454,7 @@ function FinOpsPage({ onDemoClick }) {
         </div>
       </section>
 
-      <SectionShell className="border-t border-line-soft" style={{ background: "#0C0F17" }}>
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#F8FAFC" }}>
         <div className="text-center max-w-[820px] mx-auto">
           <h2 className="text-h1 text-balance">
             FinOps <span className="grad-text-bp">cannot</span> scale without infrastructure.
@@ -466,7 +466,7 @@ function FinOpsPage({ onDemoClick }) {
 
         <div className="mt-12 rounded-2xl overflow-hidden border border-line-soft">
           {/* Header row */}
-          <div className="grid grid-cols-[1fr_40px_1fr] px-6 py-3 border-b border-line-soft" style={{ background: "rgba(255,255,255,0.03)" }}>
+          <div className="grid grid-cols-[1fr_40px_1fr] px-6 py-3 border-b border-line-soft" style={{ background: "rgba(0,0,0,0.03)" }}>
             <p className="eyebrow text-[10px] text-ink-muted">Without Infrastructure</p>
             <div />
             <p className="eyebrow text-[10px] grad-text-bp">With moneta</p>
@@ -478,7 +478,7 @@ function FinOpsPage({ onDemoClick }) {
             ["One-time engagement",                    "Recurring FinOps service delivered at scale", "#A855F7"],
           ].map(([a, b, c], i, arr) => (
             <div key={a} className={`grid grid-cols-[1fr_40px_1fr] items-center px-6 py-4 ${i < arr.length - 1 ? "border-b border-line-soft" : ""}`}
-              style={{ background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)" }}>
+              style={{ background: i % 2 === 0 ? "transparent" : "rgba(0,0,0,0.02)" }}>
               <p className="text-[15px] text-ink-secondary leading-[1.5]">{a}</p>
               <div className="flex items-center justify-center">
                 <svg width="20" height="10" viewBox="0 0 20 10" fill="none" aria-hidden="true">
@@ -497,7 +497,7 @@ function FinOpsPage({ onDemoClick }) {
         </p>
       </SectionShell>
 
-      <SectionShell className="border-t border-line-soft" style={{ background: "#080A10" }}>
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#FFFFFF" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
             <Eyebrow className="mb-5">Why moneta</Eyebrow>
@@ -516,7 +516,7 @@ function FinOpsPage({ onDemoClick }) {
               { t: "One source of truth",         b: "Same data behind invoices powers FinOps insights — no parallel pipeline.", c: "#5B7BFF" },
             ].map((f, i) => (
               <div key={f.t} className="flex items-start gap-4 px-5 py-4 rounded-xl"
-                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid #1A2030", borderLeft: `3px solid ${f.c}` }}>
+                style={{ background: "#F8FAFC", border: "1px solid #E2E8F0", borderLeft: `3px solid ${f.c}` }}>
                 <span className="text-[11px] font-bold mt-0.5 shrink-0" style={{ color: f.c }}>0{i + 1}</span>
                 <div>
                   <h4 className="text-[15px] font-semibold mb-1 text-white">{f.t}</h4>
@@ -578,7 +578,7 @@ function WhyPage({ onDemoClick }) {
       </section>
 
       {/* The Difference */}
-      <SectionShell className="border-t border-line-soft" style={{ background: "#0C0F17" }}>
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#F8FAFC" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-4">
             <Eyebrow className="mb-5">The Difference</Eyebrow>
@@ -593,7 +593,7 @@ function WhyPage({ onDemoClick }) {
               { t: "Per-customer margin is live",     b: "Margin is a real-time number, visible while it can still be acted on.", c: "#A855F7" },
               { t: "Built for multi-customer scale",  b: "Hundreds of customers, dozens of contracts, one operating ledger.", c: "#5B7BFF" },
             ].map((f) => (
-              <div key={f.t} className="rounded-xl p-5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid #1A2030", borderLeft: `3px solid ${f.c}` }}>
+              <div key={f.t} className="rounded-xl p-5" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", borderLeft: `3px solid ${f.c}` }}>
                 <h3 className="text-[15px] font-semibold mb-2" style={{ color: f.c }}>{f.t}</h3>
                 <p className="text-[13.5px] text-ink-secondary leading-[1.6]">{f.b}</p>
               </div>
@@ -604,7 +604,7 @@ function WhyPage({ onDemoClick }) {
 
       {/* The Reality */}
       <SectionShell className="border-t border-line-soft overflow-hidden relative" style={{
-        background: "radial-gradient(ellipse 55% 65% at 78% 35%, rgba(91,123,255,0.14) 0%, rgba(168,85,247,0.07) 45%, transparent 80%), #06070D"
+        background: "radial-gradient(ellipse 55% 65% at 78% 35%, rgba(91,123,255,0.14) 0%, rgba(168,85,247,0.07) 45%, transparent 80%), #060B18"
       }}>
         {/* Faint grid overlay — covers entire section, fades from left to right */}
         <div className="pointer-events-none" style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: "linear-gradient(rgba(180,186,200,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(180,186,200,0.5) 1px, transparent 1px)", backgroundSize: "32px 32px", maskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.4) 30%, black 60%, black 100%)", WebkitMaskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.4) 30%, black 60%, black 100%)" }} />
@@ -773,7 +773,7 @@ function WhyPage({ onDemoClick }) {
       </SectionShell>
 
       {/* Why Cloud Resellers Choose moneta — WhyMonetaDiagram */}
-      <SectionShell className="border-t border-line-soft" dotsRight style={{ background: "#0C0F17" }}>
+      <SectionShell className="border-t border-line-soft" dotsRight style={{ background: "#0F2040" }}>
         <div className="mb-10 max-w-[820px]">
           <Eyebrow className="mb-6">Why Cloud Resellers Choose moneta</Eyebrow>
           <h2 className="text-h1 text-balance">
@@ -787,7 +787,7 @@ function WhyPage({ onDemoClick }) {
       </SectionShell>
 
       {/* Built for multi-customer */}
-      <SectionShell className="border-t border-line-soft" style={{ background: "#080A10" }}>
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#FFFFFF" }}>
         <div className="mb-10 max-w-[820px]">
           <Eyebrow className="mb-6">Why moneta</Eyebrow>
           <h2 className="text-h1 text-balance">
@@ -816,7 +816,7 @@ function WhyPage({ onDemoClick }) {
 
       <FinalCTA
         title="See why resellers replace stitched workflows with moneta."
-        description="Bring your own billing structure. We'll show you what moneta would do with it."
+        description="Bring your own resell environment. We'll show you what the moneta operating system can do with it – in 45 minutes."
         ctaLabel="Book a Demo"
         onCta={onDemoClick}
       />
@@ -843,7 +843,7 @@ function FinOpsForCloudResellersPage({ onDemoClick }) {
         </div>
       </section>
 
-      <SectionShell className="border-t border-line-soft" style={{ background: "#0C0F17" }}>
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#F8FAFC" }}>
         <div className="text-center max-w-[820px] mx-auto">
           <h2 className="text-h1 text-balance">
             FinOps <span className="grad-text-bp">cannot</span> scale without infrastructure.
@@ -855,7 +855,7 @@ function FinOpsForCloudResellersPage({ onDemoClick }) {
 
         <div className="mt-12 rounded-2xl overflow-hidden border border-line-soft">
           {/* Header row */}
-          <div className="grid grid-cols-[1fr_40px_1fr] px-6 py-3 border-b border-line-soft" style={{ background: "rgba(255,255,255,0.03)" }}>
+          <div className="grid grid-cols-[1fr_40px_1fr] px-6 py-3 border-b border-line-soft" style={{ background: "rgba(0,0,0,0.03)" }}>
             <p className="eyebrow text-[10px] text-ink-muted">Without Infrastructure</p>
             <div />
             <p className="eyebrow text-[10px] grad-text-bp">With moneta</p>
@@ -867,7 +867,7 @@ function FinOpsForCloudResellersPage({ onDemoClick }) {
             ["One-time engagement",                    "Recurring FinOps service delivered at scale", "#A855F7"],
           ].map(([a, b, c], i, arr) => (
             <div key={a} className={`grid grid-cols-[1fr_40px_1fr] items-center px-6 py-4 ${i < arr.length - 1 ? "border-b border-line-soft" : ""}`}
-              style={{ background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)" }}>
+              style={{ background: i % 2 === 0 ? "transparent" : "rgba(0,0,0,0.02)" }}>
               <p className="text-[15px] text-ink-secondary leading-[1.5]">{a}</p>
               <div className="flex items-center justify-center">
                 <svg width="20" height="10" viewBox="0 0 20 10" fill="none" aria-hidden="true">
@@ -886,7 +886,7 @@ function FinOpsForCloudResellersPage({ onDemoClick }) {
         </p>
       </SectionShell>
 
-      <SectionShell className="border-t border-line-soft" style={{ background: "#080A10" }}>
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#FFFFFF" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
             <Eyebrow className="mb-5">Why moneta</Eyebrow>
@@ -905,7 +905,7 @@ function FinOpsForCloudResellersPage({ onDemoClick }) {
               { t: "One source of truth",         b: "Same data behind invoices powers FinOps insights — no parallel pipeline.", c: "#5B7BFF" },
             ].map((f, i) => (
               <div key={f.t} className="flex items-start gap-4 px-5 py-4 rounded-xl"
-                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid #1A2030", borderLeft: `3px solid ${f.c}` }}>
+                style={{ background: "#F8FAFC", border: "1px solid #E2E8F0", borderLeft: `3px solid ${f.c}` }}>
                 <span className="text-[11px] font-bold mt-0.5 shrink-0" style={{ color: f.c }}>0{i + 1}</span>
                 <div>
                   <h4 className="text-[15px] font-semibold mb-1 text-white">{f.t}</h4>

@@ -8,31 +8,39 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              bg: { primary: "#05060A", secondary: "#0A0C12", tertiary: "#10131C", card: "#0B0E17" },
-              ink: { primary: "#FFFFFF", secondary: "#B4BAC8", muted: "#6B7385" },
+              bg: { primary: "#060B18", secondary: "#0A1428", tertiary: "#0F1E38", card: "#0B1428" },
+              ink: { primary: "#FFFFFF", secondary: "#94A3B8", muted: "#4A5568" },
               accent: { blue: "#3B82F6", indigo: "#5B7BFF", purple: "#A855F7", violet: "#8B5CF6", cyan: "#22D3EE", orange: "#F59E0B", success: "#34D399" },
-              line: { DEFAULT: "#1A2030", soft: "#11151F", hover: "#2A3145" },
+              line: { DEFAULT: "#1E2D45", soft: "#131E30", hover: "#243650" },
             },
-            fontFamily: { sans: ["Inter", "-apple-system", "system-ui", "sans-serif"] },
+            fontFamily: {
+              sans: ["Inter", "-apple-system", "system-ui", "sans-serif"],
+              serif: ["Source Serif 4", "Georgia", "serif"],
+            },
           },
         },
       };
     </script>
     <style>
-      html, body { background: #05060A; color: #FFFFFF; }
+      html, body { background: #060B18; color: #FFFFFF; }
       body { font-family: Inter, -apple-system, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
       ::selection { background: rgba(91,123,255,0.4); color: #FFFFFF; }
 
-      .text-hero { font-size: clamp(44px, 5.6vw, 76px); line-height: 1.04; letter-spacing: -0.03em; font-weight: 700; }
-      .text-h1   { font-size: clamp(36px, 4.4vw, 60px); line-height: 1.08; letter-spacing: -0.025em; font-weight: 700; }
-      .text-h2   { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.12; letter-spacing: -0.02em; font-weight: 700; }
-      .text-h3   { font-size: 22px; line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; }
+      h1, h2, h3, h4, .text-hero, .text-h1, .text-h2, .text-h3 {
+        font-family: "Source Serif 4", Georgia, serif;
+      }
+
+      .text-hero { font-size: clamp(44px, 5.6vw, 76px); line-height: 1.04; letter-spacing: -0.02em; font-weight: 600; }
+      .text-h1   { font-size: clamp(36px, 4.4vw, 62px); line-height: 1.06; letter-spacing: -0.015em; font-weight: 600; }
+      .text-h2   { font-size: clamp(30px, 3.4vw, 48px); line-height: 1.1; letter-spacing: -0.01em; font-weight: 600; }
+      .text-h3   { font-size: 23px; line-height: 1.3; font-weight: 600; letter-spacing: 0; }
 
       .grad-text {
         background: linear-gradient(92deg, #3B82F6 0%, #6366F1 38%, #A855F7 100%);
@@ -81,7 +89,7 @@
       }
 .btn-grad-border {
         position: relative; isolation: isolate; border-radius: 10px;
-        background: linear-gradient(#0B0E17, #0B0E17) padding-box,
+        background: linear-gradient(#0B1428, #0B1428) padding-box,
                     linear-gradient(92deg, #3B82F6, #A855F7) border-box;
         border: 1px solid transparent;
         transition: transform .15s ease, box-shadow .2s ease;
@@ -93,15 +101,15 @@
       }
       .btn-solid-blue:hover { filter: brightness(1.05); transform: translateY(-1px); }
       .card {
-        background: linear-gradient(180deg, #0B0E17 0%, #080A11 100%);
-        border: 1px solid #1A2030; border-radius: 14px;
+        background: linear-gradient(180deg, #0B1428 0%, #08101E 100%);
+        border: 1px solid #1E2D45; border-radius: 14px;
         transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
       }
-      .card:hover { border-color: #2A3145; }
+      .card:hover { border-color: #243650; }
       .icon-tile {
         width: 56px; height: 56px; border-radius: 12px;
         background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.0));
-        border: 1px solid #1A2030; display: grid; place-items: center;
+        border: 1px solid #1E2D45; display: grid; place-items: center;
       }
       .timeline-dot {
         width: 14px; height: 14px; border-radius: 50%;
@@ -118,6 +126,24 @@
       .flow-line { stroke-dasharray: 4 4; animation: flow 1.4s linear infinite; }
       a,button { -webkit-tap-highlight-color: transparent; }
       .text-balance { text-wrap: balance; }
+
+      /* ── Light section overrides ── */
+      .light-section { color: #0F172A; }
+      .light-section h1, .light-section h2, .light-section h3, .light-section h4 { color: #0F172A; }
+      .light-section .text-ink-secondary, .light-section .text-ink-primary { color: #334155 !important; }
+      .light-section .text-ink-muted { color: #64748B !important; }
+      .light-section .text-white { color: #0F172A !important; }
+      .light-section .border-line-soft { border-color: #CBD5E1 !important; }
+      .light-section .border-line { border-color: #E2E8F0 !important; }
+      .light-section .eyebrow { color: #3B82F6; }
+      .light-section .eyebrow-rule { background: linear-gradient(90deg, #3B82F6, #A855F7); }
+      .light-section .card {
+        background: #FFFFFF !important;
+        border-color: #E2E8F0 !important;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      }
+      .light-section .card:hover { border-color: #CBD5E1 !important; }
+      .light-section .icon-tile { background: #F1F5F9 !important; border-color: #E2E8F0 !important; }
     </style>
   </head>
   <body>

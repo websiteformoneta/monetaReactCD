@@ -116,7 +116,7 @@ function Header({ onDemoClick }) {
         <div className="flex items-center gap-3">
           <button onClick={onDemoClick}
             className="hidden sm:inline-flex items-center justify-center gap-2 text-white font-semibold text-[16px] hover:opacity-90 px-5 py-2.5 rounded-md"
-            style={{ border: "1.5px solid #3B82F6", background: "#05060A" }}>
+            style={{ border: "1.5px solid #3B82F6", background: "#060B18" }}>
             Book a Demo <ArrowRight size={15} />
           </button>
           <button className="md:hidden w-10 h-10 grid place-items-center rounded-md border border-line text-ink-secondary"
