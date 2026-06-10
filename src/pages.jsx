@@ -772,7 +772,7 @@ function WhyPage({ onDemoClick }) {
               What makes moneta a <span className="grad-text-bp">system</span>, not a tool.
             </h2>
           </div>
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-3 lg:pt-10">
+          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
               { t: "Cost and price share one ledger", b: "Vendor invoices and customer invoices reconcile inside the system, not in spreadsheets.", c: "#3B82F6" },
               { t: "Discounts are first-class",       b: "EDP, PPA, RI/SP, and custom commitments are modeled — not patched in at month-end.", c: "#22D3EE" },
