@@ -18,12 +18,12 @@ function HeroSplit({ tagline, title, accentWord, description, ctaLabel, onCta, r
       <div className="glow-hero" />
       <div className="dot-corner" />
       <div className="container-x relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          <div className="lg:col-span-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="lg:col-span-6">
             {tagline && <Eyebrow className="mb-6">{tagline}</Eyebrow>}
             <h1 className="text-hero text-balance">{renderTitle()}</h1>
             {description && (
-              <p className="mt-7 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary max-w-[560px]">{description}</p>
+              <p className="mt-7 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary">{description}</p>
             )}
             <div className="mt-9">
               <Button variant="primary" onClick={onCta} className="!px-7 !py-4 !text-[15px]">
@@ -31,7 +31,7 @@ function HeroSplit({ tagline, title, accentWord, description, ctaLabel, onCta, r
               </Button>
             </div>
           </div>
-          <div className="lg:col-span-7">{right}</div>
+          <div className="lg:col-span-6 lg:pl-6">{right}</div>
         </div>
       </div>
     </section>
@@ -47,6 +47,147 @@ const PROBLEM_ROWS = [
   { t: "Limited visibility into margin performance by customer", src: "graphics/icons/ProblemLimitedIcon.png" },
 ];
 
+// ---------- MARGIN INTELLIGENCE CARD ----------
+const CUSTOMERS = [
+  { name: "Acme Co.",        amount: "$284,392", widthPct: 85, bar: "#22c55e", pct: "+18.2%", pctColor: "#22c55e" },
+  { name: "Northvale Labs",  amount: "$92,408",  widthPct: 60, bar: "#22c55e", pct: "+14.0%", pctColor: "#22c55e", highlight: true },
+  { name: "Ridgepoint Inc.", amount: "$38,910",  widthPct: 38, bar: "#eab308", pct: "+6.4%",  pctColor: "#eab308" },
+  { name: "Saltcliff Media", amount: "$24,118",  widthPct: 20, bar: "#ef4444", pct: "−2.1%",  pctColor: "#ef4444", alert: true },
+];
+
+const STATS = [
+  { label: "Customer Cost", target: 508645, prefix: "$", color: "#f1f5f9" },
+  { label: "Margin $",      target: 84623,  prefix: "$", color: "#22c55e", glow: "rgba(34,197,94,0.25)" },
+  { label: "At Risk",       target: 6418,   prefix: "$", color: "#f97316", glow: "rgba(249,115,22,0.25)", pulse: true },
+];
+
+function useCountUp(target, duration = 1200, active = false) {
+  const [val, setVal] = React.useState(0);
+  React.useEffect(() => {
+    if (!active) return;
+    let start = null;
+    const step = (ts) => {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      setVal(Math.floor(ease * target));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [active, target, duration]);
+  return val;
+}
+
+function StatTile({ label, target, prefix, color, glow, pulse, active }) {
+  const val = useCountUp(target, 1200, active);
+  const formatted = prefix + val.toLocaleString();
+  return (
+    <div style={{ background: "#1a2236", border: "1px solid #1f2d45", borderRadius: 10, padding: 16 }}>
+      <p style={{ color: "#64748b", fontSize: 10, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "Inter, monospace", marginBottom: 8 }}>{label}</p>
+      <p style={{
+        fontSize: 20, fontWeight: 500, color, fontFamily: "'Inter', monospace", fontVariantNumeric: "tabular-nums",
+        textShadow: glow ? `0 0 14px ${glow}` : "none",
+        animation: pulse ? "atRiskPulse 2.4s ease-in-out infinite" : "none",
+      }}>{formatted}</p>
+    </div>
+  );
+}
+
+function MarginIntelligenceCard() {
+  const [hovered, setHovered] = React.useState(null);
+  const [alertHovered, setAlertHovered] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setMounted(true); }, { threshold: 0.3 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <React.Fragment>
+      <style>{`
+        @keyframes atRiskPulse {
+          0%,100% { text-shadow: 0 0 8px rgba(249,115,22,0.2); }
+          50%      { text-shadow: 0 0 22px rgba(249,115,22,0.6); }
+        }
+        @keyframes barIn {
+          from { width: 0; }
+        }
+      `}</style>
+      <div ref={ref} style={{ position: "relative", width: "100%", maxWidth: 520, margin: "0 auto", paddingBottom: 52 }}>
+
+        {/* Card with gradient top border */}
+        <div style={{
+          borderRadius: 16, padding: 2,
+          background: "linear-gradient(180deg, rgba(56,189,248,0.45) 0%, rgba(31,45,69,0.6) 60%)",
+          boxShadow: "0 0 40px rgba(0,200,255,0.07), 0 24px 60px rgba(0,0,0,0.45)",
+        }}>
+          <div style={{ background: "#111827", borderRadius: 14, padding: 26 }}>
+
+            {/* Header */}
+            <p style={{ color: "#38bdf8", fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 6, fontFamily: "Inter, sans-serif" }}>Margin Intelligence</p>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 22 }}>
+              <span style={{ color: "#f1f5f9", fontSize: 18, fontWeight: 400, fontFamily: "Inter, sans-serif" }}>7 customers · May 2026</span>
+              <span style={{ background: "#0f2e1a", border: "1px solid rgba(34,197,94,0.27)", color: "#22c55e", fontSize: 11, fontWeight: 500, padding: "4px 11px", borderRadius: 999, display: "flex", alignItems: "center", gap: 5, fontFamily: "Inter, sans-serif" }}>
+                <span style={{ fontSize: 7 }}>●</span> 16.6% blended
+              </span>
+            </div>
+
+            {/* Stats */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10, marginBottom: 22 }}>
+              {STATS.map(s => <StatTile key={s.label} {...s} active={mounted} />)}
+            </div>
+
+            {/* Customer rows */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+              {CUSTOMERS.map((c, i) => (
+                <div key={c.name}
+                  onMouseEnter={() => setHovered(i)}
+                  onMouseLeave={() => setHovered(null)}
+                  style={{ display: "grid", gridTemplateColumns: "1fr 88px 110px 52px", alignItems: "center", gap: 10, padding: "9px 10px", borderRadius: 8, cursor: "default", transition: "background 0.15s", background: hovered === i ? "rgba(56,189,248,0.07)" : "transparent" }}>
+                  <span style={{ color: "#e2e8f0", fontSize: 13, fontWeight: 400, fontFamily: "Inter, sans-serif", borderLeft: c.highlight ? "2px solid #38bdf8" : "2px solid transparent", paddingLeft: 8 }}>{c.name}</span>
+                  <span style={{ color: "#64748b", fontSize: 12, textAlign: "right", fontFamily: "Inter, monospace", fontVariantNumeric: "tabular-nums" }}>{c.amount}</span>
+                  <div style={{ background: "#1e293b", borderRadius: 999, height: 5, overflow: "hidden" }}>
+                    <div style={{
+                      width: mounted ? `${c.widthPct}%` : "0%",
+                      height: "100%", borderRadius: 999, background: c.bar,
+                      transition: `width 0.9s cubic-bezier(0.4,0,0.2,1) ${i * 0.12}s`,
+                    }} />
+                  </div>
+                  <span style={{ fontSize: 12, fontWeight: 500, textAlign: "right", color: c.pctColor, fontFamily: "Inter, monospace", fontVariantNumeric: "tabular-nums" }}>{c.pct}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Alert popup */}
+        <div
+          onMouseEnter={() => setAlertHovered(true)}
+          onMouseLeave={() => setAlertHovered(false)}
+          style={{
+          position: "absolute", bottom: 0, left: 20,
+          background: "#ffffff", borderRadius: 12, padding: "13px 16px", width: 290,
+          boxShadow: "0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(234,88,12,0.12)",
+          opacity: alertHovered ? 0 : hovered === null ? 1 : hovered === 3 ? 1 : 0,
+          transition: "opacity 0.2s, transform 0.2s",
+          transform: hovered === 3 ? "translateY(-2px)" : "translateY(0)",
+          pointerEvents: alertHovered ? "none" : "auto",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
+            <span style={{ fontSize: 14 }}>⚠️</span>
+            <span style={{ color: "#ea580c", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Margin Gap Detected</span>
+          </div>
+          <p style={{ color: "#0f172a", fontSize: 13, fontWeight: 500, marginBottom: 3, fontFamily: "Inter, sans-serif" }}>Saltcliff Media · −$508</p>
+          <p style={{ color: "#64748b", fontSize: 11.5, lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>Customer Savings Plan discount applied at acct-level but priced at list.</p>
+        </div>
+      </div>
+    </React.Fragment>
+  );
+}
+
 // ---------- HOME ----------
 function HomePage({ onDemoClick }) {
   return (
@@ -55,19 +196,10 @@ function HomePage({ onDemoClick }) {
         tagline="Built for AWS & Azure Resellers"
         title="Eliminate Margin Loss in Cloud Reseller Billing"
         accentWord="Cloud Reseller Billing"
-        description="The operating system for cloud reseller billing — aligning cost, pricing, and discounts across every customer."
+        description={<span>The <span className="grad-text-bp font-semibold">operating system</span> for cloud reseller billing — aligning cost, pricing, and discounts across every customer.</span>}
         ctaLabel="See Your Margin Gaps"
         onCta={onDemoClick}
-        right={
-          <div className="w-full flex items-center justify-center">
-            <img
-              src="graphics/examples/HeroGraphic.png"
-              alt="moneta operating system diagram"
-              className="w-full h-auto"
-              style={{ display: "block", marginTop: "-24px" }}
-            />
-          </div>
-        }
+        right={<MarginIntelligenceCard />}
       />
 
       {/* Trust bar */}
@@ -603,7 +735,7 @@ function WhyPage({ onDemoClick }) {
       </SectionShell>
 
       {/* The Reality */}
-      <SectionShell className="border-t border-line-soft overflow-hidden relative" style={{
+      <SectionShell className="border-t border-line-soft overflow-hidden relative !pt-14 !pb-0" style={{
         background: "radial-gradient(ellipse 55% 65% at 78% 35%, rgba(91,123,255,0.14) 0%, rgba(168,85,247,0.07) 45%, transparent 80%), #060B18"
       }}>
         {/* Faint grid overlay — covers entire section, fades from left to right */}
@@ -633,132 +765,68 @@ function WhyPage({ onDemoClick }) {
             </div>
           </div>
 
-          {/* RIGHT — diagram + moneta panel */}
-          <div className="flex items-start gap-4">
+          {/* RIGHT — new diagram matching reference */}
+          <div className="flex items-start gap-4 lg:gap-6" style={{ marginTop: 32 }}>
 
-            {/* Diagram column */}
+            {/* BEFORE column */}
             <div className="flex-1 min-w-0">
-              {/* Top pill label — centered over diagram */}
-              <div className="flex justify-center mb-4">
-                <span className="text-[10px] font-semibold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full" style={{ color: "rgba(180,186,200,0.55)", border: "1px solid rgba(180,186,200,0.18)", background: "rgba(255,255,255,0.02)" }}>
-                  Fragmented. Manual. Unreliable.
-                </span>
-              </div>
-
-              {/* Diagram area */}
-              <div className="relative" style={{ height: 520 }}>
-                <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }} viewBox="0 0 480 520" fill="none" preserveAspectRatio="none">
-                  <g stroke="rgba(180,186,200,0.32)" strokeWidth="1.1" strokeDasharray="5 4" fill="none">
-                    {/* MANUAL HANDOFF — inverted-U between top cards' bottoms */}
-                    <path d="M 175 115 L 175 160 L 305 160 L 305 115" />
-
-                    {/* SILOS & MISMATCHES — vertical from Spreadsheets bottom-left to Exports top */}
-                    <path d="M 50 115 L 50 400" />
-                    {/* Horizontal stub into Billing Tools left edge (enters at vertical center) */}
-                    <path d="M 50 262 L 132 262" />
-
-                    {/* ERRORS & REWORK — vertical from Custom Scripts bottom-right to Reporting top */}
-                    <path d="M 430 115 L 430 400" />
-                    {/* Horizontal stub into Billing Tools right edge (enters at vertical center) */}
-                    <path d="M 430 262 L 348 262" />
-
-                    {/* DELAYED VISIBILITY — from Billing Tools bottom down, horizontal spans Exports↔Reporting tops */}
-                    <path d="M 240 315 L 240 365" />
-                    {/* Horizontal trunk connecting Exports top to Reporting top */}
-                    <path d="M 145 365 L 335 365" />
-                    {/* Drop into Exports top */}
-                    <path d="M 145 365 L 145 400" />
-                    {/* Drop into Reporting top */}
-                    <path d="M 335 365 L 335 400" />
-                  </g>
-
-                  {/* Junction dots at corner bends */}
-                  {[[175,160],[305,160],[50,262],[132,262],[348,262],[430,262],[240,365],[145,365],[335,365]].map(([x,y],i)=>(
-                    <circle key={`j${i}`} cx={x} cy={y} r="2.6" fill="rgba(180,186,200,0.6)" />
-                  ))}
-
-                  {/* Warning triangles */}
-                  {[
-                    [240, 160],  // Manual handoff
-                    [91, 262],   // Silos & mismatches
-                    [389, 262],  // Errors & rework
-                    [287, 365],  // Delayed visibility
-                  ].map(([x,y],i) => (
-                    <g key={`w${i}`}>
-                      <circle cx={x} cy={y} r="9.5" fill="rgba(245,158,11,0.16)" stroke="rgba(245,158,11,0.45)" strokeWidth="0.8"/>
-                      <text x={x} y={y+3.5} fontSize="10" fill="rgba(245,158,11,0.95)" textAnchor="middle">⚠</text>
-                    </g>
-                  ))}
-
-                  {/* ✕ marks at outer corners */}
-                  <text x="14" y="180" fontSize="11" fill="rgba(180,186,200,0.3)" textAnchor="middle">✕</text>
-                  <text x="466" y="180" fontSize="11" fill="rgba(180,186,200,0.3)" textAnchor="middle">✕</text>
-                  <text x="14" y="385" fontSize="11" fill="rgba(180,186,200,0.3)" textAnchor="middle">✕</text>
-                  <text x="466" y="385" fontSize="11" fill="rgba(180,186,200,0.3)" textAnchor="middle">✕</text>
-
-                  {/* Labels — positioned beside each ⚠ with clear breathing room */}
-                  {/* Manual handoff — above its ⚠ (x=240, y=160) */}
-                  <text x="240" y="138" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="middle" fontFamily="Inter,sans-serif">Manual</text>
-                  <text x="240" y="150" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="middle" fontFamily="Inter,sans-serif">handoff</text>
-
-                  {/* Silos & mismatches — below the left ⚠ (x=91, y=262), centered under it */}
-                  <text x="91"  y="288" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="middle" fontFamily="Inter,sans-serif">Silos &amp;</text>
-                  <text x="91"  y="300" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="middle" fontFamily="Inter,sans-serif">mismatches</text>
-
-                  {/* Errors & rework — to the right of the right ⚠ (x=389, y=262), aligned vertically with it */}
-                  <text x="412" y="259" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="start" fontFamily="Inter,sans-serif">Errors &amp;</text>
-                  <text x="412" y="271" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="start" fontFamily="Inter,sans-serif">rework</text>
-
-                  {/* Delayed visibility — to the right of its ⚠ (x=287, y=365) */}
-                  <text x="310" y="362" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="start" fontFamily="Inter,sans-serif">Delayed</text>
-                  <text x="310" y="374" fontSize="10" fill="rgba(180,186,200,0.7)" textAnchor="start" fontFamily="Inter,sans-serif">visibility</text>
-                </svg>
-
-                {/* Cards */}
+              <p className="text-[10px] font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "rgba(180,186,200,0.45)" }}>Before: Fragmented</p>
+              <div className="flex flex-col gap-3">
                 {[
-                  { title: "Spreadsheets",   desc: "Manual downloads and edits create versioning issues.",   tag: ".XLSX",      icon: "sheetBox",     c: "#22C55E", s: { left: "3%",  top: 5,   width: "40%" } },
-                  { title: "Custom Scripts", desc: "Brittle scripts connect systems that don't talk.",       tag: "PY / JS",    icon: "code",         c: "#A855F7", s: { right: "3%", top: 5,   width: "40%" } },
-                  { title: "Billing Tools",  desc: "Inconsistent configuration across accounts and teams.", tag: "POINT TOOL", icon: "dollar",       c: "#22D3EE", s: { left: "22%", top: 210, width: "56%" } },
-                  { title: "Exports",        desc: "Point-in-time exports that quickly go stale.",          tag: "CSV",        icon: "externalLink", c: "#22C55E", s: { left: "3%",  top: 400, width: "40%" } },
-                  { title: "Reporting",      desc: "Reconciliation happens days (or weeks) later.",         tag: "LOOKBACK",   icon: "bars",         c: "#A855F7", s: { right: "3%", top: 400, width: "40%" } },
-                ].map(({ title, desc, tag, icon, c, s }) => (
-                  <div key={title} className="absolute rounded-xl p-3" style={{ ...s, background: "#0B0E1A", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 4px 24px rgba(0,0,0,0.5)", zIndex: 2 }}>
-                    <div className="flex items-center gap-2 mb-1.5">
+                  { title: "Spreadsheets",   desc: "Manual downloads and edits create versioning issues.",   icon: "sheetBox",     c: "#22C55E" },
+                  { title: "Custom Scripts", desc: "Brittle scripts connect systems that don't talk.",       icon: "code",         c: "#A855F7" },
+                  { title: "Billing Tools",  desc: "Inconsistent configuration across accounts and teams.", icon: "dollar",       c: "#22D3EE" },
+                  { title: "Exports",        desc: "Point-in-time exports that quickly go stale.",          icon: "externalLink", c: "#22C55E" },
+                  { title: "Reporting",      desc: "Reconciliation happens days or weeks later.",           icon: "bars",         c: "#A855F7" },
+                ].map(({ title, desc, icon, c }) => (
+                  <div key={title} className="relative rounded-xl p-3 z-10" style={{ background: "#0B0E1A", border: "1px solid rgba(255,255,255,0.08)" }}>
+                    <div className="flex items-center gap-2 mb-1">
                       <div className="w-[28px] h-[28px] rounded-md shrink-0 flex items-center justify-center" style={{ background: `${c}18`, border: `1px solid ${c}38` }}>
                         {Icons[icon](c)}
                       </div>
-                      <span className="text-[11.5px] font-semibold text-white whitespace-nowrap">{title}</span>
+                      <span className="text-[12px] font-semibold text-white">{title}</span>
                     </div>
-                    <p className="text-[10.5px] leading-[1.4] mb-2" style={{ color: "rgba(180,186,200,0.58)" }}>{desc}</p>
-                    <span className="inline-block text-[8px] px-1.5 py-0.5 rounded font-bold tracking-[0.08em]" style={{ background: `${c}12`, color: c, border: `1px solid ${c}28` }}>{tag}</span>
+                    <p className="text-[11px] leading-[1.4]" style={{ color: "rgba(180,186,200,0.55)" }}>{desc}</p>
                   </div>
                 ))}
               </div>
-
             </div>
 
-            {/* Double chevron + moneta card column */}
-            <div className="shrink-0 flex items-center gap-5 self-start" style={{ marginTop: 185 }}>
-              <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ border: "1px solid rgba(91,123,255,0.5)", background: "rgba(91,123,255,0.06)" }}>
-                <svg width="18" height="18" viewBox="0 0 26 34" fill="none">
-                  <path d="M3,8 L13,17 L3,26" stroke="#5B7BFF" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"/>
-                  <path d="M11,8 L21,17 L11,26" stroke="#A855F7" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"/>
-                </svg>
-              </div>
+            {/* CENTER — SVG connector trails */}
+            <div className="shrink-0 self-stretch flex items-stretch" style={{ width: 72, paddingTop: 28 }}>
+              <svg width="72" height="100%" viewBox="0 0 72 500" preserveAspectRatio="xMidYMid meet" fill="none" style={{ width: "100%", height: "100%" }}>
+                {/* Each card is ~86px tall (72px content + 12px gap), center of card i = 43 + i*86 */}
+                {/* Cards: 0→43, 1→129, 2→215, 3→301, 4→387 — junction at card 2 center = 215 */}
+                {[43, 129, 215, 301, 387].map((y, i) => (
+                  <path key={i}
+                    d={`M 0 ${y} C 36 ${y}, 36 215, 52 215`}
+                    stroke="rgba(91,123,255,0.55)" strokeWidth="1.5" strokeDasharray="5 4"
+                  />
+                ))}
+                {/* Junction dot at center card */}
+                <circle cx="52" cy="215" r="4" fill="rgba(91,123,255,0.9)" />
+                {/* Single arrow line out right */}
+                <line x1="56" y1="215" x2="68" y2="215" stroke="#5B7BFF" strokeWidth="1.5" />
+                <path d="M62 211 L68 215 L62 219" stroke="#5B7BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              </svg>
+            </div>
 
-              <div className="w-[200px] rounded-2xl flex flex-col overflow-hidden" style={{ background: "#0B0E1A", border: "1.5px solid rgba(34,211,238,0.55)", boxShadow: "0 0 50px rgba(34,211,238,0.22), 0 0 100px rgba(91,123,255,0.18)" }}>
+            {/* AFTER — moneta panel */}
+            <div className="shrink-0 w-[190px]" style={{ marginTop: 100 }}>
+              <p className="text-[10px] font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#22D3EE" }}>After: Unified</p>
+              <div className="rounded-2xl flex flex-col overflow-hidden" style={{ background: "#0B0E1A", border: "1.5px solid rgba(34,211,238,0.55)", boxShadow: "0 0 40px rgba(34,211,238,0.18), 0 0 80px rgba(91,123,255,0.14)" }}>
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-4">
-                    <MonetaMark size={18} />
-                    <span className="text-[14px] font-bold text-white">moneta</span>
+                    <MonetaMark size={20} />
+                    <span className="text-[15px] font-bold text-white">moneta</span>
                   </div>
                   <div className="space-y-2.5">
                     {["One system of record","Real-time margin visibility","Automated reconciliation","Built for scale"].map(item => (
                       <div key={item} className="flex items-center gap-2">
-                        <div className="shrink-0 w-[15px] h-[15px] rounded-full flex items-center justify-center" style={{ background: "#3B82F6" }}>
+                        <div className="shrink-0 w-[16px] h-[16px] rounded-full flex items-center justify-center" style={{ background: "#3B82F6" }}>
                           <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2L7.5 2" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                         </div>
-                        <span className="text-[11px] font-medium text-white leading-[1.3]">{item}</span>
+                        <span className="text-[12px] font-medium text-white leading-[1.3]">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -806,7 +874,32 @@ function WhyPage({ onDemoClick }) {
             { t: "Replaces, not layers", b: "moneta is the operating system — not another dashboard pointed at the existing one.", c: "#5B7BFF", i: "layers" },
           ].map((f) => (
             <div key={f.t} className="card p-7">
-              <div className="icon-tile mb-5">{Icons[f.i](f.c)}</div>
+              <div className="icon-tile mb-5" style={{ background: `${f.c}15`, border: `1px solid ${f.c}30` }}>
+                {f.i === "scale" && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
+                    <path d="M12 7v4M12 11l-5 6M12 11l5 6"/>
+                  </svg>
+                )}
+                {f.i === "filter" && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M7 7h10M9 12h6M11 17h2"/>
+                  </svg>
+                )}
+                {f.i === "bars" && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 20V10M6 20v-4M18 20V4"/>
+                    <circle cx="18" cy="4" r="1.5" fill={f.c}/>
+                  </svg>
+                )}
+                {f.i === "layers" && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={f.c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 12l10 5 10-5" opacity="0.5"/>
+                    <path d="M2 17l10 5 10-5" opacity="0.25"/>
+                  </svg>
+                )}
+              </div>
               <h3 className="text-[18px] font-semibold mb-2" style={{ color: f.c }}>{f.t}</h3>
               <p className="text-[14.5px] text-ink-secondary leading-[1.65]">{f.b}</p>
             </div>

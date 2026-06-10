@@ -171,9 +171,9 @@ function OperatingSystemDiagram() {
 function AwsLogo() {
   return (
     <svg viewBox="0 0 140 64" width="100" height="44" aria-label="AWS" role="img">
-      <text x="70" y="34" textAnchor="middle" fontSize="30" fontWeight="700" letterSpacing="-1" fill="#FFFFFF" fontFamily="Inter,system-ui,sans-serif">aws</text>
-      <path d="M14 48 C 42 60, 98 60, 126 48" stroke="#FF9900" strokeWidth="3.6" fill="none" strokeLinecap="round" />
-      <path d="M118 44 L 128 49 L 121 56" stroke="#FF9900" strokeWidth="3.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <text x="70" y="38" textAnchor="middle" fontSize="30" fontWeight="700" letterSpacing="-1" fill="#FFFFFF" fontFamily="Inter,system-ui,sans-serif">aws</text>
+      <path d="M14 41 C 42 53, 98 53, 126 41" stroke="#FF9900" strokeWidth="3.6" fill="none" strokeLinecap="round" />
+      <path d="M118 37 L 128 42 L 121 49" stroke="#FF9900" strokeWidth="3.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
