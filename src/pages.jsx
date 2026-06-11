@@ -247,7 +247,7 @@ function CustomerRow({ c, i, hovered, mounted, setHovered }) {
       onMouseEnter={(e) => { e.stopPropagation(); setHovered(i); }}
       onMouseLeave={(e) => { e.stopPropagation(); setHovered(null); }}
       style={{ display: "grid", gridTemplateColumns: "1fr 88px 110px 52px", alignItems: "center", gap: 10, padding: "9px 10px", borderRadius: 8, cursor: "default", transition: "background 0.15s", background: hovered === i ? "rgba(56,189,248,0.07)" : "transparent" }}>
-      <span style={{ color: "#e2e8f0", fontSize: 13, fontWeight: 400, fontFamily: "Inter, sans-serif", borderLeft: c.highlight ? "2px solid #38bdf8" : "2px solid transparent", paddingLeft: 8 }}>{c.name}</span>
+      <span style={{ color: "#e2e8f0", fontSize: 13, fontWeight: 400, fontFamily: "Inter, sans-serif", paddingLeft: 8 }}>{c.name}</span>
       <span style={{ color: "#64748b", fontSize: 12, textAlign: "right", fontFamily: "Inter, monospace", fontVariantNumeric: "tabular-nums" }}>${liveAmount.toLocaleString()}</span>
       <div style={{ background: "#1e293b", borderRadius: 999, height: 5, overflow: "hidden" }}>
         <div style={{ width: mounted ? `${c.widthPct}%` : "0%", height: "100%", borderRadius: 999, background: c.bar, transition: `width 0.9s cubic-bezier(0.4,0,0.2,1) ${i * 0.12}s` }} />
@@ -335,8 +335,34 @@ function MarginIntelligenceCard() {
 }
 
 // ---------- HOME ----------
+function FinOpsCountUp({ target, decimals = 0, prefix = "", suffix = "", duration = 700 }) {
+  const [val, setVal] = React.useState(0);
+  React.useEffect(() => {
+    setVal(0);
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 2);
+      setVal(target * ease);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }, [target, duration]);
+  return React.createElement(React.Fragment, null, `${prefix}${val.toFixed(decimals)}${suffix}`);
+}
+
 function FinOpsServiceTabs() {
   const [active, setActive] = React.useState(0);
+  const [tick, setTick] = React.useState(0);
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setTick(t => t + 1); obs.disconnect(); } }, { threshold: 0.3 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  function switchTab(i) { setActive(i); setTick(t => t + 1); }
 
   const tabs = [
     {
@@ -346,13 +372,13 @@ function FinOpsServiceTabs() {
       title: "Customer cost visibility",
       desc: "Help customers understand where cloud spend is going, how it changes over time, and what is driving movement.",
       bullets: ["Spend breakdown by service, account, project", "MoM and trend reporting per customer", "White-labelled customer-facing reports"],
-      card: () => (
+      card: (tick) => (
         <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
             <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>ACME · JUNE SPEND</span>
             <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>-4.2% MoM</span>
           </div>
-          <div style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 12, letterSpacing: "-1px" }}>$284,392</div>
+          <div key={tick} style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 12, letterSpacing: "-1px" }}>$<FinOpsCountUp target={284392} decimals={0} /></div>
           <svg width="100%" height="56" viewBox="0 0 300 56" style={{ display: "block", marginBottom: 14 }}>
             <defs>
               <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
@@ -370,7 +396,7 @@ function FinOpsServiceTabs() {
             </div>
             <div>
               <div style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif", marginBottom: 2 }}>Accounts</div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif" }}>14</div>
+              <div key={tick} style={{ fontSize: 13, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif" }}><FinOpsCountUp target={14} /></div>
             </div>
           </div>
         </div>
@@ -383,13 +409,13 @@ function FinOpsServiceTabs() {
       title: "Optimization & savings insights",
       desc: "Reduce waste, improve utilization, and take better advantage of Savings Plans, Reserved Instances, and commitments.",
       bullets: ["Coverage & utilization reporting", "Commit-portfolio recommendations", "Idle & rightsizing opportunities"],
-      card: () => (
+      card: (tick) => (
         <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
             <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>SAVINGS (YTD)</span>
             <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>+$8.4K this month</span>
           </div>
-          <div style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 16, letterSpacing: "-1px" }}>$42,108</div>
+          <div key={tick} style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 16, letterSpacing: "-1px" }}>$<FinOpsCountUp target={42108} decimals={0} /></div>
           {[
             { label: "SP coverage",   pct: 92.4, color: "#16a34a" },
             { label: "RI utilization", pct: 87.1, color: "#38bdf8" },
@@ -398,7 +424,7 @@ function FinOpsServiceTabs() {
             <div key={r.label} style={{ marginBottom: 10 }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
                 <span style={{ fontSize: 12, color: "#475569", fontFamily: "Inter, sans-serif" }}>{r.label}</span>
-                <span style={{ fontSize: 12, fontWeight: 600, color: r.warning ? "#f59e0b" : "#0f172a", fontFamily: "Inter, sans-serif" }}>{r.pct}%</span>
+                <span key={tick} style={{ fontSize: 12, fontWeight: 600, color: r.warning ? "#f59e0b" : "#0f172a", fontFamily: "Inter, sans-serif" }}><FinOpsCountUp target={r.pct} decimals={1} suffix="%" /></span>
               </div>
               <div style={{ height: 6, background: "#f1f5f9", borderRadius: 99, overflow: "hidden" }}>
                 <div style={{ width: `${r.pct}%`, height: "100%", background: r.color, borderRadius: 99 }} />
@@ -415,14 +441,14 @@ function FinOpsServiceTabs() {
       title: "Governance & budgeting",
       desc: "Support customer conversations around budgets, tagging, allocation, accountability, and cloud financial discipline.",
       bullets: ["Budget vs actual tracking", "Tag-quality & allocation coverage", "Anomaly alerts & approval workflows"],
-      card: () => (
+      card: (tick) => (
         <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
             <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>JUNE BUDGET</span>
-            <span style={{ fontSize: 11, color: "#f59e0b", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>82% used</span>
+            <span key={tick} style={{ fontSize: 11, color: "#f59e0b", fontWeight: 600, fontFamily: "Inter, sans-serif" }}><FinOpsCountUp target={82} decimals={0} suffix="%" /> used</span>
           </div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 10 }}>
-            <span style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", letterSpacing: "-1px" }}>$232,801</span>
+            <span key={tick} style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", letterSpacing: "-1px" }}>$<FinOpsCountUp target={232801} decimals={0} /></span>
             <span style={{ fontSize: 13, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>/ $284K</span>
           </div>
           <div style={{ height: 8, background: "#f1f5f9", borderRadius: 99, overflow: "hidden", marginBottom: 4 }}>
@@ -451,11 +477,11 @@ function FinOpsServiceTabs() {
   const t = tabs[active];
 
   return (
-    <div style={{ background: "#fff", borderRadius: 16, border: "1px solid #e2e8f0", boxShadow: "0 4px 24px rgba(0,0,0,0.08)", overflow: "hidden", fontFamily: "Inter, sans-serif" }}>
+    <div ref={ref} style={{ background: "#fff", borderRadius: 16, border: "1px solid #e2e8f0", boxShadow: "0 4px 24px rgba(0,0,0,0.08)", overflow: "hidden", fontFamily: "Inter, sans-serif" }}>
       {/* Tab bar */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderBottom: "1px solid #e2e8f0" }}>
         {tabs.map((tab, i) => (
-          <button key={tab.label} onClick={() => setActive(i)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "14px 8px", background: "none", border: "none", borderBottom: active === i ? "2px solid #3b82f6" : "2px solid transparent", cursor: "pointer", color: active === i ? "#3b82f6" : "#64748b", fontWeight: active === i ? 600 : 500, fontSize: 13, fontFamily: "Inter, sans-serif", transition: "all 0.2s", marginBottom: -1 }}>
+          <button key={tab.label} onClick={() => switchTab(i)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "14px 8px", background: "none", border: "none", borderBottom: active === i ? "2px solid #3b82f6" : "2px solid transparent", cursor: "pointer", color: active === i ? "#3b82f6" : "#64748b", fontWeight: active === i ? 600 : 500, fontSize: 13, fontFamily: "Inter, sans-serif", transition: "all 0.2s", marginBottom: -1 }}>
             {tab.icon}{tab.label}
           </button>
         ))}
@@ -479,7 +505,7 @@ function FinOpsServiceTabs() {
         </div>
         {/* Right — card */}
         <div style={{ padding: "14px 20px 16px", background: "#f8fafc" }}>
-          {t.card()}
+          {t.card(tick)}
         </div>
       </div>
     </div>
@@ -558,7 +584,7 @@ function HomePage({ onDemoClick }) {
       </SectionShell>
 
       {/* SOLUTION */}
-      <SectionShell className="border-t border-line-soft" dotsRight style={{ background: "#060B18" }}>
+      <SectionShell className="border-t border-line-soft light-section" dotsRight style={{ background: "#F8FAFC" }}>
         {/* Top text row */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
           <div className="lg:col-span-4">

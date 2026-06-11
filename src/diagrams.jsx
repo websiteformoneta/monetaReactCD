@@ -189,7 +189,7 @@ function TrustBar() {
   return (
     <div className="card !rounded-2xl px-6 md:px-10 overflow-hidden" style={{ height: 88 }}>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center h-full">
-        <div className="flex items-center justify-center" style={{ transform: "scale(1.15)", transformOrigin: "center" }}>
+        <div className="flex items-center justify-center" style={{ transform: "scale(1.3)", transformOrigin: "center" }}>
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-xl border border-line-soft bg-bg-tertiary/40 grid place-items-center shrink-0">
               <PngIcon src="graphics/icons/HeroCloudProcessedAnnuallyIcon.png" size={28} />
@@ -200,10 +200,10 @@ function TrustBar() {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-center" style={{ transform: "scale(1.15)", transformOrigin: "center" }}>
+        <div className="flex items-center justify-center" style={{ transform: "scale(1.3)", transformOrigin: "center" }}>
           <AwsLogo />
         </div>
-        <div className="flex items-center justify-center" style={{ transform: "scale(1.15)", transformOrigin: "center" }}>
+        <div className="flex items-center justify-center" style={{ transform: "scale(1.3)", transformOrigin: "center" }}>
           <div className="flex items-center gap-3">
             <AzureLogo />
             <div className="leading-tight">
@@ -212,7 +212,7 @@ function TrustBar() {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-center" style={{ transform: "scale(1.15)", transformOrigin: "center" }}>
+        <div className="flex items-center justify-center" style={{ transform: "scale(1.3)", transformOrigin: "center" }}>
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-xl border border-line-soft bg-bg-tertiary/40 grid place-items-center shrink-0">
               <PngIcon src="graphics/icons/HeroPurposeBuiltIcon.png" size={28} />
@@ -746,7 +746,7 @@ function ReconciliationLoop() {
   ];
 
   return (
-    <div style={{ background: "linear-gradient(160deg,#0d1425 0%,#0a1020 100%)", border: "1px solid rgba(56,189,248,0.2)", borderRadius: 16, padding: "28px 28px 20px", boxShadow: "0 0 60px rgba(56,189,248,0.06)" }}>
+    <div style={{ background: "linear-gradient(160deg,#162035 0%,#111828 100%)", border: "1px solid rgba(56,189,248,0.25)", borderRadius: 16, padding: "28px 28px 20px", boxShadow: "0 0 60px rgba(56,189,248,0.08)" }}>
 
       {/* Header row */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24 }}>
