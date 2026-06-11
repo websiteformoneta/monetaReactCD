@@ -335,6 +335,157 @@ function MarginIntelligenceCard() {
 }
 
 // ---------- HOME ----------
+function FinOpsServiceTabs() {
+  const [active, setActive] = React.useState(0);
+
+  const tabs = [
+    {
+      label: "Cost visibility",
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/></svg>,
+      service: "SERVICE · 01",
+      title: "Customer cost visibility",
+      desc: "Help customers understand where cloud spend is going, how it changes over time, and what is driving movement.",
+      bullets: ["Spend breakdown by service, account, project", "MoM and trend reporting per customer", "White-labelled customer-facing reports"],
+      card: () => (
+        <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+            <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>ACME · JUNE SPEND</span>
+            <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>-4.2% MoM</span>
+          </div>
+          <div style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 12, letterSpacing: "-1px" }}>$284,392</div>
+          <svg width="100%" height="56" viewBox="0 0 300 56" style={{ display: "block", marginBottom: 14 }}>
+            <defs>
+              <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.25"/>
+                <stop offset="100%" stopColor="#38bdf8" stopOpacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0 50 C30 48,50 44,80 38 C110 32,130 28,160 22 C190 16,220 12,260 6 L260 56 L0 56 Z" fill="url(#areaGrad)" />
+            <path d="M0 50 C30 48,50 44,80 38 C110 32,130 28,160 22 C190 16,220 12,260 6" stroke="#38bdf8" strokeWidth="2" fill="none" strokeLinecap="round"/>
+          </svg>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+            <div>
+              <div style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif", marginBottom: 2 }}>Top driver</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif" }}>EC2 · 38%</div>
+            </div>
+            <div>
+              <div style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif", marginBottom: 2 }}>Accounts</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif" }}>14</div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      label: "Optimization",
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>,
+      service: "SERVICE · 02",
+      title: "Optimization & savings insights",
+      desc: "Reduce waste, improve utilization, and take better advantage of Savings Plans, Reserved Instances, and commitments.",
+      bullets: ["Coverage & utilization reporting", "Commit-portfolio recommendations", "Idle & rightsizing opportunities"],
+      card: () => (
+        <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+            <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>SAVINGS (YTD)</span>
+            <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>+$8.4K this month</span>
+          </div>
+          <div style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 16, letterSpacing: "-1px" }}>$42,108</div>
+          {[
+            { label: "SP coverage",   pct: 92.4, color: "#16a34a" },
+            { label: "RI utilization", pct: 87.1, color: "#38bdf8" },
+            { label: "Idle compute",   pct: 11.6, color: "#f59e0b", warning: true },
+          ].map(r => (
+            <div key={r.label} style={{ marginBottom: 10 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                <span style={{ fontSize: 12, color: "#475569", fontFamily: "Inter, sans-serif" }}>{r.label}</span>
+                <span style={{ fontSize: 12, fontWeight: 600, color: r.warning ? "#f59e0b" : "#0f172a", fontFamily: "Inter, sans-serif" }}>{r.pct}%</span>
+              </div>
+              <div style={{ height: 6, background: "#f1f5f9", borderRadius: 99, overflow: "hidden" }}>
+                <div style={{ width: `${r.pct}%`, height: "100%", background: r.color, borderRadius: 99 }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      ),
+    },
+    {
+      label: "Governance",
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+      service: "SERVICE · 03",
+      title: "Governance & budgeting",
+      desc: "Support customer conversations around budgets, tagging, allocation, accountability, and cloud financial discipline.",
+      bullets: ["Budget vs actual tracking", "Tag-quality & allocation coverage", "Anomaly alerts & approval workflows"],
+      card: () => (
+        <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+            <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>JUNE BUDGET</span>
+            <span style={{ fontSize: 11, color: "#f59e0b", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>82% used</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 10 }}>
+            <span style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", letterSpacing: "-1px" }}>$232,801</span>
+            <span style={{ fontSize: 13, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>/ $284K</span>
+          </div>
+          <div style={{ height: 8, background: "#f1f5f9", borderRadius: 99, overflow: "hidden", marginBottom: 4 }}>
+            <div style={{ width: "82%", height: "100%", background: "linear-gradient(90deg, #f59e0b, #ef4444)", borderRadius: 99 }} />
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 16 }}>
+            <span style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>0</span>
+            <span style={{ fontSize: 10, color: "#ef4444", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>90% alert</span>
+            <span style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>$284K</span>
+          </div>
+          <div style={{ fontSize: 10, color: "#64748b", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "Inter, sans-serif", marginBottom: 8 }}>ALLOCATION COVERAGE</div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+            {[
+              { label: "✓ env: 100%",      bg: "#dcfce7", color: "#15803d" },
+              { label: "✓ customer: 100%", bg: "#dcfce7", color: "#15803d" },
+              { label: "⚠ cost-center: 78%", bg: "#fef9c3", color: "#a16207" },
+            ].map(t => (
+              <span key={t.label} style={{ fontSize: 11, fontWeight: 600, background: t.bg, color: t.color, borderRadius: 6, padding: "4px 10px", fontFamily: "Inter, sans-serif" }}>{t.label}</span>
+            ))}
+          </div>
+        </div>
+      ),
+    },
+  ];
+
+  const t = tabs[active];
+
+  return (
+    <div style={{ background: "#fff", borderRadius: 16, border: "1px solid #e2e8f0", boxShadow: "0 4px 24px rgba(0,0,0,0.08)", overflow: "hidden", fontFamily: "Inter, sans-serif" }}>
+      {/* Tab bar */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderBottom: "1px solid #e2e8f0" }}>
+        {tabs.map((tab, i) => (
+          <button key={tab.label} onClick={() => setActive(i)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "14px 8px", background: "none", border: "none", borderBottom: active === i ? "2px solid #3b82f6" : "2px solid transparent", cursor: "pointer", color: active === i ? "#3b82f6" : "#64748b", fontWeight: active === i ? 600 : 500, fontSize: 13, fontFamily: "Inter, sans-serif", transition: "all 0.2s", marginBottom: -1 }}>
+            {tab.icon}{tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Content */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, minHeight: 320 }}>
+        {/* Left — text */}
+        <div style={{ padding: "14px 24px 16px", borderRight: "1px solid #f1f5f9" }}>
+          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#38bdf8", textTransform: "uppercase", marginBottom: 10 }}>{t.service}</div>
+          <div style={{ fontSize: 18, fontWeight: 800, color: "#0f172a", lineHeight: 1.25, marginBottom: 12 }}>{t.title}</div>
+          <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6, marginBottom: 16 }}>{t.desc}</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+            {t.bullets.map(b => (
+              <div key={b} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 2 }}><polyline points="20 6 9 17 4 12"/></svg>
+                <span style={{ fontSize: 12.5, color: "#475569", lineHeight: 1.4 }}>{b}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Right — card */}
+        <div style={{ padding: "14px 20px 16px", background: "#f8fafc" }}>
+          {t.card()}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function HomePage({ onDemoClick }) {
   return (
     <React.Fragment>
@@ -451,7 +602,7 @@ function HomePage({ onDemoClick }) {
           <div className="lg:col-span-4">
             <Eyebrow className="mb-5">Operating System</Eyebrow>
             <h2 className="text-h1 text-balance">
-              One System. <span className="grad-text-bp">Every Layer.</span>
+              Total Clarity. <span className="grad-text-bp">Every Layer.</span>
             </h2>
             <span className="block mt-5 h-[3px] w-32 grad-line rounded-full" />
             <p className="mt-6 text-[16px] leading-[1.65] text-ink-secondary">
@@ -490,9 +641,9 @@ function HomePage({ onDemoClick }) {
               <ReviewCTA onClick={onDemoClick} />
             </div>
           </div>
-          <div className="lg:col-span-7 flex items-center justify-center">
-            <div className="w-full max-w-[480px]">
-              <FinopsSplit />
+          <div className="lg:col-span-7 flex items-end justify-center">
+            <div className="w-full max-w-[680px]" style={{ marginTop: 40 }}>
+              <FinOpsServiceTabs />
             </div>
           </div>
         </div>
