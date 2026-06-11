@@ -713,7 +713,7 @@ function ReconciliationLoop() {
   const [active, setActive] = React.useState(0);
 
   React.useEffect(() => {
-    const t = setInterval(() => setActive(a => (a + 1) % 5), 2200);
+    const t = setInterval(() => setActive(a => (a + 1) % 5), 4000);
     return () => clearInterval(t);
   }, []);
 
@@ -752,7 +752,7 @@ function ReconciliationLoop() {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24 }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation: "spin 3s linear infinite" }}><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation: "spin 5s linear infinite" }}><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>
             <span style={{ color: "#38bdf8", fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Continuous Reconciliation Loop</span>
           </div>
           <p style={{ color: "#f1f5f9", fontSize: 17, fontWeight: 600, fontFamily: "Inter, sans-serif" }}>Billing, pricing, discounts, and margin — aligned every cycle.</p>
@@ -765,14 +765,15 @@ function ReconciliationLoop() {
 
       {/* Step nodes + connector line */}
       <div style={{ position: "relative", display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 0 }}>
-        {/* dashed connector line — animated left to right */}
-        <div style={{ position: "absolute", top: 22, left: "10%", right: "10%", height: 2, zIndex: 0, overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(90deg, rgba(56,189,248,0.55) 0px, rgba(56,189,248,0.55) 8px, transparent 8px, transparent 16px)", backgroundSize: "16px 2px", animation: "dashFlow 1.2s linear infinite" }} />
-        </div>
+        {/* SVG connector line — matches return loop style exactly */}
+        <svg style={{ position: "absolute", top: 21, left: 0, width: "100%", height: 4, overflow: "visible", zIndex: 0 }} preserveAspectRatio="none" viewBox="0 0 800 4">
+          <line x1="80" y1="2" x2="720" y2="2" stroke="rgba(56,189,248,0.45)" strokeWidth="1.5" strokeDasharray="8 6" fill="none">
+            <animate attributeName="stroke-dashoffset" from="0" to="-28" dur="2.4s" repeatCount="indefinite" />
+          </line>
+        </svg>
 
         {steps.map((s, i) => (
-          <div key={s.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: `${100/5}%`, cursor: "pointer", zIndex: 2, position: "relative" }} onClick={() => setActive(i)}>
-            {/* circle node */}
+          <div key={s.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: `${100/5}%`, zIndex: 2, position: "relative" }}>
             <div style={{
               width: 44, height: 44, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
               background: "#0d1425",
@@ -792,11 +793,11 @@ function ReconciliationLoop() {
       {/* Cards row */}
       <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
         {steps.map((s, i) => (
-          <div key={s.label} onClick={() => setActive(i)} style={{
+          <div key={s.label} style={{
             flex: 1, borderRadius: 10, padding: "14px 14px 12px",
             background: active === i ? `linear-gradient(160deg,${s.color}12,rgba(10,16,32,0.9))` : "rgba(255,255,255,0.02)",
             border: `1px solid ${active === i ? s.color + "55" : "rgba(255,255,255,0.07)"}`,
-            cursor: "pointer", transition: "all 0.3s",
+            transition: "all 0.3s",
           }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
               <span style={{ color: active === i ? "#f1f5f9" : "#94a3b8", fontSize: 13, fontWeight: 600, fontFamily: "Inter, sans-serif", lineHeight: 1.2 }}>{s.label}</span>
@@ -823,19 +824,22 @@ function ReconciliationLoop() {
       </div>
 
       {/* Curved return loop */}
-      <div style={{ position: "relative", marginTop: 8, height: 48, width: "100%" }}>
-        <svg width="100%" height="48" viewBox="0 0 800 48" preserveAspectRatio="none" fill="none" style={{ display: "block" }}>
-          <path d="M 720 4 C 720 44, 600 44, 400 44 C 200 44, 80 44, 80 4" stroke="rgba(56,189,248,0.45)" strokeWidth="1.5" strokeDasharray="8 6" fill="none">
-            <animate attributeName="stroke-dashoffset" from="28" to="0" dur="1.2s" repeatCount="indefinite" />
+      <div style={{ position: "relative", marginTop: 8, height: 52, width: "100%" }}>
+        {/* arc only — preserveAspectRatio none so it stretches full width */}
+        <svg width="100%" height="52" viewBox="0 0 800 52" preserveAspectRatio="none" fill="none" style={{ display: "block", position: "absolute", top: 0, left: 0 }}>
+          <path d="M 720 4 C 720 42, 560 48, 400 48 C 240 48, 80 42, 80 4" stroke="rgba(56,189,248,0.45)" strokeWidth="1.5" strokeDasharray="8 6" fill="none">
+            <animate attributeName="stroke-dashoffset" from="28" to="0" dur="2.4s" repeatCount="indefinite" />
           </path>
-          {/* arrowhead pointing up into first node */}
-          <polygon points="80,2 74,14 86,14" fill="rgba(56,189,248,0.6)" />
         </svg>
+        {/* arrowhead + stem */}
+        <div style={{ position: "absolute", top: -10, left: "calc(10% - 6px)", display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div style={{ width: 0, height: 0, borderLeft: "6px solid transparent", borderRight: "6px solid transparent", borderBottom: "11px solid #38bdf8" }} />
+          <div style={{ width: 2, height: 6, background: "#2887ae", marginLeft: 1 }} />
+        </div>
       </div>
 
       <style>{`
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes dashFlow { from { background-position: 0 0; } to { background-position: 16px 0; } }
       `}</style>
     </div>
   );

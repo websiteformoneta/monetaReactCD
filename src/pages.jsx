@@ -1,5 +1,123 @@
 // Page bodies — Home, Platform, FinOps Services, Why moneta
 
+
+function CountUp({ target, decimals, suffix, color, glow, started }) {
+  const [val, setVal] = React.useState(0);
+  React.useEffect(() => {
+    if (!started) return;
+    const duration = 1600;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      setVal(target * ease);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }, [started, target]);
+  return (
+    <span style={{ color, textShadow: `0 0 20px ${glow}` }}>
+      {val.toFixed(decimals)}{suffix}
+    </span>
+  );
+}
+
+const TIMELINE_STATS = [
+  { target: 18.2, decimals: 1, suffix: "%", label: "Avg Net Margin",            color: "#2dd4bf", glow: "rgba(45,212,191,0.5)", desc: "See true margin per customer with granular cost allocation and real-time margin insights.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> },
+  { target: 82,   decimals: 0, suffix: "%", label: "Avg SP Coverage",           color: "#38bdf8", glow: "rgba(56,189,248,0.5)",  desc: "Standardize billing and operations to support more customers without adding headcount or complexity.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> },
+  { target: 60,   decimals: 0, suffix: "%", label: "Less Billing Rework",       color: "#a855f7", glow: "rgba(168,85,247,0.5)",  desc: "Eliminate manual work and invoice accurately at any scale with confidence and consistency.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 11-6.219-8.56"/><polyline points="21 3 21 9 15 9"/></svg> },
+  { target: 12,   decimals: 0, suffix: "x", label: "More Accounts Per Ops FTE", color: "#f59e0b", glow: "rgba(245,158,11,0.5)",  desc: "See true margin per customer with granular cost allocation and real-time margin insights.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg> },
+];
+
+const BOTTOM_FEATURES = [
+  { color: "#2dd4bf", iconBg: "rgba(45,212,191,0.12)", iconBorder: "rgba(45,212,191,0.3)", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>, title: "Identify margin gaps earlier", desc: "See where customer pricing, discount allocation, or billing logic may be reducing profitability." },
+  { color: "#38bdf8", iconBg: "rgba(56,189,248,0.12)",  iconBorder: "rgba(56,189,248,0.3)",  icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>, title: "Customer-level profitability visibility", desc: "Understand margin per customer instead of relying on aggregate revenue or cost views." },
+  { color: "#6366f1", iconBg: "rgba(99,102,241,0.12)",  iconBorder: "rgba(99,102,241,0.3)",  icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>, title: "Scale reseller operations", desc: "Support more customers and more complex cloud environments without proportional overhead." },
+];
+
+function ResultsGraphic() {
+  const [started, setStarted] = React.useState(false);
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setStarted(true); obs.disconnect(); } }, { threshold: 0.15 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      {/* Left text */}
+      <div className="lg:col-span-4">
+        <Eyebrow className="mb-7">Results</Eyebrow>
+        <h2 className="text-h2" style={{ maxWidth: 500 }}>Real Outcomes for Cloud Resellers</h2>
+        <span className="block mt-6 h-[3px] w-40 grad-line rounded-full" />
+        <p className="mt-9 text-[16.5px] leading-[1.7] text-ink-secondary">
+          moneta turns billing complexity into clear margins, automated invoicing,
+          and scalable growth across every customer account.
+        </p>
+      </div>
+
+      {/* Right graphic */}
+      <div className="lg:col-span-8" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+
+        {/* Timeline section */}
+        <div style={{ display: "flex", gap: 0, alignItems: "stretch" }}>
+
+          {/* Vertical spine */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 60, flexShrink: 0 }}>
+            {/* Moneta logo circle */}
+            <div style={{ width: 44, height: 44, borderRadius: "50%", border: "1.5px solid rgba(99,102,241,0.6)", background: "rgba(99,102,241,0.12)", boxShadow: "0 0 20px rgba(99,102,241,0.3)", flexShrink: 0, zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+              <img src="assets/moneta-icon.png" alt="" style={{ width: 66, height: 66, objectFit: "cover", objectPosition: "center 50%", display: "block", marginTop: -14 }} />
+            </div>
+            {/* Line */}
+            <div style={{ flex: 1, width: 1.5, background: "linear-gradient(180deg, rgba(99,102,241,0.6) 0%, rgba(56,189,248,0.3) 50%, rgba(245,158,11,0.4) 100%)", minHeight: 20 }} />
+            {/* Bottom glow cap */}
+            <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(245,158,11,0.5)", boxShadow: "0 0 12px rgba(245,158,11,0.6)", flexShrink: 0 }} />
+          </div>
+
+          {/* Stats rows */}
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 12, paddingTop: 0 }}>
+            {TIMELINE_STATS.map((s, i) => (
+              <div key={s.label} style={{ display: "flex", alignItems: "center", gap: 0, position: "relative" }}>
+                {/* Horizontal connector */}
+                <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+                  <div style={{ width: 28, height: 1.5, background: `linear-gradient(90deg, ${s.color}80, ${s.color})` }} />
+                  <div style={{ width: 10, height: 10, borderRadius: "50%", background: s.color, boxShadow: `0 0 14px ${s.color}`, flexShrink: 0 }} />
+                </div>
+                {/* Icon circle */}
+                <div style={{ width: 52, height: 52, borderRadius: "50%", border: `1.5px solid ${s.color}60`, background: `${s.color}12`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginLeft: 12, boxShadow: `0 0 18px ${s.color}25` }}>{s.icon}</div>
+                {/* Stat number + label */}
+                <div style={{ marginLeft: 14, minWidth: 120 }}>
+                  <div style={{ fontSize: 36, fontWeight: 800, lineHeight: 1, letterSpacing: "-1.5px", fontFamily: "Inter, sans-serif", color: s.color, textShadow: `0 0 24px ${s.glow}` }}>
+                    <CountUp {...s} started={started} />
+                  </div>
+                  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#475569", fontFamily: "Inter, sans-serif", marginTop: 3 }}>{s.label}</div>
+                </div>
+                {/* Description card */}
+                <div style={{ flex: 1, marginLeft: 16, background: "rgba(13,20,42,0.8)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "12px 16px", backdropFilter: "blur(10px)" }}>
+                  <p style={{ fontSize: 12, color: "#94a3b8", lineHeight: 1.55, fontFamily: "Inter, sans-serif", margin: 0 }}>{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom feature cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }}>
+          {BOTTOM_FEATURES.map(f => (
+            <div key={f.title} style={{ background: "rgba(13,20,42,0.85)", border: `1px solid ${f.iconBorder}`, borderRadius: 12, padding: "16px" }}>
+              <div style={{ width: 38, height: 38, borderRadius: 9, background: f.iconBg, border: `1px solid ${f.iconBorder}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>{f.icon}</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#f1f5f9", marginBottom: 5, fontFamily: "Inter, sans-serif" }}>{f.title}</div>
+              <div style={{ fontSize: 11.5, color: "#64748b", lineHeight: 1.5, fontFamily: "Inter, sans-serif" }}>{f.desc}</div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
 function HeroSplit({ tagline, title, accentWord, description, ctaLabel, onCta, right }) {
   const renderTitle = () => {
     if (!accentWord) return title;
@@ -351,23 +469,7 @@ function HomePage({ onDemoClick }) {
 
       {/* RESULTS */}
       <SectionShell className="border-t border-line-soft" dotsLeft style={{ background: "#0F2040" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5">
-            <Eyebrow className="mb-7">Results</Eyebrow>
-            <h2 className="text-h1 text-balance">Real Outcomes for Cloud Resellers</h2>
-            <span className="block mt-6 h-[3px] w-40 grad-line rounded-full" />
-            <p className="mt-9 text-[16.5px] leading-[1.7] text-ink-secondary max-w-[420px]">
-              moneta turns billing complexity into clear margins, automated invoicing,
-              and scalable growth across every customer account.
-            </p>
-            <div className="mt-9">
-              <ReviewCTA onClick={onDemoClick} />
-            </div>
-          </div>
-          <div className="lg:col-span-7 lg:pt-4">
-            <ResultsList />
-          </div>
-        </div>
+        <ResultsGraphic />
       </SectionShell>
 
       {/* FINOPS PREVIEW */}
