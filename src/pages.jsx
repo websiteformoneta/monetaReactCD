@@ -138,8 +138,8 @@ function HeroSplit({ tagline, title, accentWord, description, ctaLabel, onCta, r
       <div className="container-x relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <div className="lg:col-span-6">
-            {tagline && <Eyebrow className="mb-6">{tagline}</Eyebrow>}
-            <h1 className="text-hero text-balance">{renderTitle()}</h1>
+            {tagline && <Eyebrow className="mb-6 flex flex-col items-center">{tagline}</Eyebrow>}
+            <h1 className="text-hero text-balance text-center">{renderTitle()}</h1>
             {description && (
               <p className="mt-7 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary">{description}</p>
             )}
@@ -291,7 +291,7 @@ function MarginIntelligenceCard() {
           <div style={{ background: "#111827", borderRadius: 14, padding: 26 }}>
 
             {/* Header */}
-            <p style={{ color: "#38bdf8", fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 6, fontFamily: "Inter, sans-serif" }}>Margin Intelligence</p>
+            <p style={{ color: "#38bdf8", fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 6, fontFamily: "Inter, sans-serif" }}>Cloud Revenues</p>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 22 }}>
               <span style={{ color: "#f1f5f9", fontSize: 18, fontWeight: 400, fontFamily: "Inter, sans-serif" }}>235 customers · June 2026</span>
               <span style={{ background: "#0f2e1a", border: "1px solid rgba(34,197,94,0.27)", color: "#22c55e", fontSize: 11, fontWeight: 500, padding: "4px 11px", borderRadius: 999, display: "flex", alignItems: "center", gap: 5, fontFamily: "Inter, sans-serif" }}>
@@ -324,7 +324,7 @@ function MarginIntelligenceCard() {
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
             <span style={{ fontSize: 14 }}>⚠️</span>
-            <span style={{ color: "#ea580c", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Margin Gap Detected</span>
+            <span style={{ color: "#ea580c", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Margin Drop Alert</span>
           </div>
           <p style={{ color: "#0f172a", fontSize: 13, fontWeight: 500, marginBottom: 3, fontFamily: "Inter, sans-serif" }}>XXXX Company · −3%</p>
           <p style={{ color: "#64748b", fontSize: 11.5, lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>Customer Savings Plan discount applied at acct-level but priced at list.</p>
@@ -556,7 +556,7 @@ function HomePage({ onDemoClick }) {
           {/* Problem cards with PNG icons */}
           <div className="lg:col-span-7 flex flex-col gap-3">
             {PROBLEM_ROWS.map((row) => (
-              <div key={row.t} className="card flex items-center gap-5 px-5 py-3 hover:border-line-hover flex-1">
+              <div key={row.t} className="card inline-flex items-center gap-5 px-5 py-3 hover:border-line-hover flex-1 w-fit">
                 <div className="w-12 h-12 grid place-items-center shrink-0">
                   <img src={row.src} alt="" width="40" height="40" style={{ objectFit: "contain" }} />
                 </div>
@@ -699,7 +699,7 @@ function PlatformPage({ onDemoClick }) {
             {/* LEFT — matches Platform.png left column exactly */}
             <div className="lg:col-span-6">
               <Eyebrow className="mb-7">System</Eyebrow>
-              <h1 className="text-hero text-balance">
+              <h1 className="text-hero text-balance text-center">
                 The Financial Infrastructure <br className="hidden md:block" />
                 for <span className="grad-text-bp">Cloud Resellers</span>
               </h1>
