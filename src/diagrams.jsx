@@ -579,19 +579,27 @@ function SystemFlowHorizontal() {
         {/* Base line with fade edges */}
         <div className="absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2"
           style={{ background: "linear-gradient(90deg, transparent 0%, #3B82F6 8%, #22D3EE 33%, #5B7BFF 66%, #A855F7 92%, transparent 100%)", opacity: 0.5 }} />
-        {/* Chevron arrows spaced evenly between dots */}
-        <div className="absolute inset-0 grid grid-cols-4 gap-5 md:gap-6">
-          {steps.map((s, i) => (
-            <div key={s.t} className="flex items-center justify-end" style={{ paddingRight: i === steps.length - 1 ? 0 : undefined }}>
-              {i < steps.length - 1 && (
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"
-                  style={{ animation: `chevron-pulse 1.8s ease-in-out ${i * 0.3}s infinite`, opacity: 0.7 }}>
-                  <polyline points="2,1 8,5 2,9" stroke={s.c} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              )}
-            </div>
-          ))}
-        </div>
+        {/* Flowing arrows — travel full width left to right, fade out at right edge */}
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 24" preserveAspectRatio="none" style={{ overflow: "visible" }}>
+          <defs>
+            <linearGradient id="flowFade" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%"   stopColor="white" stopOpacity="0"/>
+              <stop offset="10%"  stopColor="white" stopOpacity="1"/>
+              <stop offset="80%"  stopColor="white" stopOpacity="1"/>
+              <stop offset="100%" stopColor="white" stopOpacity="0"/>
+            </linearGradient>
+            <mask id="flowMask"><rect x="0" y="0" width="1000" height="24" fill="url(#flowFade)"/></mask>
+          </defs>
+          <g mask="url(#flowMask)">
+            {[0, 1, 2, 3, 4].map(j => (
+              <g key={j}>
+                <polyline points="-6,8 0,12 -6,16" stroke="#5B7BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.8">
+                  <animateTransform attributeName="transform" type="translate" from="0,0" to="1000,0" dur="14s" begin={`${j * 2.8}s`} repeatCount="indefinite"/>
+                </polyline>
+              </g>
+            ))}
+          </g>
+        </svg>
         {/* Dots — same 4-col grid, each dot centered in its column */}
         <div className="absolute inset-0 grid grid-cols-4 gap-5 md:gap-6">
           {steps.map((s) => (

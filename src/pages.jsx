@@ -184,9 +184,9 @@ function getVisitMultiplier() {
 
 const VISIT_MULT = getVisitMultiplier();
 const BASE_STATS = [
-  { label: "Customer Cost", base: 508645, prefix: "$", color: "#f1f5f9",                                        tickRate: 47  },
-  { label: "Margin $",      base: 84623,  prefix: "$", color: "#22c55e", glow: "rgba(34,197,94,0.25)",          tickRate: 8   },
-  { label: "At Risk",       base: 6418,   prefix: "$", color: "#f97316", glow: "rgba(249,115,22,0.25)", pulse: true, tickRate: 1 },
+  { label: "Revenue",  base: 10500000, prefix: "$", color: "#f1f5f9",                                        tickRate: 47,  display: "$10.5m" },
+  { label: "Growth",   base: 238000,   prefix: "$", color: "#22c55e", glow: "rgba(34,197,94,0.25)",          tickRate: 8,   display: "$238k"  },
+  { label: "Margin",   base: 1600000,  prefix: "$", color: "#f97316", glow: "rgba(249,115,22,0.25)", pulse: true, tickRate: 1, display: "$1.6m" },
 ];
 
 function useCountUp(target, duration = 1200, active = false) {
@@ -224,10 +224,10 @@ function useLiveTick(initialTarget, tickRate, active) {
   return live;
 }
 
-function StatTile({ label, base, prefix, color, glow, pulse, active }) {
+function StatTile({ label, base, prefix, color, glow, pulse, active, display }) {
   const initialTarget = Math.round(base * VISIT_MULT);
-  const live = useLiveTick(initialTarget, base === 508645 ? 47 : base === 84623 ? 8 : 1, active);
-  const formatted = prefix + live.toLocaleString();
+  const live = useLiveTick(initialTarget, base === 10500000 ? 47 : base === 238000 ? 8 : 1, active);
+  const formatted = display || (prefix + live.toLocaleString());
   return (
     <div style={{ background: "#1a2236", border: "1px solid #1f2d45", borderRadius: 10, padding: 16 }}>
       <p style={{ color: "#64748b", fontSize: 10, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "Inter, monospace", marginBottom: 8 }}>{label}</p>
@@ -293,9 +293,9 @@ function MarginIntelligenceCard() {
             {/* Header */}
             <p style={{ color: "#38bdf8", fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 6, fontFamily: "Inter, sans-serif" }}>Margin Intelligence</p>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 22 }}>
-              <span style={{ color: "#f1f5f9", fontSize: 18, fontWeight: 400, fontFamily: "Inter, sans-serif" }}>7 customers · June 2026</span>
+              <span style={{ color: "#f1f5f9", fontSize: 18, fontWeight: 400, fontFamily: "Inter, sans-serif" }}>235 customers · June 2026</span>
               <span style={{ background: "#0f2e1a", border: "1px solid rgba(34,197,94,0.27)", color: "#22c55e", fontSize: 11, fontWeight: 500, padding: "4px 11px", borderRadius: 999, display: "flex", alignItems: "center", gap: 5, fontFamily: "Inter, sans-serif" }}>
-                <span style={{ fontSize: 7 }}>●</span> 16.6% blended
+                <span style={{ fontSize: 7 }}>●</span> 15.1% blended
               </span>
             </div>
 
@@ -326,7 +326,7 @@ function MarginIntelligenceCard() {
             <span style={{ fontSize: 14 }}>⚠️</span>
             <span style={{ color: "#ea580c", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Margin Gap Detected</span>
           </div>
-          <p style={{ color: "#0f172a", fontSize: 13, fontWeight: 500, marginBottom: 3, fontFamily: "Inter, sans-serif" }}>Saltcliff Media · −$508</p>
+          <p style={{ color: "#0f172a", fontSize: 13, fontWeight: 500, marginBottom: 3, fontFamily: "Inter, sans-serif" }}>XXXX Company · −3%</p>
           <p style={{ color: "#64748b", fontSize: 11.5, lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>Customer Savings Plan discount applied at acct-level but priced at list.</p>
         </div>
       </div>
@@ -445,7 +445,7 @@ function FinOpsServiceTabs() {
         <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
             <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>JUNE BUDGET</span>
-            <span key={tick} style={{ fontSize: 11, color: "#f59e0b", fontWeight: 600, fontFamily: "Inter, sans-serif" }}><FinOpsCountUp target={82} decimals={0} suffix="%" /> used</span>
+            <span style={{ fontSize: 11, color: "#f59e0b", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>82% used</span>
           </div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 10 }}>
             <span key={tick} style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", letterSpacing: "-1px" }}>$<FinOpsCountUp target={232801} decimals={0} /></span>
@@ -543,7 +543,7 @@ function HomePage({ onDemoClick }) {
               <ArrowRight size={14} /> Why It Happens
             </div>
             <p className="mt-3 text-[15px] leading-[1.6] text-ink-secondary">
-              Resellers operate in complex pricing and discount environments — but billing, pricing, and cost rarely align.
+              Resellers operate in complex pricing and discount environments.
             </p>
             <p className="mt-2 text-[15px] leading-[1.6] text-white font-semibold">Hidden margin loss is the result.</p>
             <hr className="my-5 border-line-soft" />
