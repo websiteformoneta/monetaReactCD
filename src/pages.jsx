@@ -531,12 +531,41 @@ function HomePage({ onDemoClick }) {
       </section>
 
       {/* PROBLEM */}
-      <SectionShell className="border-t border-line-soft" dotsRight style={{ background: "#0F2040" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-stretch">
-          <div className="lg:col-span-5 flex flex-col">
+      <SectionShell className="border-t border-line-soft overflow-hidden" dotsRight style={{ background: "#0F2040" }}>
+        {/* subtle animated dot-grid corner accents */}
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden" }}>
+          <div style={{
+            position: "absolute", top: 0, left: 0, width: 260, height: 200,
+            backgroundImage: "radial-gradient(rgba(91,123,255,0.35) 1px, transparent 1px)",
+            backgroundSize: "22px 22px",
+            WebkitMaskImage: "radial-gradient(180px 160px at 0% 0%, #000, transparent 75%)",
+            maskImage: "radial-gradient(180px 160px at 0% 0%, #000, transparent 75%)",
+            animation: "dotDriftA 16s ease-in-out infinite",
+          }} />
+          <div style={{
+            position: "absolute", bottom: 0, right: 0, width: 260, height: 200,
+            backgroundImage: "radial-gradient(rgba(168,85,247,0.3) 1px, transparent 1px)",
+            backgroundSize: "22px 22px",
+            WebkitMaskImage: "radial-gradient(180px 160px at 100% 100%, #000, transparent 75%)",
+            maskImage: "radial-gradient(180px 160px at 100% 100%, #000, transparent 75%)",
+            animation: "dotDriftB 19s ease-in-out infinite",
+          }} />
+        </div>
+        <style>{`
+          @keyframes dotDriftA {
+            0%, 100% { transform: translate(0, 0); opacity: 0.55; }
+            50%      { transform: translate(8px, 6px); opacity: 0.85; }
+          }
+          @keyframes dotDriftB {
+            0%, 100% { transform: translate(0, 0); opacity: 0.5; }
+            50%      { transform: translate(-8px, -6px); opacity: 0.8; }
+          }
+        `}</style>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-stretch relative" style={{ zIndex: 1 }}>
+          <div className="lg:col-span-6 flex flex-col lg:justify-center">
             <Eyebrow className="mb-5">The Problem</Eyebrow>
-            <h2 className="text-h1 text-balance">
-              Margin Loss Is Built Into <span className="grad-text-bp">Cloud Reseller Billing</span>
+            <h2 className="text-h1">
+              Margin Loss Is Built Into<br /><span className="grad-text-bp">Cloud Reseller Billing</span>
             </h2>
             <span className="block mt-5 h-[3px] w-32 grad-line rounded-full" />
             <div className="mt-7 flex items-center gap-2 text-accent-cyan text-[12px] font-semibold tracking-[0.18em] uppercase">
@@ -554,29 +583,35 @@ function HomePage({ onDemoClick }) {
           </div>
 
           {/* Problem cards with PNG icons */}
-          <div className="lg:col-span-7 flex flex-col gap-3">
-            {PROBLEM_ROWS.map((row) => (
-              <div key={row.t} className="card inline-flex items-center gap-5 px-5 py-3 hover:border-line-hover flex-1 w-fit">
-                <div className="w-12 h-12 grid place-items-center shrink-0">
-                  <img src={row.src} alt="" width="40" height="40" style={{ objectFit: "contain" }} />
+          <div className="lg:col-span-6 flex flex-col items-end lg:pt-[52px]">
+            <div className="flex flex-col gap-3 w-fit">
+              {PROBLEM_ROWS.map((row) => (
+                <div key={row.t} className="card flex items-center gap-5 px-5 py-3 hover:border-line-hover flex-1">
+                  <div className="w-12 h-12 grid place-items-center shrink-0">
+                    <img src={row.src} alt="" width="40" height="40" style={{ objectFit: "contain" }} />
+                  </div>
+                  <span className="block w-px self-stretch bg-line-soft" />
+                  <p className="text-[15px] md:text-[16px] text-ink-primary leading-[1.5] max-w-[330px]">{row.t}</p>
                 </div>
-                <span className="block w-px self-stretch bg-line-soft" />
-                <p className="text-[15px] md:text-[16px] text-ink-primary leading-[1.5]">{row.t}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Bottom line callout — ProblemBLicon.png */}
-        <div className="mt-6 card !rounded-2xl px-7 py-5 md:px-8 md:py-5" style={{ borderColor: "rgba(34,211,238,0.35)" }}>
-          <div className="flex items-center gap-6">
-            <div className="w-14 h-14 rounded-xl grid place-items-center shrink-0 border border-line bg-bg-tertiary/40">
-              <img src="graphics/icons/ProblemBLicon.png" alt="" width="36" height="36" style={{ objectFit: "contain" }} />
+        <div className="mt-6 !rounded-2xl px-7 py-5 md:px-8 md:py-6 relative overflow-hidden" style={{
+          border: "1px solid rgba(34,211,238,0.5)",
+          background: "#070d18",
+          boxShadow: "0 0 24px rgba(34,211,238,0.18), inset 0 0 30px rgba(34,211,238,0.04)",
+        }}>
+          <div className="flex items-center gap-6 relative">
+            <div className="grid place-items-center shrink-0">
+              <img src="graphics/icons/ProblemBLicon.png" alt="" width="52" height="52" style={{ objectFit: "contain" }} />
             </div>
             <div className="border-l border-line-soft pl-6">
               <p className="eyebrow text-[11px] mb-1.5" style={{ color: "#22D3EE" }}>The Bottom Line</p>
-              <p className="text-[19px] md:text-[23px] font-semibold leading-[1.25] text-balance">
-                Margin loss <span style={{ color: "#22D3EE" }}>compounds</span> across every customer.
+              <p className="text-[19px] md:text-[24px] font-semibold leading-[1.25] text-balance">
+                Margin loss <span style={{ background: "linear-gradient(90deg, #22D3EE, #38bdf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", textShadow: "0 0 20px rgba(34,211,238,0.4)" }}>compounds</span> across every customer.
               </p>
             </div>
           </div>

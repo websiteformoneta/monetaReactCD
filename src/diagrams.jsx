@@ -716,7 +716,7 @@ function ReconciliationLoop() {
   const [active, setActive] = React.useState(0);
 
   React.useEffect(() => {
-    const t = setInterval(() => setActive(a => (a + 1) % 5), 4000);
+    const t = setInterval(() => setActive(a => (a + 1) % 4), 4000);
     return () => clearInterval(t);
   }, []);
 
@@ -727,22 +727,17 @@ function ReconciliationLoop() {
       color: "#38bdf8", stats: [{ k: "rows", v: "14.2M" }, { k: "providers", v: "3" }],
     },
     {
-      label: "Customer Pricing", sub: "Rules & agreements", num: "02",
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M7 7h10M7 12h6M7 17h4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>,
-      color: "#a78bfa", stats: [{ k: "rules", v: "150" }, { k: "customers", v: "7" }],
-    },
-    {
-      label: "Discounts", sub: "SPs · RIs · MACC", num: "03",
+      label: "Discounts", sub: "SPs · RIs · MACC", num: "02",
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="9" r="2"/><circle cx="15" cy="15" r="2"/><path d="M7 17L17 7"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>,
       color: "#34d399", stats: [{ k: "applied", v: "$124K", vc: "#34d399" }, { k: "coverage", v: "93.5%" }],
     },
     {
-      label: "Invoice-ready", sub: "Per customer", num: "04",
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>,
-      color: "#60a5fa", stats: [{ k: "invoices", v: "7 / 7" }, { k: "lines", v: "15,580" }],
+      label: "Customer Pricing", sub: "Rules & agreements", num: "03",
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M7 7h10M7 12h6M7 17h4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>,
+      color: "#a78bfa", stats: [{ k: "rules", v: "150" }, { k: "customers", v: "7" }],
     },
     {
-      label: "Margin Intelligence", sub: "By customer", num: "05",
+      label: "Margin Intelligence", sub: "By customer", num: "04",
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-4 4"/></svg>,
       color: "#f472b6", stats: [{ k: "blended", v: "17.5%", vc: "#34d399" }, { k: "margin $", v: "$90,150", vc: "#34d399" }],
     },
@@ -770,13 +765,13 @@ function ReconciliationLoop() {
       <div style={{ position: "relative", display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 0 }}>
         {/* SVG connector line — matches return loop style exactly */}
         <svg style={{ position: "absolute", top: 21, left: 0, width: "100%", height: 4, overflow: "visible", zIndex: 0 }} preserveAspectRatio="none" viewBox="0 0 800 4">
-          <line x1="80" y1="2" x2="720" y2="2" stroke="rgba(56,189,248,0.45)" strokeWidth="1.5" strokeDasharray="8 6" fill="none">
+          <line x1="100" y1="2" x2="700" y2="2" stroke="rgba(56,189,248,0.45)" strokeWidth="1.5" strokeDasharray="8 6" fill="none">
             <animate attributeName="stroke-dashoffset" from="0" to="-28" dur="2.4s" repeatCount="indefinite" />
           </line>
         </svg>
 
         {steps.map((s, i) => (
-          <div key={s.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: `${100/5}%`, zIndex: 2, position: "relative" }}>
+          <div key={s.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: `${100/4}%`, zIndex: 2, position: "relative" }}>
             <div style={{
               width: 44, height: 44, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
               background: "#0d1425",
@@ -830,12 +825,12 @@ function ReconciliationLoop() {
       <div style={{ position: "relative", marginTop: 8, height: 52, width: "100%" }}>
         {/* arc only — preserveAspectRatio none so it stretches full width */}
         <svg width="100%" height="52" viewBox="0 0 800 52" preserveAspectRatio="none" fill="none" style={{ display: "block", position: "absolute", top: 0, left: 0 }}>
-          <path d="M 720 4 C 720 42, 560 48, 400 48 C 240 48, 80 42, 80 4" stroke="rgba(56,189,248,0.45)" strokeWidth="1.5" strokeDasharray="8 6" fill="none">
+          <path d="M 700 4 C 700 42, 550 48, 400 48 C 250 48, 100 42, 100 4" stroke="rgba(56,189,248,0.45)" strokeWidth="1.5" strokeDasharray="8 6" fill="none">
             <animate attributeName="stroke-dashoffset" from="28" to="0" dur="2.4s" repeatCount="indefinite" />
           </path>
         </svg>
         {/* arrowhead + stem */}
-        <div style={{ position: "absolute", top: -10, left: "calc(10% - 6px)", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ position: "absolute", top: -10, left: "calc(12.5% - 6px)", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <div style={{ width: 0, height: 0, borderLeft: "6px solid transparent", borderRight: "6px solid transparent", borderBottom: "11px solid #38bdf8" }} />
           <div style={{ width: 2, height: 6, background: "#2887ae", marginLeft: 1 }} />
         </div>

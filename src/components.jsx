@@ -73,7 +73,7 @@ function ReviewCTA({ onClick, label = "Review Your Billing, Pricing, and Margins
 
 function SectionShell({ children, className = "", id, dotsRight = false, dotsLeft = false, style }) {
   return (
-    <section id={id} className={`relative py-14 md:py-20 ${className}`} style={style}>
+    <section id={id} className={`relative py-10 md:py-14 ${className}`} style={style}>
       {dotsRight && <div className="dot-corner" />}
       {dotsLeft && <div className="dot-corner-left" />}
       <div className="container-x relative">{children}</div>
