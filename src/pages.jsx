@@ -45,74 +45,40 @@ function ResultsGraphic() {
   }, []);
 
   return (
-    <div ref={ref} className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-      {/* Left text */}
-      <div className="lg:col-span-4">
-        <Eyebrow className="mb-7">Results</Eyebrow>
-        <h2 className="text-h2" style={{ maxWidth: 500 }}>Real Outcomes for Cloud Resellers</h2>
-        <span className="block mt-6 h-[3px] w-40 grad-line rounded-full" />
-        <p className="mt-9 text-[16.5px] leading-[1.7] text-ink-secondary">
-          moneta turns billing complexity into clear margins, automated invoicing,
-          and scalable growth across every customer account.
+    <div ref={ref}>
+      {/* Centered header */}
+      <div className="flex flex-col items-center text-center">
+        <Eyebrow className="mb-6 flex flex-col items-center">Results</Eyebrow>
+        <h2 className="text-h1">Real outcomes for cloud resellers.</h2>
+        <p className="mt-6 text-[16.5px] leading-[1.7] text-ink-secondary max-w-[640px]">
+          Improve billing control, protect margins, and scale customer operations without adding
+          unnecessary complexity.
         </p>
       </div>
 
-      {/* Right graphic */}
-      <div className="lg:col-span-8" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-
-        {/* Timeline section */}
-        <div style={{ display: "flex", gap: 0, alignItems: "stretch" }}>
-
-          {/* Vertical spine */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 60, flexShrink: 0 }}>
-            {/* Moneta logo circle */}
-            <div style={{ width: 44, height: 44, borderRadius: "50%", border: "1.5px solid rgba(99,102,241,0.6)", background: "rgba(99,102,241,0.12)", boxShadow: "0 0 20px rgba(99,102,241,0.3)", flexShrink: 0, zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-              <img src="assets/moneta-icon.png" alt="" style={{ width: 66, height: 66, objectFit: "cover", objectPosition: "center 50%", display: "block", marginTop: -14 }} />
+      {/* Stat bar */}
+      <div style={{ marginTop: 40, display: "grid", gridTemplateColumns: "repeat(4,1fr)", background: "rgba(13,20,42,0.6)", border: "1px solid rgba(99,102,241,0.18)", borderRadius: 16, overflow: "hidden", backdropFilter: "blur(12px)" }}>
+        {TIMELINE_STATS.map((s, i) => (
+          <div key={s.label} style={{ padding: "32px 24px", textAlign: "left", borderLeft: i === 0 ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
+            <div style={{ fontSize: 52, fontWeight: 800, lineHeight: 1, letterSpacing: "-2px", fontFamily: "Inter, sans-serif", color: s.color, textShadow: `0 0 28px ${s.glow}` }}>
+              <CountUp {...s} started={started} />
             </div>
-            {/* Line */}
-            <div style={{ flex: 1, width: 1.5, background: "linear-gradient(180deg, rgba(99,102,241,0.6) 0%, rgba(56,189,248,0.3) 50%, rgba(245,158,11,0.4) 100%)", minHeight: 20 }} />
-            {/* Bottom glow cap */}
-            <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(245,158,11,0.5)", boxShadow: "0 0 12px rgba(245,158,11,0.6)", flexShrink: 0 }} />
+            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "#64748b", fontFamily: "Inter, sans-serif", marginTop: 12 }}>{s.label}</div>
           </div>
+        ))}
+      </div>
 
-          {/* Stats rows */}
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 12, paddingTop: 0 }}>
-            {TIMELINE_STATS.map((s, i) => (
-              <div key={s.label} style={{ display: "flex", alignItems: "center", gap: 0, position: "relative" }}>
-                {/* Horizontal connector */}
-                <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-                  <div style={{ width: 28, height: 1.5, background: `linear-gradient(90deg, ${s.color}80, ${s.color})` }} />
-                  <div style={{ width: 10, height: 10, borderRadius: "50%", background: s.color, boxShadow: `0 0 14px ${s.color}`, flexShrink: 0 }} />
-                </div>
-                {/* Icon circle */}
-                <div style={{ width: 52, height: 52, borderRadius: "50%", border: `1.5px solid ${s.color}60`, background: `${s.color}12`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginLeft: 12, boxShadow: `0 0 18px ${s.color}25` }}>{s.icon}</div>
-                {/* Stat number + label */}
-                <div style={{ marginLeft: 14, minWidth: 120 }}>
-                  <div style={{ fontSize: 36, fontWeight: 800, lineHeight: 1, letterSpacing: "-1.5px", fontFamily: "Inter, sans-serif", color: s.color, textShadow: `0 0 24px ${s.glow}` }}>
-                    <CountUp {...s} started={started} />
-                  </div>
-                  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#475569", fontFamily: "Inter, sans-serif", marginTop: 3 }}>{s.label}</div>
-                </div>
-                {/* Description card */}
-                <div style={{ flex: 1, marginLeft: 16, background: "rgba(13,20,42,0.8)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "12px 16px", backdropFilter: "blur(10px)" }}>
-                  <p style={{ fontSize: 12, color: "#94a3b8", lineHeight: 1.55, fontFamily: "Inter, sans-serif", margin: 0 }}>{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom feature cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }}>
-          {BOTTOM_FEATURES.map(f => (
-            <div key={f.title} style={{ background: "rgba(13,20,42,0.85)", border: `1px solid ${f.iconBorder}`, borderRadius: 12, padding: "16px" }}>
-              <div style={{ width: 38, height: 38, borderRadius: 9, background: f.iconBg, border: `1px solid ${f.iconBorder}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>{f.icon}</div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#f1f5f9", marginBottom: 5, fontFamily: "Inter, sans-serif" }}>{f.title}</div>
-              <div style={{ fontSize: 11.5, color: "#64748b", lineHeight: 1.5, fontFamily: "Inter, sans-serif" }}>{f.desc}</div>
+      {/* Feature cards */}
+      <div style={{ marginTop: 20, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 18 }}>
+        {BOTTOM_FEATURES.map(f => (
+          <div key={f.title} style={{ background: "rgba(13,20,42,0.6)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 14, padding: "22px 24px", backdropFilter: "blur(10px)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
+              <div style={{ width: 38, height: 38, borderRadius: 9, background: f.iconBg, border: `1px solid ${f.iconBorder}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{f.icon}</div>
+              <div style={{ fontSize: 14.5, fontWeight: 700, color: "#f1f5f9", fontFamily: "Inter, sans-serif", lineHeight: 1.2 }}>{f.title}</div>
             </div>
-          ))}
-        </div>
-
+            <div style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6, fontFamily: "Inter, sans-serif" }}>{f.desc}</div>
+          </div>
+        ))}
       </div>
     </div>
   );

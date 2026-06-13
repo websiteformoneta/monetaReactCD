@@ -3,8 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="uploads/favicon.png" />
+    <link rel="icon" id="favicon" type="image/png" href="assets/moneta-icon.png" />
     <title>moneta — Cloud Reseller Billing</title>
+    <script>
+      // Crop the transparent padding off the icon so it fills the browser tab.
+      (function () {
+        var img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = function () {
+          var zoom = 1.7;     // scale up to cut off the surrounding padding
+          var offsetX = 0;    // +right / -left nudge (fraction of source width)
+          var offsetY = 0.02; // +down / -up nudge (fraction of source height)
+          var size = 64;
+          var canvas = document.createElement("canvas");
+          canvas.width = size; canvas.height = size;
+          var ctx = canvas.getContext("2d");
+          var sw = img.width / zoom, sh = img.height / zoom;
+          var sx = (img.width - sw) / 2 + offsetX * img.width;
+          var sy = (img.height - sh) / 2 + offsetY * img.height;
+          ctx.drawImage(img, sx, sy, sw, sh, 0, 0, size, size);
+          try {
+            var link = document.getElementById("favicon");
+            link.href = canvas.toDataURL("image/png");
+          } catch (e) {}
+        };
+        img.src = "assets/moneta-icon.png";
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
