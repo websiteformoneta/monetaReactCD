@@ -98,22 +98,26 @@ function Header({ onDemoClick }) {
 
   return (
     <header className={"fixed top-0 left-0 right-0 z-40 transition-all duration-200 " + (scrolled ? "bg-bg-primary/80 backdrop-blur-xl border-b border-line-soft" : "bg-transparent border-b border-transparent")}>
-      <div className="container-x h-[84px] flex items-center justify-between">
-        <a href="#/" aria-label="moneta home" className="flex items-center gap-0"><MonetaMark size={36} /><span className="text-[20px] font-semibold tracking-tight text-white" style={{ marginLeft: -1, transform: "translateY(0.2px)" }}>moneta</span></a>
-        <div className="flex items-center gap-10">
-          <nav className="hidden md:flex items-center gap-10">
-            {NAV.map((n) => {
-              const active = hash.startsWith(n.href);
-              return (
-                <a key={n.href} href={n.href}
-                  className={"relative text-[16px] font-medium transition-colors " + (active ? "text-white" : "text-ink-secondary hover:text-white")}>
-                  {n.label}
-                  {active && <span className="absolute -bottom-1.5 left-0 right-0 h-[2px] grad-line rounded-full" />}
-                </a>
-              );
-            })}
-          </nav>
-        <div className="flex items-center gap-3">
+      <div className="container-x h-[84px] flex items-center justify-between relative">
+        {/* Logo — left */}
+        <a href="#/" aria-label="moneta home" className="flex items-center gap-0 shrink-0"><MonetaMark size={36} /><span className="text-[20px] font-semibold tracking-tight text-white" style={{ marginLeft: -1, transform: "translateY(0.2px)" }}>moneta</span></a>
+
+        {/* Nav — perfectly centered via absolute positioning */}
+        <nav className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
+          {NAV.map((n) => {
+            const active = hash.startsWith(n.href);
+            return (
+              <a key={n.href} href={n.href}
+                className={"relative text-[16px] font-medium transition-colors " + (active ? "text-white" : "text-ink-secondary hover:text-white")}>
+                {n.label}
+                {active && <span className="absolute -bottom-1.5 left-0 right-0 h-[2px] grad-line rounded-full" />}
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* CTA — right */}
+        <div className="flex items-center gap-3 shrink-0">
           <button onClick={onDemoClick}
             className="hidden sm:inline-flex items-center justify-center gap-2 text-white font-semibold text-[16px] hover:opacity-90 px-5 py-2.5 rounded-md"
             style={{ border: "1.5px solid #3B82F6", background: "#060B18" }}>
@@ -125,7 +129,6 @@ function Header({ onDemoClick }) {
               {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
             </svg>
           </button>
-        </div>
         </div>
       </div>
       {open && (

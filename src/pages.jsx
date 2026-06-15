@@ -292,7 +292,9 @@ function MarginIntelligenceCard() {
             <span style={{ fontSize: 14 }}>⚠️</span>
             <span style={{ color: "#ea580c", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>Margin Drop Alert</span>
           </div>
-          <p style={{ color: "#0f172a", fontSize: 13, fontWeight: 500, marginBottom: 3, fontFamily: "Inter, sans-serif" }}>XXXX Company · −3%</p>
+          {(() => { const pct = -3; const pos = pct >= 0; return (
+          <p style={{ fontSize: 13, fontWeight: 500, marginBottom: 3, fontFamily: "Inter, sans-serif", color: "#0f172a" }}>Saltcliff Media <span style={{ color: pos ? "#16a34a" : "#dc2626", fontWeight: 400 }}>{pos ? `${pct}%` : `(${Math.abs(pct)}%)`}</span></p>
+          ); })()}
           <p style={{ color: "#64748b", fontSize: 11.5, lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>Customer Savings Plan discount applied at acct-level but priced at list.</p>
         </div>
       </div>
@@ -531,26 +533,26 @@ function HomePage({ onDemoClick }) {
           <div className="lg:col-span-6 flex flex-col lg:justify-center">
             <Eyebrow className="mb-5">The Problem</Eyebrow>
             <h2 className="text-h1">
-              Margin Loss Is Built Into<br /><span className="grad-text-bp">Cloud Reseller Billing</span>
+              <span className="whitespace-nowrap">Margin Loss Is Built Into</span><br /><span className="grad-text-bp">Cloud Reseller Billing</span>
             </h2>
             <span className="block mt-5 h-[3px] w-32 grad-line rounded-full" />
-            <div className="mt-7 flex items-center gap-2 text-accent-cyan text-[12px] font-semibold tracking-[0.18em] uppercase">
+            <div className="mt-7 flex items-center gap-2 text-accent-cyan text-[13px] font-semibold tracking-[0.18em] uppercase">
               <ArrowRight size={14} /> Why It Happens
             </div>
-            <p className="mt-3 text-[15px] leading-[1.6] text-ink-secondary">
+            <p className="mt-3 text-[18px] leading-[1.65] text-ink-secondary">
               Resellers operate in complex pricing and discount environments.
             </p>
-            <p className="mt-2 text-[15px] leading-[1.6] text-white font-semibold">Hidden margin loss is the result.</p>
+            <p className="mt-2 text-[18px] leading-[1.65] text-white font-semibold">Hidden margin loss is the result.</p>
             <hr className="my-5 border-line-soft" />
-            <p className="text-[15px] leading-[1.6] text-ink-secondary">
+            <p className="text-[18px] leading-[1.65] text-ink-secondary">
               Without the right system, billing is manual and discounts are inconsistent.
             </p>
-            <p className="mt-2 text-[15px] leading-[1.6] text-white font-semibold">Margins lack visibility and control.</p>
+            <p className="mt-2 text-[18px] leading-[1.65] text-white font-semibold">Margins lack visibility and control.</p>
           </div>
 
           {/* Problem cards with PNG icons */}
-          <div className="lg:col-span-6 flex flex-col items-end lg:pt-[52px]">
-            <div className="flex flex-col gap-3 w-fit">
+          <div className="lg:col-span-6 flex flex-col items-end lg:pt-[16px]">
+            <div className="flex flex-col gap-3" style={{ width: "min(100%, 480px)" }}>
               {PROBLEM_ROWS.map((row) => (
                 <div key={row.t} className="card flex items-center gap-5 px-5 py-3 hover:border-line-hover flex-1">
                   <div className="w-12 h-12 grid place-items-center shrink-0">
@@ -608,18 +610,10 @@ function HomePage({ onDemoClick }) {
         <ReconciliationLoop />
 
         {/* Bottom callout */}
-        <div className="mt-8 card !rounded-2xl px-7 py-5 md:px-8 md:py-5" style={{ borderColor: "rgba(168,85,247,0.4)" }}>
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-0 shrink-0">
-              <MonetaMark size={36} />
-              <span className="text-[20px] font-semibold tracking-tight text-white" style={{ marginLeft: -1, transform: "translateY(0.2px)" }}>moneta</span>
-            </div>
-            <div className="border-l border-line-soft pl-6">
-              <p className="text-[19px] md:text-[22px] font-semibold leading-[1.3] text-balance">
-                One System. Everything <span className="grad-text-bp">Aligned.</span>
-              </p>
-            </div>
-          </div>
+        <div className="mt-8 card !rounded-2xl px-7 py-5 md:px-8 md:py-5 flex justify-center" style={{ borderColor: "rgba(168,85,247,0.4)" }}>
+          <p className="text-[19px] md:text-[22px] font-semibold leading-[1.3] text-center">
+            One System. Everything <span className="grad-text-bp">Aligned.</span>
+          </p>
         </div>
       </SectionShell>
 
