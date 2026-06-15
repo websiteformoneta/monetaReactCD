@@ -77,19 +77,19 @@ function OperatingSystemDiagram() {
 
   return (
     <div className="relative w-full">
-      <div className="grid grid-cols-[1fr_auto_1fr] gap-4 md:gap-6 items-center">
+      <div className="grid grid-cols-[1fr_auto_1fr] gap-5 md:gap-8 items-center">
 
         {/* INPUTS */}
-        <div className="space-y-2.5">
-          <p className="eyebrow text-center md:text-left text-[10px] tracking-[0.2em] mb-1">Inputs</p>
+        <div className="space-y-3">
+          <p className="eyebrow text-center md:text-left text-[11px] tracking-[0.2em] mb-2">Inputs</p>
           {inputs.map((inp) => (
-            <div key={inp.label} className="relative card !rounded-xl px-3 py-3 flex items-center gap-3">
-              <div className="w-9 h-9 rounded-md grid place-items-center border border-line bg-bg-tertiary/40 shrink-0">
-                <PngIcon src={inp.src} size={22} />
+            <div key={inp.label} className="relative card !rounded-xl px-4 py-3.5 flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-md grid place-items-center border border-line bg-bg-tertiary/40 shrink-0">
+                <PngIcon src={inp.src} size={26} />
               </div>
               <div className="leading-tight">
-                <p className="text-[12.5px] font-semibold">{inp.label}</p>
-                <p className="text-[10.5px] text-ink-muted">{inp.sub}</p>
+                <p className="text-[14px] font-semibold">{inp.label}</p>
+                <p className="text-[12px] text-ink-muted">{inp.sub}</p>
               </div>
               <span className="absolute left-full top-1/2 -translate-y-1/2 ml-0.5 hidden md:block">
                 <Connector dir="in" />
@@ -99,43 +99,43 @@ function OperatingSystemDiagram() {
         </div>
 
         {/* CENTER */}
-        <div className="relative card !rounded-2xl p-4" style={{
-          minWidth: "min(260px, 46vw)",
+        <div className="relative card !rounded-2xl p-5" style={{
+          minWidth: "min(300px, 46vw)",
           boxShadow: "0 0 0 1px rgba(91,123,255,0.3), 0 24px 60px -20px rgba(91,123,255,0.4)"
         }}>
-          <div className="flex items-center justify-center gap-1.5 mb-3 pb-3 border-b border-line-soft">
-            <img src="assets/moneta-icon.png" alt="" width="27" height="27" style={{ objectFit: "contain", transform: "translateY(-2px)" }} />
-            <span style={{ fontSize: 14, lineHeight: 1 }}>
+          <div className="flex items-center justify-center gap-2 mb-4 pb-4 border-b border-line-soft">
+            <img src="assets/moneta-icon.png" alt="" width="30" height="30" style={{ objectFit: "contain", transform: "translateY(-2px)" }} />
+            <span style={{ fontSize: 16, lineHeight: 1 }}>
               <b className="text-white">moneta</b>{" "}
               <span className="grad-text-bp font-semibold">operating system</span>
             </span>
           </div>
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             {coreRows.map((r) => (
-              <div key={r.t} className="flex items-center gap-2 px-2.5 py-2 rounded-lg border border-line-soft bg-bg-tertiary/40">
-                <div className="w-7 h-7 rounded-md grid place-items-center border border-line bg-bg-tertiary shrink-0">
-                  {r.src ? <PngIcon src={r.src} size={16} /> : Icons[r.svgI](r.c)}
+              <div key={r.t} className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg border border-line-soft bg-bg-tertiary/40">
+                <div className="w-8 h-8 rounded-md grid place-items-center border border-line bg-bg-tertiary shrink-0">
+                  {r.src ? <PngIcon src={r.src} size={18} /> : Icons[r.svgI](r.c)}
                 </div>
                 <div className="flex-1 leading-tight min-w-0">
-                  <p className="text-[11px] font-semibold truncate">{r.t}</p>
-                  <p className="text-[9.5px] text-ink-muted leading-tight">{r.s}</p>
+                  <p className="text-[13px] font-semibold truncate">{r.t}</p>
+                  <p className="text-[11px] text-ink-muted leading-tight">{r.s}</p>
                 </div>
-                <CheckCircle color={r.c} size={14} />
+                <CheckCircle color={r.c} size={15} />
               </div>
             ))}
           </div>
-          <div className="mt-3 pt-2.5 border-t border-line-soft">
-            <p className="eyebrow text-center text-[9px] tracking-[0.2em] mb-2">Controls</p>
-            <div className="grid grid-cols-2 gap-1.5">
+          <div className="mt-4 pt-3 border-t border-line-soft">
+            <p className="eyebrow text-center text-[10px] tracking-[0.2em] mb-2.5">Controls</p>
+            <div className="grid grid-cols-2 gap-2">
               {[
                 { label: "Margin Rules", sub: "Active", src: "graphics/icons/ProblemBLicon.png" },
                 { label: "Discount Policies", sub: "Enforced", src: "graphics/icons/ProblemMisappliedIcon.png" },
               ].map((ctrl) => (
-                <div key={ctrl.label} className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-line-soft">
-                  <PngIcon src={ctrl.src} size={14} />
+                <div key={ctrl.label} className="flex items-center gap-2 px-2.5 py-2 rounded-lg border border-line-soft">
+                  <PngIcon src={ctrl.src} size={16} />
                   <div className="leading-tight min-w-0">
-                    <p className="text-[10px] font-semibold truncate">{ctrl.label}</p>
-                    <p className="text-[9px] text-ink-muted">{ctrl.sub}</p>
+                    <p className="text-[11.5px] font-semibold truncate">{ctrl.label}</p>
+                    <p className="text-[10px] text-ink-muted">{ctrl.sub}</p>
                   </div>
                 </div>
               ))}
@@ -144,19 +144,19 @@ function OperatingSystemDiagram() {
         </div>
 
         {/* OUTPUTS */}
-        <div className="space-y-2.5">
-          <p className="eyebrow text-center md:text-left text-[10px] tracking-[0.2em] mb-1">Outputs</p>
+        <div className="space-y-3">
+          <p className="eyebrow text-center md:text-left text-[11px] tracking-[0.2em] mb-2">Outputs</p>
           {outputs.map((out) => (
-            <div key={out.label} className="relative card !rounded-xl px-3 py-3 flex items-center gap-3">
+            <div key={out.label} className="relative card !rounded-xl px-4 py-3.5 flex items-center gap-3.5">
               <span className="absolute right-full top-1/2 -translate-y-1/2 mr-0.5 hidden md:block">
                 <Connector dir="out" />
               </span>
-              <div className="w-9 h-9 rounded-md grid place-items-center border border-line bg-bg-tertiary/40 shrink-0">
-                <PngIcon src={out.src} size={22} />
+              <div className="w-11 h-11 rounded-md grid place-items-center border border-line bg-bg-tertiary/40 shrink-0">
+                <PngIcon src={out.src} size={26} />
               </div>
               <div className="leading-tight">
-                <p className="text-[12.5px] font-semibold">{out.label}</p>
-                <p className="text-[10.5px] text-ink-muted">{out.sub}</p>
+                <p className="text-[14px] font-semibold">{out.label}</p>
+                <p className="text-[12px] text-ink-muted">{out.sub}</p>
               </div>
             </div>
           ))}

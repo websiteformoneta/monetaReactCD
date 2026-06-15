@@ -104,8 +104,8 @@ function HeroSplit({ tagline, title, accentWord, description, ctaLabel, onCta, r
       <div className="container-x relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <div className="lg:col-span-6">
-            {tagline && <Eyebrow className="mb-6 flex flex-col items-center">{tagline}</Eyebrow>}
-            <h1 className="text-hero text-balance text-center">{renderTitle()}</h1>
+            {tagline && <Eyebrow className="mb-6">{tagline}</Eyebrow>}
+            <h1 className="text-hero text-balance">{renderTitle()}</h1>
             {description && (
               <p className="mt-7 text-[18px] md:text-[19px] leading-[1.6] text-ink-secondary">{description}</p>
             )}
@@ -620,20 +620,20 @@ function HomePage({ onDemoClick }) {
       {/* OPERATING SYSTEM */}
       <SectionShell className="border-t border-line-soft" style={{ background: "#060B18" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-5">
             <Eyebrow className="mb-5">Operating System</Eyebrow>
             <h2 className="text-h1 text-balance">
               Total Clarity. <span className="grad-text-bp">Every Layer.</span>
             </h2>
             <span className="block mt-5 h-[3px] w-32 grad-line rounded-full" />
-            <p className="mt-6 text-[16px] leading-[1.65] text-ink-secondary">
+            <p className="mt-6 text-[18px] leading-[1.7] text-ink-secondary">
               moneta connects every layer of cloud reseller billing — from raw usage data and vendor pricing to customer invoices and real-time margin visibility.
             </p>
-            <p className="mt-4 text-[16px] leading-[1.65] text-ink-secondary">
+            <p className="mt-4 text-[18px] leading-[1.7] text-ink-secondary">
               Not a dashboard. Not a plugin. A purpose-built operating system for how resellers actually run.
             </p>
           </div>
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-7">
             <OperatingSystemDiagram />
           </div>
         </div>
