@@ -371,7 +371,7 @@ function FinOpsServiceTabs() {
       ),
     },
     {
-      label: "Optimization",
+      label: "Rate reduction",
       icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>,
       service: "SERVICE · 02",
       title: "Optimization & savings insights",
@@ -403,7 +403,7 @@ function FinOpsServiceTabs() {
       ),
     },
     {
-      label: "Governance",
+      label: "Infrastructure Efficiency",
       icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
       service: "SERVICE · 03",
       title: "Governance & budgeting",
@@ -648,7 +648,7 @@ function HomePage({ onDemoClick }) {
       <SectionShell className="border-t border-line-soft light-section" dotsLeft style={{ background: "#F8FAFC" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
-            <Eyebrow className="mb-7">FinOps Managed Services</Eyebrow>
+            <Eyebrow className="mb-7">Cloud FinOps Managed Services</Eyebrow>
             <h2 className="text-h1 text-balance">
               Deliver Cloud FinOps as a <span className="grad-text-bp">Managed Service</span>
             </h2>
