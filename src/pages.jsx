@@ -447,9 +447,9 @@ function FinOpsServiceTabs() {
   return (
     <div ref={ref} style={{ background: "#fff", borderRadius: 16, border: "1px solid #e2e8f0", boxShadow: "0 4px 24px rgba(0,0,0,0.08)", overflow: "hidden", fontFamily: "Inter, sans-serif" }}>
       {/* Tab bar */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderBottom: "1px solid #e2e8f0", paddingRight: 16 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 6, padding: "10px", borderBottom: "1px solid #e2e8f0", background: "#f8fafc" }}>
         {tabs.map((tab, i) => (
-          <button key={tab.label} onClick={() => switchTab(i)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "14px 16px", background: "none", border: "none", borderBottom: active === i ? "2px solid #3b82f6" : "2px solid transparent", cursor: "pointer", color: active === i ? "#3b82f6" : "#64748b", fontWeight: active === i ? 600 : 500, fontSize: 13, fontFamily: "Inter, sans-serif", transition: "all 0.2s", marginBottom: -1, whiteSpace: "nowrap" }}>
+          <button key={tab.label} onClick={() => switchTab(i)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 7, padding: "9px 12px", background: active === i ? "#ffffff" : "transparent", border: active === i ? "1px solid #e2e8f0" : "1px solid transparent", borderRadius: 8, boxShadow: active === i ? "0 1px 4px rgba(0,0,0,0.08)" : "none", cursor: "pointer", color: active === i ? "#3b82f6" : "#64748b", fontWeight: active === i ? 600 : 500, fontSize: 13.5, fontFamily: "Inter, sans-serif", transition: "all 0.15s", whiteSpace: "nowrap" }}>
             {tab.icon}{tab.label}
           </button>
         ))}
@@ -662,7 +662,7 @@ function HomePage({ onDemoClick }) {
               <ReviewCTA onClick={onDemoClick} />
             </div>
           </div>
-          <div className="lg:col-span-7 flex items-end justify-center">
+          <div className="lg:col-span-7 flex items-end">
             <div className="w-full max-w-[680px]" style={{ marginTop: 40 }}>
               <FinOpsServiceTabs />
             </div>
