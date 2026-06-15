@@ -447,9 +447,9 @@ function FinOpsServiceTabs() {
   return (
     <div ref={ref} style={{ background: "#fff", borderRadius: 16, border: "1px solid #e2e8f0", boxShadow: "0 4px 24px rgba(0,0,0,0.08)", overflow: "hidden", fontFamily: "Inter, sans-serif" }}>
       {/* Tab bar */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderBottom: "1px solid #e2e8f0" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderBottom: "1px solid #e2e8f0", paddingRight: 16 }}>
         {tabs.map((tab, i) => (
-          <button key={tab.label} onClick={() => switchTab(i)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "14px 8px", background: "none", border: "none", borderBottom: active === i ? "2px solid #3b82f6" : "2px solid transparent", cursor: "pointer", color: active === i ? "#3b82f6" : "#64748b", fontWeight: active === i ? 600 : 500, fontSize: 13, fontFamily: "Inter, sans-serif", transition: "all 0.2s", marginBottom: -1 }}>
+          <button key={tab.label} onClick={() => switchTab(i)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "14px 16px", background: "none", border: "none", borderBottom: active === i ? "2px solid #3b82f6" : "2px solid transparent", cursor: "pointer", color: active === i ? "#3b82f6" : "#64748b", fontWeight: active === i ? 600 : 500, fontSize: 13, fontFamily: "Inter, sans-serif", transition: "all 0.2s", marginBottom: -1, whiteSpace: "nowrap" }}>
             {tab.icon}{tab.label}
           </button>
         ))}
