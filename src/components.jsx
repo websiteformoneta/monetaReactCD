@@ -290,9 +290,9 @@ function DemoModal({ isOpen, onClose }) {
 }
 
 // ----- Final CTA -----
-function FinalCTA({ title, description, ctaLabel = "Book a Demo", onCta }) {
+function FinalCTA({ title, description, ctaLabel = "Book a Demo", onCta, className = "" }) {
   return (
-    <section className="relative pt-10 md:pt-14 pb-2 md:pb-3 overflow-hidden">
+    <section className={`relative pt-10 md:pt-14 pb-2 md:pb-3 overflow-hidden ${className}`}>
       <div className="dot-corner" />
       <div className="container-x relative text-center flex flex-col items-center">
           <h2 className="text-h1 text-balance max-w-[760px]">{title}</h2>

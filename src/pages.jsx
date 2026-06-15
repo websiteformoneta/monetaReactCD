@@ -699,7 +699,7 @@ function PlatformPage({ onDemoClick }) {
 
             {/* LEFT — matches Platform.png left column exactly */}
             <div className="lg:col-span-6">
-              <Eyebrow className="mb-7">System</Eyebrow>
+              <Eyebrow className="mb-7 text-center [&_.eyebrow-rule]:mx-auto">System</Eyebrow>
               <h1 className="text-hero text-balance text-center">
                 The Financial Infrastructure <br className="hidden md:block" />
                 for <span className="grad-text-bp">Cloud Resellers</span>
@@ -995,6 +995,7 @@ function FinOpsPage({ onDemoClick }) {
       </SectionShell>
 
       <FinalCTA
+        className="!pt-4 md:!pt-6"
         title="Build a FinOps practice on your own billing data."
         description="See how resellers are productizing cloud financial management with moneta as the spine."
         ctaLabel="Book a Demo"

@@ -621,81 +621,91 @@ function SystemFlowHorizontal() {
   );
 }
 
-// ---- Why Moneta system diagram — matches WhyMoneta.png ----
+// ---- Why Moneta system diagram ----
 function WhyMonetaDiagram({ onCta }) {
   const outcomes = [
-    { label: "Clear profitability",   icon: "trend",   c: "#3B82F6" },
-    { label: "Automated invoicing",   icon: "invoice", c: "#22D3EE" },
-    { label: "Captures savings",      icon: "shield",  c: "#A855F7" },
+    { label: "Clear profitability",  icon: "trend",   c: "#3B82F6" },
+    { label: "Automated invoicing",  icon: "invoice", c: "#22D3EE" },
+    { label: "Savings captured",     icon: "shield",  c: "#A855F7" },
   ];
   const steps = [
-    { label: "Billing",   sub: "Accurate usage captured and billed on your terms.",         c: "#3B82F6" },
-    { label: "Pricing",   sub: "Flexible pricing models that reflect your strategy.",        c: "#22D3EE" },
-    { label: "Discounts", sub: "Consistent discount management aligned to your goals.",      c: "#5B7BFF" },
-    { label: "Margin",    sub: "Stronger margins through visibility and control.",           c: "#A855F7" },
+    { label: "Billing",   sub: "Accurate usage captured and billed on your terms.",    c: "#3B82F6" },
+    { label: "Pricing",   sub: "Flexible pricing models that reflect your strategy.",   c: "#22D3EE" },
+    { label: "Discounts", sub: "Consistent discount management aligned to your goals.", c: "#5B7BFF" },
+    { label: "Margin",    sub: "Stronger margins through visibility and control.",      c: "#A855F7" },
   ];
+
   return (
     <div>
-      <div className="flex items-stretch gap-0">
+      {/* Unified card: system diagram left, outcomes panel right */}
+      <div className="rounded-2xl overflow-hidden"
+        style={{
+          border: "1px solid rgba(91,123,255,0.35)",
+          background: "linear-gradient(160deg,#0D1025 0%,#090C18 100%)",
+          boxShadow: "0 0 48px 8px rgba(59,130,246,0.08), 0 0 0 0 transparent",
+        }}>
 
-        {/* OUTCOMES — left column */}
-        <div className="shrink-0 w-[200px] flex flex-col justify-center space-y-0">
-          {outcomes.map((o, i) => (
-            <div key={o.label}>
-              <div className="flex items-center gap-3 py-4">
-                <div className="w-10 h-10 rounded-xl shrink-0 flex items-center justify-center"
-                  style={{ background: `${o.c}18`, border: `1.5px solid ${o.c}40` }}>
-                  {Icons[o.icon](o.c)}
-                </div>
-                <span className="text-[15px] font-semibold text-white leading-[1.3]">{o.label}</span>
+        <div className="flex">
+          {/* ── LEFT: system pipeline ── */}
+          <div className="flex-1 min-w-0">
+            {/* Header */}
+            <div className="flex flex-col items-center pt-5 pb-4 border-b" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
+              <div className="flex items-center gap-2 mb-1">
+                <img src="assets/moneta-icon.png" alt="" width="20" height="20" style={{ objectFit: "contain" }} />
+                <span className="font-bold text-white text-[16px] tracking-tight">moneta</span>
               </div>
-              {i < outcomes.length - 1 && <hr className="border-line-soft" />}
+              <p className="eyebrow text-[9px] tracking-[0.22em] text-ink-secondary">The Billing Infrastructure for Cloud Resellers</p>
             </div>
-          ))}
-        </div>
 
-        {/* CONNECTOR — dashed arrows from each outcome into the box */}
-        <div className="shrink-0 w-16 relative">
-          <svg width="100%" height="100%" viewBox="0 0 64 180" preserveAspectRatio="none" fill="none" aria-hidden="true"
-            style={{ position: "absolute", inset: 0 }}>
-            <line x1="4" y1="30"  x2="44" y2="30"  stroke="#3B82F6" strokeWidth="1" strokeDasharray="4 3" opacity="0.55" />
-            <line x1="4" y1="90"  x2="44" y2="90"  stroke="#22D3EE" strokeWidth="1" strokeDasharray="4 3" opacity="0.55" />
-            <line x1="4" y1="150" x2="44" y2="150" stroke="#A855F7" strokeWidth="1" strokeDasharray="4 3" opacity="0.55" />
-            <line x1="44" y1="30" x2="44" y2="150" stroke="rgba(91,123,255,0.2)" strokeWidth="1" />
-            <line x1="44" y1="90" x2="60" y2="90"  stroke="#22D3EE" strokeWidth="1.5" />
-            <path d="M57,87 L63,90 L57,93" fill="none" stroke="#22D3EE" strokeWidth="1.4" strokeLinejoin="miter" strokeLinecap="square" />
-          </svg>
-        </div>
-
-        {/* SYSTEM BOX */}
-        <div className="flex-1 rounded-2xl"
-          style={{ border: "1px solid rgba(91,123,255,0.4)", background: "linear-gradient(160deg,#0E1122 0%,#0B0E1A 100%)", boxShadow: "0 0 50px 8px rgba(91,123,255,0.12), 0 0 80px 16px rgba(168,85,247,0.08)" }}>
-          {/* Header */}
-          <div className="flex flex-col items-center pt-6 pb-4 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-            <div className="flex items-center gap-2 mb-1">
-              <img src="assets/moneta-icon.png" alt="" width="22" height="22" style={{ objectFit: "contain" }} />
-              <span className="font-bold text-white text-[17px]">moneta</span>
+            {/* Flow line + step dots */}
+            <div className="px-8 pt-7 pb-4 relative">
+              {/* gradient track */}
+              <div className="absolute" style={{
+                top: "calc(1.75rem + 5px)", left: "calc(2rem + 11.5%)", right: "calc(2rem + 11.5%)",
+                height: 1.5,
+                background: "linear-gradient(90deg,#3B82F6,#22D3EE 33%,#5B7BFF 66%,#A855F7 100%)",
+              }} />
+              <div className="flex justify-between relative z-10">
+                {steps.map((s) => (
+                  <div key={s.label} className="flex flex-col items-center gap-2" style={{ width: "23%" }}>
+                    <div style={{ width: 11, height: 11, borderRadius: "50%", background: s.c, boxShadow: `0 0 8px ${s.c}` }} />
+                    <p className="text-[13px] font-semibold text-center" style={{ color: s.c }}>{s.label}</p>
+                    <p className="text-[11.5px] text-ink-primary leading-[1.45] text-center" style={{ opacity: 0.5 }}>{s.sub}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <p className="eyebrow text-[9px] tracking-[0.2em] text-ink-muted">The Billing Infrastructure for Cloud Resellers</p>
+
+            <div className="flex justify-center px-6 pb-5 pt-2 border-t" style={{ borderColor: "rgba(255,255,255,0.05)" }}>
+              <p className="text-[12px] text-ink-secondary">Continuously aligning billing, pricing, discounts, and margin.</p>
+            </div>
           </div>
-          {/* Flow line + dots */}
-          <div className="px-6 pt-6 pb-2 relative">
-            <div className="absolute" style={{
-              top: "calc(1.5rem + 5px)", left: "calc(1.5rem + 12px)", right: "calc(1.5rem + 12px)",
-              height: 1.5, background: "linear-gradient(90deg,#3B82F6,#22D3EE 33%,#5B7BFF 66%,#A855F7 88%, transparent 100%)"
-            }} />
-            <div className="flex justify-between relative z-10">
-              {steps.map((s) => (
-                <div key={s.label} className="flex flex-col items-center gap-2.5" style={{ width: "23%" }}>
-                  <div style={{ width: 12, height: 12, borderRadius: "50%", background: s.c, boxShadow: `0 0 8px ${s.c}90` }} />
-                  <p className="text-[13px] font-semibold text-center" style={{ color: s.c }}>{s.label}</p>
-                  <p className="text-[11.5px] text-ink-secondary leading-[1.4] text-center">{s.sub}</p>
+
+          {/* ── DIVIDER ── */}
+          <div style={{ width: 1, background: "rgba(91,123,255,0.2)", flexShrink: 0 }} />
+
+          {/* ── RIGHT: outcomes panel ── */}
+          <div className="shrink-0 flex flex-col justify-center gap-0" style={{ width: 240 }}>
+            {/* panel header */}
+            <div className="px-6 pt-5 pb-4 border-b" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
+              <p className="eyebrow text-[9px] tracking-[0.22em]" style={{ color: "#22D3EE" }}>What You Gain</p>
+            </div>
+
+            {/* outcome rows */}
+            <div className="flex flex-col divide-y" style={{ borderColor: "rgba(255,255,255,0.05)" }}>
+              {outcomes.map((o) => (
+                <div key={o.label} className="flex items-center gap-3 px-6 py-4">
+                  <div className="w-8 h-8 rounded-lg shrink-0 flex items-center justify-center"
+                    style={{ background: `${o.c}15`, border: `1px solid ${o.c}40` }}>
+                    {Icons[o.icon](o.c)}
+                  </div>
+                  <span className="text-[13.5px] font-semibold text-white leading-[1.3]">{o.label}</span>
                 </div>
               ))}
             </div>
-          </div>
-          <div className="flex justify-center px-6 pb-5 pt-3 border-t" style={{ borderColor: "rgba(255,255,255,0.05)" }}>
-            <p className="text-[12.5px] text-ink-muted">Continuously aligning billing, pricing, discounts, and margin.</p>
+
+            {/* panel footer gradient accent */}
+            <div style={{ height: 2, background: "linear-gradient(90deg,#3B82F6,#22D3EE,#5B7BFF,#A855F7)" }} />
           </div>
         </div>
       </div>
