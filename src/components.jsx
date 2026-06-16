@@ -215,6 +215,7 @@ function DemoModal({ isOpen, onClose }) {
   const dialogRef = React.useRef(null);
   const [submitted, setSubmitted] = React.useState(false);
   const [errors, setErrors] = React.useState({});
+  const [sending, setSending] = React.useState(false);
 
   React.useEffect(() => {
     if (!isOpen) return;
@@ -225,7 +226,7 @@ function DemoModal({ isOpen, onClose }) {
     return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
   }, [isOpen, onClose]);
 
-  React.useEffect(() => { if (!isOpen) { setSubmitted(false); setErrors({}); } }, [isOpen]);
+  React.useEffect(() => { if (!isOpen) { setSubmitted(false); setErrors({}); setSending(false); } }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -238,7 +239,23 @@ function DemoModal({ isOpen, onClose }) {
     if (!data.email || !/.+@.+\..+/.test(data.email)) next.email = "Valid email required";
     if (!data.company) next.company = "Required";
     setErrors(next);
-    if (Object.keys(next).length === 0) setSubmitted(true);
+    if (Object.keys(next).length > 0) return;
+    setSending(true);
+    window.emailjs.send("service_99yjrrz", "template_8h4r2vj", {
+      firstName: data.firstName,
+      lastName:  data.lastName,
+      email:     data.email,
+      phone:     data.phone || "—",
+      company:   data.company,
+      title:     data.title || "—",
+      message:   data.message || "—",
+    }).then(() => {
+      setSending(false);
+      setSubmitted(true);
+    }).catch(() => {
+      setSending(false);
+      setErrors({ submit: "Something went wrong. Please try again." });
+    });
   };
 
   const inputCls = (err) =>
@@ -281,7 +298,8 @@ function DemoModal({ isOpen, onClose }) {
               <FormField label="Message">
                 <textarea name="message" rows={2} className="w-full bg-bg-primary border border-line rounded-md px-3 py-2 text-[14px] text-white placeholder:text-ink-muted focus:outline-none focus:border-accent-indigo transition-colors resize-none" />
               </FormField>
-              <Button type="submit" variant="primary" className="w-full !py-3 mt-1">Submit</Button>
+              <Button type="submit" variant="primary" className="w-full !py-3 mt-1" disabled={sending}>{sending ? "Sending…" : "Submit"}</Button>
+              {errors.submit && <p className="text-[12px] text-red-400 text-center">{errors.submit}</p>}
               <p className="text-[11px] text-ink-muted text-center">By submitting you agree to moneta's privacy policy.</p>
             </form>
           </React.Fragment>
