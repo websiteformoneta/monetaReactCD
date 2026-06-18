@@ -192,8 +192,8 @@ function TrustBar() {
           <div className="flex items-center gap-3">
             <PngIcon src="graphics/icons/HeroCloudProcessedAnnuallyIcon.png" size={42} />
             <div className="leading-tight">
-              <p className="text-[20px] font-bold grad-text-bp">Over $100M</p>
-              <p className="text-[12px] text-ink-muted mt-0.5">processed annually</p>
+              <p className="text-[12px] text-ink-muted">Grow with</p>
+              <p className="text-[16px] font-semibold grad-text-bp -mt-0.5">Confidence</p>
             </div>
           </div>
         </div>
@@ -734,20 +734,20 @@ function ReconciliationLoop() {
     {
       label: "Cloud Billing", sub: "AWS · Azure · GCP", num: "01",
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6H16a5 5 0 011 9.9M8 17l4-4 4 4M12 13v8"/></svg>,
-      color: "#38bdf8", stats: [{ k: "rows", v: "14.2M" }, { k: "providers", v: "3" }],
+      color: "#38bdf8", stats: [{ k: "rows", v: "8.3T" }, { k: "providers", v: "3" }],
     },
     {
-      label: "Discounts", sub: "SPs · RIs · MACC", num: "02",
+      label: "Discounts", sub: "SPs · RIs · EDP · SPP · EA · CSP", num: "02",
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="9" r="2"/><circle cx="15" cy="15" r="2"/><path d="M7 17L17 7"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>,
       color: "#34d399", stats: [{ k: "applied", v: "$124K", vc: "#34d399" }, { k: "coverage", v: "93.5%" }],
     },
     {
       label: "Customer Pricing", sub: "Rules & agreements", num: "03",
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M7 7h10M7 12h6M7 17h4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>,
-      color: "#a78bfa", stats: [{ k: "rules", v: "150" }, { k: "customers", v: "7" }],
+      color: "#a78bfa", stats: [{ k: "rules", v: "150" }, { k: "customers", v: "239" }],
     },
     {
-      label: "Margin Intelligence", sub: "By customer", num: "04",
+      label: "Margin Intelligence", sub: "By customer · By reseller", num: "04",
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-4 4"/></svg>,
       color: "#f472b6", stats: [{ k: "blended", v: "17.5%", vc: "#34d399" }, { k: "margin $", v: "$90,150", vc: "#34d399" }],
     },
@@ -765,10 +765,7 @@ function ReconciliationLoop() {
           </div>
           <p style={{ color: "#f1f5f9", fontSize: 17, fontWeight: 600, fontFamily: "Inter, sans-serif" }}>Billing, pricing, discounts, and margin — aligned every cycle.</p>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, whiteSpace: "nowrap" }}>
-          <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#22c55e", display: "inline-block", boxShadow: "0 0 6px #22c55e" }} />
-          <span style={{ color: "#64748b", fontSize: 12, fontFamily: "Inter, sans-serif" }}>Live &nbsp;·&nbsp; last sync · 2 min ago</span>
-        </div>
+        <div></div>
       </div>
 
       {/* Step nodes + connector line */}
@@ -808,15 +805,15 @@ function ReconciliationLoop() {
             transition: "all 0.3s",
           }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
-              <span style={{ color: active === i ? "#f1f5f9" : "#94a3b8", fontSize: 13, fontWeight: 600, fontFamily: "Inter, sans-serif", lineHeight: 1.2 }}>{s.label}</span>
-              <span style={{ color: "rgba(100,116,139,0.5)", fontSize: 10, fontFamily: "Inter, monospace" }}>{s.num}</span>
+              <span style={{ color: active === i ? "#f1f5f9" : "#b0bac9", fontSize: 13, fontWeight: 600, fontFamily: "Inter, sans-serif", lineHeight: 1.2 }}>{s.label}</span>
+              <span style={{ color: "rgba(160,175,195,0.7)", fontSize: 10, fontFamily: "Inter, monospace" }}>{s.num}</span>
             </div>
-            <p style={{ color: "#475569", fontSize: 11, fontFamily: "Inter, sans-serif", marginBottom: 12 }}>{s.sub}</p>
+            <p style={{ color: "#7a8fa8", fontSize: 11, fontFamily: "Inter, sans-serif", marginBottom: 12 }}>{s.sub}</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
               {s.stats.map(st => (
                 <div key={st.k} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ color: "#475569", fontSize: 11, fontFamily: "Inter, monospace" }}>{st.k}</span>
-                  <span style={{ color: st.vc || "#94a3b8", fontSize: 12, fontWeight: 600, fontFamily: "Inter, monospace", fontVariantNumeric: "tabular-nums" }}>{st.v}</span>
+                  <span style={{ color: "#7a8fa8", fontSize: 11, fontFamily: "Inter, monospace" }}>{st.k}</span>
+                  <span style={{ color: st.vc || "#b0bac9", fontSize: 12, fontWeight: 600, fontFamily: "Inter, monospace", fontVariantNumeric: "tabular-nums" }}>{st.v}</span>
                 </div>
               ))}
             </div>
@@ -827,7 +824,7 @@ function ReconciliationLoop() {
       {/* Footer */}
       <div style={{ marginTop: 16, display: "flex", justifyContent: "center" }}>
         <span style={{ color: "#475569", fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", fontFamily: "Inter, sans-serif", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 999, padding: "5px 16px" }}>
-          Re-syncs hourly · <span style={{ color: "#38bdf8" }}>No manual reconciliation</span>
+          <span style={{ color: "#38bdf8" }}>No manual reconciliation</span>
         </span>
       </div>
 

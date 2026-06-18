@@ -23,9 +23,9 @@ function CountUp({ target, decimals, suffix, color, glow, started }) {
 }
 
 const TIMELINE_STATS = [
-  { target: 18.2, decimals: 1, suffix: "%", label: "Avg Net Margin",            color: "#2dd4bf", glow: "rgba(45,212,191,0.5)", desc: "See true margin per customer with granular cost allocation and real-time margin insights.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> },
-  { target: 82,   decimals: 0, suffix: "%", label: "Avg SP Coverage",           color: "#38bdf8", glow: "rgba(56,189,248,0.5)",  desc: "Standardize billing and operations to support more customers without adding headcount or complexity.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> },
-  { target: 60,   decimals: 0, suffix: "%", label: "Less Billing Rework",       color: "#a855f7", glow: "rgba(168,85,247,0.5)",  desc: "Eliminate manual work and invoice accurately at any scale with confidence and consistency.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 11-6.219-8.56"/><polyline points="21 3 21 9 15 9"/></svg> },
+  { target: 13.2, decimals: 1, suffix: "%", label: "Resell Margin",              color: "#2dd4bf", glow: "rgba(45,212,191,0.5)", desc: "See true margin per customer with granular cost allocation and real-time margin insights.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> },
+  { target: 25.8, decimals: 1, suffix: "%", label: "Total Margin",               color: "#38bdf8", glow: "rgba(56,189,248,0.5)",  desc: "Standardize billing and operations to support more customers without adding headcount or complexity.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> },
+  { target: 14.6, decimals: 1, suffix: "%", label: "Revenue Growth",             color: "#a855f7", glow: "rgba(168,85,247,0.5)",  desc: "Eliminate manual work and invoice accurately at any scale with confidence and consistency.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 11-6.219-8.56"/><polyline points="21 3 21 9 15 9"/></svg> },
   { target: 12,   decimals: 0, suffix: "x", label: "More Accounts Per Ops FTE", color: "#f59e0b", glow: "rgba(245,158,11,0.5)",  desc: "See true margin per customer with granular cost allocation and real-time margin insights.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg> },
 ];
 
@@ -303,7 +303,7 @@ function MarginIntelligenceCard() {
 }
 
 // ---------- HOME ----------
-function FinOpsCountUp({ target, decimals = 0, prefix = "", suffix = "", duration = 700 }) {
+function FinOpsCountUp({ target, decimals = 0, prefix = "", suffix = "", duration = 700, comma = false }) {
   const [val, setVal] = React.useState(0);
   React.useEffect(() => {
     setVal(0);
@@ -316,7 +316,8 @@ function FinOpsCountUp({ target, decimals = 0, prefix = "", suffix = "", duratio
     }
     requestAnimationFrame(tick);
   }, [target, duration]);
-  return React.createElement(React.Fragment, null, `${prefix}${val.toFixed(decimals)}${suffix}`);
+  const formatted = comma ? Math.floor(val).toLocaleString() : val.toFixed(decimals);
+  return React.createElement(React.Fragment, null, `${prefix}${formatted}${suffix}`);
 }
 
 function FinOpsServiceTabs() {
@@ -336,18 +337,18 @@ function FinOpsServiceTabs() {
     {
       label: "Cost visibility",
       icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/></svg>,
-      service: "SERVICE · 01",
+      service: "",
       title: "Customer cost visibility",
       desc: "Help customers understand where cloud spend is going, how it changes over time, and what is driving movement.",
       bullets: ["Spend breakdown by service, account, project", "MoM and trend reporting per customer", "White-labelled customer-facing reports"],
       card: (tick) => (
-        <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+        <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
             <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>ACME · JUNE SPEND</span>
-            <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>-4.2% MoM</span>
+            <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>+18.2% MoM</span>
           </div>
-          <div key={tick} style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 12, letterSpacing: "-1px" }}>$<FinOpsCountUp target={284392} decimals={0} /></div>
-          <svg width="100%" height="56" viewBox="0 0 300 56" style={{ display: "block", marginBottom: 14 }}>
+          <div key={tick} style={{ fontSize: 24, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 8, letterSpacing: "-1px" }}>$<FinOpsCountUp target={Math.round(CUSTOMERS[0].base * VISIT_MULT)} comma /></div>
+          <svg width="100%" height="44" viewBox="0 0 300 56" style={{ display: "block", marginBottom: 10 }}>
             <defs>
               <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.25"/>
@@ -357,14 +358,14 @@ function FinOpsServiceTabs() {
             <path d="M0 50 C30 48,50 44,80 38 C110 32,130 28,160 22 C190 16,220 12,260 6 L260 56 L0 56 Z" fill="url(#areaGrad)" />
             <path d="M0 50 C30 48,50 44,80 38 C110 32,130 28,160 22 C190 16,220 12,260 6" stroke="#38bdf8" strokeWidth="2" fill="none" strokeLinecap="round"/>
           </svg>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
             <div>
-              <div style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif", marginBottom: 2 }}>Top driver</div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif" }}>EC2 · 38%</div>
+              <div style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif", marginBottom: 1 }}>Top driver</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif" }}>Compute · 38%</div>
             </div>
             <div>
-              <div style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif", marginBottom: 2 }}>Accounts</div>
-              <div key={tick} style={{ fontSize: 13, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif" }}><FinOpsCountUp target={14} /></div>
+              <div style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif", marginBottom: 1 }}>Accounts</div>
+              <div key={tick} style={{ fontSize: 12, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif" }}><FinOpsCountUp target={14} /></div>
             </div>
           </div>
         </div>
@@ -373,72 +374,88 @@ function FinOpsServiceTabs() {
     {
       label: "Rate reduction",
       icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>,
-      service: "SERVICE · 02",
-      title: "Optimization & savings insights",
-      desc: "Reduce waste, improve utilization, and take better advantage of Savings Plans, Reserved Instances, and commitments.",
-      bullets: ["Coverage & utilization reporting", "Commit-portfolio recommendations", "Idle & rightsizing opportunities"],
+      service: "",
+      title: "Reduce Cloud Rates",
+      desc: "Reduce cloud rates by 30% to 50% by implementing discount programs recommended by moneta.",
+      bullets: ["Savings alerting", "Automated moneta implementation", "Current performance metrics"],
       card: (tick) => (
-        <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-            <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>SAVINGS (YTD)</span>
+        <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+            <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>ACME · JUNE SAVINGS</span>
             <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>+$8.4K this month</span>
           </div>
-          <div key={tick} style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 16, letterSpacing: "-1px" }}>$<FinOpsCountUp target={42108} decimals={0} /></div>
-          {[
-            { label: "SP coverage",   pct: 92.4, color: "#16a34a" },
-            { label: "RI utilization", pct: 87.1, color: "#38bdf8" },
-            { label: "Idle compute",   pct: 11.6, color: "#f59e0b", warning: true },
-          ].map(r => (
-            <div key={r.label} style={{ marginBottom: 10 }}>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
-                <span style={{ fontSize: 12, color: "#475569", fontFamily: "Inter, sans-serif" }}>{r.label}</span>
-                <span key={tick} style={{ fontSize: 12, fontWeight: 600, color: r.warning ? "#f59e0b" : "#0f172a", fontFamily: "Inter, sans-serif" }}><FinOpsCountUp target={r.pct} decimals={1} suffix="%" /></span>
+          <div key={tick} style={{ fontSize: 24, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 10, letterSpacing: "-1px" }}>$<FinOpsCountUp target={Math.round(CUSTOMERS[0].base * VISIT_MULT * 0.3)} comma /></div>
+          {(() => {
+            const acmeSpend = Math.round(CUSTOMERS[0].base * VISIT_MULT);
+            const rows = [
+              { label: "Discount Program Coverage", pct: 92.4, color: "#16a34a" },
+              { label: "Savings Available", pct: 15, color: "#38bdf8", dollarValue: Math.round(acmeSpend * 0.15) },
+              { label: "Cloud Investment ROI", pct: 65, color: "#16a34a" },
+            ];
+            return rows.map(r => (
+              <div key={r.label} style={{ marginBottom: 7 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
+                  <span style={{ fontSize: 11, color: "#475569", fontFamily: "Inter, sans-serif" }}>{r.label}</span>
+                  <span key={tick} style={{ fontSize: 11, fontWeight: 600, color: "#0f172a", fontFamily: "Inter, sans-serif" }}>
+                    {r.dollarValue
+                      ? <>${r.dollarValue.toLocaleString()}</>
+                      : <FinOpsCountUp target={r.pct} decimals={1} suffix="%" />
+                    }
+                  </span>
+                </div>
+                <div style={{ height: 5, background: "#f1f5f9", borderRadius: 99, overflow: "hidden" }}>
+                  <div style={{ width: `${r.pct}%`, height: "100%", background: r.color, borderRadius: 99 }} />
+                </div>
               </div>
-              <div style={{ height: 6, background: "#f1f5f9", borderRadius: 99, overflow: "hidden" }}>
-                <div style={{ width: `${r.pct}%`, height: "100%", background: r.color, borderRadius: 99 }} />
-              </div>
-            </div>
-          ))}
+            ));
+          })()}
         </div>
       ),
     },
     {
       label: "Infrastructure Efficiency",
       icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
-      service: "SERVICE · 03",
-      title: "Governance & budgeting",
-      desc: "Support customer conversations around budgets, tagging, allocation, accountability, and cloud financial discipline.",
-      bullets: ["Budget vs actual tracking", "Tag-quality & allocation coverage", "Anomaly alerts & approval workflows"],
-      card: (tick) => (
-        <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-            <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>JUNE BUDGET</span>
-            <span style={{ fontSize: 11, color: "#f59e0b", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>82% used</span>
+      service: "",
+      title: "Operational Efficiency",
+      desc: "Identify infrastructure changes that reduce cloud spend while maintaining performance and reliability.",
+      bullets: ["Underutilized resources identified", "Rightsizing opportunities detected", "Waste and idle spend highlighted"],
+      card: (tick) => {
+        const opportunities = [
+          { label: "EC2 Rightsizing",          savings: 2840 },
+          { label: "Idle EBS Volumes",       savings: 640  },
+          { label: "Unused Load Balancers",  savings: 420  },
+        ];
+        const totalMonthly = opportunities.reduce((s, o) => s + o.savings, 0);
+        const mono = "'Courier New', Courier, monospace";
+        return (
+          <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+            {/* Header — matches Cost Visibility style */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+              <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>ACME · JUNE SAVINGS</span>
+            </div>
+            {/* Total opportunity — on top */}
+            <div style={{ marginBottom: 10 }}>
+              <div style={{ fontSize: 10, color: "#94a3b8", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: mono, marginBottom: 1 }}>Total Savings Opportunity</div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", letterSpacing: "-1px" }}>${(totalMonthly * 12).toLocaleString()}<span style={{ fontSize: 12, fontWeight: 500, color: "#94a3b8" }}>/yr</span></div>
+            </div>
+            {/* Monospace terminal-style opportunity list */}
+            <div style={{ background: "#f8fafc", borderRadius: 8, padding: "9px 12px", fontFamily: mono }}>
+              {/* Total monthly — top of box */}
+              <div style={{ borderBottom: "1px solid #e2e8f0", marginBottom: 7, paddingBottom: 6 }}>
+                <div style={{ fontSize: 11, color: "#64748b" }}>Potential Savings</div>
+                <div style={{ fontSize: 12, color: "#16a34a", fontWeight: 700 }}>${totalMonthly.toLocaleString()}/mo</div>
+              </div>
+              <div style={{ fontSize: 10, color: "#94a3b8", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 7 }}>Efficiency Opportunities</div>
+              {opportunities.map(o => (
+                <div key={o.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                  <div style={{ fontSize: 11, color: "#22b8cf" }}>{o.label}</div>
+                  <div style={{ fontSize: 11, color: "#16a34a", fontWeight: 600 }}>${o.savings.toLocaleString()}/mo</div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 10 }}>
-            <span key={tick} style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", letterSpacing: "-1px" }}>$<FinOpsCountUp target={232801} decimals={0} /></span>
-            <span style={{ fontSize: 13, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>/ $284K</span>
-          </div>
-          <div style={{ height: 8, background: "#f1f5f9", borderRadius: 99, overflow: "hidden", marginBottom: 4 }}>
-            <div style={{ width: "82%", height: "100%", background: "linear-gradient(90deg, #f59e0b, #ef4444)", borderRadius: 99 }} />
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 16 }}>
-            <span style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>0</span>
-            <span style={{ fontSize: 10, color: "#ef4444", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>90% alert</span>
-            <span style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>$284K</span>
-          </div>
-          <div style={{ fontSize: 10, color: "#64748b", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "Inter, sans-serif", marginBottom: 8 }}>ALLOCATION COVERAGE</div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-            {[
-              { label: "✓ env: 100%",      bg: "#dcfce7", color: "#15803d" },
-              { label: "✓ customer: 100%", bg: "#dcfce7", color: "#15803d" },
-              { label: "⚠ cost-center: 78%", bg: "#fef9c3", color: "#a16207" },
-            ].map(t => (
-              <span key={t.label} style={{ fontSize: 11, fontWeight: 600, background: t.bg, color: t.color, borderRadius: 6, padding: "4px 10px", fontFamily: "Inter, sans-serif" }}>{t.label}</span>
-            ))}
-          </div>
-        </div>
-      ),
+        );
+      },
     },
   ];
 
@@ -456,10 +473,10 @@ function FinOpsServiceTabs() {
       </div>
 
       {/* Content */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, minHeight: 320 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, minHeight: 260 }}>
         {/* Left — text */}
         <div style={{ padding: "14px 24px 16px", borderRight: "1px solid #f1f5f9" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#38bdf8", textTransform: "uppercase", marginBottom: 10 }}>{t.service}</div>
+          {t.service && <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#38bdf8", textTransform: "uppercase", marginBottom: 10 }}>{t.service}</div>}
           <div style={{ fontSize: 18, fontWeight: 800, color: "#0f172a", lineHeight: 1.25, marginBottom: 12 }}>{t.title}</div>
           <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6, marginBottom: 16 }}>{t.desc}</p>
           <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
@@ -488,7 +505,7 @@ function HomePage({ onDemoClick }) {
         title="Eliminate Margin Loss in Cloud Reseller Billing"
         accentWord="Cloud Reseller Billing"
         description={<span>The <span className="grad-text-bp font-semibold">operating system</span> for cloud reseller billing — aligning cost, pricing, and discounts across every customer.</span>}
-        ctaLabel="See Your Margin Gaps"
+        ctaLabel="Improve Your Margins"
         onCta={onDemoClick}
         right={<MarginIntelligenceCard />}
       />
@@ -659,7 +676,7 @@ function HomePage({ onDemoClick }) {
               With aligned billing, pricing, and margin data, Cloud FinOps becomes a structured, repeatable service delivered across every customer.
             </p>
             <div className="mt-9">
-              <ReviewCTA onClick={onDemoClick} />
+              <ReviewCTA onClick={onDemoClick} label="Deliver Cloud FinOps at Scale" />
             </div>
           </div>
           <div className="lg:col-span-7 flex items-end">
