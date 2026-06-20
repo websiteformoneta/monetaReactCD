@@ -523,7 +523,7 @@ function CoreSystemLayers() {
   ];
   return (
     <div className="card !rounded-2xl p-6 md:p-8"
-      style={{ boxShadow: "0 0 0 1px rgba(91,123,255,0.35), 0 20px 50px -10px rgba(91,123,255,0.28)" }}>
+      style={{ boxShadow: "0 0 0 1px rgba(91,123,255,0.35), 0 20px 50px -10px rgba(91,123,255,0.28)", overflow: "hidden" }}>
       {/* Header */}
       <div className="mb-6">
         <p className="eyebrow text-[11px] tracking-[0.2em]">Core System Layers</p>
@@ -532,17 +532,18 @@ function CoreSystemLayers() {
       <div className="relative">
         <div className="absolute top-1" style={{
           left: TCOL / 2 - 1, width: 2, height: "calc(100% - 8px)",
-          background: "linear-gradient(180deg,#3B82F6 0%,#22D3EE 33%,#5B7BFF 66%,#A855F7 85%, transparent 100%)",
-          borderRadius: 2
+          background: "linear-gradient(180deg,#3B82F6 0%,#22D3EE 33%,#5B7BFF 66%,#A855F7 85%, transparent 100%)", opacity: 0.9,
+          borderRadius: 2, zIndex: 0
         }} />
         <ul className="space-y-0">
           {items.map((it, idx) => (
             <li key={it.t} className="flex">
               {/* Dot column — centered at 50% = same as line center */}
-              <div className="relative shrink-0 pt-1" style={{ width: TCOL }}>
+              <div className="relative shrink-0 pt-1" style={{ width: TCOL, zIndex: 1 }}>
                 <span className="absolute top-1 left-1/2 -translate-x-1/2" style={{
-                  width: 12, height: 12, borderRadius: "50%", background: it.c, display: "block",
-                  boxShadow: `0 0 0 3px ${it.c}28, 0 0 14px ${it.c}70`
+                  width: 14, height: 14, borderRadius: "50%", background: it.c, display: "block",
+                  boxShadow: `0 0 0 4px ${it.c}55, 0 0 20px ${it.c}cc`,
+                  zIndex: 2
                 }} />
               </div>
               {/* Content */}
@@ -822,24 +823,23 @@ function ReconciliationLoop() {
       </div>
 
       {/* Footer */}
-      <div style={{ marginTop: 16, display: "flex", justifyContent: "center" }}>
+      <div style={{ marginTop: 10, display: "flex", justifyContent: "center" }}>
         <span style={{ color: "#475569", fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", fontFamily: "Inter, sans-serif", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 999, padding: "5px 16px" }}>
           <span style={{ color: "#38bdf8" }}>No manual reconciliation</span>
         </span>
       </div>
 
       {/* Curved return loop */}
-      <div style={{ position: "relative", marginTop: 8, height: 52, width: "100%" }}>
-        {/* arc only — preserveAspectRatio none so it stretches full width */}
-        <svg width="100%" height="52" viewBox="0 0 800 52" preserveAspectRatio="none" fill="none" style={{ display: "block", position: "absolute", top: 0, left: 0 }}>
-          <path d="M 700 4 C 700 42, 550 48, 400 48 C 250 48, 100 42, 100 4" stroke="rgba(56,189,248,0.45)" strokeWidth="1.5" strokeDasharray="8 6" fill="none">
+      <div style={{ position: "relative", marginTop: 4, height: 30, width: "100%" }}>
+        <svg width="100%" height="30" viewBox="0 0 800 30" preserveAspectRatio="none" fill="none" style={{ display: "block", position: "absolute", top: 0, left: 0 }}>
+          <path d="M 700 4 C 700 26, 550 28, 400 28 C 250 28, 100 26, 100 4" stroke="rgba(56,189,248,0.45)" strokeWidth="1.5" strokeDasharray="8 6" fill="none">
             <animate attributeName="stroke-dashoffset" from="28" to="0" dur="2.4s" repeatCount="indefinite" />
           </path>
         </svg>
         {/* arrowhead + stem */}
-        <div style={{ position: "absolute", top: -10, left: "calc(12.5% - 6px)", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ position: "absolute", top: -8, left: "calc(12.5% - 6px)", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <div style={{ width: 0, height: 0, borderLeft: "6px solid transparent", borderRight: "6px solid transparent", borderBottom: "11px solid #38bdf8" }} />
-          <div style={{ width: 2, height: 6, background: "#2887ae", marginLeft: 1 }} />
+          <div style={{ width: 2, height: 4, background: "#2887ae", marginLeft: 1 }} />
         </div>
       </div>
 

@@ -342,7 +342,7 @@ function FinOpsServiceTabs() {
       desc: "Help customers understand where cloud spend is going, how it changes over time, and what is driving movement.",
       bullets: ["Spend breakdown by service, account, project", "MoM and trend reporting per customer", "White-labelled customer-facing reports"],
       card: (tick) => (
-        <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+        <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
             <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>ACME · JUNE SPEND</span>
             <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>+18.2% MoM</span>
@@ -379,7 +379,7 @@ function FinOpsServiceTabs() {
       desc: "Reduce cloud rates by 30% to 50% by implementing discount programs recommended by moneta.",
       bullets: ["Savings alerting", "Automated moneta implementation", "Current performance metrics"],
       card: (tick) => (
-        <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+        <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
             <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>ACME · JUNE SAVINGS</span>
             <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>+$8.4K this month</span>
@@ -428,7 +428,7 @@ function FinOpsServiceTabs() {
         const totalMonthly = opportunities.reduce((s, o) => s + o.savings, 0);
         const mono = "'Courier New', Courier, monospace";
         return (
-          <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+          <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1 }}>
             {/* Header — matches Cost Visibility style */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
               <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>ACME · JUNE SAVINGS</span>
@@ -473,7 +473,7 @@ function FinOpsServiceTabs() {
       </div>
 
       {/* Content */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, minHeight: 260 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
         {/* Left — text */}
         <div style={{ padding: "14px 24px 16px", borderRight: "1px solid #f1f5f9" }}>
           {t.service && <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#38bdf8", textTransform: "uppercase", marginBottom: 10 }}>{t.service}</div>}
@@ -489,7 +489,7 @@ function FinOpsServiceTabs() {
           </div>
         </div>
         {/* Right — card */}
-        <div style={{ padding: "14px 20px 16px", background: "#f8fafc" }}>
+        <div style={{ padding: "14px 20px 16px", background: "#f8fafc", display: "flex" }}>
           {t.card(tick)}
         </div>
       </div>
