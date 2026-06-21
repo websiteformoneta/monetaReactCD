@@ -344,10 +344,10 @@ function FinOpsServiceTabs() {
       card: (tick) => (
         <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
-            <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>ACME · JUNE SPEND</span>
-            <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>+18.2% MoM</span>
+            <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>KMR · JUNE SPEND</span>
+            <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>+11.4% MoM</span>
           </div>
-          <div key={tick} style={{ fontSize: 24, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 8, letterSpacing: "-1px" }}>$<FinOpsCountUp target={Math.round(CUSTOMERS[0].base * VISIT_MULT)} comma /></div>
+          <div key={tick} style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 8, letterSpacing: "-1px" }}>$<FinOpsCountUp target={127480} comma /></div>
           <svg width="100%" height="44" viewBox="0 0 300 56" style={{ display: "block", marginBottom: 10 }}>
             <defs>
               <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
@@ -361,11 +361,11 @@ function FinOpsServiceTabs() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
             <div>
               <div style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif", marginBottom: 1 }}>Top driver</div>
-              <div style={{ fontSize: 12, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif" }}>Compute · 38%</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif" }}>Compute · 44%</div>
             </div>
             <div>
               <div style={{ fontSize: 10, color: "#94a3b8", fontFamily: "Inter, sans-serif", marginBottom: 1 }}>Accounts</div>
-              <div key={tick} style={{ fontSize: 12, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif" }}><FinOpsCountUp target={14} /></div>
+              <div key={tick} style={{ fontSize: 12, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif" }}><FinOpsCountUp target={6} /></div>
             </div>
           </div>
         </div>
@@ -381,16 +381,15 @@ function FinOpsServiceTabs() {
       card: (tick) => (
         <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
-            <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>ACME · JUNE SAVINGS</span>
-            <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>+$8.4K this month</span>
+            <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>KMR · JUNE SAVINGS</span>
+            <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>+$4.9K this month</span>
           </div>
-          <div key={tick} style={{ fontSize: 24, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 10, letterSpacing: "-1px" }}>$<FinOpsCountUp target={Math.round(CUSTOMERS[0].base * VISIT_MULT * 0.3)} comma /></div>
+          <div key={tick} style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 10, letterSpacing: "-1px" }}>$<FinOpsCountUp target={22946} comma /></div>
           {(() => {
-            const acmeSpend = Math.round(CUSTOMERS[0].base * VISIT_MULT);
             const rows = [
-              { label: "Discount Program Coverage", pct: 92.4, color: "#16a34a" },
-              { label: "Savings Available", pct: 15, color: "#38bdf8", dollarValue: Math.round(acmeSpend * 0.15) },
-              { label: "Cloud Investment ROI", pct: 65, color: "#16a34a" },
+              { label: "Discount Program Coverage", pct: 78.6, color: "#16a34a" },
+              { label: "Savings Available", pct: 15, color: "#38bdf8", dollarValue: 10847 },
+              { label: "Cloud Investment ROI", pct: 58, color: "#16a34a" },
             ];
             return rows.map(r => (
               <div key={r.label} style={{ marginBottom: 7 }}>
@@ -421,35 +420,27 @@ function FinOpsServiceTabs() {
       bullets: ["Underutilized resources identified", "Rightsizing opportunities detected", "Waste and idle spend highlighted"],
       card: (tick) => {
         const opportunities = [
-          { label: "EC2 Rightsizing",          savings: 2840 },
-          { label: "Idle EBS Volumes",       savings: 640  },
-          { label: "Unused Load Balancers",  savings: 420  },
+          { label: "EC2 Rightsizing",        savings: 3240 },
+          { label: "Idle EBS Volumes",       savings: 1470 },
+          { label: "Unused Load Balancers",  savings: 890  },
         ];
         const totalMonthly = opportunities.reduce((s, o) => s + o.savings, 0);
         const mono = "'Courier New', Courier, monospace";
         return (
-          <div style={{ background: "#fff", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1 }}>
-            {/* Header — matches Cost Visibility style */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-              <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>ACME · JUNE SAVINGS</span>
+          <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1, boxSizing: "border-box" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 2 }}>
+              <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>KMR · JUNE SAVINGS</span>
             </div>
-            {/* Total opportunity — on top */}
-            <div style={{ marginBottom: 10 }}>
+            <div style={{ marginBottom: 8 }}>
               <div style={{ fontSize: 10, color: "#94a3b8", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: mono, marginBottom: 1 }}>Total Savings Opportunity</div>
-              <div style={{ fontSize: 24, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", letterSpacing: "-1px" }}>${(totalMonthly * 12).toLocaleString()}<span style={{ fontSize: 12, fontWeight: 500, color: "#94a3b8" }}>/yr</span></div>
+              <div style={{ fontSize: 22, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", letterSpacing: "-1px" }}>${(totalMonthly * 12).toLocaleString()}<span style={{ fontSize: 11, fontWeight: 500, color: "#94a3b8" }}>/yr</span></div>
             </div>
-            {/* Monospace terminal-style opportunity list */}
-            <div style={{ background: "#f8fafc", borderRadius: 8, padding: "9px 12px", fontFamily: mono }}>
-              {/* Total monthly — top of box */}
-              <div style={{ borderBottom: "1px solid #e2e8f0", marginBottom: 7, paddingBottom: 6 }}>
-                <div style={{ fontSize: 11, color: "#64748b" }}>Potential Savings</div>
-                <div style={{ fontSize: 12, color: "#16a34a", fontWeight: 700 }}>${totalMonthly.toLocaleString()}/mo</div>
-              </div>
-              <div style={{ fontSize: 10, color: "#94a3b8", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 7 }}>Efficiency Opportunities</div>
+            <div style={{ background: "#f8fafc", borderRadius: 8, padding: "7px 10px", fontFamily: mono }}>
+              <div style={{ fontSize: 10, color: "#94a3b8", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 5 }}>Efficiency Opportunities</div>
               {opportunities.map(o => (
-                <div key={o.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                <div key={o.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
                   <div style={{ fontSize: 11, color: "#22b8cf" }}>{o.label}</div>
-                  <div style={{ fontSize: 11, color: "#16a34a", fontWeight: 600 }}>${o.savings.toLocaleString()}/mo</div>
+                  <div style={{ fontSize: 11, color: "#16a34a", fontWeight: 600 }}>${(o.savings * 12).toLocaleString()}/yr</div>
                 </div>
               ))}
             </div>
@@ -472,26 +463,28 @@ function FinOpsServiceTabs() {
         ))}
       </div>
 
-      {/* Content */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
-        {/* Left — text */}
-        <div style={{ padding: "14px 24px 16px", borderRight: "1px solid #f1f5f9" }}>
-          {t.service && <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#38bdf8", textTransform: "uppercase", marginBottom: 10 }}>{t.service}</div>}
-          <div style={{ fontSize: 18, fontWeight: 800, color: "#0f172a", lineHeight: 1.25, marginBottom: 12 }}>{t.title}</div>
-          <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6, marginBottom: 16 }}>{t.desc}</p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-            {t.bullets.map(b => (
-              <div key={b} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 2 }}><polyline points="20 6 9 17 4 12"/></svg>
-                <span style={{ fontSize: 12.5, color: "#475569", lineHeight: 1.4 }}>{b}</span>
+      {/* Content — all tabs rendered, only active visible, so height is always the tallest */}
+      <div style={{ position: "relative" }}>
+        {tabs.map((tab, i) => (
+          <div key={tab.label} style={{ display: i === active ? "grid" : "grid", gridTemplateColumns: "1fr 1fr", gap: 0, visibility: i === active ? "visible" : "hidden", position: i === active ? "relative" : "absolute", top: 0, left: 0, width: "100%" }}>
+            <div style={{ padding: "14px 24px 16px", borderRight: "1px solid #f1f5f9" }}>
+              {tab.service && <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#38bdf8", textTransform: "uppercase", marginBottom: 10 }}>{tab.service}</div>}
+              <div style={{ fontSize: 18, fontWeight: 800, color: "#0f172a", lineHeight: 1.25, marginBottom: 12 }}>{tab.title}</div>
+              <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6, marginBottom: 16 }}>{tab.desc}</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                {tab.bullets.map(b => (
+                  <div key={b} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 2 }}><polyline points="20 6 9 17 4 12"/></svg>
+                    <span style={{ fontSize: 12.5, color: "#475569", lineHeight: 1.4 }}>{b}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <div style={{ padding: "14px 20px 16px", background: "#f8fafc", display: "flex" }}>
+              {tab.card(tick)}
+            </div>
           </div>
-        </div>
-        {/* Right — card */}
-        <div style={{ padding: "14px 20px 16px", background: "#f8fafc", display: "flex" }}>
-          {t.card(tick)}
-        </div>
+        ))}
       </div>
     </div>
   );
