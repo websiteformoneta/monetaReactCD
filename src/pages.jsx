@@ -245,6 +245,7 @@ function MarginIntelligenceCard() {
         @keyframes barIn {
           from { width: 0; }
         }
+        @keyframes floatUpDownHome { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
       `}</style>
       <div ref={ref} onMouseEnter={() => setCardHovered(true)} onMouseLeave={() => { setCardHovered(false); setHovered(null); }} style={{ position: "relative", width: "100%", maxWidth: 520, margin: "0 auto", paddingBottom: 52 }}>
 
@@ -287,6 +288,7 @@ function MarginIntelligenceCard() {
           opacity: cardHovered ? 0 : 1,
           transition: "opacity 0.25s",
           pointerEvents: "none",
+          animation: "floatUpDownHome 3s ease-in-out infinite",
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
             <span style={{ fontSize: 14 }}>⚠️</span>
@@ -950,78 +952,95 @@ function FinOpsPage({ onDemoClick }) {
               <p className="mt-7 text-[17px] md:text-[18px] leading-[1.65] text-ink-secondary max-w-[520px]">
                 moneta helps cloud resellers and MSPs deliver cost visibility, optimization insights, budgeting, governance, and customer-facing FinOps reporting across AWS and Azure environments.
               </p>
-              <div className="mt-9 flex flex-wrap items-center gap-3">
-                <Button variant="primary" onClick={onDemoClick} className="!px-7 !py-4 !text-[15px]">
-                  See your margin gaps <ArrowRight />
-                </Button>
-                <Button variant="secondary" as="a" href="#finops-how-it-works" className="!px-6 !py-4 !text-[15px]">
-                  How it works
+              <div className="mt-9">
+                <Button variant="primary" className="!px-7 !py-4 !text-[15px]" onClick={() => { const el = document.getElementById("finops-how-it-works"); if (el) window.scrollTo({ top: el.offsetTop - 30, behavior: "smooth" }); }}>
+                  How it works <ArrowRight />
                 </Button>
               </div>
-              <p className="mt-8 text-[13px] text-ink-muted">
-                Built for reseller-led FinOps services across AWS and Azure. GCP support coming soon.
-              </p>
             </div>
             {/* Right column — Customer Portfolio card */}
             <div className="lg:col-span-6 lg:pl-4">
-              <div style={{ position: "relative", width: "100%", maxWidth: 560, margin: "0 auto" }}>
-                {/* Main card */}
-                <div style={{ background: "rgba(15,20,40,0.85)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: "22px 24px", backdropFilter: "blur(16px)", boxShadow: "0 24px 60px rgba(0,0,0,0.45)" }}>
-                  {/* Card header */}
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 18 }}>
-                    <div>
-                      <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#64748b", fontFamily: "Inter, sans-serif", marginBottom: 4 }}>Customer Portfolio</p>
-                      <p style={{ fontSize: 16, fontWeight: 600, color: "#f1f5f9", fontFamily: "Inter, sans-serif" }}>12 active · 4 in review</p>
-                    </div>
-                    <span style={{ fontSize: 11, color: "#22c55e", fontWeight: 500, fontFamily: "Inter, sans-serif", display: "flex", alignItems: "center", gap: 5 }}>
-                      <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", display: "inline-block" }} />
-                      live
-                    </span>
-                  </div>
-                  {/* 2x2 customer grid */}
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 18 }}>
-                    {[
-                      { name: "Acme Co.",       pct: 72, status: "healthy",   statusColor: "#22c55e", spend: "$284k/mo", ring: "#22c55e" },
-                      { name: "Northvale Labs", pct: 58, status: "+8 opps",   statusColor: "#38bdf8", spend: "$92k/mo",  ring: "#38bdf8" },
-                      { name: "Riveroak",       pct: 88, status: "88% cap",   statusColor: "#f59e0b", spend: null,       ring: "#f59e0b" },
-                      { name: "Saltcliff Media",pct: 42, status: "tag gap",   statusColor: "#ef4444", spend: "$24k/mo",  ring: "#ef4444" },
-                    ].map((c) => {
-                      const R = 16, circ = 2 * Math.PI * R;
-                      const dash = (c.pct / 100) * circ;
-                      return (
-                        <div key={c.name} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "12px 14px", display: "flex", alignItems: "center", gap: 12 }}>
-                          {/* Donut */}
-                          <svg width="42" height="42" viewBox="0 0 42 42" style={{ flexShrink: 0 }}>
-                            <circle cx="21" cy="21" r={R} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="4" />
-                            <circle cx="21" cy="21" r={R} fill="none" stroke={c.ring} strokeWidth="4"
-                              strokeDasharray={`${dash} ${circ - dash}`} strokeDashoffset={circ * 0.25}
-                              strokeLinecap="round" />
-                            <text x="21" y="25" textAnchor="middle" style={{ fontSize: 9, fontWeight: 700, fill: "#f1f5f9", fontFamily: "Inter, sans-serif" }}>{c.pct}%</text>
-                          </svg>
-                          <div>
-                            <p style={{ fontSize: 13, fontWeight: 600, color: "#f1f5f9", fontFamily: "Inter, sans-serif", marginBottom: 2 }}>{c.name}</p>
-                            <p style={{ fontSize: 12, fontWeight: 500, color: c.statusColor, fontFamily: "Inter, sans-serif", marginBottom: c.spend ? 1 : 0 }}>{c.status}</p>
-                            {c.spend && <p style={{ fontSize: 11, color: "#64748b", fontFamily: "Inter, sans-serif" }}>{c.spend}</p>}
-                          </div>
+              {(() => {
+                const [popupVisible, setPopupVisible] = React.useState(true);
+                const wrapRef = React.useRef(null);
+                const handleMouseMove = React.useCallback((e) => {
+                  const el = wrapRef.current;
+                  if (!el) return;
+                  const rect = el.getBoundingClientRect();
+                  const proximity = 60;
+                  const near = e.clientX > rect.left - proximity && e.clientX < rect.right + proximity &&
+                               e.clientY > rect.top - proximity && e.clientY < rect.bottom + proximity;
+                  setPopupVisible(!near);
+                }, []);
+                React.useEffect(() => {
+                  window.addEventListener("mousemove", handleMouseMove);
+                  return () => window.removeEventListener("mousemove", handleMouseMove);
+                }, [handleMouseMove]);
+                return (
+                  <div ref={wrapRef} style={{ width: "100%", maxWidth: 560, margin: "0 auto", position: "relative", paddingBottom: 48 }}>
+                    <div style={{ background: "#0d1424", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: "22px 24px", boxShadow: "0 24px 60px rgba(0,0,0,0.45)" }}>
+                      {/* Card header */}
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
+                        <div>
+                          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#22D3EE", fontFamily: "Inter, sans-serif", marginBottom: 5 }}>Customer Portfolio</p>
+                          <p style={{ fontSize: 20, fontWeight: 700, color: "#f1f5f9", fontFamily: "Inter, sans-serif" }}>12 active · 4 in review</p>
                         </div>
-                      );
-                    })}
-                  </div>
-                  {/* Footer timestamp */}
-                  <p style={{ textAlign: "right", fontSize: 11, color: "#334155", fontFamily: "Inter, sans-serif" }}>May 2026</p>
-                </div>
-                {/* Savings Found popup */}
-                <div style={{ position: "absolute", bottom: -32, left: 16, background: "#ffffff", borderRadius: 12, padding: "14px 18px", width: 300, boxShadow: "0 8px 32px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.06)", zIndex: 10 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                    <div style={{ width: 28, height: 28, borderRadius: 7, background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+                        <span style={{ fontSize: 12, color: "#64748b", fontWeight: 400, fontFamily: "Inter, sans-serif" }}>live</span>
+                      </div>
+                      {/* 2x2 customer grid */}
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 16 }}>
+                        {[
+                          { name: "Acme Co.",        pct: 72, status: "healthy",  statusColor: "#22c55e", spend: "$284k/mo", ring: "#22c55e" },
+                          { name: "Northvale Labs",  pct: 58, status: "+8 opps",  statusColor: "#22c55e", spend: "$92k/mo",  ring: "#38bdf8" },
+                          { name: "Riveroak",        pct: 88, status: "88% cap",  statusColor: "#f59e0b", spend: "$39k/mo",  ring: "#f59e0b" },
+                          { name: "Saltcliff Media", pct: 42, status: "tag gap",  statusColor: "#ef4444", spend: "$24k/mo",  ring: "#ef4444" },
+                        ].map((c) => {
+                          const R = 18, circ = 2 * Math.PI * R;
+                          const dash = (c.pct / 100) * circ;
+                          return (
+                            <div key={c.name} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "12px 14px", display: "flex", alignItems: "center", gap: 12 }}>
+                              <svg width="48" height="48" viewBox="0 0 48 48" style={{ flexShrink: 0 }}>
+                                <circle cx="24" cy="24" r={R} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="5" />
+                                <circle cx="24" cy="24" r={R} fill="none" stroke={c.ring} strokeWidth="5"
+                                  strokeDasharray={`${dash} ${circ - dash}`} strokeDashoffset={circ * 0.25}
+                                  strokeLinecap="round" />
+                                <text x="24" y="28" textAnchor="middle" style={{ fontSize: 10, fontWeight: 700, fill: "#f1f5f9", fontFamily: "Inter, sans-serif" }}>{c.pct}%</text>
+                              </svg>
+                              <div>
+                                <p style={{ fontSize: 13, fontWeight: 600, color: "#f1f5f9", fontFamily: "Inter, sans-serif", marginBottom: 2 }}>{c.name}</p>
+                                <p style={{ fontSize: 12, fontWeight: 500, color: c.statusColor, fontFamily: "Inter, sans-serif", marginBottom: 2 }}>{c.status}</p>
+                                <p style={{ fontSize: 11, color: "#475569", fontFamily: "Inter, sans-serif" }}>{c.spend}</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      {/* Footer */}
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                          <span style={{ fontSize: 12, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>
+                            Aggregate margin <span style={{ color: "#22c55e", fontWeight: 600 }}>16.6%</span> · <span style={{ color: "#f1f5f9" }}>+1.2pp MoM</span>
+                          </span>
+                        </div>
+                        <span style={{ fontSize: 11, color: "#475569", fontFamily: "Inter, sans-serif" }}>May 2026</span>
+                      </div>
                     </div>
-                    <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#16a34a", fontFamily: "Inter, sans-serif" }}>Savings Found</span>
+                    {/* Savings Found popup */}
+                    <style>{`@keyframes floatUpDown { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }`}</style>
+                    <div style={{ position: "absolute", bottom: "23%", left: 16, background: "#ffffff", borderRadius: 12, padding: "13px 16px", width: 290, boxShadow: "0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.06)", pointerEvents: "none", opacity: popupVisible ? 1 : 0, transition: "opacity 0.2s ease", animation: "floatUpDown 3s ease-in-out infinite" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
+                        <div style={{ width: 26, height: 26, borderRadius: 7, background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+                        </div>
+                        <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#16a34a", fontFamily: "Inter, sans-serif" }}>Savings Found</span>
+                      </div>
+                      <p style={{ fontSize: 13, fontWeight: 600, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 3 }}>Northvale Labs · +$22,480</p>
+                      <p style={{ fontSize: 12, color: "#64748b", lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>Six optimization opportunities surfaced. Ready for May customer review.</p>
+                    </div>
                   </div>
-                  <p style={{ fontSize: 14, fontWeight: 600, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 4 }}>Northvale Labs · +$22,480</p>
-                  <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>Six optimization opportunities surfaced. Ready for May customer review.</p>
-                </div>
-              </div>
+                );
+              })()}
             </div>
           </div>
         </div>
@@ -1033,16 +1052,16 @@ function FinOpsPage({ onDemoClick }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-14">
           <div>
             <Eyebrow className="mb-5">The Challenge</Eyebrow>
-            <h2 style={{ fontSize: "clamp(30px, 3.5vw, 46px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.025em", color: "#f1f5f9" }}>
+            <h2 style={{ fontSize: "clamp(30px, 3.5vw, 46px)", fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.025em", color: "#f1f5f9" }}>
               Customers expect more than cloud billing.
             </h2>
           </div>
           <div className="flex flex-col justify-center gap-4">
             <p className="text-[16px] leading-[1.7]" style={{ color: "#94a3b8" }}>
-              Cloud customers want to understand where spend is going, why costs are changing, and how to reduce waste. For resellers and MSPs, this creates an opportunity to deliver Cloud FinOps as an ongoing service.
+              Cloud customers want to understand where spend is going, why costs are changing, how to reduce their bill, and cloud investment ROI. For resellers and MSPs, this creates an opportunity to deliver Cloud FinOps as an ongoing service.
             </p>
             <p className="text-[16px] leading-[1.7]" style={{ color: "#94a3b8" }}>
-              FinOps delivery becomes difficult when customer cost visibility, billing data, discount impact, optimization insights, and governance reporting are not connected. Resellers need a repeatable way to turn cloud financial data into customer-facing value.
+              Cloud FinOps delivery becomes difficult when billing data, reseller discounts, customer special pricing, technical savings adjustments, and governance reporting are not connected. Resellers need a repeatable way to turn cloud financial data into customer-facing value.
             </p>
           </div>
         </div>
@@ -1068,11 +1087,11 @@ function FinOpsPage({ onDemoClick }) {
               b: "Tagging gaps, allocation issues, and unclear ownership make cloud cost reporting harder to trust.",
             },
           ].map((c) => (
-            <div key={c.n} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 14, padding: "24px 22px" }}>
-              <p style={{ fontSize: 11, color: "#475569", fontWeight: 600, fontFamily: "Inter, sans-serif", marginBottom: 14 }}>{c.n}</p>
-              <div style={{ width: 38, height: 38, borderRadius: 9, background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14 }}>{c.icon}</div>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", fontFamily: "Inter, sans-serif", marginBottom: 8, lineHeight: 1.35 }}>{c.t}</h3>
-              <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.65, fontFamily: "Inter, sans-serif" }}>{c.b}</p>
+            <div key={c.n} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 14, padding: "18px 20px 18px", display: "flex", flexDirection: "column" }}>
+              <p style={{ fontSize: 11, color: "#475569", fontWeight: 600, fontFamily: "Inter, sans-serif", marginBottom: 10 }}>{c.n}</p>
+              <div style={{ width: 36, height: 36, borderRadius: 9, background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>{c.icon}</div>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", fontFamily: "Inter, sans-serif", marginBottom: 6, lineHeight: 1.35 }}>{c.t}</h3>
+              <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.6, fontFamily: "Inter, sans-serif", marginBottom: 0 }}>{c.b}</p>
             </div>
           ))}
         </div>
@@ -1091,11 +1110,11 @@ function FinOpsPage({ onDemoClick }) {
               b: "Internal teams need margin and billing context; customers need clear cost, savings, and optimization reporting.",
             },
           ].map((c) => (
-            <div key={c.n} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 14, padding: "24px 22px" }}>
-              <p style={{ fontSize: 11, color: "#475569", fontWeight: 600, fontFamily: "Inter, sans-serif", marginBottom: 14 }}>{c.n}</p>
-              <div style={{ width: 38, height: 38, borderRadius: 9, background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14 }}>{c.icon}</div>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", fontFamily: "Inter, sans-serif", marginBottom: 8, lineHeight: 1.35 }}>{c.t}</h3>
-              <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.65, fontFamily: "Inter, sans-serif" }}>{c.b}</p>
+            <div key={c.n} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 14, padding: "18px 20px 18px", display: "flex", flexDirection: "column" }}>
+              <p style={{ fontSize: 11, color: "#475569", fontWeight: 600, fontFamily: "Inter, sans-serif", marginBottom: 10 }}>{c.n}</p>
+              <div style={{ width: 36, height: 36, borderRadius: 9, background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>{c.icon}</div>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", fontFamily: "Inter, sans-serif", marginBottom: 6, lineHeight: 1.35 }}>{c.t}</h3>
+              <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.6, fontFamily: "Inter, sans-serif", marginBottom: 0 }}>{c.b}</p>
             </div>
           ))}
         </div>
@@ -1107,22 +1126,21 @@ function FinOpsPage({ onDemoClick }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-14">
           <div>
             <Eyebrow className="mb-5">The Solution</Eyebrow>
-            <h2 style={{ fontSize: "clamp(30px, 3.5vw, 46px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.025em", color: "#0f172a" }}>
-              Turn cloud financial data into repeatable FinOps services.
+            <h2 style={{ fontSize: "clamp(30px, 3.5vw, 46px)", fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.025em", color: "#0f172a" }}>
+              Turn cloud financial data into repeatable Cloud FinOps services.
             </h2>
           </div>
           <div className="flex flex-col justify-center gap-4">
             <p className="text-[16px] leading-[1.7]" style={{ color: "#334155" }}>
-              moneta helps resellers and MSPs deliver Cloud FinOps as a structured service by connecting customer cost visibility, savings insights, budgeting, governance, and reporting.
+              moneta helps resellers and MSPs deliver Cloud FinOps as a structured service by reseller spend with customer cost data providing easy to understand costs, rate reduction, budgeting and forecasting, governance and reporting insights.
             </p>
             <p className="text-[16px] leading-[1.7]" style={{ color: "#334155" }}>
-              FinOps becomes more than occasional cost analysis. It becomes a repeatable customer service built on aligned billing, cost, discount, and reporting data.
+              Cloud FinOps becomes more than an occasional cost analysis. It becomes a strategic and repeatable valued customer service built on aligned billing, cost, discount, and reporting data.
             </p>
-            <p style={{ fontSize: 13, color: "#22D3EE", fontStyle: "italic", fontFamily: "Inter, sans-serif" }}>Connected cost, savings, governance, and customer reporting.</p>
           </div>
         </div>
         {/* 5 solution cards — 3 top, 2 bottom */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
           {[
             {
               icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/></svg>,
@@ -1150,7 +1168,7 @@ function FinOpsPage({ onDemoClick }) {
             </div>
           ))}
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {[
             {
               icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
@@ -1168,21 +1186,21 @@ function FinOpsPage({ onDemoClick }) {
             <div key={c.t} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 22px" }}>
               <div style={{ width: 38, height: 38, borderRadius: 9, background: `rgba(59,130,246,0.08)`, border: `1px solid rgba(59,130,246,0.18)`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14 }}>{c.icon}</div>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 8, lineHeight: 1.35 }}>{c.t}</h3>
-              <p style={{ fontSize: 13.5, color: c.accent, lineHeight: 1.65, fontFamily: "Inter, sans-serif" }}>{c.b}</p>
+              <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.65, fontFamily: "Inter, sans-serif" }}>{c.b}</p>
             </div>
           ))}
         </div>
       </SectionShell>
 
       {/* ── NEW SECTION 4: How It Works ── */}
-      <SectionShell id="finops-how-it-works" className="border-t border-line-soft" style={{ background: "#0F2040", paddingTop: 80, paddingBottom: 80 }}>
-        <div className="text-center max-w-[760px] mx-auto mb-14">
-          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#22D3EE", fontFamily: "Inter, sans-serif", marginBottom: 16 }}>How It Works</p>
-          <h2 style={{ fontSize: "clamp(32px, 4vw, 54px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.03em", color: "#f1f5f9" }}>
-            From cloud cost data to customer-facing FinOps value.
+      <SectionShell id="finops-how-it-works" className="border-t border-line-soft" style={{ background: "#0F2040", paddingTop: 56, paddingBottom: 56 }}>
+        <div className="text-center max-w-[760px] mx-auto mb-5">
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#22D3EE", fontFamily: "Inter, sans-serif", marginBottom: 10 }}>How It Works</p>
+          <h2 style={{ fontSize: "clamp(32px, 4vw, 54px)", fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.03em", color: "#f1f5f9" }}>
+            From unwieldy cloud cost data to customer-facing Cloud FinOps value.
           </h2>
-          <p className="mt-5 text-[16px] leading-[1.7]" style={{ color: "#94a3b8" }}>
-            moneta helps reseller teams turn billing and usage data into meaningful FinOps workflows for customers.
+          <p className="mt-3 text-[16px] leading-[1.7]" style={{ color: "#94a3b8" }}>
+            moneta helps reseller teams turn billing and usage data into meaningful Cloud FinOps workflows for customers.
           </p>
         </div>
         {/* 6 step cards — 3+3 grid */}
