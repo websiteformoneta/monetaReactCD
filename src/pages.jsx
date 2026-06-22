@@ -342,13 +342,13 @@ function FinOpsServiceTabs() {
       desc: "Help customers understand where cloud spend is going, how it changes over time, and what is driving movement.",
       bullets: ["Spend breakdown by service, account, project", "MoM and trend reporting per customer", "White-labelled customer-facing reports"],
       card: (tick) => (
-        <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1 }}>
+        <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1, display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
             <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>KMR · JUNE SPEND</span>
             <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>+11.4% MoM</span>
           </div>
           <div key={tick} style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 8, letterSpacing: "-1px" }}>$<FinOpsCountUp target={127480} comma /></div>
-          <svg width="100%" height="44" viewBox="0 0 300 56" style={{ display: "block", marginBottom: 10 }}>
+          <svg width="100%" height="44" viewBox="0 0 300 56" preserveAspectRatio="none" style={{ display: "block", marginBottom: 10, flex: 1, minHeight: 44 }}>
             <defs>
               <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.25"/>
@@ -379,12 +379,13 @@ function FinOpsServiceTabs() {
       desc: "Reduce cloud rates by 30% to 50% by implementing discount programs recommended by moneta.",
       bullets: ["Savings alerting", "Automated moneta implementation", "Current performance metrics"],
       card: (tick) => (
-        <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1 }}>
+        <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1, display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
             <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>KMR · JUNE SAVINGS</span>
             <span style={{ fontSize: 11, color: "#16a34a", fontWeight: 600, fontFamily: "Inter, sans-serif" }}>+$4.9K this month</span>
           </div>
           <div key={tick} style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 10, letterSpacing: "-1px" }}>$<FinOpsCountUp target={22946} comma /></div>
+          <div style={{ marginTop: "auto" }}>
           {(() => {
             const rows = [
               { label: "Discount Program Coverage", pct: 78.6, color: "#16a34a" },
@@ -408,6 +409,7 @@ function FinOpsServiceTabs() {
               </div>
             ));
           })()}
+          </div>
         </div>
       ),
     },
@@ -438,12 +440,12 @@ function FinOpsServiceTabs() {
         });
         return (
           <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1, boxSizing: "border-box", display: "flex", flexDirection: "column" }}>
-            <div style={{ marginBottom: 4 }}>
+            <div>
               <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>KMR · ANNUAL SAVINGS BREAKDOWN</span>
             </div>
-            {/* Donut */}
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flex: 1, minHeight: 0, padding: "4px 0" }}>
-              <svg width="96" height="96" viewBox="0 0 96 96" style={{ display: "block" }}>
+            {/* Donut — centered in the available space between header and legend */}
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flex: 1, minHeight: 0 }}>
+              <svg width="104" height="104" viewBox="0 0 96 96" style={{ display: "block" }}>
                 <g transform="translate(48,48)">
                   {segments.map(s => (
                     <circle key={s.label} r={R} cx="0" cy="0" fill="none" stroke={s.color} strokeWidth="12"
@@ -454,8 +456,8 @@ function FinOpsServiceTabs() {
                 <text x="48" y="48" textAnchor="middle" dominantBaseline="central" style={{ fontSize: 13, fontWeight: 800, fill: "#0f172a", fontFamily: "Inter, sans-serif", letterSpacing: "-0.5px" }}>${totalYear.toLocaleString()}</text>
               </svg>
             </div>
-            {/* Legend */}
-            <div style={{ borderTop: "1px solid #f1f5f9", paddingTop: 7 }}>
+            {/* Legend — pinned to bottom */}
+            <div>
               {opportunities.map(o => (
                 <div key={o.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
@@ -485,10 +487,10 @@ function FinOpsServiceTabs() {
         ))}
       </div>
 
-      {/* Content — all tabs rendered, only active visible, so height is always the tallest */}
-      <div style={{ position: "relative" }}>
+      {/* Content — all tabs rendered absolutely on a fixed-height stage so every tab is identical in size */}
+      <div style={{ position: "relative", height: 252 }}>
         {tabs.map((tab, i) => (
-          <div key={tab.label} style={{ display: i === active ? "grid" : "grid", gridTemplateColumns: "1fr 1fr", gap: 0, visibility: i === active ? "visible" : "hidden", position: i === active ? "relative" : "absolute", top: 0, left: 0, width: "100%" }}>
+          <div key={tab.label} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, alignItems: "stretch", visibility: i === active ? "visible" : "hidden", position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
             <div style={{ padding: "14px 24px 16px", borderRight: "1px solid #f1f5f9" }}>
               {tab.service && <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#38bdf8", textTransform: "uppercase", marginBottom: 10 }}>{tab.service}</div>}
               <div style={{ fontSize: 18, fontWeight: 800, color: "#0f172a", lineHeight: 1.25, marginBottom: 12 }}>{tab.title}</div>
@@ -502,7 +504,7 @@ function FinOpsServiceTabs() {
                 ))}
               </div>
             </div>
-            <div style={{ padding: "14px 20px 16px", background: "#f8fafc", display: "flex" }}>
+            <div style={{ padding: "14px 20px 16px", background: "#f8fafc", display: "flex", alignItems: "stretch" }}>
               {tab.card(tick)}
             </div>
           </div>
