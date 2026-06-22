@@ -420,27 +420,49 @@ function FinOpsServiceTabs() {
       bullets: ["Underutilized resources identified", "Rightsizing opportunities detected", "Waste and idle spend highlighted"],
       card: (tick) => {
         const opportunities = [
-          { label: "EC2 Rightsizing",        savings: 3240 },
-          { label: "Idle EBS Volumes",       savings: 1470 },
-          { label: "Unused Load Balancers",  savings: 890  },
+          { label: "EC2 Rightsizing",        savings: 3240, color: "#A855F7" },
+          { label: "Idle EBS Volumes",       savings: 1470, color: "#22D3EE" },
+          { label: "Unused Load Balancers",  savings: 890,  color: "#3B82F6" },
         ];
         const totalMonthly = opportunities.reduce((s, o) => s + o.savings, 0);
+        const totalYear = totalMonthly * 12;
         const mono = "'Courier New', Courier, monospace";
+        // Donut geometry
+        const R = 34, C = 2 * Math.PI * R;
+        let offset = 0;
+        const segments = opportunities.map(o => {
+          const frac = o.savings / totalMonthly;
+          const seg = { ...o, dash: frac * C, gap: C - frac * C, rot: offset };
+          offset += frac * 360;
+          return seg;
+        });
         return (
-          <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1, boxSizing: "border-box" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 2 }}>
-              <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>KMR · JUNE SAVINGS</span>
+          <div style={{ background: "#fff", borderRadius: 12, padding: "14px 16px", border: "1px solid #e2e8f0", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", flex: 1, boxSizing: "border-box", display: "flex", flexDirection: "column" }}>
+            <div style={{ marginBottom: 4 }}>
+              <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "Inter, sans-serif" }}>KMR · ANNUAL SAVINGS BREAKDOWN</span>
             </div>
-            <div style={{ marginBottom: 8 }}>
-              <div style={{ fontSize: 10, color: "#94a3b8", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: mono, marginBottom: 1 }}>Total Savings Opportunity</div>
-              <div style={{ fontSize: 22, fontWeight: 800, color: "#0f172a", fontFamily: "Inter, sans-serif", letterSpacing: "-1px" }}>${(totalMonthly * 12).toLocaleString()}<span style={{ fontSize: 11, fontWeight: 500, color: "#94a3b8" }}>/yr</span></div>
+            {/* Donut */}
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flex: 1, minHeight: 0, padding: "4px 0" }}>
+              <svg width="96" height="96" viewBox="0 0 96 96" style={{ display: "block" }}>
+                <g transform="translate(48,48)">
+                  {segments.map(s => (
+                    <circle key={s.label} r={R} cx="0" cy="0" fill="none" stroke={s.color} strokeWidth="12"
+                      strokeDasharray={`${s.dash} ${s.gap}`} strokeDashoffset="0"
+                      transform={`rotate(${s.rot - 90})`} />
+                  ))}
+                </g>
+                <text x="48" y="48" textAnchor="middle" dominantBaseline="central" style={{ fontSize: 13, fontWeight: 800, fill: "#0f172a", fontFamily: "Inter, sans-serif", letterSpacing: "-0.5px" }}>${totalYear.toLocaleString()}</text>
+              </svg>
             </div>
-            <div style={{ background: "#f8fafc", borderRadius: 8, padding: "7px 10px", fontFamily: mono }}>
-              <div style={{ fontSize: 10, color: "#94a3b8", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 5 }}>Efficiency Opportunities</div>
+            {/* Legend */}
+            <div style={{ borderTop: "1px solid #f1f5f9", paddingTop: 7 }}>
               {opportunities.map(o => (
                 <div key={o.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-                  <div style={{ fontSize: 11, color: "#22b8cf" }}>{o.label}</div>
-                  <div style={{ fontSize: 11, color: "#16a34a", fontWeight: 600 }}>${(o.savings * 12).toLocaleString()}/yr</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                    <span style={{ width: 7, height: 7, borderRadius: "50%", background: o.color, display: "inline-block", flexShrink: 0 }} />
+                    <span style={{ fontSize: 11, color: "#475569", fontFamily: "Inter, sans-serif" }}>{o.label}</span>
+                  </div>
+                  <span style={{ fontSize: 11, color: "#0f172a", fontWeight: 600, fontFamily: mono, fontVariantNumeric: "tabular-nums" }}>${(o.savings * 12).toLocaleString()}</span>
                 </div>
               ))}
             </div>
