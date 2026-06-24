@@ -1328,6 +1328,372 @@ function FinOpsPage({ onDemoClick }) {
 function WhyPage({ onDemoClick }) {
   return (
     <React.Fragment>
+
+      {/* ── SECTION 1: Built for the way cloud resellers operate ── */}
+      <section className="relative pt-[95px] md:pt-[120px] pb-12 md:pb-16 overflow-hidden">
+        <div className="glow-hero" />
+        <div className="dot-corner" />
+        <div className="container-x relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            {/* Left */}
+            <div className="lg:col-span-6">
+              <Eyebrow className="mb-6">Why moneta</Eyebrow>
+              <h1 className="text-balance" style={{ fontSize: "clamp(38px, 4.8vw, 64px)", fontWeight: 700, lineHeight: 1.06, letterSpacing: "-0.03em" }}>
+                Built for the way cloud resellers actually{" "}
+                <span className="grad-text-bp">operate, bill, and grow.</span>
+              </h1>
+              <p className="mt-7 text-[17px] md:text-[18px] leading-[1.65] text-ink-secondary max-w-[520px]">
+                Cloud reseller billing is not a passthrough. moneta sits between cloud cost and customer revenue, aligning pricing, discounts, and margin so every account stays profitable as the portfolio scales.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <Button variant="primary" onClick={onDemoClick} className="!px-7 !py-4 !text-[15px]">
+                  See your margin gaps <ArrowRight />
+                </Button>
+                <Button variant="secondary" onClick={onDemoClick} className="!px-6 !py-4 !text-[15px]">
+                  How resellers use moneta
+                </Button>
+              </div>
+              <p className="mt-8 text-[13px] text-ink-muted">
+                Connects to AWS and Azure. Customer reporting, pricing, discounts, and margin in one place.
+              </p>
+            </div>
+            {/* Right — Margin Flow card */}
+            <div className="lg:col-span-6 lg:pl-4">
+              <div style={{ position: "relative", width: "100%", maxWidth: 560, margin: "0 auto", paddingBottom: 52 }}>
+                <div style={{ background: "#0d1424", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: "22px 24px", boxShadow: "0 24px 60px rgba(0,0,0,0.45)" }}>
+                  {/* Card header */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24 }}>
+                    <div>
+                      <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#22D3EE", fontFamily: "Inter, sans-serif", marginBottom: 5 }}>Margin Flow</p>
+                      <p style={{ fontSize: 16, fontWeight: 600, color: "#f1f5f9", fontFamily: "Inter, sans-serif" }}>From cloud cost to customer margin</p>
+                    </div>
+                    <span style={{ fontSize: 12, color: "#64748b", fontFamily: "Inter, sans-serif" }}>reconciled</span>
+                  </div>
+                  {/* Sankey-style flow diagram */}
+                  <div style={{ padding: "8px 0 16px" }}>
+                    {/* Top stream: Cloud cost → Customer bill → Revenue */}
+                    <div style={{ display: "flex", alignItems: "center", marginBottom: 12 }}>
+                      <div style={{ width: 130, height: 44, background: "#3B82F6", borderRadius: "6px 0 0 6px", display: "flex", alignItems: "center", paddingLeft: 12 }}>
+                        <span style={{ fontSize: 12, fontWeight: 600, color: "#fff", fontFamily: "Inter, sans-serif" }}>Cloud cost</span>
+                      </div>
+                      <div style={{ width: 32, height: 44, background: "linear-gradient(90deg, #3B82F6, #22D3EE)", flexShrink: 0 }} />
+                      <div style={{ width: 130, height: 44, background: "#1a4a6e", display: "flex", alignItems: "center", paddingLeft: 12 }}>
+                        <span style={{ fontSize: 12, fontWeight: 600, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Customer bill</span>
+                      </div>
+                      <div style={{ width: 32, height: 44, background: "linear-gradient(90deg, #1a4a6e, #22c55e)", flexShrink: 0 }} />
+                      <div style={{ flex: 1, height: 44, background: "#14532d", borderRadius: "0 6px 6px 0", display: "flex", alignItems: "center", justifyContent: "flex-end", paddingRight: 12 }}>
+                        <span style={{ fontSize: 12, fontWeight: 600, color: "#86efac", fontFamily: "Inter, sans-serif" }}>Revenue</span>
+                      </div>
+                      <div style={{ width: 10, height: 44, background: "#22c55e", borderRadius: "0 4px 4px 0", marginLeft: 2, flexShrink: 0 }} />
+                    </div>
+                    {/* Bottom stream: Commitments → Discount engine → Net margin */}
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <div style={{ width: 130, height: 44, background: "#b45309", borderRadius: "6px 0 0 6px", display: "flex", alignItems: "center", paddingLeft: 12 }}>
+                        <span style={{ fontSize: 12, fontWeight: 600, color: "#fef3c7", fontFamily: "Inter, sans-serif" }}>Commitments</span>
+                      </div>
+                      <div style={{ width: 32, height: 44, background: "linear-gradient(90deg, #b45309, #92400e)", flexShrink: 0 }} />
+                      <div style={{ width: 130, height: 44, background: "#1e3a2f", display: "flex", alignItems: "center", paddingLeft: 12 }}>
+                        <span style={{ fontSize: 12, fontWeight: 600, color: "#6ee7b7", fontFamily: "Inter, sans-serif" }}>Discount engine</span>
+                      </div>
+                      <div style={{ width: 32, height: 44, background: "linear-gradient(90deg, #1e3a2f, #22c55e)", flexShrink: 0 }} />
+                      <div style={{ flex: 1, height: 44, background: "#14532d", borderRadius: "0 6px 6px 0", display: "flex", alignItems: "center", justifyContent: "flex-end", paddingRight: 12 }}>
+                        <span style={{ fontSize: 12, fontWeight: 600, color: "#86efac", fontFamily: "Inter, sans-serif" }}>Net margin</span>
+                      </div>
+                      <div style={{ width: 10, height: 44, background: "#22c55e", borderRadius: "0 4px 4px 0", marginLeft: 2, flexShrink: 0 }} />
+                    </div>
+                  </div>
+                  {/* Bottom row: margin tile */}
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 12 }}>
+                    <div style={{ background: "#0f172a", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "10px 16px", textAlign: "right" }}>
+                      <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#64748b", fontFamily: "Inter, sans-serif", marginBottom: 4 }}>Margin</p>
+                      <p style={{ fontSize: 20, fontWeight: 700, color: "#22c55e", fontFamily: "Inter, sans-serif" }}>$46,210</p>
+                    </div>
+                  </div>
+                </div>
+                {/* Margin Recovered popup */}
+                <style>{`@keyframes floatUpDownWhy1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }`}</style>
+                <div style={{ position: "absolute", bottom: 0, left: 16, background: "#ffffff", borderRadius: 12, padding: "13px 16px", width: 300, boxShadow: "0 8px 32px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06)", pointerEvents: "none", animation: "floatUpDownWhy1 3s ease-in-out infinite" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
+                    <div style={{ width: 26, height: 26, borderRadius: 7, background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#16a34a", fontFamily: "Inter, sans-serif" }}>Margin Recovered</span>
+                  </div>
+                  <p style={{ fontSize: 13, fontWeight: 600, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 3 }}>$46.2k on Acme Co. this month</p>
+                  <p style={{ fontSize: 12, color: "#64748b", lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>Spotted a pricing rule that was eroding margin on EC2 since March.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 2: The Reseller Problem ── */}
+      <SectionShell style={{ background: "#0F2040", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+        {/* Top 2-col heading row */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-12">
+          <div>
+            <Eyebrow className="mb-5">The Reseller Problem</Eyebrow>
+            <h2 style={{ fontSize: "clamp(30px, 3.5vw, 46px)", fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.025em", color: "#f1f5f9" }}>
+              Most stacks were built for direct customers, not resellers.
+            </h2>
+          </div>
+          <div className="flex flex-col justify-end gap-4" style={{ paddingTop: 40 }}>
+            <p className="text-[16px] leading-[1.7]" style={{ color: "#94a3b8" }}>
+              Cost visibility tools assume one buyer. Billing tools assume one rate card. FinOps tools assume one cloud team. A reseller has many of each, and the gaps between them are where margin leaks.
+            </p>
+            <p className="text-[16px] leading-[1.7]" style={{ color: "#94a3b8" }}>
+              moneta closes those gaps. Here is what changes once it is in place.
+            </p>
+          </div>
+        </div>
+        {/* Comparison table */}
+        <div style={{ border: "1px solid rgba(255,255,255,0.15)", borderRadius: 16, overflow: "hidden" }}>
+          {/* Header row */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+            <div style={{ background: "rgba(239,68,68,0.14)", borderBottom: "1px solid rgba(255,255,255,0.15)", borderRight: "1px solid rgba(255,255,255,0.15)", padding: "14px 20px", display: "flex", alignItems: "center", gap: 8 }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#ef4444", fontFamily: "Inter, sans-serif" }}>Without moneta</span>
+            </div>
+            <div style={{ background: "rgba(34,197,94,0.14)", borderBottom: "1px solid rgba(255,255,255,0.15)", padding: "14px 20px", display: "flex", alignItems: "center", gap: 8 }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#22c55e", fontFamily: "Inter, sans-serif" }}>With moneta</span>
+            </div>
+          </div>
+          {/* Rows */}
+          {[
+            {
+              bad: { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>, text: "Cloud cost tools show provider spend, not customer-level margin or pricing impact." },
+              good: "Every customer has a margin view that reconciles cloud cost, pricing rules, discounts, and credits.",
+            },
+            {
+              bad: { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>, text: "Billing systems generate invoices but cannot answer whether the customer is still profitable." },
+              good: "Billing, pricing, discount, and margin live on one data model, so every invoice is also a margin signal.",
+            },
+            {
+              bad: { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>, text: "Generic FinOps assumes one cloud team. Resellers run dozens of customer environments with different terms." },
+              good: "Customer-level FinOps is a repeatable service, with per-account budgets, anomalies, and savings work.",
+            },
+            {
+              bad: { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>, text: "Provider cost reports are not customer-friendly and reveal too much of your pricing logic." },
+              good: "Branded, customer-facing reports show spend, allocation, and optimization in the customer's own language.",
+            },
+            {
+              bad: { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>, text: "Sales, ops, finance, and FinOps each work off a different spreadsheet of the same accounts." },
+              good: "Shared workspace where every team sees the same accounts, rules, and outcomes in real time.",
+            },
+          ].map((row, i, arr) => (
+            <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.12)" : "none" }}>
+              <div style={{ padding: "18px 20px", borderRight: "1px solid rgba(255,255,255,0.12)", display: "flex", alignItems: "flex-start", gap: 12 }}>
+                <span style={{ flexShrink: 0, marginTop: 2 }}>{row.bad.icon}</span>
+                <p style={{ fontSize: 14, color: "#94a3b8", lineHeight: 1.6, fontFamily: "Inter, sans-serif" }}>{row.bad.text}</p>
+              </div>
+              <div style={{ padding: "18px 20px", display: "flex", alignItems: "flex-start", gap: 12 }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 2 }}><polyline points="20 6 9 17 4 12"/></svg>
+                <p style={{ fontSize: 14, color: "#94a3b8", lineHeight: 1.6, fontFamily: "Inter, sans-serif" }}>{row.good}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </SectionShell>
+
+      {/* ── SECTION 3: What Moneta Is ── */}
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#F8FAFC" }}>
+        {/* Top 2-col heading row */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10">
+          <div>
+            <Eyebrow className="mb-5">What moneta is</Eyebrow>
+            <h2 style={{ fontSize: "clamp(28px, 3.2vw, 44px)", fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.025em", color: "#0f172a" }}>
+              An operating system for cloud reseller billing.
+            </h2>
+          </div>
+          <div className="flex flex-col justify-end" style={{ paddingTop: 40 }}>
+            <p className="text-[16px] leading-[1.7]" style={{ color: "#334155" }}>
+              moneta brings billing, pricing, discount management, and margin intelligence onto one platform, so the operating motion of a cloud reseller stays coherent across customers and clouds.
+            </p>
+          </div>
+        </div>
+        {/* Asymmetric card grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* Left — large dark featured card */}
+          <div style={{ background: "#0F2040", borderRadius: 16, padding: "28px 28px 24px" }}>
+            <div style={{ width: 42, height: 42, borderRadius: 10, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3 style={{ fontSize: 20, fontWeight: 700, color: "#f1f5f9", fontFamily: "Inter, sans-serif", marginBottom: 12, lineHeight: 1.3 }}>Built reseller-first, from the data model up.</h3>
+            <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.65, fontFamily: "Inter, sans-serif", marginBottom: 20 }}>
+              Other tools bolt reseller logic onto a direct-customer product. moneta starts from the reseller graph: customer, contract, commitment, pricing rule, discount, invoice, margin. Everything connects.
+            </p>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 16px" }}>
+              {[
+                "Customer-level margin from day one",
+                "Pricing rules that resolve per account",
+                "Branded reports your customers actually understand",
+                "Commitments, MACC, and credit treatment in one engine",
+              ].map((b) => (
+                <div key={b} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 3 }}><polyline points="20 6 9 17 4 12"/></svg>
+                  <span style={{ fontSize: 12.5, color: "#94a3b8", lineHeight: 1.5, fontFamily: "Inter, sans-serif" }}>{b}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Right — 2x2 light cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              {
+                icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>,
+                t: "Customer-level profitability",
+                b: "See margin for each customer, not just aggregate cost. The number every reseller actually runs the business on.",
+              },
+              {
+                icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>,
+                t: "Customer-facing FinOps",
+                b: "Deliver reporting, savings reviews, and budget tracking as part of your service, with your brand on every artifact.",
+              },
+              {
+                icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>,
+                t: "Multi-cloud, one workspace",
+                b: "AWS today, Azure today, GCP next. The reseller motion stays the same regardless of cloud.",
+              },
+              {
+                icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><path d="M11 18H8a2 2 0 01-2-2V9"/></svg>,
+                t: "Connects to what you already run",
+                b: "CRM, ERP, ticketing, and provider portals link in, so margin signals reach the right team without manual export.",
+              },
+            ].map((c) => (
+              <div key={c.t} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "20px 20px" }}>
+                <div style={{ width: 36, height: 36, borderRadius: 9, background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>{c.icon}</div>
+                <h3 style={{ fontSize: 14.5, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 6, lineHeight: 1.3 }}>{c.t}</h3>
+                <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6, fontFamily: "Inter, sans-serif" }}>{c.b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </SectionShell>
+
+      {/* ── SECTION 4: How It Fits ── */}
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#F8FAFC" }}>
+        <div className="text-center max-w-[680px] mx-auto mb-10">
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#22D3EE", fontFamily: "Inter, sans-serif", marginBottom: 12 }}>How It Fits</p>
+          <h2 style={{ fontSize: "clamp(30px, 3.8vw, 52px)", fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.025em", color: "#0f172a" }}>
+            Six steps from connecting clouds to reading margin.
+          </h2>
+          <p className="mt-4 text-[16px] leading-[1.7]" style={{ color: "#64748b" }}>
+            moneta starts producing customer-level margin in days, not quarters. Each step is incremental and reversible.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          {[
+            { step: 1, t: "Connect cloud accounts",       b: "Read-only connections to AWS and Azure payer accounts pull billing, usage, and commitment data into the workspace." },
+            { step: 2, t: "Map customers and contracts",  b: "Each linked or subscription account is associated with the right customer, contract, and commitment treatment." },
+            { step: 3, t: "Define pricing and discount rules", b: "Pricing markups, volume tiers, service overrides, and discount programs live as rules that resolve per customer." },
+          ].map((s) => (
+            <div key={s.t} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "20px 20px 22px" }}>
+              <div style={{ display: "flex", alignItems: "center", marginBottom: 14, paddingBottom: 12, borderBottom: "1px solid #f1f5f9" }}>
+                <span style={{ fontSize: 12, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Step {s.step}</span>
+              </div>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 8, lineHeight: 1.35 }}>{s.t}</h3>
+              <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.65, fontFamily: "Inter, sans-serif" }}>{s.b}</p>
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            { step: 4, t: "Reconcile to margin",   b: "Cloud cost, pricing rules, discounts, and credits combine into a customer-level margin view every billing period." },
+            { step: 5, t: "Ship customer reports",  b: "Branded reports go to customers automatically, covering spend, allocation, savings progress, and budget health." },
+            { step: 6, t: "Operate as a service",   b: "Savings work, governance reviews, and budget conversations become a repeatable motion across the customer base." },
+          ].map((s) => (
+            <div key={s.t} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "20px 20px 22px" }}>
+              <div style={{ display: "flex", alignItems: "center", marginBottom: 14, paddingBottom: 12, borderBottom: "1px solid #f1f5f9" }}>
+                <span style={{ fontSize: 12, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Step {s.step}</span>
+              </div>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 8, lineHeight: 1.35 }}>{s.t}</h3>
+              <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.65, fontFamily: "Inter, sans-serif" }}>{s.b}</p>
+            </div>
+          ))}
+        </div>
+      </SectionShell>
+
+      {/* ── SECTION 5: Why Teams Choose Moneta ── */}
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#F8FAFC" }}>
+        {/* Centered header */}
+        <div className="text-center max-w-[600px] mx-auto mb-12">
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#22D3EE", fontFamily: "Inter, sans-serif", marginBottom: 14 }}>Why Teams Choose Moneta</p>
+          <h2 style={{ fontSize: "clamp(30px, 3.8vw, 52px)", fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.025em", color: "#0f172a" }}>
+            What changes once moneta is the operating layer.
+          </h2>
+        </div>
+        {/* 2-col: quote left, feature cards right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          {/* Left — large quote */}
+          <div>
+            <div style={{ fontSize: 72, lineHeight: 0.8, color: "#CBD5E1", fontFamily: "Georgia, serif", marginBottom: 16, userSelect: "none" }}>"</div>
+            <blockquote style={{ fontSize: "clamp(20px, 2.2vw, 28px)", fontWeight: 600, lineHeight: 1.4, letterSpacing: "-0.01em", color: "#0f172a", marginBottom: 28 }}>
+              Margin used to be a quarterly debate. Now it's a daily signal. Pricing, discounts, and customer reporting all live in one place, so our team spends time on customers instead of spreadsheets.
+            </blockquote>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#3B82F6", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <span style={{ fontSize: 14, fontWeight: 700, color: "#fff", fontFamily: "Inter, sans-serif" }}>R</span>
+              </div>
+              <div>
+                <p style={{ fontSize: 13, fontWeight: 600, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 2 }}>Reseller operations lead</p>
+                <p style={{ fontSize: 12, color: "#64748b", fontFamily: "Inter, sans-serif" }}>Head of FinOps, Cloud reseller, 60+ customers</p>
+              </div>
+            </div>
+          </div>
+          {/* Right — 3 feature cards */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {[
+              {
+                icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+                t: "Protect customer-level margin",
+                b: "Pricing rules and discounts resolve consistently, so margin does not leak between billing periods.",
+              },
+              {
+                icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>,
+                t: "Improve billing confidence",
+                b: "Invoices are grounded in actual cloud usage and contract terms, with the reconciliation visible behind every line.",
+              },
+              {
+                icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>,
+                t: "Deliver more customer value",
+                b: "Reporting, savings reviews, and budget tracking are part of every account, not just the largest ones.",
+              },
+            ].map((c) => (
+              <div key={c.t} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 12, padding: "16px 18px", display: "flex", alignItems: "flex-start", gap: 14 }}>
+                <div style={{ width: 34, height: 34, borderRadius: 8, background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{c.icon}</div>
+                <div>
+                  <h3 style={{ fontSize: 14.5, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 4, lineHeight: 1.3 }}>{c.t}</h3>
+                  <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6, fontFamily: "Inter, sans-serif" }}>{c.b}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </SectionShell>
+
+      {/* ── SECTION 6: Ready to See Your Margin ── */}
+      <SectionShell style={{ background: "#060B18", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+        <div className="text-center max-w-[640px] mx-auto py-8">
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, marginBottom: 20 }}>
+            <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#3B82F6", display: "inline-block" }} />
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#3B82F6", fontFamily: "Inter, sans-serif" }}>Ready to see your margin?</span>
+          </div>
+          <h2 style={{ fontSize: "clamp(32px, 4vw, 54px)", fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.025em", color: "#f1f5f9" }}>
+            See moneta against your own customer portfolio.
+          </h2>
+          <p className="mt-6 text-[17px] leading-[1.7]" style={{ color: "#94a3b8" }}>
+            Connect an account, and within days, you'll see customer-level margin, the pricing rules driving it, and the gaps worth closing first.
+          </p>
+          <div className="mt-9">
+            <Button variant="primary" onClick={onDemoClick} className="!px-8 !py-4 !text-[15px]">
+              Begin a working session <ArrowRight />
+            </Button>
+          </div>
+        </div>
+      </SectionShell>
+
       <section className="relative pt-[95px] md:pt-[120px] pb-16 overflow-hidden">
         <div className="glow-hero" />
         <div className="dot-corner-left" />
