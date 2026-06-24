@@ -950,7 +950,7 @@ function FinOpsPage({ onDemoClick }) {
                 <span className="grad-text-bp">managed service providers.</span>
               </h1>
               <p className="mt-7 text-[17px] md:text-[18px] leading-[1.65] text-ink-secondary max-w-[520px]">
-                moneta helps cloud resellers and MSPs deliver cost visibility, optimization insights, budgeting, governance, and customer-facing FinOps reporting across AWS and Azure environments.
+                moneta helps cloud resellers and MSPs deliver cost visibility, optimization insights, budgeting, governance, and customer-facing Cloud FinOps reporting across AWS and Azure environments.
               </p>
               <div className="mt-9">
                 <Button variant="primary" className="!px-7 !py-4 !text-[15px]" onClick={() => { const el = document.getElementById("finops-how-it-works"); if (el) window.scrollTo({ top: el.offsetTop - 30, behavior: "smooth" }); }}>
@@ -1058,7 +1058,7 @@ function FinOpsPage({ onDemoClick }) {
           </div>
           <div className="flex flex-col justify-center gap-4">
             <p className="text-[16px] leading-[1.7]" style={{ color: "#94a3b8" }}>
-              Cloud customers want to understand where spend is going, why costs are changing, how to reduce their bill, and cloud investment ROI. For resellers and MSPs, this creates an opportunity to deliver Cloud FinOps as an ongoing service.
+              Cloud customers want to understand where spend is going, why it's changing, how to reduce their rates, and if they are getting an acceptable return from their cloud investments.
             </p>
             <p className="text-[16px] leading-[1.7]" style={{ color: "#94a3b8" }}>
               Cloud FinOps delivery becomes difficult when billing data, reseller discounts, customer special pricing, technical savings adjustments, and governance reporting are not connected. Resellers need a repeatable way to turn cloud financial data into customer-facing value.
@@ -1069,26 +1069,22 @@ function FinOpsPage({ onDemoClick }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
           {[
             {
-              n: "01",
               icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/></svg>,
               t: "Customers need clear cost visibility",
               b: "Customers need reporting that explains spend, trends, cost drivers, and allocation across their cloud environments.",
             },
             {
-              n: "02",
               icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>,
-              t: "Optimization requires context",
+              t: "Rate reduction requires context",
               b: "Savings recommendations are more useful when connected to usage patterns, business priorities, and customer environments.",
             },
             {
-              n: "03",
               icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>,
               t: "Governance affects cost accuracy",
               b: "Tagging gaps, allocation issues, and unclear ownership make cloud cost reporting harder to trust.",
             },
           ].map((c) => (
-            <div key={c.n} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 14, padding: "18px 20px 18px", display: "flex", flexDirection: "column" }}>
-              <p style={{ fontSize: 11, color: "#475569", fontWeight: 600, fontFamily: "Inter, sans-serif", marginBottom: 10 }}>{c.n}</p>
+            <div key={c.t} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 14, padding: "18px 20px 18px", display: "flex", flexDirection: "column" }}>
               <div style={{ width: 36, height: 36, borderRadius: 9, background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>{c.icon}</div>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", fontFamily: "Inter, sans-serif", marginBottom: 6, lineHeight: 1.35 }}>{c.t}</h3>
               <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.6, fontFamily: "Inter, sans-serif", marginBottom: 0 }}>{c.b}</p>
@@ -1098,20 +1094,17 @@ function FinOpsPage({ onDemoClick }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {[
             {
-              n: "04",
               icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>,
-              t: "FinOps delivery must be repeatable",
+              t: "Cloud FinOps delivery must be repeatable",
               b: "One-off cost reviews are difficult to scale across many customers and billing periods.",
             },
             {
-              n: "05",
               icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>,
               t: "Resellers need internal and customer views",
               b: "Internal teams need margin and billing context; customers need clear cost, savings, and optimization reporting.",
             },
           ].map((c) => (
-            <div key={c.n} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 14, padding: "18px 20px 18px", display: "flex", flexDirection: "column" }}>
-              <p style={{ fontSize: 11, color: "#475569", fontWeight: 600, fontFamily: "Inter, sans-serif", marginBottom: 10 }}>{c.n}</p>
+            <div key={c.t} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 14, padding: "18px 20px 18px", display: "flex", flexDirection: "column" }}>
               <div style={{ width: 36, height: 36, borderRadius: 9, background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>{c.icon}</div>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", fontFamily: "Inter, sans-serif", marginBottom: 6, lineHeight: 1.35 }}>{c.t}</h3>
               <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.6, fontFamily: "Inter, sans-serif", marginBottom: 0 }}>{c.b}</p>
@@ -1132,7 +1125,7 @@ function FinOpsPage({ onDemoClick }) {
           </div>
           <div className="flex flex-col justify-center gap-4">
             <p className="text-[16px] leading-[1.7]" style={{ color: "#334155" }}>
-              moneta helps resellers and MSPs deliver Cloud FinOps as a structured service by reseller spend with customer cost data providing easy to understand costs, rate reduction, budgeting and forecasting, governance and reporting insights.
+              moneta helps resellers and MSPs deliver Cloud FinOps as a structured service by connecting reseller costs with customer spend data. This results in easy to understand end customer cost data, appropriate discount passthrough, reporting, and forecasting insights.
             </p>
             <p className="text-[16px] leading-[1.7]" style={{ color: "#334155" }}>
               Cloud FinOps becomes more than an occasional cost analysis. It becomes a strategic and repeatable valued customer service built on aligned billing, cost, discount, and reporting data.
@@ -1151,7 +1144,7 @@ function FinOpsPage({ onDemoClick }) {
             {
               icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg>,
               iconColor: "#3B82F6",
-              t: "Optimization and savings insights",
+              t: "Rate reduction and savings insights",
               b: "Identify opportunities to reduce waste, improve utilization, and take advantage of savings programs.",
             },
             {
@@ -1178,7 +1171,7 @@ function FinOpsPage({ onDemoClick }) {
             },
             {
               icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>,
-              t: "Managed FinOps reporting",
+              t: "Managed Cloud FinOps reporting",
               b: "Deliver repeatable customer-facing reports that support ongoing cloud financial management.",
               accent: "#f59e0b",
             },
@@ -1200,21 +1193,17 @@ function FinOpsPage({ onDemoClick }) {
             From unwieldy cloud cost data to customer-facing Cloud FinOps value.
           </h2>
           <p className="mt-3 text-[16px] leading-[1.7]" style={{ color: "#94a3b8" }}>
-            moneta helps reseller teams turn billing and usage data into meaningful Cloud FinOps workflows for customers.
+            moneta allows reseller and MSP teams turn billing and usage data into meaningful Cloud FinOps workflows for customers.
           </p>
         </div>
         {/* 6 step cards — 3+3 grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
           {[
-            { step: 1, t: "Ingest cloud cost and usage data",      b: "Bring cloud billing, usage, cost, account, subscription, and service data into one platform." },
-            { step: 2, t: "Organize spend by customer context",    b: "Map spend to customers, accounts, subscriptions, services, teams, projects, or business units." },
-            { step: 3, t: "Surface cost drivers",                  b: "Identify where spend is increasing, which services are contributing, and what changed over time." },
+            { t: "Ingest cloud cost and usage data",   b: "Bring cloud billing, usage, cost, account, subscription, and service data into one platform." },
+            { t: "Organize spend by customer context", b: "Map spend to customers, accounts, subscriptions, services, teams, projects, or business units." },
+            { t: "Surface cost drivers",               b: "Identify where spend is increasing, which services are contributing, and what changed over time." },
           ].map((s) => (
-            <div key={s.step} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "22px 22px 24px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, paddingBottom: 12, borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-                <span style={{ fontSize: 12, color: "#475569", fontFamily: "Inter, sans-serif" }}>Step {s.step}</span>
-                <span style={{ width: 26, height: 26, borderRadius: "50%", background: "#3B82F6", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Inter, sans-serif" }}>0{s.step}</span>
-              </div>
+            <div key={s.t} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "22px 22px 24px" }}>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", fontFamily: "Inter, sans-serif", marginBottom: 8, lineHeight: 1.35 }}>{s.t}</h3>
               <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.65, fontFamily: "Inter, sans-serif" }}>{s.b}</p>
             </div>
@@ -1222,15 +1211,11 @@ function FinOpsPage({ onDemoClick }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {[
-            { step: 4, t: "Identify savings opportunities",  b: "Highlight waste, inefficient usage, discount opportunities, and optimization areas." },
-            { step: 5, t: "Track budgets and governance",    b: "Monitor budgets, tagging, allocation, and cost ownership to improve financial discipline." },
-            { step: 6, t: "Deliver customer reports",        b: "Provide customers with repeatable reporting for spend reviews, optimization planning, and FinOps conversations." },
+            { t: "Identify savings opportunities", b: "Highlight waste, inefficient usage, discount opportunities, and optimization areas." },
+            { t: "Track budgets and governance",   b: "Monitor budgets, tagging, allocation, and cost ownership to improve financial discipline." },
+            { t: "Deliver customized reports to end customers", b: "Provide customers with repeatable reporting for spend reviews, optimization planning, and Cloud FinOps conversations." },
           ].map((s) => (
-            <div key={s.step} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "22px 22px 24px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, paddingBottom: 12, borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-                <span style={{ fontSize: 12, color: "#475569", fontFamily: "Inter, sans-serif" }}>Step {s.step}</span>
-                <span style={{ width: 26, height: 26, borderRadius: "50%", background: "#3B82F6", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Inter, sans-serif" }}>0{s.step}</span>
-              </div>
+            <div key={s.t} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "22px 22px 24px" }}>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", fontFamily: "Inter, sans-serif", marginBottom: 8, lineHeight: 1.35 }}>{s.t}</h3>
               <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.65, fontFamily: "Inter, sans-serif" }}>{s.b}</p>
             </div>
@@ -1329,9 +1314,10 @@ function FinOpsPage({ onDemoClick }) {
 
       <FinalCTA
         className="!pt-4 md:!pt-6"
-        title="Build a FinOps practice on your own billing data."
-        description="See how resellers are productizing cloud financial management with moneta as the spine."
-        ctaLabel="Book a Demo"
+        eyebrow="Ready to Deliver Cloud FinOps at Scale?"
+        title="Turn Cloud data into a repeatable customer valued managed service."
+        description="moneta enables cloud resellers and MSPs to deliver a high value customer managed services across every customer."
+        ctaLabel="Deliver Cloud FinOps at Scale"
         onCta={onDemoClick}
       />
     </React.Fragment>
