@@ -1084,7 +1084,7 @@ function FinOpsPage({ onDemoClick }) {
               b: "Tagging gaps, allocation issues, and unclear ownership make cloud cost reporting harder to trust.",
             },
           ].map((c) => (
-            <div key={c.t} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 14, padding: "18px 20px 18px", display: "flex", flexDirection: "column" }}>
+            <div key={c.t} className="hover-lift" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 14, padding: "18px 20px 18px", display: "flex", flexDirection: "column" }}>
               <div style={{ width: 36, height: 36, borderRadius: 9, background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>{c.icon}</div>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", fontFamily: "Inter, sans-serif", marginBottom: 6, lineHeight: 1.35 }}>{c.t}</h3>
               <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.6, fontFamily: "Inter, sans-serif", marginBottom: 0 }}>{c.b}</p>
@@ -1104,7 +1104,7 @@ function FinOpsPage({ onDemoClick }) {
               b: "Internal teams need margin and billing context; customers need clear cost, savings, and optimization reporting.",
             },
           ].map((c) => (
-            <div key={c.t} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 14, padding: "18px 20px 18px", display: "flex", flexDirection: "column" }}>
+            <div key={c.t} className="hover-lift" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 14, padding: "18px 20px 18px", display: "flex", flexDirection: "column" }}>
               <div style={{ width: 36, height: 36, borderRadius: 9, background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>{c.icon}</div>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", fontFamily: "Inter, sans-serif", marginBottom: 6, lineHeight: 1.35 }}>{c.t}</h3>
               <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.6, fontFamily: "Inter, sans-serif", marginBottom: 0 }}>{c.b}</p>
@@ -1154,7 +1154,7 @@ function FinOpsPage({ onDemoClick }) {
               b: "Support customer planning with budget tracking, spend trends, and forecast visibility.",
             },
           ].map((c) => (
-            <div key={c.t} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 22px" }}>
+            <div key={c.t} className="hover-lift" style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 22px" }}>
               <div style={{ width: 38, height: 38, borderRadius: 9, background: `rgba(59,130,246,0.08)`, border: `1px solid rgba(59,130,246,0.18)`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14 }}>{c.icon}</div>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 8, lineHeight: 1.35 }}>{c.t}</h3>
               <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.65, fontFamily: "Inter, sans-serif" }}>{c.b}</p>
@@ -1176,7 +1176,7 @@ function FinOpsPage({ onDemoClick }) {
               accent: "#f59e0b",
             },
           ].map((c) => (
-            <div key={c.t} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 22px" }}>
+            <div key={c.t} className="hover-lift" style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 22px" }}>
               <div style={{ width: 38, height: 38, borderRadius: 9, background: `rgba(59,130,246,0.08)`, border: `1px solid rgba(59,130,246,0.18)`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14 }}>{c.icon}</div>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 8, lineHeight: 1.35 }}>{c.t}</h3>
               <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.65, fontFamily: "Inter, sans-serif" }}>{c.b}</p>
@@ -1203,7 +1203,7 @@ function FinOpsPage({ onDemoClick }) {
             { t: "Organize spend by customer context", b: "Map spend to customers, accounts, subscriptions, services, teams, projects, or business units." },
             { t: "Surface cost drivers",               b: "Identify where spend is increasing, which services are contributing, and what changed over time." },
           ].map((s) => (
-            <div key={s.t} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "22px 22px 24px" }}>
+            <div key={s.t} className="hover-lift" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "22px 22px 24px" }}>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", fontFamily: "Inter, sans-serif", marginBottom: 8, lineHeight: 1.35 }}>{s.t}</h3>
               <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.65, fontFamily: "Inter, sans-serif" }}>{s.b}</p>
             </div>
@@ -1215,7 +1215,7 @@ function FinOpsPage({ onDemoClick }) {
             { t: "Track budgets and governance",   b: "Monitor budgets, tagging, allocation, and cost ownership to improve financial discipline." },
             { t: "Deliver customized reports to end customers", b: "Provide customers with repeatable reporting for spend reviews, optimization planning, and Cloud FinOps conversations." },
           ].map((s) => (
-            <div key={s.t} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "22px 22px 24px" }}>
+            <div key={s.t} className="hover-lift" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "22px 22px 24px" }}>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", fontFamily: "Inter, sans-serif", marginBottom: 8, lineHeight: 1.35 }}>{s.t}</h3>
               <p style={{ fontSize: 13.5, color: "#64748b", lineHeight: 1.65, fontFamily: "Inter, sans-serif" }}>{s.b}</p>
             </div>
@@ -1345,74 +1345,114 @@ function WhyPage({ onDemoClick }) {
               <p className="mt-7 text-[17px] md:text-[18px] leading-[1.65] text-ink-secondary max-w-[520px]">
                 Cloud reseller billing is not a passthrough. moneta sits between cloud cost and customer revenue, aligning pricing, discounts, and margin so every account stays profitable as the portfolio scales.
               </p>
-              <div className="mt-9 flex flex-wrap items-center gap-3">
-                <Button variant="primary" onClick={onDemoClick} className="!px-7 !py-4 !text-[15px]">
-                  See your margin gaps <ArrowRight />
-                </Button>
-                <Button variant="secondary" onClick={onDemoClick} className="!px-6 !py-4 !text-[15px]">
+              <div className="mt-9">
+                <Button variant="secondary" className="!px-6 !py-4 !text-[15px]" onClick={() => { const el = document.getElementById("why-how-it-fits"); if (el) window.scrollTo({ top: el.offsetTop - 30, behavior: "smooth" }); }}>
                   How resellers use moneta
                 </Button>
               </div>
-              <p className="mt-8 text-[13px] text-ink-muted">
-                Connects to AWS and Azure. Customer reporting, pricing, discounts, and margin in one place.
-              </p>
             </div>
             {/* Right — Margin Flow card */}
             <div className="lg:col-span-6 lg:pl-4">
-              <div style={{ position: "relative", width: "100%", maxWidth: 560, margin: "0 auto", paddingBottom: 52 }}>
-                <div style={{ background: "#0d1424", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: "22px 24px", boxShadow: "0 24px 60px rgba(0,0,0,0.45)" }}>
-                  {/* Card header */}
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24 }}>
+              {(() => {
+                const [popupVisible, setPopupVisible] = React.useState(true);
+                const wrapRef = React.useRef(null);
+                const handleMouseMove = React.useCallback((e) => {
+                  const el = wrapRef.current;
+                  if (!el) return;
+                  const rect = el.getBoundingClientRect();
+                  const near = e.clientX > rect.left - 60 && e.clientX < rect.right + 60 &&
+                               e.clientY > rect.top - 60 && e.clientY < rect.bottom + 60;
+                  setPopupVisible(!near);
+                }, []);
+                React.useEffect(() => {
+                  window.addEventListener("mousemove", handleMouseMove);
+                  return () => window.removeEventListener("mousemove", handleMouseMove);
+                }, [handleMouseMove]);
+                return (
+              <div ref={wrapRef} style={{ position: "relative", width: "100%", maxWidth: 560, margin: "0 auto", paddingBottom: 52 }}>
+                <div style={{ background: "linear-gradient(160deg, #0b1a2e 0%, #0d2040 100%)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 18, padding: "20px 22px 22px", boxShadow: "0 24px 60px rgba(0,0,0,0.6)", position: "relative", overflow: "hidden" }}>
+                  {/* Dot grid */}
+                  <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.15, pointerEvents: "none" }} aria-hidden="true">
+                    <defs><pattern id="wdg" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1" fill="#5B7BFF"/></pattern></defs>
+                    <rect width="100%" height="100%" fill="url(#wdg)" />
+                  </svg>
+                  {/* Header */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, position: "relative" }}>
                     <div>
-                      <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#22D3EE", fontFamily: "Inter, sans-serif", marginBottom: 5 }}>Margin Flow</p>
-                      <p style={{ fontSize: 16, fontWeight: 600, color: "#f1f5f9", fontFamily: "Inter, sans-serif" }}>From cloud cost to customer margin</p>
+                      <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#22D3EE", fontFamily: "Inter, sans-serif", marginBottom: 4 }}>Margin Flow</p>
+                      <p style={{ fontSize: 15, fontWeight: 500, color: "#f1f5f9", fontFamily: "Inter, sans-serif" }}>From cloud cost to customer margin</p>
                     </div>
-                    <span style={{ fontSize: 12, color: "#64748b", fontFamily: "Inter, sans-serif" }}>reconciled</span>
-                  </div>
-                  {/* Sankey-style flow diagram */}
-                  <div style={{ padding: "8px 0 16px" }}>
-                    {/* Top stream: Cloud cost → Customer bill → Revenue */}
-                    <div style={{ display: "flex", alignItems: "center", marginBottom: 12 }}>
-                      <div style={{ width: 130, height: 44, background: "#3B82F6", borderRadius: "6px 0 0 6px", display: "flex", alignItems: "center", paddingLeft: 12 }}>
-                        <span style={{ fontSize: 12, fontWeight: 600, color: "#fff", fontFamily: "Inter, sans-serif" }}>Cloud cost</span>
+                    <div style={{ textAlign: "right" }}>
+                      <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(30,40,60,0.9)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 999, padding: "5px 12px", marginBottom: 5 }}>
+                        <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#22c55e", display: "inline-block", boxShadow: "0 0 6px #22c55e" }} />
+                        <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#ef4444", display: "inline-block" }} />
+                        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#f1f5f9", fontFamily: "Inter, sans-serif" }}>Reconciled</span>
                       </div>
-                      <div style={{ width: 32, height: 44, background: "linear-gradient(90deg, #3B82F6, #22D3EE)", flexShrink: 0 }} />
-                      <div style={{ width: 130, height: 44, background: "#1a4a6e", display: "flex", alignItems: "center", paddingLeft: 12 }}>
-                        <span style={{ fontSize: 12, fontWeight: 600, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Customer bill</span>
-                      </div>
-                      <div style={{ width: 32, height: 44, background: "linear-gradient(90deg, #1a4a6e, #22c55e)", flexShrink: 0 }} />
-                      <div style={{ flex: 1, height: 44, background: "#14532d", borderRadius: "0 6px 6px 0", display: "flex", alignItems: "center", justifyContent: "flex-end", paddingRight: 12 }}>
-                        <span style={{ fontSize: 12, fontWeight: 600, color: "#86efac", fontFamily: "Inter, sans-serif" }}>Revenue</span>
-                      </div>
-                      <div style={{ width: 10, height: 44, background: "#22c55e", borderRadius: "0 4px 4px 0", marginLeft: 2, flexShrink: 0 }} />
-                    </div>
-                    {/* Bottom stream: Commitments → Discount engine → Net margin */}
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <div style={{ width: 130, height: 44, background: "#b45309", borderRadius: "6px 0 0 6px", display: "flex", alignItems: "center", paddingLeft: 12 }}>
-                        <span style={{ fontSize: 12, fontWeight: 600, color: "#fef3c7", fontFamily: "Inter, sans-serif" }}>Commitments</span>
-                      </div>
-                      <div style={{ width: 32, height: 44, background: "linear-gradient(90deg, #b45309, #92400e)", flexShrink: 0 }} />
-                      <div style={{ width: 130, height: 44, background: "#1e3a2f", display: "flex", alignItems: "center", paddingLeft: 12 }}>
-                        <span style={{ fontSize: 12, fontWeight: 600, color: "#6ee7b7", fontFamily: "Inter, sans-serif" }}>Discount engine</span>
-                      </div>
-                      <div style={{ width: 32, height: 44, background: "linear-gradient(90deg, #1e3a2f, #22c55e)", flexShrink: 0 }} />
-                      <div style={{ flex: 1, height: 44, background: "#14532d", borderRadius: "0 6px 6px 0", display: "flex", alignItems: "center", justifyContent: "flex-end", paddingRight: 12 }}>
-                        <span style={{ fontSize: 12, fontWeight: 600, color: "#86efac", fontFamily: "Inter, sans-serif" }}>Net margin</span>
-                      </div>
-                      <div style={{ width: 10, height: 44, background: "#22c55e", borderRadius: "0 4px 4px 0", marginLeft: 2, flexShrink: 0 }} />
+                      <p style={{ fontSize: 11, color: "#64748b", fontFamily: "Inter, sans-serif" }}>All data points validated.</p>
                     </div>
                   </div>
-                  {/* Bottom row: margin tile */}
-                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 12 }}>
-                    <div style={{ background: "#0f172a", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "10px 16px", textAlign: "right" }}>
-                      <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#64748b", fontFamily: "Inter, sans-serif", marginBottom: 4 }}>Margin</p>
-                      <p style={{ fontSize: 20, fontWeight: 700, color: "#22c55e", fontFamily: "Inter, sans-serif" }}>$46,210</p>
-                    </div>
+                  {/* SVG Sankey */}
+                  <div style={{ position: "relative" }}>
+                    <svg width="100%" viewBox="0 0 500 210" preserveAspectRatio="xMidYMid meet" style={{ display: "block" }}>
+                      <defs>
+                        <linearGradient id="wm2_blue" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#3b82f6"/><stop offset="100%" stopColor="#1d4ed8"/></linearGradient>
+                        <linearGradient id="wm2_amber" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#b45309"/><stop offset="100%" stopColor="#78350f"/></linearGradient>
+                        <linearGradient id="wm2_slate" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#1e3248"/><stop offset="100%" stopColor="#253a52"/></linearGradient>
+                        <linearGradient id="wm2_green" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#16a34a"/><stop offset="100%" stopColor="#22c55e"/></linearGradient>
+                        <linearGradient id="wm2_bluecon" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#2563eb"/><stop offset="100%" stopColor="#1e3a52"/></linearGradient>
+                        <linearGradient id="wm2_ambercon" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#92400e"/><stop offset="100%" stopColor="#1e3a52"/></linearGradient>
+                        <linearGradient id="wm2_greencon" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#1e3a52"/><stop offset="100%" stopColor="#16a34a"/></linearGradient>
+                        <filter id="wm2_glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                      </defs>
+
+                      {/* ── TOP FLOW ── */}
+                      {/* Cloud cost block */}
+                      <rect x="8" y="18" width="124" height="56" rx="8" fill="url(#wm2_blue)"/>
+                      <text x="70" y="51" textAnchor="middle" style={{ fontSize: 13, fontWeight: 600, fill: "#fff", fontFamily: "Inter, sans-serif" }}>Cloud cost</text>
+                      {/* Smooth taper: Cloud cost → Customer bill */}
+                      <path d="M132,18 C150,18 150,26 168,26 L168,66 C150,66 150,74 132,74 Z" fill="url(#wm2_bluecon)"/>
+                      {/* Customer bill block */}
+                      <rect x="168" y="26" width="118" height="40" rx="7" fill="url(#wm2_slate)"/>
+                      <text x="227" y="51" textAnchor="middle" style={{ fontSize: 12, fontWeight: 500, fill: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Customer bill</text>
+                      {/* Smooth taper: Customer bill → Revenue */}
+                      <path d="M286,26 C304,26 304,18 322,18 L322,74 C304,74 304,66 286,66 Z" fill="url(#wm2_greencon)"/>
+                      {/* Revenue block */}
+                      <rect x="322" y="10" width="118" height="72" rx="8" fill="url(#wm2_green)" filter="url(#wm2_glow)"/>
+                      <text x="381" y="51" textAnchor="middle" style={{ fontSize: 13, fontWeight: 700, fill: "#f0fdf4", fontFamily: "Inter, sans-serif" }}>Revenue</text>
+
+                      {/* ── BOTTOM FLOW ── */}
+                      {/* Commitments block */}
+                      <rect x="8" y="130" width="124" height="56" rx="8" fill="url(#wm2_amber)"/>
+                      <text x="70" y="163" textAnchor="middle" style={{ fontSize: 13, fontWeight: 600, fill: "#fef3c7", fontFamily: "Inter, sans-serif" }}>Commitments</text>
+                      {/* Smooth taper: Commitments → Discount engine */}
+                      <path d="M132,130 C150,130 150,138 168,138 L168,178 C150,178 150,186 132,186 Z" fill="url(#wm2_ambercon)"/>
+                      {/* Discount engine block */}
+                      <rect x="168" y="138" width="118" height="40" rx="7" fill="url(#wm2_slate)"/>
+                      <text x="227" y="163" textAnchor="middle" style={{ fontSize: 12, fontWeight: 500, fill: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Discount engine</text>
+                      {/* Smooth taper: Discount engine → Net margin */}
+                      <path d="M286,138 C304,138 304,130 322,130 L322,186 C304,186 304,178 286,178 Z" fill="url(#wm2_greencon)"/>
+                      {/* Net margin block */}
+                      <rect x="322" y="122" width="118" height="72" rx="8" fill="url(#wm2_green)" filter="url(#wm2_glow)"/>
+                      <text x="381" y="163" textAnchor="middle" style={{ fontSize: 13, fontWeight: 700, fill: "#f0fdf4", fontFamily: "Inter, sans-serif" }}>Net margin</text>
+                    </svg>
+                  </div>
+                  {/* Stat tiles */}
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginTop: 8, position: "relative" }}>
+                    {[
+                      { label: "cost in",      value: "$284,040", border: "rgba(255,255,255,0.1)", color: "#f1f5f9" },
+                      { label: "adjustments",  value: "$38,120",  border: "rgba(255,255,255,0.1)", color: "#f1f5f9" },
+                      { label: "margin",       value: "$46,210",  border: "rgba(34,197,94,0.35)",  color: "#f1f5f9" },
+                    ].map((t) => (
+                      <div key={t.label} style={{ background: "rgba(8,14,28,0.7)", border: `1px solid ${t.border}`, borderRadius: 10, padding: "12px 14px" }}>
+                        <p style={{ fontSize: 11, fontWeight: 400, color: "#64748b", fontFamily: "Inter, sans-serif", marginBottom: 6 }}>{t.label}</p>
+                        <p style={{ fontSize: 20, fontWeight: 700, color: t.color, fontFamily: "Inter, sans-serif", letterSpacing: "-0.5px" }}>{t.value}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
                 {/* Margin Recovered popup */}
                 <style>{`@keyframes floatUpDownWhy1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }`}</style>
-                <div style={{ position: "absolute", bottom: 0, left: 16, background: "#ffffff", borderRadius: 12, padding: "13px 16px", width: 300, boxShadow: "0 8px 32px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06)", pointerEvents: "none", animation: "floatUpDownWhy1 3s ease-in-out infinite" }}>
+                <div style={{ position: "absolute", bottom: 0, left: 16, background: "#ffffff", borderRadius: 12, padding: "13px 16px", width: 300, boxShadow: "0 8px 32px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06)", pointerEvents: "none", animation: "floatUpDownWhy1 3s ease-in-out infinite", opacity: popupVisible ? 1 : 0, transition: "opacity 0.2s ease" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
                     <div style={{ width: 26, height: 26, borderRadius: 7, background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
@@ -1423,6 +1463,8 @@ function WhyPage({ onDemoClick }) {
                   <p style={{ fontSize: 12, color: "#64748b", lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>Spotted a pricing rule that was eroding margin on EC2 since March.</p>
                 </div>
               </div>
+                );
+              })()}
             </div>
           </div>
         </div>
@@ -1516,7 +1558,7 @@ function WhyPage({ onDemoClick }) {
         {/* Asymmetric card grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {/* Left — large dark featured card */}
-          <div style={{ background: "#0F2040", borderRadius: 16, padding: "28px 28px 24px" }}>
+          <div className="hover-lift" style={{ background: "#0F2040", borderRadius: 16, padding: "28px 28px 24px" }}>
             <div style={{ width: 42, height: 42, borderRadius: 10, background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             </div>
@@ -1562,7 +1604,7 @@ function WhyPage({ onDemoClick }) {
                 b: "CRM, ERP, ticketing, and provider portals link in, so margin signals reach the right team without manual export.",
               },
             ].map((c) => (
-              <div key={c.t} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "20px 20px" }}>
+              <div key={c.t} className="hover-lift" style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "20px 20px" }}>
                 <div style={{ width: 36, height: 36, borderRadius: 9, background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>{c.icon}</div>
                 <h3 style={{ fontSize: 14.5, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 6, lineHeight: 1.3 }}>{c.t}</h3>
                 <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6, fontFamily: "Inter, sans-serif" }}>{c.b}</p>
@@ -1573,7 +1615,7 @@ function WhyPage({ onDemoClick }) {
       </SectionShell>
 
       {/* ── SECTION 4: How It Fits ── */}
-      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#F8FAFC" }}>
+      <SectionShell id="why-how-it-fits" className="border-t border-line-soft light-section" style={{ background: "#DDE4EF" }}>
         <div className="text-center max-w-[680px] mx-auto mb-10">
           <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#22D3EE", fontFamily: "Inter, sans-serif", marginBottom: 12 }}>How It Fits</p>
           <h2 style={{ fontSize: "clamp(30px, 3.8vw, 52px)", fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.025em", color: "#0f172a" }}>
@@ -1589,7 +1631,7 @@ function WhyPage({ onDemoClick }) {
             { step: 2, t: "Map customers and contracts",  b: "Each linked or subscription account is associated with the right customer, contract, and commitment treatment." },
             { step: 3, t: "Define pricing and discount rules", b: "Pricing markups, volume tiers, service overrides, and discount programs live as rules that resolve per customer." },
           ].map((s) => (
-            <div key={s.t} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "20px 20px 22px" }}>
+            <div key={s.t} className="hover-border-emphasis" style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "20px 20px 22px" }}>
               <div style={{ display: "flex", alignItems: "center", marginBottom: 14, paddingBottom: 12, borderBottom: "1px solid #f1f5f9" }}>
                 <span style={{ fontSize: 12, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Step {s.step}</span>
               </div>
@@ -1604,7 +1646,7 @@ function WhyPage({ onDemoClick }) {
             { step: 5, t: "Ship customer reports",  b: "Branded reports go to customers automatically, covering spend, allocation, savings progress, and budget health." },
             { step: 6, t: "Operate as a service",   b: "Savings work, governance reviews, and budget conversations become a repeatable motion across the customer base." },
           ].map((s) => (
-            <div key={s.t} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "20px 20px 22px" }}>
+            <div key={s.t} className="hover-border-emphasis" style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "20px 20px 22px" }}>
               <div style={{ display: "flex", alignItems: "center", marginBottom: 14, paddingBottom: 12, borderBottom: "1px solid #f1f5f9" }}>
                 <span style={{ fontSize: 12, color: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Step {s.step}</span>
               </div>
@@ -1628,10 +1670,12 @@ function WhyPage({ onDemoClick }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left — large quote */}
           <div>
-            <div style={{ fontSize: 72, lineHeight: 0.8, color: "#CBD5E1", fontFamily: "Georgia, serif", marginBottom: 16, userSelect: "none" }}>"</div>
-            <blockquote style={{ fontSize: "clamp(20px, 2.2vw, 28px)", fontWeight: 600, lineHeight: 1.4, letterSpacing: "-0.01em", color: "#0f172a", marginBottom: 28 }}>
-              Margin used to be a quarterly debate. Now it's a daily signal. Pricing, discounts, and customer reporting all live in one place, so our team spends time on customers instead of spreadsheets.
-            </blockquote>
+            <div style={{ position: "relative" }}>
+              <span style={{ position: "absolute", top: -8, left: -8, fontSize: 72, lineHeight: 1, color: "#CBD5E1", fontFamily: "Georgia, serif", userSelect: "none", zIndex: 0 }}>"</span>
+              <blockquote style={{ position: "relative", zIndex: 1, fontSize: "clamp(20px, 2.2vw, 28px)", fontWeight: 600, lineHeight: 1.4, letterSpacing: "-0.01em", color: "#0f172a", marginBottom: 28, paddingLeft: 48 }}>
+                Margin used to be a quarterly debate. Now it's a daily signal. Pricing, discounts, and customer reporting all live in one place, so our team spends time on customers instead of spreadsheets.
+              </blockquote>
+            </div>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#3B82F6", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 <span style={{ fontSize: 14, fontWeight: 700, color: "#fff", fontFamily: "Inter, sans-serif" }}>R</span>
@@ -1661,7 +1705,7 @@ function WhyPage({ onDemoClick }) {
                 b: "Reporting, savings reviews, and budget tracking are part of every account, not just the largest ones.",
               },
             ].map((c) => (
-              <div key={c.t} style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 12, padding: "16px 18px", display: "flex", alignItems: "flex-start", gap: 14 }}>
+              <div key={c.t} className="hover-lift" style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 12, padding: "16px 18px", display: "flex", alignItems: "flex-start", gap: 14 }}>
                 <div style={{ width: 34, height: 34, borderRadius: 8, background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{c.icon}</div>
                 <div>
                   <h3 style={{ fontSize: 14.5, fontWeight: 700, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 4, lineHeight: 1.3 }}>{c.t}</h3>
