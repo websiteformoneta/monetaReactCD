@@ -1346,8 +1346,8 @@ function WhyPage({ onDemoClick }) {
                 Cloud reseller billing is not a passthrough. moneta sits between cloud cost and customer revenue, aligning pricing, discounts, and margin so every account stays profitable as the portfolio scales.
               </p>
               <div className="mt-9">
-                <Button variant="secondary" className="!px-6 !py-4 !text-[15px]" onClick={() => { const el = document.getElementById("why-how-it-fits"); if (el) window.scrollTo({ top: el.offsetTop - 30, behavior: "smooth" }); }}>
-                  How resellers use moneta
+                <Button variant="gradient" className="!px-6 !py-4 !text-[15px]" onClick={() => { const el = document.getElementById("why-how-it-fits"); if (el) window.scrollTo({ top: el.offsetTop - 30, behavior: "smooth" }); }}>
+                  How resellers use moneta <ArrowRight />
                 </Button>
               </div>
             </div>
@@ -1382,13 +1382,10 @@ function WhyPage({ onDemoClick }) {
                       <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#22D3EE", fontFamily: "Inter, sans-serif", marginBottom: 4 }}>Margin Flow</p>
                       <p style={{ fontSize: 15, fontWeight: 500, color: "#f1f5f9", fontFamily: "Inter, sans-serif" }}>From cloud cost to customer margin</p>
                     </div>
-                    <div style={{ textAlign: "right" }}>
-                      <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(30,40,60,0.9)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 999, padding: "5px 12px", marginBottom: 5 }}>
-                        <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#22c55e", display: "inline-block", boxShadow: "0 0 6px #22c55e" }} />
-                        <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#ef4444", display: "inline-block" }} />
+                    <div>
+                      <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(30,40,60,0.9)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 999, padding: "5px 12px" }}>
                         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#f1f5f9", fontFamily: "Inter, sans-serif" }}>Reconciled</span>
                       </div>
-                      <p style={{ fontSize: 11, color: "#64748b", fontFamily: "Inter, sans-serif" }}>All data points validated.</p>
                     </div>
                   </div>
                   {/* SVG Sankey */}
