@@ -729,8 +729,8 @@ function PlatformPage({ onDemoClick }) {
 
             {/* LEFT — matches Platform.png left column exactly */}
             <div className="lg:col-span-6">
-              <Eyebrow className="mb-7 text-center [&_.eyebrow-rule]:mx-auto">System</Eyebrow>
-              <h1 className="text-hero text-balance text-center">
+              <Eyebrow className="mb-7">System</Eyebrow>
+              <h1 className="text-hero text-balance">
                 The Financial Infrastructure <br className="hidden md:block" />
                 for <span className="grad-text-bp">Cloud Resellers</span>
               </h1>
