@@ -267,8 +267,8 @@ function DemoModal({ isOpen, onClose }) {
       <div className="fixed inset-0 z-40 bg-black/85 backdrop-blur-md" onClick={onClose} />
       <div className="fixed inset-0 z-50 flex items-start justify-center px-4 md:px-6" style={{ paddingTop: "clamp(16px, 4vh, 48px)" }} role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" onClick={onClose}>
       <div ref={dialogRef} onClick={(e) => e.stopPropagation()} className="relative w-full max-w-[520px] card !rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.6)]" style={{ padding: "20px 24px" }}>
-        <button onClick={onClose} aria-label="Close" className="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-md text-ink-muted hover:text-white hover:bg-bg-tertiary">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        <button onClick={onClose} aria-label="Close" className="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-md hover:bg-bg-tertiary" style={{ color: "#94a3b8" }} onMouseEnter={e => e.currentTarget.style.color="#fff"} onMouseLeave={e => e.currentTarget.style.color="#94a3b8"}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M6 6l12 12M18 6L6 18" /></svg>
         </button>
         {submitted ? (
           <div className="py-8 text-center">
