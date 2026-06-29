@@ -91,7 +91,7 @@ function OperatingSystemDiagram() {
                 <p className="text-[14px] font-semibold">{inp.label}</p>
                 <p className="text-[12px] text-ink-muted">{inp.sub}</p>
               </div>
-              <span className="absolute left-full top-1/2 -translate-y-1/2 ml-0.5 hidden md:block">
+              <span className="absolute left-full top-1/2 -translate-y-1/2 ml-0.5 hidden md:block" style={{ zIndex: 10 }}>
                 <Connector dir="in" />
               </span>
             </div>
@@ -101,7 +101,8 @@ function OperatingSystemDiagram() {
         {/* CENTER */}
         <div className="relative card !rounded-2xl p-5" style={{
           minWidth: "min(300px, 46vw)",
-          boxShadow: "0 0 0 1px rgba(91,123,255,0.3), 0 24px 60px -20px rgba(91,123,255,0.4)"
+          boxShadow: "0 0 0 1px rgba(91,123,255,0.3), 0 24px 60px -20px rgba(91,123,255,0.4)",
+          zIndex: 0
         }}>
           <div className="flex items-center justify-center gap-2 mb-4 pb-4 border-b border-line-soft">
             <img src="assets/moneta-icon.png" alt="" width="30" height="30" style={{ objectFit: "contain", transform: "translateY(-2px)" }} />
@@ -148,7 +149,7 @@ function OperatingSystemDiagram() {
           <p className="eyebrow text-center md:text-left text-[11px] tracking-[0.2em] mb-2">Outputs</p>
           {outputs.map((out) => (
             <div key={out.label} className="relative card !rounded-xl px-4 py-3.5 flex items-center gap-3.5">
-              <span className="absolute right-full top-1/2 -translate-y-1/2 mr-0.5 hidden md:block">
+              <span className="absolute right-full top-1/2 -translate-y-1/2 mr-0.5 hidden md:block" style={{ zIndex: 10 }}>
                 <Connector dir="out" />
               </span>
               <div className="w-11 h-11 rounded-md grid place-items-center border border-line bg-bg-tertiary/40 shrink-0">
