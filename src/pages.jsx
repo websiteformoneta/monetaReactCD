@@ -1390,7 +1390,7 @@ function WhyPage({ onDemoClick }) {
                   </div>
                   {/* SVG Sankey */}
                   <div style={{ position: "relative" }}>
-                    <svg width="100%" viewBox="0 0 500 210" preserveAspectRatio="xMidYMid meet" style={{ display: "block" }}>
+                    <svg width="100%" viewBox="0 0 448 180" preserveAspectRatio="xMidYMid meet" style={{ display: "block" }}>
                       <defs>
                         <linearGradient id="wm2_blue" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#3b82f6"/><stop offset="100%" stopColor="#1d4ed8"/></linearGradient>
                         <linearGradient id="wm2_amber" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#b45309"/><stop offset="100%" stopColor="#78350f"/></linearGradient>
@@ -1402,35 +1402,25 @@ function WhyPage({ onDemoClick }) {
                         <filter id="wm2_glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                       </defs>
 
-                      {/* ── TOP FLOW ── */}
-                      {/* Cloud cost block */}
-                      <rect x="8" y="18" width="124" height="56" rx="8" fill="url(#wm2_blue)"/>
-                      <text x="70" y="51" textAnchor="middle" style={{ fontSize: 13, fontWeight: 600, fill: "#fff", fontFamily: "Inter, sans-serif" }}>Cloud cost</text>
-                      {/* Smooth taper: Cloud cost → Customer bill */}
-                      <path d="M132,18 C150,18 150,26 168,26 L168,66 C150,66 150,74 132,74 Z" fill="url(#wm2_bluecon)"/>
-                      {/* Customer bill block */}
-                      <rect x="168" y="26" width="118" height="40" rx="7" fill="url(#wm2_slate)"/>
-                      <text x="227" y="51" textAnchor="middle" style={{ fontSize: 12, fontWeight: 500, fill: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Customer bill</text>
-                      {/* Smooth taper: Customer bill → Revenue */}
-                      <path d="M286,26 C304,26 304,18 322,18 L322,74 C304,74 304,66 286,66 Z" fill="url(#wm2_greencon)"/>
-                      {/* Revenue block */}
-                      <rect x="322" y="10" width="118" height="72" rx="8" fill="url(#wm2_green)" filter="url(#wm2_glow)"/>
-                      <text x="381" y="51" textAnchor="middle" style={{ fontSize: 13, fontWeight: 700, fill: "#f0fdf4", fontFamily: "Inter, sans-serif" }}>Revenue</text>
+                      {/* ── TOP FLOW — y: 8→72, mid=40 ── */}
+                      <rect x="8" y="8" width="124" height="64" rx="8" fill="url(#wm2_blue)"/>
+                      <text x="70" y="45" textAnchor="middle" style={{ fontSize: 13, fontWeight: 600, fill: "#fff", fontFamily: "Inter, sans-serif" }}>Cloud cost</text>
+                      <path d="M132,8 C150,8 150,18 168,18 L168,62 C150,62 150,72 132,72 Z" fill="url(#wm2_bluecon)"/>
+                      <rect x="168" y="18" width="118" height="44" rx="7" fill="url(#wm2_slate)"/>
+                      <text x="227" y="45" textAnchor="middle" style={{ fontSize: 12, fontWeight: 500, fill: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Customer bill</text>
+                      <path d="M286,18 C304,18 304,8 322,8 L322,72 C304,72 304,62 286,62 Z" fill="url(#wm2_greencon)"/>
+                      <rect x="322" y="2" width="118" height="76" rx="8" fill="url(#wm2_green)" filter="url(#wm2_glow)"/>
+                      <text x="381" y="45" textAnchor="middle" style={{ fontSize: 13, fontWeight: 700, fill: "#f0fdf4", fontFamily: "Inter, sans-serif" }}>Revenue</text>
 
-                      {/* ── BOTTOM FLOW ── */}
-                      {/* Commitments block */}
-                      <rect x="8" y="130" width="124" height="56" rx="8" fill="url(#wm2_amber)"/>
-                      <text x="70" y="163" textAnchor="middle" style={{ fontSize: 13, fontWeight: 600, fill: "#fef3c7", fontFamily: "Inter, sans-serif" }}>Commitments</text>
-                      {/* Smooth taper: Commitments → Discount engine */}
-                      <path d="M132,130 C150,130 150,138 168,138 L168,178 C150,178 150,186 132,186 Z" fill="url(#wm2_ambercon)"/>
-                      {/* Discount engine block */}
-                      <rect x="168" y="138" width="118" height="40" rx="7" fill="url(#wm2_slate)"/>
-                      <text x="227" y="163" textAnchor="middle" style={{ fontSize: 12, fontWeight: 500, fill: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Discount engine</text>
-                      {/* Smooth taper: Discount engine → Net margin */}
-                      <path d="M286,138 C304,138 304,130 322,130 L322,186 C304,186 304,178 286,178 Z" fill="url(#wm2_greencon)"/>
-                      {/* Net margin block */}
-                      <rect x="322" y="122" width="118" height="72" rx="8" fill="url(#wm2_green)" filter="url(#wm2_glow)"/>
-                      <text x="381" y="163" textAnchor="middle" style={{ fontSize: 13, fontWeight: 700, fill: "#f0fdf4", fontFamily: "Inter, sans-serif" }}>Net margin</text>
+                      {/* ── BOTTOM FLOW — y: 108→172, mid=140 ── */}
+                      <rect x="8" y="108" width="124" height="64" rx="8" fill="url(#wm2_amber)"/>
+                      <text x="70" y="145" textAnchor="middle" style={{ fontSize: 13, fontWeight: 600, fill: "#fef3c7", fontFamily: "Inter, sans-serif" }}>Commitments</text>
+                      <path d="M132,108 C150,108 150,118 168,118 L168,162 C150,162 150,172 132,172 Z" fill="url(#wm2_ambercon)"/>
+                      <rect x="168" y="118" width="118" height="44" rx="7" fill="url(#wm2_slate)"/>
+                      <text x="227" y="145" textAnchor="middle" style={{ fontSize: 12, fontWeight: 500, fill: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Discount engine</text>
+                      <path d="M286,118 C304,118 304,108 322,108 L322,172 C304,172 304,162 286,162 Z" fill="url(#wm2_greencon)"/>
+                      <rect x="322" y="102" width="118" height="76" rx="8" fill="url(#wm2_green)" filter="url(#wm2_glow)"/>
+                      <text x="381" y="145" textAnchor="middle" style={{ fontSize: 13, fontWeight: 700, fill: "#f0fdf4", fontFamily: "Inter, sans-serif" }}>Net margin</text>
                     </svg>
                   </div>
                   {/* Stat tiles */}
