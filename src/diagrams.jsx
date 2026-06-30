@@ -896,6 +896,7 @@ function MonetaSystemHero() {
   const wrapRef = React.useRef(null);
   const coreRef = React.useRef(null);
   const coreInnerRef = React.useRef(null);
+  const logoRef = React.useRef(null);
   const inRefs = React.useRef([]);
   const outRefs = React.useRef([]);
   const [conn, setConn] = React.useState({ left: [], right: [], h: 0 });
@@ -911,11 +912,13 @@ function MonetaSystemHero() {
       const wrapBox = wrap.getBoundingClientRect();
       const coreColBox = coreCol.getBoundingClientRect();
 
-      // align core vertical center with the 4th input row (index 3) — the middle of 7 inputs
+      // align logo vertical center with the 4th input row (index 3) — the middle of 7 inputs
       const target = inRefs.current[3].getBoundingClientRect();
       const targetMidY = target.top - wrapBox.top + target.height / 2;
       const innerH = coreInnerRef.current ? coreInnerRef.current.getBoundingClientRect().height : 0;
-      const newTop = targetMidY - (coreColBox.top - wrapBox.top) - innerH / 2;
+      const logoEl = logoRef.current;
+      const logoOffsetFromInner = logoEl ? logoEl.getBoundingClientRect().top - coreInnerRef.current.getBoundingClientRect().top + logoEl.getBoundingClientRect().height / 2 : innerH / 2;
+      const newTop = targetMidY - (coreColBox.top - wrapBox.top) - logoOffsetFromInner;
       if (Math.abs((coreTop || 0) - newTop) > 0.5) { setCoreTop(newTop); return; }
 
       const coreInner = coreInnerRef.current;
@@ -923,7 +926,8 @@ function MonetaSystemHero() {
       const innerBox = coreInner.getBoundingClientRect();
       const coreLeftX = innerBox.left - wrapBox.left;
       const coreRightX = innerBox.right - wrapBox.left;
-      const coreMidY = innerBox.top - wrapBox.top + innerBox.height / 2;
+      const logoBox = logoRef.current ? logoRef.current.getBoundingClientRect() : innerBox;
+      const coreMidY = logoBox.top - wrapBox.top + logoBox.height / 2;
 
       const left = inRefs.current.map((el) => {
         if (!el) return null;
@@ -1020,25 +1024,31 @@ function MonetaSystemHero() {
           </div>
         </div>
 
-        {/* CORE — moneta logo */}
+        {/* CORE — nexus engine */}
         <div ref={coreRef} className="flex flex-col items-center px-2 md:px-6" style={{ width: "min(260px, 100%)", paddingTop: coreTop != null ? coreTop : "calc(50% - 96px)" }}>
-          <div ref={coreInnerRef} className="relative w-[126px] h-[126px] md:w-[142px] md:h-[142px] flex items-center justify-center">
-            <div className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(circle, rgba(91,123,255,0.28), transparent 72%)", filter: "blur(6px)" }} />
-            <div className="absolute rounded-full" style={{ inset: 6, border: "1px solid rgba(91,123,255,0.18)" }} />
-            <div className="relative z-10 w-[78px] h-[78px] md:w-[88px] md:h-[88px] flex items-center justify-center">
-              <img src="assets/moneta-icon.png" alt="moneta" className="w-full h-full"
-                style={{ objectFit: "contain", filter: "drop-shadow(0 0 24px rgba(91,123,255,0.5)) drop-shadow(0 8px 24px rgba(168,85,247,0.3))" }} />
+          <div ref={coreInnerRef} className="relative flex flex-col items-center">
+
+            {/* Text */}
+            <div className="mb-4 text-center leading-snug">
+              <p className="text-[18px] font-bold text-white">moneta</p>
+              <p className="text-[18px] font-bold grad-text-bp" style={{ whiteSpace: "nowrap" }}>operating system</p>
             </div>
+
+            {/* Logo */}
+            <img ref={logoRef} src="assets/moneta-icon.png" alt="moneta"
+              style={{ width: 110, height: 110, objectFit: "contain", filter: "drop-shadow(0 0 18px rgba(91,123,255,0.4))", marginTop: -40 }} />
+
+            {/* Status badge */}
+            <span className="mt-4 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[10.5px] font-bold tracking-[0.12em]"
+              style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.35)", color: "#34D399" }}>
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#34D399", boxShadow: "0 0 8px #34D399", animation: "nexus-pulse 2s ease-in-out infinite" }} />
+              SYSTEM ACTIVE
+            </span>
           </div>
-          <div className="mt-4 text-center leading-snug">
-            <p className="text-[18px] font-bold text-white">moneta</p>
-            <p className="text-[18px] font-bold grad-text-bp" style={{ whiteSpace: "nowrap" }}>operating system</p>
-          </div>
-          <span className="mt-4 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[10.5px] font-bold tracking-[0.12em]"
-            style={{ background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.4)", color: "#34D399" }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#34D399", boxShadow: "0 0 8px #34D399" }} />
-            SYSTEM ACTIVE
-          </span>
+
+          <style>{`
+            @keyframes nexus-pulse { 0%,100% { opacity: 1; box-shadow: 0 0 8px #34D399; } 50% { opacity: 0.5; box-shadow: 0 0 3px #34D399; } }
+          `}</style>
         </div>
 
         {/* OUTPUTS — stack stretched to match inputs height so first/last cards align */}
