@@ -1139,15 +1139,13 @@ function SystemArchitecturePipeline() {
     <div className="min-w-0 flex-1 rounded-2xl flex flex-col sa-stage-pulse"
       style={{
         marginTop: s.offset,
-        background: s.emphasis
-          ? "linear-gradient(165deg, rgba(91,123,255,0.12), rgba(168,85,247,0.05))"
-          : "linear-gradient(165deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012))",
+        background: "linear-gradient(165deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012))",
         border: `1px solid ${s.emphasis ? "rgba(91,123,255,0.4)" : "rgba(255,255,255,0.08)"}`,
         backdropFilter: "blur(10px)",
         boxShadow: "0 6px 22px -12px rgba(0,0,0,0.6)",
         "--sa-base-shadow": "0 6px 22px -12px rgba(0,0,0,0.6)",
         "--sa-glow-color": s.c,
-        animationDelay: `${i * 2}s`,
+        animationDelay: `${-10 + i * 2}s`,
       }}>
       <div className="px-4 pt-4 pb-3 flex items-center gap-2.5 border-b" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
         <span className="w-6 h-6 rounded-lg grid place-items-center text-[11px] font-bold shrink-0"
@@ -1191,7 +1189,7 @@ function SystemArchitecturePipeline() {
           8%, 22% { box-shadow: 0 0 36px -6px var(--sa-glow-color), var(--sa-base-shadow); border-color: var(--sa-glow-color); }
           25%, 100% { box-shadow: var(--sa-base-shadow); border-color: rgba(255,255,255,0.08); }
         }
-        .sa-stage-pulse { animation: sa-stage-pulse 10s linear infinite; }
+        .sa-stage-pulse { animation: sa-stage-pulse 10s linear infinite; animation-fill-mode: both; }
         @media (prefers-reduced-motion: reduce) {
           .sa-stage-pulse { animation: none; }
         }
@@ -1554,9 +1552,6 @@ function OneSystemFullControl({ onDemoClick }) {
             <Button variant="primary" onClick={onDemoClick} className="!px-6 !py-3.5 !text-[14px]">
               Book a Demo <ArrowRight />
             </Button>
-            <a href="#/why-moneta" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[10px] text-[14px] font-semibold text-white border border-line-hover hover:border-accent-indigo transition-colors">
-              See it in Action
-            </a>
           </div>
         </div>
 
