@@ -425,15 +425,15 @@ function FinOpsServiceTabs() {
       card: (tick) => {
         const opportunities = [
           { label: "EC2 Rightsizing",        savings: 3240, color: "#A855F7" },
-          { label: "Idle EBS Volumes",       savings: 1470, color: "#22D3EE" },
           { label: "Unused Load Balancers",  savings: 890,  color: "#3B82F6" },
+          { label: "Idle EBS Volumes",       savings: 1470, color: "#22D3EE" },
         ];
         const totalMonthly = opportunities.reduce((s, o) => s + o.savings, 0);
         const totalYear = totalMonthly * 12;
         const mono = "'Courier New', Courier, monospace";
         // Donut geometry
         const R = 34, C = 2 * Math.PI * R;
-        let offset = 0;
+        let offset = -90;
         const segments = opportunities.map(o => {
           const frac = o.savings / totalMonthly;
           const seg = { ...o, dash: frac * C, gap: C - frac * C, rot: offset };
@@ -1334,7 +1334,7 @@ function WhyPage({ onDemoClick }) {
         <div className="glow-hero" />
         <div className="dot-corner" />
         <div className="container-x relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* Left */}
             <div className="lg:col-span-6">
               <Eyebrow className="mb-6">Why moneta</Eyebrow>
@@ -1352,7 +1352,7 @@ function WhyPage({ onDemoClick }) {
               </div>
             </div>
             {/* Right — Margin Flow card */}
-            <div className="lg:col-span-6 lg:pl-4">
+            <div className="lg:col-span-6 lg:pl-4" style={{ paddingTop: "clamp(0px, 4vw, 60px)" }}>
               {(() => {
                 const [popupVisible, setPopupVisible] = React.useState(true);
                 const wrapRef = React.useRef(null);
@@ -1369,7 +1369,7 @@ function WhyPage({ onDemoClick }) {
                   return () => window.removeEventListener("mousemove", handleMouseMove);
                 }, [handleMouseMove]);
                 return (
-              <div ref={wrapRef} style={{ position: "relative", width: "100%", maxWidth: 560, margin: "0 auto", paddingBottom: 52 }}>
+              <div ref={wrapRef} style={{ position: "relative", width: "100%", maxWidth: 560, margin: "0 auto", paddingBottom: 72 }}>
                 <div style={{ background: "linear-gradient(160deg, #0b1a2e 0%, #0d2040 100%)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 18, padding: "20px 22px 22px", boxShadow: "0 24px 60px rgba(0,0,0,0.6)", position: "relative", overflow: "hidden" }}>
                   {/* Dot grid */}
                   <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.15, pointerEvents: "none" }} aria-hidden="true">
@@ -1426,7 +1426,7 @@ function WhyPage({ onDemoClick }) {
                   {/* Stat tiles */}
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginTop: 8, position: "relative" }}>
                     {[
-                      { label: "cost in",      value: "$284,040", border: "rgba(255,255,255,0.1)", color: "#f1f5f9" },
+                      { label: "cloud cost",   value: "$284,040", border: "rgba(255,255,255,0.1)", color: "#f1f5f9" },
                       { label: "adjustments",  value: "$38,120",  border: "rgba(255,255,255,0.1)", color: "#f1f5f9" },
                       { label: "margin",       value: "$46,210",  border: "rgba(34,197,94,0.35)",  color: "#f1f5f9" },
                     ].map((t) => (
@@ -1439,15 +1439,15 @@ function WhyPage({ onDemoClick }) {
                 </div>
                 {/* Margin Recovered popup */}
                 <style>{`@keyframes floatUpDownWhy1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }`}</style>
-                <div style={{ position: "absolute", bottom: 0, left: 16, background: "#ffffff", borderRadius: 12, padding: "13px 16px", width: 300, boxShadow: "0 8px 32px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06)", pointerEvents: "none", animation: "floatUpDownWhy1 3s ease-in-out infinite", opacity: popupVisible ? 1 : 0, transition: "opacity 0.2s ease" }}>
+                <div style={{ position: "absolute", bottom: 0, left: 16, background: "#ffffff", borderRadius: 12, padding: "11px 14px", width: 272, boxShadow: "0 8px 32px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06)", pointerEvents: "none", animation: "floatUpDownWhy1 3s ease-in-out infinite", opacity: popupVisible ? 1 : 0, transition: "opacity 0.2s ease" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
-                    <div style={{ width: 26, height: 26, borderRadius: 7, background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    <div style={{ width: 24, height: 24, borderRadius: 7, background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
                     </div>
-                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#16a34a", fontFamily: "Inter, sans-serif" }}>Margin Recovered</span>
+                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#16a34a", fontFamily: "Inter, sans-serif" }}>Margin Trend</span>
                   </div>
-                  <p style={{ fontSize: 13, fontWeight: 600, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 3 }}>$46.2k on Acme Co. this month</p>
-                  <p style={{ fontSize: 12, color: "#64748b", lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>Spotted a pricing rule that was eroding margin on EC2 since March.</p>
+                  <p style={{ fontSize: 12.5, fontWeight: 600, color: "#0f172a", fontFamily: "Inter, sans-serif", marginBottom: 3 }}>$46.2k Acme Co. increase this month</p>
+                  <p style={{ fontSize: 11.5, color: "#64748b", lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>Cloud FinOps service contributed $45k this month</p>
                 </div>
               </div>
                 );
