@@ -1369,7 +1369,7 @@ function WhyPage({ onDemoClick }) {
                   return () => window.removeEventListener("mousemove", handleMouseMove);
                 }, [handleMouseMove]);
                 return (
-              <div ref={wrapRef} style={{ position: "relative", width: "100%", maxWidth: 560, margin: "0 auto", paddingBottom: 72 }}>
+              <div ref={wrapRef} style={{ position: "relative", width: "100%", maxWidth: 515, margin: "0 auto", paddingBottom: 66 }}>
                 <div style={{ background: "linear-gradient(160deg, #0b1a2e 0%, #0d2040 100%)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 18, padding: "20px 22px 22px", boxShadow: "0 24px 60px rgba(0,0,0,0.6)", position: "relative", overflow: "hidden" }}>
                   {/* Dot grid */}
                   <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.15, pointerEvents: "none" }} aria-hidden="true">
@@ -1588,7 +1588,7 @@ function WhyPage({ onDemoClick }) {
               {
                 icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><path d="M11 18H8a2 2 0 01-2-2V9"/></svg>,
                 t: "Connects to what you already run",
-                b: "CRM, ERP, ticketing, and provider portals link in, so margin signals reach the right team without manual export.",
+                b: "Integrates with your accounting and reporting systems so financial data signals reach the right team with ease.",
               },
             ].map((c) => (
               <div key={c.t} className="hover-lift" style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 14, padding: "20px 20px" }}>
@@ -1650,34 +1650,21 @@ function WhyPage({ onDemoClick }) {
         <div className="text-center max-w-[640px] mx-auto py-2">
           <div style={{ display: "inline-flex", alignItems: "center", gap: 7, marginBottom: 20 }}>
             <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#3B82F6", display: "inline-block" }} />
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#3B82F6", fontFamily: "Inter, sans-serif" }}>Ready to Grow Your Cloud Revenue and Margin?</span>
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#3B82F6", fontFamily: "Inter, sans-serif" }}>Ready to grow your cloud revenue and margin?</span>
           </div>
           <h2 style={{ fontSize: "clamp(32px, 4vw, 54px)", fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.025em", color: "#f1f5f9" }}>
-            See moneta operate with your own customer portfolio.
+            See why resellers replace stitched workflows with moneta.
           </h2>
           <p className="mt-6 text-[17px] leading-[1.7]" style={{ color: "#94a3b8" }}>
-            Connect an account, and within days, you'll see customer-level margin, the pricing rules driving it, and the gaps worth closing first.
+            Make the quick connection to an account and see what the operating system can do with it – in 45 minutes.
           </p>
           <div className="mt-9">
             <Button variant="primary" onClick={onDemoClick} className="!px-8 !py-4 !text-[15px]">
-              Begin a working session <ArrowRight />
+              Let's get started <ArrowRight />
             </Button>
           </div>
         </div>
-      </SectionShell>
-
-
-
-
-
-
-      <FinalCTA
-        title="See why resellers replace stitched workflows with moneta."
-        description="Bring your own resell environment. We'll show you what the moneta operating system can do with it – in 45 minutes."
-        ctaLabel="Book a Demo"
-        onCta={onDemoClick}
-      />
-    </React.Fragment>
+      </SectionShell>    </React.Fragment>
   );
 }
 
