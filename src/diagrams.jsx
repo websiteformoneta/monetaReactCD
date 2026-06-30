@@ -26,6 +26,22 @@ const Icons = {
   sheetBox: (c) => <IconLine color={c}><rect x="4" y="4" width="16" height="16" rx="2" /><path d="M4 10h16M4 16h16M10 4v16M16 4v16" /></IconLine>,
   dollar: (c) => <IconLine color={c}><circle cx="12" cy="12" r="9" /><path d="M12 6v12M15 9.5c0-1.4-1.3-2.5-3-2.5s-3 1.1-3 2.5S10.3 12 12 12s3 1.1 3 2.5-1.3 2.5-3 2.5-3-1.1-3-2.5" /></IconLine>,
   externalLink: (c) => <IconLine color={c}><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5" /></IconLine>,
+  user: (c) => <IconLine color={c}><circle cx="12" cy="8" r="3.5" /><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6" /></IconLine>,
+  cloudUpload: (c) => <IconLine color={c}><path d="M7 18a4 4 0 010-8 6 6 0 0111.5 1.5A4 4 0 0117 19H7z" /><path d="M12 17v-5M9.5 14.5L12 12l2.5 2.5" /></IconLine>,
+  wand: (c) => <IconLine color={c}><path d="M4 20l9-9" /><path d="M15 4l1.5 1.5M19 8l1.5 1.5M19.5 3.5L21 5M13.5 5.5L15 7" /></IconLine>,
+  alertTriangle: (c) => <IconLine color={c}><path d="M12 3.5L21 19H3L12 3.5z" /><path d="M12 10v4" /><circle cx="12" cy="16.7" r="0.9" fill={c} stroke="none" /></IconLine>,
+  clock: (c) => <IconLine color={c}><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></IconLine>,
+  lock: (c) => <IconLine color={c}><rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V7a4 4 0 018 0v4" /><path d="M12 15v2" /></IconLine>,
+  database: (c) => <IconLine color={c}><ellipse cx="12" cy="6" rx="7" ry="3" /><path d="M5 6v12c0 1.66 3.13 3 7 3s7-1.34 7-3V6" /><path d="M5 12c0 1.66 3.13 3 7 3s7-1.34 7-3" /></IconLine>,
+  sliders: (c) => <IconLine color={c}><path d="M5 7h7M16 7h3M5 17h3M12 17h7" /><circle cx="14" cy="7" r="2" /><circle cx="10" cy="17" r="2" /></IconLine>,
+  barChart: (c) => <IconLine color={c}><path d="M4 20V13M10 20V8M16 20V11M22 20V4" /></IconLine>,
+  arrowUpRight: (c) => <IconLine color={c}><path d="M7 17L17 7" /><path d="M9 7h8v8" /></IconLine>,
+  grid: (c) => <IconLine color={c}><rect x="3" y="3" width="7" height="7" rx="1.2" /><rect x="14" y="3" width="7" height="7" rx="1.2" /><rect x="3" y="14" width="7" height="7" rx="1.2" /><rect x="14" y="14" width="7" height="7" rx="1.2" /></IconLine>,
+  bell: (c) => <IconLine color={c}><path d="M6 16V11a6 6 0 0112 0v5l1.5 2.5h-15L6 16z" /><path d="M10 20a2 2 0 004 0" /></IconLine>,
+  eye: (c) => <IconLine color={c}><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" /><circle cx="12" cy="12" r="3" /></IconLine>,
+  users: (c) => <IconLine color={c}><circle cx="9" cy="8" r="3.2" /><path d="M3 20c0-3.2 2.7-5.5 6-5.5s6 2.3 6 5.5" /><path d="M16 8.2a3.2 3.2 0 010 6M21 20c0-2.6-1.9-4.7-4.5-5.3" /></IconLine>,
+  bolt: (c) => <IconLine color={c}><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" strokeLinejoin="round" /></IconLine>,
+  refresh: (c) => <IconLine color={c}><path d="M3 12a9 9 0 0115.5-6.3L21 8M21 3v5h-5" /><path d="M21 12a9 9 0 01-15.5 6.3L3 16M3 21v-5h5" /></IconLine>,
 };
 
 function PngIcon({ src, size = 22 }) {
@@ -851,7 +867,582 @@ function ReconciliationLoop() {
   );
 }
 
+// ---- Platform hero — Inputs / moneta cube / Outputs + Controls bar ----
+function MonetaSystemHero() {
+  const inputs = [
+    { label: "AWS Billing",         sub: "2.48M line items", icon: "aws"   },
+    { label: "Azure Billing",       sub: "1.37M line items", icon: "azure" },
+    { label: "Customer Agreements", sub: "842 active",       src: "graphics/icons/ProblemCustomerIcon.png" },
+    { label: "Pricing Rules",       sub: "1.21K rules",       svgI: "tag",     c: "#3B82F6" },
+    { label: "Discount Programs",   sub: "312 active",        svgI: "percent", c: "#22D3EE" },
+    { label: "Usage Data",          sub: "12.9B records",     svgI: "trend",   c: "#5B7BFF" },
+    { label: "Tax & Compliance",    sub: "98% coverage",      svgI: "shield",  c: "#A855F7" },
+  ];
+  const outputs = [
+    { label: "Customer Invoices",       sub: "$28.4M generated",  svgI: "invoice",  c: "#A855F7" },
+    { label: "Margin Reporting",        sub: "31.8% avg. margin", svgI: "trend",    c: "#22D3EE" },
+    { label: "Pricing Analytics",       sub: "4.7K price changes",svgI: "tag",      c: "#A855F7" },
+    { label: "Customer Cost Reporting", sub: "$18.7M analyzed",   svgI: "cloud",    c: "#3B82F6" },
+    { label: "FinOps Insights",         sub: "126 recommendations", svgI: "target", c: "#22D3EE" },
+    { label: "Executive Dashboards",    sub: "8 live dashboards", svgI: "sheetBox", c: "#5B7BFF" },
+  ];
+  const controls = [
+    { label: "Policies & Rules", sub: "1.21K active",      svgI: "filter",  c: "#3B82F6" },
+    { label: "Approvals",        sub: "48 pending",        svgI: "percent", c: "#22D3EE" },
+    { label: "Exceptions",       sub: "23 requires review", svgI: "shield", c: "#5B7BFF" },
+    { label: "Audit & History",  sub: "100% traceable",    svgI: "clock",   c: "#A855F7" },
+  ];
+
+  const wrapRef = React.useRef(null);
+  const coreRef = React.useRef(null);
+  const coreInnerRef = React.useRef(null);
+  const inRefs = React.useRef([]);
+  const outRefs = React.useRef([]);
+  const [conn, setConn] = React.useState({ left: [], right: [], h: 0 });
+  const [coreTop, setCoreTop] = React.useState(null);
+  const [bar, setBar] = React.useState(null);
+
+  React.useLayoutEffect(() => {
+    const measure = () => {
+      const wrap = wrapRef.current, coreCol = coreRef.current;
+      if (!wrap || !coreCol || !inRefs.current[3]) return;
+      const wrapBox = wrap.getBoundingClientRect();
+      const coreColBox = coreCol.getBoundingClientRect();
+
+      // align core vertical center with the 4th input row (index 3) — the middle of 7 inputs
+      const target = inRefs.current[3].getBoundingClientRect();
+      const targetMidY = target.top - wrapBox.top + target.height / 2;
+      const innerH = coreInnerRef.current ? coreInnerRef.current.getBoundingClientRect().height : 0;
+      const newTop = targetMidY - (coreColBox.top - wrapBox.top) - innerH / 2;
+      if (Math.abs((coreTop || 0) - newTop) > 0.5) { setCoreTop(newTop); return; }
+
+      const coreInner = coreInnerRef.current;
+      if (!coreInner) return;
+      const innerBox = coreInner.getBoundingClientRect();
+      const coreLeftX = innerBox.left - wrapBox.left;
+      const coreRightX = innerBox.right - wrapBox.left;
+      const coreMidY = innerBox.top - wrapBox.top + innerBox.height / 2;
+
+      const left = inRefs.current.map((el) => {
+        if (!el) return null;
+        const b = el.getBoundingClientRect();
+        return { x1: b.right - wrapBox.left, y1: b.top - wrapBox.top + b.height / 2, x2: coreLeftX, y2: coreMidY };
+      }).filter(Boolean);
+
+      // outputs converge on the midpoint between the 3rd and 4th output rows (indices 2 and 3)
+      const o3 = outRefs.current[2], o4 = outRefs.current[3];
+      let outTargetY = coreMidY;
+      if (o3 && o4) {
+        const b3 = o3.getBoundingClientRect(), b4 = o4.getBoundingClientRect();
+        const y3 = b3.top - wrapBox.top + b3.height / 2;
+        const y4 = b4.top - wrapBox.top + b4.height / 2;
+        outTargetY = (y3 + y4) / 2;
+      }
+
+      const right = outRefs.current.map((el) => {
+        if (!el) return null;
+        const b = el.getBoundingClientRect();
+        return { x1: coreRightX, y1: outTargetY, x2: b.left - wrapBox.left, y2: b.top - wrapBox.top + b.height / 2 };
+      }).filter(Boolean);
+
+      setConn({ left, right, h: wrapBox.height });
+
+      // align the controls bar exactly under the inputs (left edge) and outputs (right edge) stacks
+      const firstIn = inRefs.current[0], firstOut = outRefs.current[0];
+      if (firstIn && firstOut) {
+        const inBox = firstIn.getBoundingClientRect();
+        const outBox = firstOut.getBoundingClientRect();
+        const barLeft = inBox.left - wrapBox.left;
+        const barRight = outBox.right - wrapBox.left;
+        setBar({ left: barLeft, width: barRight - barLeft });
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    const id = setTimeout(measure, 60);
+    return () => { window.removeEventListener("resize", measure); clearTimeout(id); };
+  }, [coreTop]);
+
+  const Row = ({ item, idx, side }) => (
+    <div
+      ref={(el) => { (side === "in" ? inRefs : outRefs).current[idx] = el; }}
+      className="relative flex items-center gap-3 rounded-xl px-3.5 py-2.5"
+      style={{ background: "#0B0F1F", border: "1px solid rgba(91,123,255,0.22)" }}
+    >
+      <div className="w-8 h-8 rounded-lg grid place-items-center shrink-0" style={{ background: "rgba(91,123,255,0.1)", border: "1px solid rgba(91,123,255,0.25)" }}>
+        {item.icon === "aws" && <img src="assets/icons8-aws-logo.svg" alt="" width="18" height="18" style={{ objectFit: "contain" }} />}
+        {item.icon === "azure" && <img src="assets/icons8-azure.svg" alt="" width="18" height="18" style={{ objectFit: "contain" }} />}
+        {item.src && <img src={item.src} alt="" width="18" height="18" style={{ objectFit: "contain" }} />}
+        {item.svgI && Icons[item.svgI](item.c)}
+      </div>
+      <div className="min-w-0 leading-tight">
+        <p className="text-[13px] font-medium text-ink-primary truncate">{item.label}</p>
+        {item.sub && <p className="text-[11px] text-ink-muted mt-0.5 truncate">{item.sub}</p>}
+      </div>
+    </div>
+  );
+
+  return (
+    <div ref={wrapRef} className="relative w-full">
+      {/* connector overlay */}
+      <svg className="absolute inset-0 pointer-events-none" width="100%" height={conn.h || "100%"} style={{ top: 0, left: 0 }} aria-hidden="true">
+        {conn.left.map((l, i) => {
+          const midX = (l.x1 + l.x2) / 2;
+          return (
+            <path key={`l${i}`} d={`M${l.x1},${l.y1} C${midX},${l.y1} ${midX},${l.y2} ${l.x2},${l.y2}`}
+              fill="none" stroke="#3B82F6" strokeWidth="1.3" strokeDasharray="3 4" opacity="0.55" />
+          );
+        })}
+        {conn.right.map((r, i) => {
+          const midX = (r.x1 + r.x2) / 2;
+          return (
+            <path key={`r${i}`} d={`M${r.x1},${r.y1} C${midX},${r.y1} ${midX},${r.y2} ${r.x2},${r.y2}`}
+              fill="none" stroke="#A855F7" strokeWidth="1.3" strokeDasharray="3 4" opacity="0.55" />
+          );
+        })}
+      </svg>
+
+      <div className="relative w-full grid grid-cols-[1fr_auto_1fr] gap-6 md:gap-10 items-start" style={{ zIndex: 1 }}>
+        {/* INPUTS */}
+        <div>
+          <p className="eyebrow text-[11px] tracking-[0.2em] mb-3">Inputs</p>
+          <div className="space-y-2.5">
+            {inputs.map((it, idx) => <Row key={it.label} item={it} idx={idx} side="in" />)}
+          </div>
+        </div>
+
+        {/* CORE — moneta logo */}
+        <div ref={coreRef} className="flex flex-col items-center px-2 md:px-6" style={{ width: "min(260px, 100%)", paddingTop: coreTop != null ? coreTop : "calc(50% - 96px)" }}>
+          <div ref={coreInnerRef} className="relative w-[126px] h-[126px] md:w-[142px] md:h-[142px] flex items-center justify-center">
+            <div className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(circle, rgba(91,123,255,0.28), transparent 72%)", filter: "blur(6px)" }} />
+            <div className="absolute rounded-full" style={{ inset: 6, border: "1px solid rgba(91,123,255,0.18)" }} />
+            <div className="relative z-10 w-[78px] h-[78px] md:w-[88px] md:h-[88px] flex items-center justify-center">
+              <img src="assets/moneta-icon.png" alt="moneta" className="w-full h-full"
+                style={{ objectFit: "contain", filter: "drop-shadow(0 0 24px rgba(91,123,255,0.5)) drop-shadow(0 8px 24px rgba(168,85,247,0.3))" }} />
+            </div>
+          </div>
+          <div className="mt-4 text-center leading-snug">
+            <p className="text-[18px] font-bold text-white">moneta</p>
+            <p className="text-[18px] font-bold grad-text-bp" style={{ whiteSpace: "nowrap" }}>operating system</p>
+          </div>
+          <span className="mt-4 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[10.5px] font-bold tracking-[0.12em]"
+            style={{ background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.4)", color: "#34D399" }}>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#34D399", boxShadow: "0 0 8px #34D399" }} />
+            SYSTEM ACTIVE
+          </span>
+        </div>
+
+        {/* OUTPUTS */}
+        <div style={{ paddingTop: 36 }}>
+          <p className="eyebrow text-[11px] tracking-[0.2em] mb-3 text-right">Outputs</p>
+          <div className="space-y-2.5">
+            {outputs.map((it, idx) => <Row key={it.label} item={it} idx={idx} side="out" />)}
+          </div>
+        </div>
+      </div>
+
+      {/* CONTROLS bar — width/position measured to span inputs→outputs edges */}
+      <div className="relative mt-2 rounded-2xl px-6 md:px-8 pt-3 pb-5"
+        style={{
+          background: "#0B0F1F", border: "1px solid rgba(91,123,255,0.22)", zIndex: 1,
+          marginLeft: bar ? bar.left : 0,
+          width: bar ? bar.width : "100%",
+        }}>
+        <p className="eyebrow text-[10.5px] tracking-[0.2em] text-center mb-4" style={{ color: "#5B7BFF" }}>Controls (Financial Control Plane)</p>
+        <div className="grid grid-cols-2 md:grid-cols-4">
+          {controls.map((c, i) => (
+            <div key={c.label} className="flex items-center gap-2.5"
+              style={{
+                borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                paddingLeft: i > 0 ? 20 : 0,
+                paddingRight: i < controls.length - 1 ? 20 : 0,
+              }}>
+              <span className="shrink-0">{Icons[c.svgI](c.c)}</span>
+              <div className="min-w-0 leading-tight">
+                <p className="text-[13px] font-medium text-ink-secondary whitespace-nowrap">{c.label}</p>
+                <p className="text-[11px] text-ink-muted whitespace-nowrap">{c.sub}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---- System Architecture pipeline — Ingest / Normalize / Process / Deliver / Analyze ----
+function SystemArchitecturePipeline() {
+  const stages = [
+    {
+      n: "1", t: "Ingest", c: "#3B82F6",
+      rows: [
+        { label: "Cloud Usage", sub: "(AWS / Azure)", icon: "cloudUpload" },
+        { label: "Customer Data", icon: "user" },
+        { label: "Agreements & Commitments", icon: "invoice" },
+      ],
+    },
+    {
+      n: "2", t: "Normalize", c: "#22D3EE",
+      rows: [
+        { label: "Data Validation & Mapping", icon: "shield" },
+        { label: "Standardization", icon: "trend" },
+        { label: "Enrichment", icon: "wand" },
+      ],
+    },
+    {
+      n: "3", t: "Process", c: "#5B7BFF",
+      rows: [
+        { label: "Pricing Engine", sub: "Apply pricing rules", icon: "settings" },
+        { label: "Discount Engine", sub: "Allocate discounts", icon: "settings" },
+        { label: "Invoice Engine", sub: "Generate invoices", icon: "invoice" },
+        { label: "Margin Engine", sub: "Calculate margins", icon: "settings" },
+      ],
+    },
+    {
+      n: "4", t: "Deliver", c: "#A855F7",
+      rows: [
+        { label: "Customer Invoices", icon: "invoice" },
+        { label: "Cost & Usage Reports", icon: "sheetBox" },
+        { label: "FinOps Deliverables", icon: "cloud" },
+      ],
+    },
+    {
+      n: "5", t: "Analyze", c: "#A855F7",
+      rows: [
+        { label: "Margin Reporting", icon: "invoice" },
+        { label: "Pricing Analytics", icon: "invoice" },
+        { label: "Executive Dashboards", icon: "sheetBox" },
+      ],
+    },
+  ];
+
+  const ColArrow = () => (
+    <div className="hidden md:flex items-center justify-center shrink-0 w-6">
+      <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
+        <line x1="0" y1="7" x2="13" y2="7" stroke="#3B82F6" strokeWidth="1.4" />
+        <polygon points="13,3 20,7 13,11" fill="#3B82F6" />
+      </svg>
+    </div>
+  );
+
+  return (
+    <div>
+      <div className="flex items-stretch gap-0">
+        {stages.map((s, i) => (
+          <React.Fragment key={s.t}>
+            <div className="min-w-0 flex-1 rounded-2xl flex flex-col" style={{ background: "#0B0F1F", border: "1px solid rgba(91,123,255,0.22)" }}>
+              <div className="px-3 md:px-4 pt-4 pb-3 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+                <p className="text-[10px] md:text-[11px] font-bold tracking-[0.12em] truncate" style={{ color: s.c }}>{s.n}. {s.t.toUpperCase()}</p>
+              </div>
+              <div className="flex-1 flex flex-col gap-2.5 p-2.5 md:p-3.5">
+                {s.rows.map((r) => (
+                  <div key={r.label} className="flex items-start gap-2 rounded-xl px-2.5 py-2.5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                    <div className="w-7 h-7 rounded-lg grid place-items-center shrink-0 mt-0.5" style={{ background: `${s.c}15`, border: `1px solid ${s.c}40` }}>
+                      {Icons[r.icon](s.c)}
+                    </div>
+                    <div className="leading-tight min-w-0">
+                      <p className="text-[12px] md:text-[12.5px] font-semibold text-white">{r.label}</p>
+                      {r.sub && <p className="text-[10.5px] md:text-[11px] text-ink-muted mt-0.5">{r.sub}</p>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {i < stages.length - 1 && <ColArrow />}
+          </React.Fragment>
+        ))}
+      </div>
+
+      {/* Continuous feedback loop */}
+      <div className="relative mt-7">
+        <svg className="w-full" height="34" viewBox="0 0 1000 34" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="40" y1="6" x2="40" y2="22" stroke="#3B82F6" strokeWidth="1.4" />
+          <polygon points="36,8 40,0 44,8" fill="#3B82F6" />
+          <line x1="40" y1="22" x2="960" y2="22" stroke="#3B82F6" strokeWidth="1.4" />
+          <line x1="960" y1="6" x2="960" y2="22" stroke="#3B82F6" strokeWidth="1.4" />
+          <polygon points="956,8 960,0 964,8" fill="#3B82F6" />
+        </svg>
+        <div className="flex justify-center -mt-2">
+          <span className="inline-flex items-center rounded-full px-4 py-1.5 text-[11px] font-bold tracking-[0.12em]"
+            style={{ background: "rgba(59,130,246,0.1)", border: "1px solid rgba(59,130,246,0.45)", color: "#3B82F6" }}>
+            CONTINUOUS FEEDBACK &amp; RECONCILIATION
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---- Financial Control Plane — 6-card icon grid ----
+function ControlPlaneCards() {
+  const cards = [
+    { t: "Pricing Rules",       b: "Define and enforce customer-specific pricing models.",        icon: "tag",           c: "#A855F7" },
+    { t: "Discount Rules",      b: "Automate allocation and protect against missed savings.",      icon: "percent",       c: "#A855F7" },
+    { t: "Approval Policies",   b: "Set approvals for exceptions, pricing changes, and credits.",  icon: "shield",        c: "#3B82F6" },
+    { t: "Exception Management",b: "Detect and resolve anomalies before they impact margin.",      icon: "alertTriangle", c: "#5B7BFF" },
+    { t: "Audit & History",     b: "Full audit trail for every transaction, change, and adjustment.", icon: "clock",      c: "#3B82F6" },
+    { t: "Data Security",       b: "Role-based access and encryption at every layer.",              icon: "lock",         c: "#A855F7" },
+  ];
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-px rounded-2xl overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+      {cards.map((card) => (
+        <div key={card.t} className="px-5 py-7" style={{ background: "#0B0F1F" }}>
+          <div className="w-11 h-11 rounded-full grid place-items-center mb-4" style={{ border: `1.5px solid ${card.c}80` }}>
+            {Icons[card.icon](card.c)}
+          </div>
+          <p className="text-[14.5px] font-semibold text-white mb-1.5">{card.t}</p>
+          <p className="text-[12.5px] leading-[1.55] text-ink-secondary">{card.b}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ---- Automated Lifecycle — 8-step row with feedback loop ----
+function AutomatedLifecycle() {
+  const steps = [
+    { n: 1, t: "Ingest Cloud Data",      b: "Import usage, pricing, and discount data.",        icon: "cloudUpload" },
+    { n: 2, t: "Normalize & Validate",   b: "Ensure accuracy, map accounts, enrich data.",      icon: "database"    },
+    { n: 3, t: "Apply Pricing & Discounts", b: "Run pricing rules, allocate discounts, apply agreements.", icon: "sliders" },
+    { n: 4, t: "Generate Invoices",      b: "Create accurate, customer-ready invoice data.",    icon: "invoice"     },
+    { n: 5, t: "Calculate Margins",      b: "Track revenue, cost, and margin by customer.",     icon: "dollar"      },
+    { n: 6, t: "Deliver Reports",        b: "Provide cost, usage, and FinOps insights.",         icon: "barChart"    },
+    { n: 7, t: "Monitor Performance",    b: "Analyze trends, identify risks, optimize pricing.", icon: "trend"       },
+    { n: 8, t: "Update Dashboards",      b: "Real-time visibility for operations and executive teams.", icon: "grid" },
+  ];
+  return (
+    <div>
+      <div className="flex items-start gap-0">
+        {steps.map((s, i) => (
+          <React.Fragment key={s.n}>
+            <div className="min-w-0 flex-1 flex flex-col items-center text-center px-1">
+              <div className="w-6 h-6 rounded-full grid place-items-center text-[11px] font-bold mb-3 shrink-0"
+                style={{ background: "rgba(91,123,255,0.12)", border: "1px solid rgba(91,123,255,0.5)", color: "#5B7BFF" }}>
+                {s.n}
+              </div>
+              <div className="w-14 h-14 rounded-2xl grid place-items-center mb-3 shrink-0" style={{ border: "1.5px solid rgba(91,123,255,0.4)" }}>
+                {Icons[s.icon]("#5B7BFF")}
+              </div>
+              <p className="font-semibold text-white leading-[1.3] mb-1.5 w-full" style={{ fontSize: "clamp(9px, 1.05vw, 13px)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.t}</p>
+              <p className="text-[11.5px] leading-[1.5] text-ink-muted">{s.b}</p>
+            </div>
+            {i < steps.length - 1 && (
+              <div className="shrink-0 flex items-center justify-center self-start mt-[42px]" style={{ width: 14 }}>
+                <svg width="14" height="12" viewBox="0 0 14 12" aria-hidden="true">
+                  <line x1="0" y1="6" x2="7" y2="6" stroke="#F59E0B" strokeWidth="1.4" />
+                  <polygon points="7,2 14,6 7,10" fill="#F59E0B" />
+                </svg>
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+
+      {/* Continuous monitoring loop */}
+      <div className="relative mt-6">
+        <svg className="w-full" height="30" viewBox="0 0 1000 30" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="30" y1="4" x2="30" y2="19" stroke="#5B7BFF" strokeWidth="1.4" />
+          <polygon points="26,6 30,-1 34,6" fill="#5B7BFF" />
+          <line x1="30" y1="19" x2="970" y2="19" stroke="#5B7BFF" strokeWidth="1.4" strokeDasharray="4 3" />
+          <line x1="970" y1="4" x2="970" y2="19" stroke="#5B7BFF" strokeWidth="1.4" />
+          <polygon points="966,6 970,-1 974,6" fill="#5B7BFF" />
+        </svg>
+        <div className="flex justify-center -mt-1">
+          <span className="inline-flex items-center rounded-full px-4 py-1.5 text-[11px] font-bold tracking-[0.12em]"
+            style={{ background: "rgba(91,123,255,0.1)", border: "1px solid rgba(91,123,255,0.45)", color: "#5B7BFF" }}>
+            CONTINUOUS MONITORING &amp; OPTIMIZATION
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---- Living Financial Model — radial hub diagram ----
+function LivingFinancialModel() {
+  const nodes = [
+    { label: "Cloud Usage",         sub: null, icon: "cloudUpload", c: "#3B82F6", angle: -150 },
+    { label: "Pricing Rules",       sub: null, icon: "tag",         c: "#A855F7", angle: -90  },
+    { label: "Discount Programs",   sub: null, icon: "percent",     c: "#22D3EE", angle: -30  },
+    { label: "Invoices",            sub: null, icon: "invoice",     c: "#5B7BFF", angle: 30   },
+    { label: "Margins",             sub: null, icon: "dollar",      c: "#A855F7", angle: 90   },
+    { label: "Reporting",           sub: null, icon: "barChart",    c: "#34D399", angle: 150  },
+    { label: "Customer Agreements", sub: null, icon: "user",        c: "#3B82F6", angle: -210 },
+  ];
+  const ensures = [
+    "No manual reconciliation",
+    "Consistent, accurate billing",
+    "Correct discount application",
+    "Real-time margin visibility",
+    "Confident pricing decisions",
+    "Audit-ready operations",
+  ];
+
+  const R = 165; // node orbit radius
+  const toXY = (angle) => {
+    const rad = (angle * Math.PI) / 180;
+    return { x: Math.cos(rad) * R, y: Math.sin(rad) * R };
+  };
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8 items-center">
+      {/* Radial diagram */}
+      <div className="relative mx-auto" style={{ width: 420, height: 420 }}>
+        {/* orbit rings */}
+        {[1, 0.66].map((s, i) => (
+          <div key={i} className="absolute rounded-full" style={{
+            left: "50%", top: "50%", width: R * 2 * s, height: R * 2 * s,
+            transform: "translate(-50%,-50%)", border: "1px dashed rgba(91,123,255,0.22)",
+          }} />
+        ))}
+
+        {/* center cube */}
+        <div className="absolute z-10" style={{ left: "50%", top: "50%", transform: "translate(-50%,-50%)" }}>
+          <div className="w-20 h-20 rounded-2xl grid place-items-center"
+            style={{
+              background: "linear-gradient(145deg,#3B82F6,#5B7BFF 55%,#A855F7)",
+              boxShadow: "0 0 30px 6px rgba(91,123,255,0.55), 0 0 60px 14px rgba(168,85,247,0.3)",
+            }}>
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2l8 4.5v9L12 20l-8-4.5v-9L12 2z" stroke="white" strokeWidth="1.4" strokeLinejoin="round" opacity="0.9" />
+              <path d="M12 2v18M4 6.5l8 4.5 8-4.5" stroke="white" strokeWidth="1.4" strokeLinejoin="round" opacity="0.9" />
+            </svg>
+          </div>
+        </div>
+
+        {/* connector lines + nodes */}
+        <svg className="absolute inset-0" width="100%" height="100%" aria-hidden="true">
+          {nodes.map((n) => {
+            const { x, y } = toXY(n.angle);
+            return (
+              <line key={n.label} x1="50%" y1="50%" x2={`calc(50% + ${x}px)`} y2={`calc(50% + ${y}px)`}
+                stroke={n.c} strokeWidth="1.2" strokeDasharray="2 4" opacity="0.55" />
+            );
+          })}
+        </svg>
+        {nodes.map((n) => {
+          const { x, y } = toXY(n.angle);
+          return (
+            <div key={n.label} className="absolute flex flex-col items-center gap-1.5" style={{
+              left: `calc(50% + ${x}px)`, top: `calc(50% + ${y}px)`, transform: "translate(-50%,-50%)", width: 92,
+            }}>
+              <div className="w-11 h-11 rounded-full grid place-items-center" style={{ background: "#0B0F1F", border: `1.5px solid ${n.c}80` }}>
+                {Icons[n.icon](n.c)}
+              </div>
+              <span className="text-[11.5px] font-medium text-ink-secondary text-center leading-tight">{n.label}</span>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* This Model Ensures panel */}
+      <div className="rounded-2xl p-6" style={{ background: "#0B0F1F", border: "1px solid rgba(91,123,255,0.22)" }}>
+        <p className="eyebrow text-[11px] tracking-[0.18em] mb-4" style={{ color: "#5B7BFF" }}>This Model Ensures:</p>
+        <ul className="space-y-3">
+          {ensures.map((e) => (
+            <li key={e} className="flex items-center gap-2.5">
+              <CheckCircle color="#5B7BFF" size={16} />
+              <span className="text-[13.5px] text-ink-secondary">{e}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+// ---- What the System Enables — 5-card icon row ----
+function SystemEnablesCards() {
+  const cards = [
+    { t: "Operate Profitably",            b: "Eliminate margin leaks and increase profitability.",          icon: "shield", c: "#34D399" },
+    { t: "Price With Confidence",         b: "Set and adjust pricing with complete visibility into your margins.", icon: "percent", c: "#A855F7" },
+    { t: "Deliver Cloud FinOps",          b: "Provide structured FinOps as a managed service.",             icon: "bell",   c: "#3B82F6" },
+    { t: "Scale Without Complexity",      b: "Add customers, pricing models, and volume without adding overhead.", icon: "layers", c: "#34D399" },
+    { t: "Financial Visibility Everywhere", b: "Real-time insights for operations, finance, and executive teams.", icon: "eye", c: "#22D3EE" },
+  ];
+  return (
+    <div className="flex flex-col rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
+      {cards.map((card, i) => (
+        <div key={card.t} className="flex items-start gap-4 px-5 py-5" style={{ background: "#0B0F1F", borderTop: i > 0 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+          <div className="w-11 h-11 rounded-xl grid place-items-center shrink-0" style={{ border: `1.5px solid ${card.c}80` }}>
+            {Icons[card.icon](card.c)}
+          </div>
+          <div className="min-w-0">
+            <p className="text-[14px] font-semibold text-white mb-1 leading-tight">{card.t}</p>
+            <p className="text-[12.5px] leading-[1.55] text-ink-secondary">{card.b}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ---- One System. Full Control. — closing band ----
+function OneSystemFullControl({ onDemoClick }) {
+  const checks = [
+    "End-to-end financial automation",
+    "Built-in controls and governance",
+    "Real-time margin visibility",
+    "Deliver FinOps at scale",
+    "Grow profitably with confidence",
+  ];
+  return (
+    <div className="rounded-2xl p-7 md:p-10" style={{ background: "#0B0F1F", border: "1px solid rgba(91,123,255,0.22)" }}>
+      <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-10 items-center">
+        {/* Cube */}
+        <div className="flex justify-center lg:justify-start">
+          <div className="relative w-[110px] h-[110px] flex items-center justify-center">
+            <div className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.35), transparent 70%)", filter: "blur(8px)" }} />
+            <div className="relative z-10 w-[72px] h-[72px] grid place-items-center rounded-2xl"
+              style={{
+                background: "linear-gradient(145deg,#3B82F6,#5B7BFF 55%,#A855F7)",
+                boxShadow: "0 0 30px 6px rgba(91,123,255,0.55), 0 0 60px 14px rgba(168,85,247,0.3)",
+              }}>
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2l8 4.5v9L12 20l-8-4.5v-9L12 2z" stroke="white" strokeWidth="1.4" strokeLinejoin="round" opacity="0.9" />
+                <path d="M12 2v18M4 6.5l8 4.5 8-4.5" stroke="white" strokeWidth="1.4" strokeLinejoin="round" opacity="0.9" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Text + CTAs */}
+        <div className="text-center lg:text-left">
+          <h2 className="text-h2" style={{ whiteSpace: "nowrap" }}>
+            One System. Full Control. <br />
+            <span className="grad-text-bp">Stronger Cloud Financial Operations.</span>
+          </h2>
+          <p className="mt-4 text-[14.5px] leading-[1.7] text-ink-secondary max-w-[480px] mx-auto lg:mx-0">
+            moneta is the operating system that maintains the financial state of your cloud business —
+            from usage and pricing to invoices and margins. Built for AWS and Azure resellers.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            <Button variant="primary" onClick={onDemoClick} className="!px-6 !py-3.5 !text-[14px]">
+              Book a Demo <ArrowRight />
+            </Button>
+            <a href="#/why-moneta" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[10px] text-[14px] font-semibold text-white border border-line-hover hover:border-accent-indigo transition-colors">
+              See it in Action
+            </a>
+          </div>
+        </div>
+
+        {/* Checklist */}
+        <ul className="space-y-3">
+          {checks.map((c) => (
+            <li key={c} className="flex items-center gap-2.5">
+              <CheckCircle color="#5B7BFF" size={16} />
+              <span className="text-[13px] text-ink-secondary whitespace-nowrap">{c}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 Object.assign(window, {
   Icons, PngIcon, OperatingSystemDiagram, TrustBar, SolutionTimeline, ResultsList,
   FinopsSplit, CoreSystemLayers, SystemFlowHorizontal, WhyMonetaDiagram, ReconciliationLoop,
+  MonetaSystemHero, SystemArchitecturePipeline, ControlPlaneCards, AutomatedLifecycle, LivingFinancialModel,
+  SystemEnablesCards, OneSystemFullControl,
 });

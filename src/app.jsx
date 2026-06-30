@@ -30,8 +30,8 @@ function App() {
   React.useEffect(() => {
     const titles = {
       "#/":                           "moneta — Cloud Reseller Billing",
-      "#/platform":                   "Platform — moneta",
-      "#/finops-services":            "FinOps Managed Services — moneta",
+      "#/platform":                   "System — moneta",
+      "#/finops-services":            "Cloud FinOps — moneta",
       "#/finops-for-cloud-resellers": "FinOps for Cloud Resellers — moneta",
       "#/why-moneta":                 "Why moneta — moneta",
     };

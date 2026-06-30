@@ -720,6 +720,148 @@ function HomePage({ onDemoClick }) {
 function PlatformPage({ onDemoClick }) {
   return (
     <React.Fragment>
+      {/* New top hero — left: text content; right: MonetaSystemHero diagram */}
+      <section className="relative pt-[110px] md:pt-[140px] pb-14 overflow-hidden" style={{ background: "#060B18" }}>
+        <div className="glow-hero" />
+        <div className="dot-corner-left" />
+        <div className="container-x relative">
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 items-center">
+
+            {/* LEFT — text content */}
+            <div className="xl:col-span-5" style={{ transform: "translateY(-75px)" }}>
+              <Eyebrow className="mb-6 [&_.eyebrow]:text-[16px]">The Moneta System</Eyebrow>
+              <h1 className="text-balance" style={{ fontSize: "clamp(38px, 4.3vw, 70px)", lineHeight: 1.1, letterSpacing: "-0.02em", fontWeight: 600, fontFamily: "'Source Serif 4', Georgia, serif" }}>
+                <span style={{ whiteSpace: "nowrap" }}>The Operating System</span> <br />
+                for <span className="grad-text-bp">Cloud Financial</span> <br />
+                <span className="grad-text-bp">Operations</span>
+              </h1>
+              <p className="mt-7 text-[20px] leading-[1.65] text-ink-secondary max-w-[600px]">
+                moneta coordinates billing, pricing, discounts, and margins across every customer account —
+                so your cloud business runs with accuracy, control, and confidence.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-3">
+                <Button variant="primary" onClick={onDemoClick} className="!px-9 !py-5 !text-[17.5px]">
+                  Book a Demo <ArrowRight size={19} />
+                </Button>
+              </div>
+            </div>
+
+            {/* RIGHT — MonetaSystemHero */}
+            <div className="xl:col-span-7 flex justify-center">
+              <div className="w-full max-w-[700px]" style={{ transform: "translateY(-30px)" }}>
+                <MonetaSystemHero />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* System Architecture pipeline */}
+      <SectionShell className="border-t border-line-soft" style={{ background: "#0F2040" }}>
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-start">
+          <div className="xl:col-span-4">
+            <Eyebrow className="mb-6">System Architecture</Eyebrow>
+            <h2 className="text-h1 text-balance">
+              One System. <br className="hidden md:block" />Every Piece <span className="grad-text-bp">in Sync.</span>
+            </h2>
+            <p className="mt-6 text-[16px] leading-[1.7] text-ink-secondary max-w-[420px]">
+              moneta maintains a single, synchronized financial model for every customer. Changes
+              in one area automatically propagate through the system — eliminating manual work and
+              ensuring accuracy at scale.
+            </p>
+            <a href="#/why-moneta" className="mt-6 inline-flex items-center gap-2 text-[14.5px] font-semibold text-accent-cyan hover:text-white transition-colors">
+              Explore the architecture <ArrowRight size={14} />
+            </a>
+          </div>
+          <div className="xl:col-span-8">
+            <SystemArchitecturePipeline />
+          </div>
+        </div>
+      </SectionShell>
+
+      {/* Financial Control Plane */}
+      <SectionShell className="border-t border-line-soft" style={{ background: "#060B18" }}>
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-center">
+          <div className="xl:col-span-4">
+            <Eyebrow className="mb-6">Financial Control Plane</Eyebrow>
+            <h2 className="text-h1" style={{ whiteSpace: "nowrap" }}>
+              Control. Govern. <br /><span className="grad-text-bp">Protect Margins.</span>
+            </h2>
+            <p className="mt-6 text-[16px] leading-[1.7] text-ink-secondary">
+              The control plane enforces financial discipline across every workflow. Policies and rules
+              ensure your operations are accurate, compliant, and fully auditable.
+            </p>
+            <a href="#/why-moneta" className="mt-6 inline-flex items-center gap-2 text-[14.5px] font-semibold text-accent-cyan hover:text-white transition-colors">
+              See how we maintain control <ArrowRight size={14} />
+            </a>
+          </div>
+          <div className="xl:col-span-8">
+            <ControlPlaneCards />
+          </div>
+        </div>
+      </SectionShell>
+
+      {/* Automated Lifecycle */}
+      <SectionShell className="border-t border-line-soft" style={{ background: "#0F2040" }}>
+        <div className="max-w-[760px] mx-auto text-center mb-12">
+          <Eyebrow className="mb-6 mx-auto [&_.eyebrow-rule]:mx-auto">Automated Lifecycle</Eyebrow>
+          <h2 className="text-h1" style={{ whiteSpace: "nowrap", fontSize: "clamp(28px, 3.6vw, 56px)" }}>
+            From Data to Decisions. <span className="grad-text-bp">Automatically.</span>
+          </h2>
+          <p className="mt-6 text-[16px] leading-[1.7] text-ink-secondary">
+            Every change is applied across the financial model in real time — so you can act on facts, not spreadsheets.
+          </p>
+          <a href="#/why-moneta" className="mt-6 inline-flex items-center gap-2 text-[14.5px] font-semibold text-accent-cyan hover:text-white transition-colors">
+            View the lifecycle <ArrowRight size={14} />
+          </a>
+        </div>
+        <AutomatedLifecycle />
+      </SectionShell>
+
+      {/* The Living Financial Model */}
+      <SectionShell className="border-t border-line-soft" style={{ background: "#060B18" }}>
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-center">
+          <div className="xl:col-span-4">
+            <Eyebrow className="mb-6">The Living Financial Model</Eyebrow>
+            <h2 className="text-h1 text-balance">
+              One Source of <span className="grad-text-bp">Financial Truth.</span> Always in Sync.
+            </h2>
+            <p className="mt-6 text-[16px] leading-[1.7] text-ink-secondary max-w-[420px]">
+              Every object in your financial operations exists in one continuously synchronized model.
+              Change something in one place, and the system updates everything downstream — instantly.
+            </p>
+          </div>
+          <div className="xl:col-span-8">
+            <LivingFinancialModel />
+          </div>
+        </div>
+      </SectionShell>
+
+      {/* What the System Enables */}
+      <SectionShell className="border-t border-line-soft" style={{ background: "#0F2040" }}>
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-center">
+          <div className="xl:col-span-5">
+            <Eyebrow className="mb-6">What the System Enables</Eyebrow>
+            <h2 className="text-h2 text-balance">Financial Infrastructure That Drives Results.</h2>
+            <p className="mt-5 text-[15px] leading-[1.7] text-ink-secondary max-w-[400px]">
+              When every element of your financial operations is connected and controlled, your cloud business
+              operates efficiently, profitably, and at scale.
+            </p>
+            <a href="#/why-moneta" className="mt-5 inline-flex items-center gap-2 text-[14.5px] font-semibold text-accent-cyan hover:text-white transition-colors">
+              See real outcomes <ArrowRight size={14} />
+            </a>
+          </div>
+          <div className="xl:col-span-7">
+            <SystemEnablesCards />
+          </div>
+        </div>
+      </SectionShell>
+
+      {/* One System. Full Control. */}
+      <SectionShell className="border-t border-line-soft" style={{ background: "#060B18" }}>
+        <OneSystemFullControl onDemoClick={onDemoClick} />
+      </SectionShell>
+
       {/* Hero — left: all text content; right: CoreSystemLayers card */}
       <section className="relative pt-[110px] md:pt-[140px] pb-10 overflow-hidden">
         <div className="glow-hero" />
@@ -1028,7 +1170,7 @@ function FinOpsPage({ onDemoClick }) {
                     </div>
                     {/* Savings Found popup */}
                     <style>{`@keyframes floatUpDown { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }`}</style>
-                    <div style={{ position: "absolute", bottom: "23%", left: 16, background: "#ffffff", borderRadius: 12, padding: "13px 16px", width: 290, boxShadow: "0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.06)", pointerEvents: "none", opacity: popupVisible ? 1 : 0, transition: "opacity 0.2s ease", animation: "floatUpDown 3s ease-in-out infinite" }}>
+                    <div style={{ position: "absolute", bottom: "-8%", left: 16, background: "#ffffff", borderRadius: 12, padding: "13px 16px", width: 290, boxShadow: "0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.06)", pointerEvents: "none", opacity: popupVisible ? 1 : 0, transition: "opacity 0.2s ease", animation: "floatUpDown 3s ease-in-out infinite" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
                         <div style={{ width: 26, height: 26, borderRadius: 7, background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
@@ -1330,7 +1472,7 @@ function WhyPage({ onDemoClick }) {
     <React.Fragment>
 
       {/* ── SECTION 1: Built for the way cloud resellers operate ── */}
-      <section className="relative pt-[95px] md:pt-[120px] pb-12 md:pb-16 overflow-hidden">
+      <section className="relative pt-[95px] md:pt-[120px] pb-4 md:pb-6 overflow-hidden">
         <div className="glow-hero" />
         <div className="dot-corner" />
         <div className="container-x relative">
@@ -1352,7 +1494,7 @@ function WhyPage({ onDemoClick }) {
               </div>
             </div>
             {/* Right — Margin Flow card */}
-            <div className="lg:col-span-6 lg:pl-4" style={{ paddingTop: "clamp(0px, 4vw, 60px)" }}>
+            <div className="lg:col-span-6 lg:pl-4" style={{ paddingTop: "clamp(0px, 2vw, 28px)" }}>
               {(() => {
                 const [popupVisible, setPopupVisible] = React.useState(true);
                 const wrapRef = React.useRef(null);
@@ -1439,7 +1581,7 @@ function WhyPage({ onDemoClick }) {
                 </div>
                 {/* Margin Recovered popup */}
                 <style>{`@keyframes floatUpDownWhy1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }`}</style>
-                <div style={{ position: "absolute", bottom: 0, left: 16, background: "#ffffff", borderRadius: 12, padding: "11px 14px", width: 272, boxShadow: "0 8px 32px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06)", pointerEvents: "none", animation: "floatUpDownWhy1 3s ease-in-out infinite", opacity: popupVisible ? 1 : 0, transition: "opacity 0.2s ease" }}>
+                <div style={{ position: "absolute", bottom: -8, left: 16, background: "#ffffff", borderRadius: 12, padding: "11px 14px", width: 272, boxShadow: "0 8px 32px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06)", pointerEvents: "none", animation: "floatUpDownWhy1 3s ease-in-out infinite", opacity: popupVisible ? 1 : 0, transition: "opacity 0.2s ease" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
                     <div style={{ width: 24, height: 24, borderRadius: 7, background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
