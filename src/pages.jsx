@@ -1646,8 +1646,8 @@ function WhyPage({ onDemoClick }) {
 
 
       {/* ── SECTION 6: Ready to See Your Margin ── */}
-      <SectionShell style={{ background: "#060B18", borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: 48, paddingBottom: 48 }}>
-        <div className="text-center max-w-[640px] mx-auto py-2">
+      <SectionShell style={{ background: "#060B18", borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: 40, paddingBottom: 4 }}>
+        <div className="text-center max-w-[640px] mx-auto">
           <div style={{ display: "inline-flex", alignItems: "center", gap: 7, marginBottom: 20 }}>
             <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#3B82F6", display: "inline-block" }} />
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#3B82F6", fontFamily: "Inter, sans-serif" }}>Ready to grow your cloud revenue and margin?</span>
