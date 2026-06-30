@@ -773,9 +773,6 @@ function PlatformPage({ onDemoClick }) {
               The control plane enforces financial discipline across every workflow. Policies and rules
               ensure your operations are accurate, compliant, and fully auditable.
             </p>
-            <a href="#/why-moneta" className="mt-6 inline-flex items-center gap-2 text-[14.5px] font-semibold text-accent-cyan hover:text-white transition-colors">
-              See how we maintain control <ArrowRight size={14} />
-            </a>
           </div>
           <div className="xl:col-span-8">
             <ControlPlaneCards />
@@ -802,8 +799,10 @@ function PlatformPage({ onDemoClick }) {
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-center">
           <div className="xl:col-span-4">
             <Eyebrow className="mb-6">The Living Financial Model</Eyebrow>
-            <h2 className="text-h1 text-balance">
-              One Source of <span className="grad-text-bp">Financial Truth.</span> Always in Sync.
+            <h2 className="text-h1">
+              <span className="block whitespace-nowrap">One Source of</span>
+              <span className="block whitespace-nowrap grad-text-bp">Financial Truth.</span>
+              <span className="block whitespace-nowrap">Always in Sync.</span>
             </h2>
             <p className="mt-6 text-[16px] leading-[1.7] text-ink-secondary max-w-[420px]">
               Every object in your financial operations exists in one continuously synchronized model.

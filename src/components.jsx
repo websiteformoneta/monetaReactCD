@@ -1,7 +1,7 @@
 // Shared UI primitives — Header, Footer, Modal, Button, layout pieces
 
 const NAV = [
-  { label: "System", href: "#/platform" },
+  { label: "System", href: "#/system" },
   { label: "Cloud FinOps", href: "#/finops-services" },
   { label: "Why moneta", href: "#/why-moneta" },
 ];
@@ -151,7 +151,7 @@ function Header({ onDemoClick }) {
 function Footer({ onDemoClick }) {
   const cols = [
     { heading: "Product", links: [
-      { label: "Platform", href: "#/platform" },
+      { label: "System", href: "#/system" },
       { label: "Cloud FinOps", href: "#/finops-services" },
       { label: "Why moneta", href: "#/why-moneta" },
     ]},

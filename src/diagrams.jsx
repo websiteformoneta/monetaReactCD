@@ -1091,7 +1091,7 @@ function SystemArchitecturePipeline() {
       ],
     },
     {
-      n: "2", t: "Normalize", c: "#22D3EE", offset: 26,
+      n: "2", t: "Normalize", c: "#A855F7", offset: 26,
       rows: [
         { label: "Data Validation & Mapping", icon: "shield" },
         { label: "Standardization", icon: "trend" },
@@ -1099,7 +1099,7 @@ function SystemArchitecturePipeline() {
       ],
     },
     {
-      n: "3", t: "Process", c: "#5B7BFF", offset: 0, emphasis: true,
+      n: "3", t: "Process", c: "#3B82F6", offset: 0, emphasis: true,
       rows: [
         { label: "Pricing Engine", sub: "Apply pricing rules", icon: "settings" },
         { label: "Discount Engine", sub: "Allocate discounts", icon: "settings" },
@@ -1116,7 +1116,7 @@ function SystemArchitecturePipeline() {
       ],
     },
     {
-      n: "5", t: "Analyze", c: "#A855F7", offset: 0,
+      n: "5", t: "Analyze", c: "#3B82F6", offset: 0,
       rows: [
         { label: "Margin Reporting", icon: "invoice" },
         { label: "Pricing Analytics", icon: "invoice" },
@@ -1125,8 +1125,8 @@ function SystemArchitecturePipeline() {
     },
   ];
 
-  const Stage = ({ s }) => (
-    <div className="min-w-0 flex-1 rounded-2xl flex flex-col transition-all duration-200"
+  const Stage = ({ s, i }) => (
+    <div className="min-w-0 flex-1 rounded-2xl flex flex-col sa-stage-pulse"
       style={{
         marginTop: s.offset,
         background: s.emphasis
@@ -1134,7 +1134,10 @@ function SystemArchitecturePipeline() {
           : "linear-gradient(165deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012))",
         border: `1px solid ${s.emphasis ? "rgba(91,123,255,0.4)" : "rgba(255,255,255,0.08)"}`,
         backdropFilter: "blur(10px)",
-        boxShadow: s.emphasis ? "0 0 40px -10px rgba(91,123,255,0.5)" : "0 6px 22px -12px rgba(0,0,0,0.6)",
+        boxShadow: "0 6px 22px -12px rgba(0,0,0,0.6)",
+        "--sa-base-shadow": "0 6px 22px -12px rgba(0,0,0,0.6)",
+        "--sa-glow-color": s.c,
+        animationDelay: `${i * 2}s`,
       }}>
       <div className="px-4 pt-4 pb-3 flex items-center gap-2.5 border-b" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
         <span className="w-6 h-6 rounded-lg grid place-items-center text-[11px] font-bold shrink-0"
@@ -1172,6 +1175,17 @@ function SystemArchitecturePipeline() {
 
   return (
     <div>
+      <style>{`
+        @keyframes sa-stage-pulse {
+          0%, 5% { box-shadow: var(--sa-base-shadow); border-color: rgba(255,255,255,0.08); }
+          8%, 22% { box-shadow: 0 0 36px -6px var(--sa-glow-color), var(--sa-base-shadow); border-color: var(--sa-glow-color); }
+          25%, 100% { box-shadow: var(--sa-base-shadow); border-color: rgba(255,255,255,0.08); }
+        }
+        .sa-stage-pulse { animation: sa-stage-pulse 10s linear infinite; }
+        @media (prefers-reduced-motion: reduce) {
+          .sa-stage-pulse { animation: none; }
+        }
+      `}</style>
       {/* Integrated header: narrative lead-in flows directly into the pipeline */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-x-10 items-end mb-9">
         <div className="lg:col-span-4">
@@ -1193,31 +1207,38 @@ function SystemArchitecturePipeline() {
       <div className="flex items-start gap-2.5 lg:gap-3">
         {stages.map((s, i) => (
           <React.Fragment key={s.t}>
-            <Stage s={s} />
+            <Stage s={s} i={i} />
             {i < stages.length - 1 && <FlowArrow extra={stages[i].offset === stages[i + 1].offset ? 0 : (stages[i + 1].offset - stages[i].offset) / 2} />}
           </React.Fragment>
         ))}
       </div>
 
-      {/* Continuous feedback loop — wraps the full composition */}
-      <div className="relative -mt-2">
-        <svg className="w-full" height="40" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="sa-loop" x1="0" x2="1"><stop offset="0%" stopColor="#3B82F6" /><stop offset="50%" stopColor="#5B7BFF" /><stop offset="100%" stopColor="#A855F7" /></linearGradient>
-          </defs>
-          <line x1="34" y1="6" x2="34" y2="26" stroke="url(#sa-loop)" strokeWidth="1.5" />
-          <polygon points="30,9 34,1 38,9" fill="#3B82F6" />
-          <line x1="34" y1="26" x2="966" y2="26" stroke="url(#sa-loop)" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.85" />
-          <line x1="966" y1="6" x2="966" y2="26" stroke="url(#sa-loop)" strokeWidth="1.5" />
-          <polygon points="962,9 966,1 970,9" fill="#A855F7" />
-        </svg>
-        <div className="flex justify-center -mt-5">
+      {/* Continuous feedback loop — animated curve flowing right to left back into stage 1 */}
+      <div className="relative mt-4">
+        <div className="flex justify-center relative" style={{ zIndex: 1 }}>
           <span className="inline-flex items-center gap-2.5 rounded-full px-5 py-2 text-[11px] font-bold tracking-[0.14em]"
             style={{ background: "linear-gradient(90deg, rgba(59,130,246,0.1), rgba(168,85,247,0.1))", border: "1px solid rgba(91,123,255,0.4)", backdropFilter: "blur(8px)", color: "#fff" }}>
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#5B7BFF", boxShadow: "0 0 8px #5B7BFF" }} />
             <span className="grad-text-bp">CONTINUOUS FEEDBACK &amp; RECONCILIATION</span>
           </span>
         </div>
+        <svg className="w-full -mt-[19px]" height="62" viewBox="0 0 1000 62" preserveAspectRatio="none" aria-hidden="true" style={{ position: "relative", zIndex: 0 }}>
+          <defs>
+            <linearGradient id="sa-loop" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stopColor="#A855F7" />
+              <stop offset="50%" stopColor="#5B7BFF" />
+              <stop offset="100%" stopColor="#3B82F6" />
+            </linearGradient>
+          </defs>
+          <path d="M925,6 C810,52 660,54 500,54 C340,54 190,52 75,10"
+            fill="none" stroke="url(#sa-loop)" strokeWidth="1.6" strokeDasharray="6 5" opacity="0.85">
+            <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="1.4s" repeatCount="indefinite" />
+          </path>
+          {/* arrowhead at left end — pointing up toward stage 1 box */}
+          <polygon points="80,0 88,12 72,12" fill="#3B82F6" />
+          {/* solid stub from arrowhead base to the start of the dashed path */}
+          <line x1="80" y1="12" x2="75" y2="10" stroke="#3B82F6" strokeWidth="1.6" opacity="0.85" />
+        </svg>
       </div>
     </div>
   );
@@ -1370,16 +1391,18 @@ function AutomatedLifecycle() {
   );
 }
 
-// ---- Living Financial Model — radial hub diagram ----
+// ---- Living Financial Model — connected card grid ----
 function LivingFinancialModel() {
-  const nodes = [
-    { label: "Cloud Usage",         sub: null, icon: "cloudUpload", c: "#3B82F6", angle: -150 },
-    { label: "Pricing Rules",       sub: null, icon: "tag",         c: "#A855F7", angle: -90  },
-    { label: "Discount Programs",   sub: null, icon: "percent",     c: "#22D3EE", angle: -30  },
-    { label: "Invoices",            sub: null, icon: "invoice",     c: "#5B7BFF", angle: 30   },
-    { label: "Margins",             sub: null, icon: "dollar",      c: "#A855F7", angle: 90   },
-    { label: "Reporting",           sub: null, icon: "barChart",    c: "#34D399", angle: 150  },
-    { label: "Customer Agreements", sub: null, icon: "user",        c: "#3B82F6", angle: -210 },
+  const [active, setActive] = React.useState(null);
+
+  const cards = [
+    { label: "Cloud Usage",         icon: "cloudUpload", c: "#3B82F6", desc: "Billing data ingested continuously across all accounts." },
+    { label: "Pricing Rules",       icon: "tag",         c: "#A855F7", desc: "Customer-specific pricing applied automatically." },
+    { label: "Discount Programs",   icon: "percent",     c: "#22D3EE", desc: "Discount allocation aligned to cost and agreements." },
+    { label: "Invoices",            icon: "invoice",     c: "#5B7BFF", desc: "Accurate invoices generated without manual work." },
+    { label: "Margins",             icon: "dollar",      c: "#A855F7", desc: "Real-time margin visibility across every customer." },
+    { label: "Reporting",           icon: "barChart",    c: "#34D399", desc: "Financial reporting updated as data changes." },
+    { label: "Customer Agreements", icon: "user",        c: "#3B82F6", desc: "Agreements inform pricing, discounts, and billing." },
   ];
   const ensures = [
     "No manual reconciliation",
@@ -1390,75 +1413,64 @@ function LivingFinancialModel() {
     "Audit-ready operations",
   ];
 
-  const R = 165; // node orbit radius
-  const toXY = (angle) => {
-    const rad = (angle * Math.PI) / 180;
-    return { x: Math.cos(rad) * R, y: Math.sin(rad) * R };
-  };
+  // pulse animation cycles through each card index
+  const [pulse, setPulse] = React.useState(0);
+  React.useEffect(() => {
+    const t = setInterval(() => setPulse(p => (p + 1) % cards.length), 1800);
+    return () => clearInterval(t);
+  }, []);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8 items-center">
-      {/* Radial diagram */}
-      <div className="relative mx-auto" style={{ width: 420, height: 420 }}>
-        {/* orbit rings */}
-        {[1, 0.66].map((s, i) => (
-          <div key={i} className="absolute rounded-full" style={{
-            left: "50%", top: "50%", width: R * 2 * s, height: R * 2 * s,
-            transform: "translate(-50%,-50%)", border: "1px dashed rgba(91,123,255,0.22)",
-          }} />
+    <div className="flex flex-col gap-6">
+      {/* 4+3 card grid */}
+      <div className="grid grid-cols-4 gap-3">
+        {cards.slice(0, 4).map((card, i) => (
+          <CardItem key={card.label} card={card} active={pulse === i} onEnter={() => setActive(i)} onLeave={() => setActive(null)} />
         ))}
-
-        {/* center cube */}
-        <div className="absolute z-10" style={{ left: "50%", top: "50%", transform: "translate(-50%,-50%)" }}>
-          <div className="w-20 h-20 rounded-2xl grid place-items-center"
-            style={{
-              background: "linear-gradient(145deg,#3B82F6,#5B7BFF 55%,#A855F7)",
-              boxShadow: "0 0 30px 6px rgba(91,123,255,0.55), 0 0 60px 14px rgba(168,85,247,0.3)",
-            }}>
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 2l8 4.5v9L12 20l-8-4.5v-9L12 2z" stroke="white" strokeWidth="1.4" strokeLinejoin="round" opacity="0.9" />
-              <path d="M12 2v18M4 6.5l8 4.5 8-4.5" stroke="white" strokeWidth="1.4" strokeLinejoin="round" opacity="0.9" />
-            </svg>
-          </div>
-        </div>
-
-        {/* connector lines + nodes */}
-        <svg className="absolute inset-0" width="100%" height="100%" aria-hidden="true">
-          {nodes.map((n) => {
-            const { x, y } = toXY(n.angle);
-            return (
-              <line key={n.label} x1="50%" y1="50%" x2={`calc(50% + ${x}px)`} y2={`calc(50% + ${y}px)`}
-                stroke={n.c} strokeWidth="1.2" strokeDasharray="2 4" opacity="0.55" />
-            );
-          })}
-        </svg>
-        {nodes.map((n) => {
-          const { x, y } = toXY(n.angle);
-          return (
-            <div key={n.label} className="absolute flex flex-col items-center gap-1.5" style={{
-              left: `calc(50% + ${x}px)`, top: `calc(50% + ${y}px)`, transform: "translate(-50%,-50%)", width: 92,
-            }}>
-              <div className="w-11 h-11 rounded-full grid place-items-center" style={{ background: "#0B0F1F", border: `1.5px solid ${n.c}80` }}>
-                {Icons[n.icon](n.c)}
-              </div>
-              <span className="text-[11.5px] font-medium text-ink-secondary text-center leading-tight">{n.label}</span>
-            </div>
-          );
-        })}
+      </div>
+      <div className="grid grid-cols-3 gap-3 px-[12.5%]">
+        {cards.slice(4).map((card, i) => (
+          <CardItem key={card.label} card={card} active={pulse === i + 4} onEnter={() => setActive(i + 4)} onLeave={() => setActive(null)} />
+        ))}
       </div>
 
-      {/* This Model Ensures panel */}
-      <div className="rounded-2xl p-6" style={{ background: "#0B0F1F", border: "1px solid rgba(91,123,255,0.22)" }}>
-        <p className="eyebrow text-[11px] tracking-[0.18em] mb-4" style={{ color: "#5B7BFF" }}>This Model Ensures:</p>
-        <ul className="space-y-3">
+      {/* ensures panel — strict 3×2, centered */}
+      <div className="mx-auto w-fit rounded-2xl px-8 py-5"
+        style={{ background: "#0B0F1F", border: "1px solid rgba(91,123,255,0.18)" }}>
+        <p className="eyebrow text-[10px] tracking-[0.18em] mb-4" style={{ color: "#5B7BFF" }}>This Model Ensures:</p>
+        <div className="grid grid-cols-3 gap-x-10 gap-y-3">
           {ensures.map((e) => (
-            <li key={e} className="flex items-center gap-2.5">
-              <CheckCircle color="#5B7BFF" size={16} />
-              <span className="text-[13.5px] text-ink-secondary">{e}</span>
-            </li>
+            <div key={e} className="flex items-center gap-2.5">
+              <CheckCircle color="#5B7BFF" size={14} />
+              <span className="text-[12.5px] text-ink-secondary whitespace-nowrap">{e}</span>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
+    </div>
+  );
+}
+
+function CardItem({ card, active, onEnter, onLeave }) {
+  return (
+    <div
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      style={{
+        background: active ? `${card.c}0f` : "rgba(255,255,255,0.025)",
+        border: `1px solid ${active ? card.c + "55" : "rgba(255,255,255,0.07)"}`,
+        borderRadius: 14,
+        padding: "16px 14px",
+        transition: "all 0.35s ease",
+        boxShadow: active ? `0 0 20px -6px ${card.c}66` : "none",
+        cursor: "default",
+      }}
+    >
+      <div style={{ width: 36, height: 36, borderRadius: 9, background: `${card.c}15`, border: `1px solid ${card.c}40`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10, transition: "all 0.35s ease" }}>
+        {Icons[card.icon](card.c)}
+      </div>
+      <p style={{ fontSize: 13, fontWeight: 600, color: active ? "#f1f5f9" : "#94a3b8", fontFamily: "Inter, sans-serif", lineHeight: 1.3, marginBottom: 5, transition: "color 0.35s ease" }}>{card.label}</p>
+      <p style={{ fontSize: 11.5, color: "#475569", lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>{card.desc}</p>
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 const ROUTES = {
   "#/":                           { Component: () => window.HomePage,                    label: "Home" },
-  "#/platform":                   { Component: () => window.PlatformPage,                label: "Platform" },
+  "#/system":                     { Component: () => window.PlatformPage,                label: "System" },
   "#/finops-services":            { Component: () => window.FinOpsPage,                  label: "FinOps Services" },
   "#/finops-for-cloud-resellers": { Component: () => window.FinOpsForCloudResellersPage, label: "FinOps for Cloud Resellers" },
   "#/why-moneta":                 { Component: () => window.WhyPage,                     label: "Why moneta" },
@@ -30,7 +30,7 @@ function App() {
   React.useEffect(() => {
     const titles = {
       "#/":                           "moneta — Cloud Reseller Billing",
-      "#/platform":                   "System — moneta",
+      "#/system":                     "System — moneta",
       "#/finops-services":            "Cloud FinOps — moneta",
       "#/finops-for-cloud-resellers": "FinOps for Cloud Resellers — moneta",
       "#/why-moneta":                 "Why moneta — moneta",
