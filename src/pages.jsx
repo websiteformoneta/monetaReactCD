@@ -780,7 +780,7 @@ function PlatformPage({ onDemoClick }) {
       </SectionShell>
 
       {/* Financial Control Plane */}
-      <SectionShell className="border-t border-line-soft" style={{ background: "#060B18" }}>
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#FFFFFF" }}>
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-center">
           <div className="xl:col-span-4">
             <Eyebrow className="mb-6">Financial Control Plane</Eyebrow>
@@ -802,7 +802,7 @@ function PlatformPage({ onDemoClick }) {
       </SectionShell>
 
       {/* Automated Lifecycle */}
-      <SectionShell className="border-t border-line-soft" style={{ background: "#0F2040" }}>
+      <SectionShell className="border-t border-line-soft" style={{ background: "#060B18" }}>
         <div className="max-w-[760px] mx-auto text-center mb-12">
           <Eyebrow className="mb-6 mx-auto [&_.eyebrow-rule]:mx-auto">Automated Lifecycle</Eyebrow>
           <h2 className="text-h1" style={{ whiteSpace: "nowrap", fontSize: "clamp(28px, 3.6vw, 56px)" }}>
@@ -838,7 +838,7 @@ function PlatformPage({ onDemoClick }) {
       </SectionShell>
 
       {/* What the System Enables */}
-      <SectionShell className="border-t border-line-soft" style={{ background: "#0F2040" }}>
+      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#FFFFFF" }}>
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-center">
           <div className="xl:col-span-5">
             <Eyebrow className="mb-6">What the System Enables</Eyebrow>

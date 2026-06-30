@@ -901,6 +901,8 @@ function MonetaSystemHero() {
   const [conn, setConn] = React.useState({ left: [], right: [], h: 0 });
   const [coreTop, setCoreTop] = React.useState(null);
   const [bar, setBar] = React.useState(null);
+  const [outH, setOutH] = React.useState(null);
+  const inStackRef = React.useRef(null);
 
   React.useLayoutEffect(() => {
     const measure = () => {
@@ -956,6 +958,13 @@ function MonetaSystemHero() {
         const barRight = outBox.right - wrapBox.left;
         setBar({ left: barLeft, width: barRight - barLeft });
       }
+
+      // make the outputs stack span the exact same vertical extent as the inputs stack,
+      // so the top and bottom output cards line up with the top and bottom input cards
+      if (inStackRef.current) {
+        const h = inStackRef.current.getBoundingClientRect().height;
+        if (outH == null || Math.abs(outH - h) > 0.5) setOutH(h);
+      }
     };
     measure();
     window.addEventListener("resize", measure);
@@ -1006,7 +1015,7 @@ function MonetaSystemHero() {
         {/* INPUTS */}
         <div>
           <p className="eyebrow text-[11px] tracking-[0.2em] mb-3">Inputs</p>
-          <div className="space-y-2.5">
+          <div ref={inStackRef} className="space-y-2.5">
             {inputs.map((it, idx) => <Row key={it.label} item={it} idx={idx} side="in" />)}
           </div>
         </div>
@@ -1032,10 +1041,10 @@ function MonetaSystemHero() {
           </span>
         </div>
 
-        {/* OUTPUTS */}
-        <div style={{ paddingTop: 36 }}>
+        {/* OUTPUTS — stack stretched to match inputs height so first/last cards align */}
+        <div>
           <p className="eyebrow text-[11px] tracking-[0.2em] mb-3 text-right">Outputs</p>
-          <div className="space-y-2.5">
+          <div className="flex flex-col" style={outH != null ? { height: outH, justifyContent: "space-between" } : { gap: "0.625rem" }}>
             {outputs.map((it, idx) => <Row key={it.label} item={it} idx={idx} side="out" />)}
           </div>
         </div>
