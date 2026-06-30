@@ -758,25 +758,7 @@ function PlatformPage({ onDemoClick }) {
 
       {/* System Architecture pipeline */}
       <SectionShell className="border-t border-line-soft" style={{ background: "#0F2040" }}>
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-start">
-          <div className="xl:col-span-4">
-            <Eyebrow className="mb-6">System Architecture</Eyebrow>
-            <h2 className="text-h1 text-balance">
-              One System. <br className="hidden md:block" />Every Piece <span className="grad-text-bp">in Sync.</span>
-            </h2>
-            <p className="mt-6 text-[16px] leading-[1.7] text-ink-secondary max-w-[420px]">
-              moneta maintains a single, synchronized financial model for every customer. Changes
-              in one area automatically propagate through the system — eliminating manual work and
-              ensuring accuracy at scale.
-            </p>
-            <a href="#/why-moneta" className="mt-6 inline-flex items-center gap-2 text-[14.5px] font-semibold text-accent-cyan hover:text-white transition-colors">
-              Explore the architecture <ArrowRight size={14} />
-            </a>
-          </div>
-          <div className="xl:col-span-8">
-            <SystemArchitecturePipeline />
-          </div>
-        </div>
+        <SystemArchitecturePipeline />
       </SectionShell>
 
       {/* Financial Control Plane */}
@@ -802,24 +784,21 @@ function PlatformPage({ onDemoClick }) {
       </SectionShell>
 
       {/* Automated Lifecycle */}
-      <SectionShell className="border-t border-line-soft" style={{ background: "#060B18" }}>
-        <div className="max-w-[760px] mx-auto text-center mb-12">
-          <Eyebrow className="mb-6 mx-auto [&_.eyebrow-rule]:mx-auto">Automated Lifecycle</Eyebrow>
+      <SectionShell className="border-t border-line-soft !pt-8 md:!pt-10" style={{ background: "#060B18" }}>
+        <div className="w-full text-center mb-4">
+          <Eyebrow className="mb-3 mx-auto [&_.eyebrow-rule]:mx-auto">Automated Lifecycle</Eyebrow>
           <h2 className="text-h1" style={{ whiteSpace: "nowrap", fontSize: "clamp(28px, 3.6vw, 56px)" }}>
             From Data to Decisions. <span className="grad-text-bp">Automatically.</span>
           </h2>
-          <p className="mt-6 text-[16px] leading-[1.7] text-ink-secondary">
+          <p className="mt-4 text-[16px] leading-[1.7] text-ink-secondary max-w-[760px] mx-auto">
             Every change is applied across the financial model in real time — so you can act on facts, not spreadsheets.
           </p>
-          <a href="#/why-moneta" className="mt-6 inline-flex items-center gap-2 text-[14.5px] font-semibold text-accent-cyan hover:text-white transition-colors">
-            View the lifecycle <ArrowRight size={14} />
-          </a>
         </div>
         <AutomatedLifecycle />
       </SectionShell>
 
       {/* The Living Financial Model */}
-      <SectionShell className="border-t border-line-soft" style={{ background: "#060B18" }}>
+      <SectionShell className="border-t border-line-soft" style={{ background: "#0F2040" }}>
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-center">
           <div className="xl:col-span-4">
             <Eyebrow className="mb-6">The Living Financial Model</Eyebrow>
@@ -861,84 +840,6 @@ function PlatformPage({ onDemoClick }) {
       <SectionShell className="border-t border-line-soft" style={{ background: "#060B18" }}>
         <OneSystemFullControl onDemoClick={onDemoClick} />
       </SectionShell>
-
-      {/* Hero — left: all text content; right: CoreSystemLayers card */}
-      <section className="relative pt-[110px] md:pt-[140px] pb-10 overflow-hidden">
-        <div className="glow-hero" />
-        <div className="dot-corner-left" />
-        <div className="container-x relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-
-            {/* LEFT — matches Platform.png left column exactly */}
-            <div className="lg:col-span-6">
-              <Eyebrow className="mb-7">System</Eyebrow>
-              <h1 className="text-hero text-balance">
-                The Financial Infrastructure <br className="hidden md:block" />
-                for <span className="grad-text-bp">Cloud Resellers</span>
-              </h1>
-              <p className="mt-7 text-[17px] leading-[1.7] text-ink-secondary max-w-[520px]">
-                moneta is the billing infrastructure AWS and Azure resellers use to automate billing,
-                apply cloud discounts correctly, and gain clear visibility into customer-level margins.
-              </p>
-              <p className="mt-4 text-[15.5px] font-medium" style={{ color: "#5B7BFF" }}>
-                Built for AWS and Azure resellers managing multiple customers.
-              </p>
-              <div className="mt-7">
-                <ReviewCTA onClick={onDemoClick} />
-              </div>
-
-            </div>
-
-            {/* RIGHT — CoreSystemLayers */}
-            <div className="lg:col-span-6 lg:sticky lg:top-32">
-              <CoreSystemLayers />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* A System Built for Cloud Resale Operations */}
-      <SectionShell className="border-t border-line-soft" style={{ background: "#0F2040" }}>
-        <Eyebrow className="mb-8">A System Built for Cloud Resale Operations</Eyebrow>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="border-l-2 pl-5" style={{ borderColor: "#3B82F6" }}>
-            <p className="text-[15.5px] leading-[1.75] text-ink-secondary">Cloud resellers operate across complex billing, pricing, and margin environments.</p>
-          </div>
-          <div className="border-l-2 pl-5" style={{ borderColor: "#5B7BFF" }}>
-            <p className="text-[15.5px] leading-[1.75] text-ink-secondary">moneta brings these into a single system purpose-built for AWS and Azure resale models.</p>
-          </div>
-          <div className="border-l-2 pl-5" style={{ borderColor: "#A855F7" }}>
-            <p className="text-[15.5px] leading-[1.75] text-ink-secondary">Billing, pricing, and profitability remain aligned across every customer account — without spreadsheets or manual reconciliation.</p>
-          </div>
-        </div>
-      </SectionShell>
-
-      {/* System Flow */}
-      <SectionShell className="border-t border-line-soft light-section" style={{ background: "#FFFFFF" }} dotsRight>
-        <div className="mb-10">
-          <Eyebrow className="mb-6">System Flow</Eyebrow>
-          <h2 className="text-h1 text-balance">One System. Continuous Flow.</h2>
-          <p className="mt-5 text-[16.5px] leading-[1.7] text-ink-secondary max-w-[760px]">
-            moneta continuously ingests cloud billing data, applies pricing and discount logic, generates invoices,
-            and updates margin visibility in <span className="grad-text-bp font-semibold">real time</span> — keeping everything aligned.
-          </p>
-        </div>
-        <SystemFlowHorizontal />
-        {/* Bottom callout quote — matches Platform.png */}
-        <div className="mt-14 p-7 md:p-8 rounded-2xl" style={{ background: "#F0F4FF", border: "1px solid #C7D4F0" }}>
-          <p className="text-[17px] md:text-[19px] leading-[1.65] text-ink-secondary">
-            Built specifically for AWS and Azure resellers operating across multiple customers,
-            pricing models, and discount programs — where billing, pricing, and margin must remain continuously aligned.
-          </p>
-        </div>
-      </SectionShell>
-
-      <FinalCTA
-        title="See your own data flow through moneta."
-        description="A working session on your real billing, pricing, and discount structure — not a generic walkthrough."
-        ctaLabel="Book a Demo"
-        onCta={onDemoClick}
-      />
     </React.Fragment>
   );
 }

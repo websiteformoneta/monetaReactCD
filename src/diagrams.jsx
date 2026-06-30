@@ -1083,15 +1083,15 @@ function MonetaSystemHero() {
 function SystemArchitecturePipeline() {
   const stages = [
     {
-      n: "1", t: "Ingest", c: "#3B82F6",
+      n: "1", t: "Ingest", c: "#3B82F6", offset: 0,
       rows: [
-        { label: "Cloud Usage", sub: "(AWS / Azure)", icon: "cloudUpload" },
+        { label: "Cloud Usage", sub: "AWS / Azure", icon: "cloudUpload" },
         { label: "Customer Data", icon: "user" },
         { label: "Agreements & Commitments", icon: "invoice" },
       ],
     },
     {
-      n: "2", t: "Normalize", c: "#22D3EE",
+      n: "2", t: "Normalize", c: "#22D3EE", offset: 26,
       rows: [
         { label: "Data Validation & Mapping", icon: "shield" },
         { label: "Standardization", icon: "trend" },
@@ -1099,7 +1099,7 @@ function SystemArchitecturePipeline() {
       ],
     },
     {
-      n: "3", t: "Process", c: "#5B7BFF",
+      n: "3", t: "Process", c: "#5B7BFF", offset: 0, emphasis: true,
       rows: [
         { label: "Pricing Engine", sub: "Apply pricing rules", icon: "settings" },
         { label: "Discount Engine", sub: "Allocate discounts", icon: "settings" },
@@ -1108,7 +1108,7 @@ function SystemArchitecturePipeline() {
       ],
     },
     {
-      n: "4", t: "Deliver", c: "#A855F7",
+      n: "4", t: "Deliver", c: "#A855F7", offset: 26,
       rows: [
         { label: "Customer Invoices", icon: "invoice" },
         { label: "Cost & Usage Reports", icon: "sheetBox" },
@@ -1116,7 +1116,7 @@ function SystemArchitecturePipeline() {
       ],
     },
     {
-      n: "5", t: "Analyze", c: "#A855F7",
+      n: "5", t: "Analyze", c: "#A855F7", offset: 0,
       rows: [
         { label: "Margin Reporting", icon: "invoice" },
         { label: "Pricing Analytics", icon: "invoice" },
@@ -1125,56 +1125,97 @@ function SystemArchitecturePipeline() {
     },
   ];
 
-  const ColArrow = () => (
-    <div className="hidden md:flex items-center justify-center shrink-0 w-6">
-      <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
-        <line x1="0" y1="7" x2="13" y2="7" stroke="#3B82F6" strokeWidth="1.4" />
-        <polygon points="13,3 20,7 13,11" fill="#3B82F6" />
+  const Stage = ({ s }) => (
+    <div className="min-w-0 flex-1 rounded-2xl flex flex-col transition-all duration-200"
+      style={{
+        marginTop: s.offset,
+        background: s.emphasis
+          ? "linear-gradient(165deg, rgba(91,123,255,0.12), rgba(168,85,247,0.05))"
+          : "linear-gradient(165deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012))",
+        border: `1px solid ${s.emphasis ? "rgba(91,123,255,0.4)" : "rgba(255,255,255,0.08)"}`,
+        backdropFilter: "blur(10px)",
+        boxShadow: s.emphasis ? "0 0 40px -10px rgba(91,123,255,0.5)" : "0 6px 22px -12px rgba(0,0,0,0.6)",
+      }}>
+      <div className="px-4 pt-4 pb-3 flex items-center gap-2.5 border-b" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
+        <span className="w-6 h-6 rounded-lg grid place-items-center text-[11px] font-bold shrink-0"
+          style={{ background: `${s.c}1c`, border: `1px solid ${s.c}66`, color: s.c }}>{s.n}</span>
+        <p className="text-[11px] font-bold tracking-[0.14em]" style={{ color: s.c }}>{s.t.toUpperCase()}</p>
+      </div>
+      <div className="flex-1 flex flex-col gap-2.5 p-3">
+        {s.rows.map((r) => (
+          <div key={r.label} className="flex items-start gap-2.5 rounded-xl px-3 py-2.5"
+            style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="w-8 h-8 rounded-lg grid place-items-center shrink-0" style={{ background: `${s.c}18`, border: `1px solid ${s.c}44` }}>
+              {Icons[r.icon](s.c)}
+            </div>
+            <div className="leading-tight min-w-0 pt-0.5">
+              <p className="text-[12.5px] font-semibold text-white">{r.label}</p>
+              {r.sub && <p className="text-[11px] text-ink-muted mt-0.5">{r.sub}</p>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  const FlowArrow = ({ extra }) => (
+    <div className="hidden lg:flex items-center justify-center shrink-0 w-7" style={{ marginTop: 70 + (extra || 0) }}>
+      <svg width="26" height="14" viewBox="0 0 26 14" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="sa-arrow" x1="0" x2="1"><stop offset="0%" stopColor="#5B7BFF" stopOpacity="0.2" /><stop offset="100%" stopColor="#5B7BFF" stopOpacity="0.9" /></linearGradient>
+        </defs>
+        <line x1="0" y1="7" x2="18" y2="7" stroke="url(#sa-arrow)" strokeWidth="1.6" />
+        <polygon points="18,3 26,7 18,11" fill="#5B7BFF" />
       </svg>
     </div>
   );
 
   return (
     <div>
-      <div className="flex items-stretch gap-0">
+      {/* Integrated header: narrative lead-in flows directly into the pipeline */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-x-10 items-end mb-9">
+        <div className="lg:col-span-4">
+          <Eyebrow className="mb-5">System Architecture</Eyebrow>
+          <h2 className="text-h2 text-balance leading-[1.08]">
+            One System. Every Piece <span className="grad-text-bp">in Sync.</span>
+          </h2>
+        </div>
+        <div className="lg:col-span-8">
+          <p className="text-[16px] leading-[1.7] text-ink-secondary max-w-[560px]">
+            moneta maintains a single, synchronized financial model for every customer. Changes
+            in one area automatically propagate through the system — eliminating manual work and
+            ensuring accuracy at scale.
+          </p>
+        </div>
+      </div>
+
+      {/* Five-stage flow — staggered heights, gradient connectors, emphasized Process core */}
+      <div className="flex items-start gap-2.5 lg:gap-3">
         {stages.map((s, i) => (
           <React.Fragment key={s.t}>
-            <div className="min-w-0 flex-1 rounded-2xl flex flex-col" style={{ background: "#0B0F1F", border: "1px solid rgba(91,123,255,0.22)" }}>
-              <div className="px-3 md:px-4 pt-4 pb-3 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-                <p className="text-[10px] md:text-[11px] font-bold tracking-[0.12em] truncate" style={{ color: s.c }}>{s.n}. {s.t.toUpperCase()}</p>
-              </div>
-              <div className="flex-1 flex flex-col gap-2.5 p-2.5 md:p-3.5">
-                {s.rows.map((r) => (
-                  <div key={r.label} className="flex items-start gap-2 rounded-xl px-2.5 py-2.5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                    <div className="w-7 h-7 rounded-lg grid place-items-center shrink-0 mt-0.5" style={{ background: `${s.c}15`, border: `1px solid ${s.c}40` }}>
-                      {Icons[r.icon](s.c)}
-                    </div>
-                    <div className="leading-tight min-w-0">
-                      <p className="text-[12px] md:text-[12.5px] font-semibold text-white">{r.label}</p>
-                      {r.sub && <p className="text-[10.5px] md:text-[11px] text-ink-muted mt-0.5">{r.sub}</p>}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {i < stages.length - 1 && <ColArrow />}
+            <Stage s={s} />
+            {i < stages.length - 1 && <FlowArrow extra={stages[i].offset === stages[i + 1].offset ? 0 : (stages[i + 1].offset - stages[i].offset) / 2} />}
           </React.Fragment>
         ))}
       </div>
 
-      {/* Continuous feedback loop */}
-      <div className="relative mt-7">
-        <svg className="w-full" height="34" viewBox="0 0 1000 34" preserveAspectRatio="none" aria-hidden="true">
-          <line x1="40" y1="6" x2="40" y2="22" stroke="#3B82F6" strokeWidth="1.4" />
-          <polygon points="36,8 40,0 44,8" fill="#3B82F6" />
-          <line x1="40" y1="22" x2="960" y2="22" stroke="#3B82F6" strokeWidth="1.4" />
-          <line x1="960" y1="6" x2="960" y2="22" stroke="#3B82F6" strokeWidth="1.4" />
-          <polygon points="956,8 960,0 964,8" fill="#3B82F6" />
+      {/* Continuous feedback loop — wraps the full composition */}
+      <div className="relative -mt-2">
+        <svg className="w-full" height="40" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="sa-loop" x1="0" x2="1"><stop offset="0%" stopColor="#3B82F6" /><stop offset="50%" stopColor="#5B7BFF" /><stop offset="100%" stopColor="#A855F7" /></linearGradient>
+          </defs>
+          <line x1="34" y1="6" x2="34" y2="26" stroke="url(#sa-loop)" strokeWidth="1.5" />
+          <polygon points="30,9 34,1 38,9" fill="#3B82F6" />
+          <line x1="34" y1="26" x2="966" y2="26" stroke="url(#sa-loop)" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.85" />
+          <line x1="966" y1="6" x2="966" y2="26" stroke="url(#sa-loop)" strokeWidth="1.5" />
+          <polygon points="962,9 966,1 970,9" fill="#A855F7" />
         </svg>
-        <div className="flex justify-center -mt-2">
-          <span className="inline-flex items-center rounded-full px-4 py-1.5 text-[11px] font-bold tracking-[0.12em]"
-            style={{ background: "rgba(59,130,246,0.1)", border: "1px solid rgba(59,130,246,0.45)", color: "#3B82F6" }}>
-            CONTINUOUS FEEDBACK &amp; RECONCILIATION
+        <div className="flex justify-center -mt-5">
+          <span className="inline-flex items-center gap-2.5 rounded-full px-5 py-2 text-[11px] font-bold tracking-[0.14em]"
+            style={{ background: "linear-gradient(90deg, rgba(59,130,246,0.1), rgba(168,85,247,0.1))", border: "1px solid rgba(91,123,255,0.4)", backdropFilter: "blur(8px)", color: "#fff" }}>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#5B7BFF", boxShadow: "0 0 8px #5B7BFF" }} />
+            <span className="grad-text-bp">CONTINUOUS FEEDBACK &amp; RECONCILIATION</span>
           </span>
         </div>
       </div>
@@ -1193,76 +1234,138 @@ function ControlPlaneCards() {
     { t: "Data Security",       b: "Role-based access and encryption at every layer.",              icon: "lock",         c: "#A855F7" },
   ];
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-px rounded-2xl overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-px rounded-2xl overflow-hidden" style={{ background: "#E2E8F0", border: "1px solid #E2E8F0", boxShadow: "0 1px 4px rgba(15,23,42,0.05)" }}>
       {cards.map((card) => (
-        <div key={card.t} className="px-5 py-7" style={{ background: "#0B0F1F" }}>
-          <div className="w-11 h-11 rounded-full grid place-items-center mb-4" style={{ border: `1.5px solid ${card.c}80` }}>
+        <div key={card.t} className="px-5 py-7" style={{ background: "#FFFFFF" }}>
+          <div className="w-11 h-11 rounded-full grid place-items-center mb-4" style={{ background: `${card.c}14`, border: `1.5px solid ${card.c}55` }}>
             {Icons[card.icon](card.c)}
           </div>
-          <p className="text-[14.5px] font-semibold text-white mb-1.5">{card.t}</p>
-          <p className="text-[12.5px] leading-[1.55] text-ink-secondary">{card.b}</p>
+          <p className="text-[14.5px] font-semibold mb-1.5" style={{ color: "#0F172A" }}>{card.t}</p>
+          <p className="text-[12.5px] leading-[1.55]" style={{ color: "#475569" }}>{card.b}</p>
         </div>
       ))}
     </div>
   );
 }
 
-// ---- Automated Lifecycle — 8-step row with feedback loop ----
+// ---- Automated Lifecycle — phased decision loop with central orchestration node ----
 function AutomatedLifecycle() {
-  const steps = [
-    { n: 1, t: "Ingest Cloud Data",      b: "Import usage, pricing, and discount data.",        icon: "cloudUpload" },
-    { n: 2, t: "Normalize & Validate",   b: "Ensure accuracy, map accounts, enrich data.",      icon: "database"    },
-    { n: 3, t: "Apply Pricing & Discounts", b: "Run pricing rules, allocate discounts, apply agreements.", icon: "sliders" },
-    { n: 4, t: "Generate Invoices",      b: "Create accurate, customer-ready invoice data.",    icon: "invoice"     },
-    { n: 5, t: "Calculate Margins",      b: "Track revenue, cost, and margin by customer.",     icon: "dollar"      },
-    { n: 6, t: "Deliver Reports",        b: "Provide cost, usage, and FinOps insights.",         icon: "barChart"    },
-    { n: 7, t: "Monitor Performance",    b: "Analyze trends, identify risks, optimize pricing.", icon: "trend"       },
-    { n: 8, t: "Update Dashboards",      b: "Real-time visibility for operations and executive teams.", icon: "grid" },
+  const phases = [
+    {
+      key: "foundation", label: "Data Foundation", c: "#3B82F6",
+      steps: [
+        { n: 1, t: "Ingest Cloud Data",    b: "Import usage, pricing, and discount data.",   icon: "cloudUpload" },
+        { n: 2, t: "Normalize & Validate", b: "Ensure accuracy, map accounts, enrich data.", icon: "database"    },
+      ],
+    },
+    {
+      key: "logic", label: "Decision Logic", c: "#5B7BFF", emphasis: true,
+      steps: [
+        { n: 3, t: "Apply Pricing & Discounts", b: "Run pricing rules, allocate discounts, apply agreements.", icon: "sliders" },
+        { n: 4, t: "Generate Invoices",         b: "Create accurate, customer-ready invoice data.",            icon: "invoice" },
+        { n: 5, t: "Calculate Margins",         b: "Track revenue, cost, and margin by customer.",             icon: "dollar"  },
+      ],
+    },
+    {
+      key: "delivery", label: "Intelligence Delivery", c: "#A855F7",
+      steps: [
+        { n: 6, t: "Deliver Reports",     b: "Provide cost, usage, and FinOps insights.",                 icon: "barChart" },
+        { n: 7, t: "Monitor Performance", b: "Analyze trends, identify risks, optimize pricing.",         icon: "trend"    },
+        { n: 8, t: "Update Dashboards",   b: "Real-time visibility for operations and executive teams.",  icon: "grid"     },
+      ],
+    },
   ];
+
+  const Card = ({ s, c, emphasis }) => (
+    <div className="relative flex items-start gap-3.5 rounded-2xl p-4 transition-all duration-200 hover:-translate-y-0.5"
+      style={{
+        background: emphasis
+          ? "linear-gradient(150deg, rgba(91,123,255,0.12), rgba(168,85,247,0.07))"
+          : "linear-gradient(150deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015))",
+        border: `1px solid ${emphasis ? "rgba(91,123,255,0.35)" : "rgba(255,255,255,0.08)"}`,
+        backdropFilter: "blur(10px)",
+        boxShadow: emphasis ? "0 0 30px -8px rgba(91,123,255,0.45)" : "0 4px 18px -10px rgba(0,0,0,0.6)",
+      }}>
+      <div className="relative shrink-0">
+        <div className="rounded-xl grid place-items-center"
+          style={{ width: emphasis ? 48 : 44, height: emphasis ? 48 : 44, background: `${c}16`, border: `1.5px solid ${c}66` }}>
+          {Icons[s.icon](c)}
+        </div>
+        <span className="absolute -top-1.5 -left-1.5 w-5 h-5 rounded-full grid place-items-center text-[10px] font-bold"
+          style={{ background: "#0B0F1F", border: `1px solid ${c}`, color: c }}>{s.n}</span>
+      </div>
+      <div className="min-w-0 pt-0.5">
+        <p className="font-semibold text-white leading-tight mb-1" style={{ fontSize: emphasis ? 15 : 14 }}>{s.t}</p>
+        <p className="text-[12px] leading-[1.5] text-ink-muted">{s.b}</p>
+      </div>
+    </div>
+  );
+
+  const PhaseHeader = ({ phase }) => (
+    <div className="flex items-center gap-2 mb-4">
+      <span className="w-2 h-2 rounded-full" style={{ background: phase.c, boxShadow: `0 0 10px ${phase.c}` }} />
+      <p className="eyebrow text-[10px] tracking-[0.18em]" style={{ color: phase.c }}>{phase.label}</p>
+      <span className="flex-1 h-px" style={{ background: `linear-gradient(90deg, ${phase.c}55, transparent)` }} />
+    </div>
+  );
+
   return (
-    <div>
-      <div className="flex items-start gap-0">
-        {steps.map((s, i) => (
-          <React.Fragment key={s.n}>
-            <div className="min-w-0 flex-1 flex flex-col items-center text-center px-1">
-              <div className="w-6 h-6 rounded-full grid place-items-center text-[11px] font-bold mb-3 shrink-0"
-                style={{ background: "rgba(91,123,255,0.12)", border: "1px solid rgba(91,123,255,0.5)", color: "#5B7BFF" }}>
-                {s.n}
-              </div>
-              <div className="w-14 h-14 rounded-2xl grid place-items-center mb-3 shrink-0" style={{ border: "1.5px solid rgba(91,123,255,0.4)" }}>
-                {Icons[s.icon]("#5B7BFF")}
-              </div>
-              <p className="font-semibold text-white leading-[1.3] mb-1.5 w-full" style={{ fontSize: "clamp(9px, 1.05vw, 13px)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.t}</p>
-              <p className="text-[11.5px] leading-[1.5] text-ink-muted">{s.b}</p>
+    <div className="relative">
+      {/* Orchestration label — the spine the three phases flow from */}
+      <div className="flex flex-col items-center mb-6">
+        <p className="text-center leading-tight">
+          <span className="block text-[15px] font-bold text-white">Orchestration Engine</span>
+          <span className="block text-[12px] grad-text-bp font-semibold mt-0.5">Coordinating every step in real time</span>
+        </p>
+        {/* down-flow connector into the three phases */}
+        <svg className="hidden lg:block mt-2" width="640" height="40" viewBox="0 0 640 40" fill="none" aria-hidden="true">
+          <path d="M320 0 V14 Q320 22 312 22 H96 Q88 22 88 30 V40" stroke="#3B82F6" strokeWidth="1.4" strokeDasharray="3 4" opacity="0.6" />
+          <path d="M320 0 V40" stroke="#5B7BFF" strokeWidth="1.4" strokeDasharray="3 4" opacity="0.7" />
+          <path d="M320 0 V14 Q320 22 328 22 H544 Q552 22 552 30 V40" stroke="#A855F7" strokeWidth="1.4" strokeDasharray="3 4" opacity="0.6" />
+        </svg>
+      </div>
+
+      {/* Three phases — aligned tops, even columns */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-start">
+        {phases.map((phase) => (
+          <div key={phase.key} className="flex flex-col"
+            style={phase.emphasis ? {
+              borderRadius: 20, padding: "16px 16px 18px",
+              background: "linear-gradient(160deg, rgba(91,123,255,0.05), transparent)",
+              border: "1px solid rgba(91,123,255,0.18)",
+              boxShadow: "0 0 40px -16px rgba(91,123,255,0.5)",
+              marginTop: -8,
+            } : { padding: "8px 0 0" }}>
+            <PhaseHeader phase={phase} />
+            <div className="flex flex-col gap-3">
+              {phase.steps.map((s) => <Card key={s.n} s={s} c={phase.c} emphasis={phase.emphasis} />)}
             </div>
-            {i < steps.length - 1 && (
-              <div className="shrink-0 flex items-center justify-center self-start mt-[42px]" style={{ width: 14 }}>
-                <svg width="14" height="12" viewBox="0 0 14 12" aria-hidden="true">
-                  <line x1="0" y1="6" x2="7" y2="6" stroke="#F59E0B" strokeWidth="1.4" />
-                  <polygon points="7,2 14,6 7,10" fill="#F59E0B" />
-                </svg>
-              </div>
-            )}
-          </React.Fragment>
+          </div>
         ))}
       </div>
 
-      {/* Continuous monitoring loop */}
-      <div className="relative mt-6">
-        <svg className="w-full" height="30" viewBox="0 0 1000 30" preserveAspectRatio="none" aria-hidden="true">
-          <line x1="30" y1="4" x2="30" y2="19" stroke="#5B7BFF" strokeWidth="1.4" />
-          <polygon points="26,6 30,-1 34,6" fill="#5B7BFF" />
-          <line x1="30" y1="19" x2="970" y2="19" stroke="#5B7BFF" strokeWidth="1.4" strokeDasharray="4 3" />
-          <line x1="970" y1="4" x2="970" y2="19" stroke="#5B7BFF" strokeWidth="1.4" />
-          <polygon points="966,6 970,-1 974,6" fill="#5B7BFF" />
-        </svg>
-        <div className="flex justify-center -mt-1">
-          <span className="inline-flex items-center rounded-full px-4 py-1.5 text-[11px] font-bold tracking-[0.12em]"
-            style={{ background: "rgba(91,123,255,0.1)", border: "1px solid rgba(91,123,255,0.45)", color: "#5B7BFF" }}>
-            CONTINUOUS MONITORING &amp; OPTIMIZATION
+      {/* persistent feedback loop beneath the workflow */}
+      <div className="relative mt-9">
+        <div className="rounded-2xl px-5 md:px-7 py-3.5 flex items-center justify-center gap-3"
+          style={{ background: "linear-gradient(90deg, rgba(59,130,246,0.08), rgba(91,123,255,0.1), rgba(168,85,247,0.08))", border: "1px solid rgba(91,123,255,0.3)", backdropFilter: "blur(8px)" }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B7BFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="animate-[lcspin_6s_linear_infinite]" aria-hidden="true">
+            <path d="M3 12a9 9 0 0115.5-6.3L21 8M21 3v5h-5" /><path d="M21 12a9 9 0 01-15.5 6.3L3 16M3 21v-5h5" />
+          </svg>
+          <span className="text-[11px] md:text-[11.5px] font-bold tracking-[0.14em] grad-text-bp">CONTINUOUS MONITORING &amp; OPTIMIZATION</span>
+          <span className="hidden sm:inline-flex items-center gap-1.5 ml-2 text-[10.5px] text-ink-muted">
+            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#34D399", boxShadow: "0 0 8px #34D399" }} />
+            live
           </span>
         </div>
       </div>
+
+      <style>{`
+        @keyframes lcspin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes lcspinrev { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+        @media (prefers-reduced-motion: reduce) {
+          [class*="animate-[lcspin"], [class*="animate-pulse"] { animation: none !important; }
+        }
+      `}</style>
     </div>
   );
 }
@@ -1370,15 +1473,15 @@ function SystemEnablesCards() {
     { t: "Financial Visibility Everywhere", b: "Real-time insights for operations, finance, and executive teams.", icon: "eye", c: "#22D3EE" },
   ];
   return (
-    <div className="flex flex-col rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
+    <div className="flex flex-col rounded-2xl overflow-hidden" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", boxShadow: "0 1px 4px rgba(15,23,42,0.05)" }}>
       {cards.map((card, i) => (
-        <div key={card.t} className="flex items-start gap-4 px-5 py-5" style={{ background: "#0B0F1F", borderTop: i > 0 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
-          <div className="w-11 h-11 rounded-xl grid place-items-center shrink-0" style={{ border: `1.5px solid ${card.c}80` }}>
+        <div key={card.t} className="flex items-start gap-4 px-5 py-5" style={{ borderTop: i > 0 ? "1px solid #EDF1F7" : "none" }}>
+          <div className="w-11 h-11 rounded-xl grid place-items-center shrink-0" style={{ background: `${card.c}14`, border: `1.5px solid ${card.c}55` }}>
             {Icons[card.icon](card.c)}
           </div>
           <div className="min-w-0">
-            <p className="text-[14px] font-semibold text-white mb-1 leading-tight">{card.t}</p>
-            <p className="text-[12.5px] leading-[1.55] text-ink-secondary">{card.b}</p>
+            <p className="text-[14px] font-semibold mb-1 leading-tight" style={{ color: "#0F172A" }}>{card.t}</p>
+            <p className="text-[12.5px] leading-[1.55]" style={{ color: "#475569" }}>{card.b}</p>
           </div>
         </div>
       ))}
