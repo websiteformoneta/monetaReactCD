@@ -730,7 +730,7 @@ function PlatformPage({ onDemoClick }) {
             {/* LEFT — text content */}
             <div className="xl:col-span-5" style={{ transform: "translateY(-75px)" }}>
               <Eyebrow className="mb-6 [&_.eyebrow]:text-[16px]">The Moneta System</Eyebrow>
-              <h1 className="text-balance" style={{ fontSize: "clamp(38px, 4.3vw, 70px)", lineHeight: 1.1, letterSpacing: "-0.02em", fontWeight: 600, fontFamily: "'Source Serif 4', Georgia, serif" }}>
+              <h1 className="text-balance" style={{ fontSize: "clamp(30px, 3.4vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", fontWeight: 600, fontFamily: "'Source Serif 4', Georgia, serif" }}>
                 <span style={{ whiteSpace: "nowrap" }}>The Operating System</span> <br />
                 for <span className="grad-text-bp">Cloud Financial</span> <br />
                 <span className="grad-text-bp">Operations</span>
