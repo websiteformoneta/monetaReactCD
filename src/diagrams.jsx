@@ -1477,8 +1477,8 @@ function CardItem({ card, active, onEnter, onLeave }) {
       <div style={{ width: 36, height: 36, borderRadius: 9, background: `${card.c}15`, border: `1px solid ${card.c}40`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10, transition: "all 0.35s ease" }}>
         {Icons[card.icon](card.c)}
       </div>
-      <p style={{ fontSize: 13, fontWeight: 600, color: active ? "#f1f5f9" : "#94a3b8", fontFamily: "Inter, sans-serif", lineHeight: 1.3, marginBottom: 5, transition: "color 0.35s ease" }}>{card.label}</p>
-      <p style={{ fontSize: 11.5, color: "#475569", lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>{card.desc}</p>
+      <p style={{ fontSize: 13, fontWeight: 600, color: active ? "#f1f5f9" : "#cbd5e1", fontFamily: "Inter, sans-serif", lineHeight: 1.3, marginBottom: 5, transition: "color 0.35s ease" }}>{card.label}</p>
+      <p style={{ fontSize: 11.5, color: "#94A3B8", lineHeight: 1.55, fontFamily: "Inter, sans-serif" }}>{card.desc}</p>
     </div>
   );
 }
@@ -1520,26 +1520,9 @@ function OneSystemFullControl({ onDemoClick }) {
   ];
   return (
     <div className="rounded-2xl p-7 md:p-10" style={{ background: "#0B0F1F", border: "1px solid rgba(91,123,255,0.22)" }}>
-      <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-10 items-center">
-        {/* Cube */}
-        <div className="flex justify-center lg:justify-start">
-          <div className="relative w-[110px] h-[110px] flex items-center justify-center">
-            <div className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.35), transparent 70%)", filter: "blur(8px)" }} />
-            <div className="relative z-10 w-[72px] h-[72px] grid place-items-center rounded-2xl"
-              style={{
-                background: "linear-gradient(145deg,#3B82F6,#5B7BFF 55%,#A855F7)",
-                boxShadow: "0 0 30px 6px rgba(91,123,255,0.55), 0 0 60px 14px rgba(168,85,247,0.3)",
-              }}>
-              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 2l8 4.5v9L12 20l-8-4.5v-9L12 2z" stroke="white" strokeWidth="1.4" strokeLinejoin="round" opacity="0.9" />
-                <path d="M12 2v18M4 6.5l8 4.5 8-4.5" stroke="white" strokeWidth="1.4" strokeLinejoin="round" opacity="0.9" />
-              </svg>
-            </div>
-          </div>
-        </div>
-
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-center">
         {/* Text + CTAs */}
-        <div className="text-center lg:text-left">
+        <div className="text-left">
           <h2 className="text-h2" style={{ whiteSpace: "nowrap" }}>
             One System. Full Control. <br />
             <span className="grad-text-bp">Stronger Cloud Financial Operations.</span>
@@ -1548,7 +1531,7 @@ function OneSystemFullControl({ onDemoClick }) {
             moneta is the operating system that maintains the financial state of your cloud business —
             from usage and pricing to invoices and margins. Built for AWS and Azure resellers.
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+          <div className="mt-6 flex flex-wrap items-center justify-start gap-4">
             <Button variant="primary" onClick={onDemoClick} className="!px-6 !py-3.5 !text-[14px]">
               Book a Demo <ArrowRight />
             </Button>
