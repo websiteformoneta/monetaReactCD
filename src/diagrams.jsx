@@ -209,8 +209,8 @@ function TrustBar() {
           <div className="flex items-center gap-3">
             <PngIcon src="graphics/icons/HeroCloudProcessedAnnuallyIcon.png" size={42} />
             <div className="leading-tight">
-              <p className="text-[12px] text-ink-muted">Grow with</p>
-              <p className="text-[16px] font-semibold grad-text-bp -mt-0.5">Confidence</p>
+              <p className="text-[12px] text-ink-muted">Multi-customer</p>
+              <p className="text-[16px] font-semibold grad-text-bp -mt-0.5">Billing</p>
             </div>
           </div>
         </div>

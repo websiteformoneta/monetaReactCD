@@ -523,7 +523,7 @@ function HomePage({ onDemoClick }) {
         tagline="Built for AWS & Azure Resellers"
         title="Eliminate Margin Loss in Cloud Reseller Billing"
         accentWord="Cloud Reseller Billing"
-        description={<span>The <span className="grad-text-bp font-semibold">operating system</span> for cloud reseller billing — aligning cost, pricing, and discounts across every customer.</span>}
+        description={<span>The <span className="grad-text-bp font-semibold">financial operating system</span> for cloud resellers that keeps billing, pricing, discounts, and margins aligned across every customer.</span>}
         ctaLabel="Improve Your Margins"
         onCta={onDemoClick}
         right={<MarginIntelligenceCard />}

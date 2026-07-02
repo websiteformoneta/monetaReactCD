@@ -148,50 +148,44 @@ function Header({ onDemoClick }) {
 
 // ----- Footer -----
 function Footer({ onDemoClick }) {
-  const cols = [
-    { heading: "Product", links: [
-      { label: "Cloud FinOps Services", href: "#/finops-services" },
-      { label: "Why moneta", href: "#/why-moneta" },
-    ]},
-    { heading: "Company", links: [
-      { label: "About", href: "#" }, { label: "Customers", href: "#" }, { label: "Contact", href: "#" },
-    ]},
-    { heading: "Resources", links: [
-      { label: "Documentation", href: "#" }, { label: "Security", href: "#" }, { label: "Changelog", href: "#" },
-    ]},
-  ];
   return (
     <footer className="bg-bg-secondary border-t border-line-soft mt-12">
       <div className="container-x pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
-          <div className="md:col-span-5">
+          <div className="md:col-span-6">
             <a href="#/" aria-label="moneta home" className="flex items-center gap-0"><MonetaMark size={36} /><span className="text-[20px] font-semibold tracking-tight text-white" style={{ marginLeft: -1, transform: "translateY(0.2px)" }}>moneta</span></a>
             <p className="mt-4 text-[14px] leading-[1.65] text-ink-muted max-w-sm">
-              The financial infrastructure for AWS and Azure resellers — billing, pricing, and margin control in one system.
+              The financial operating system for AWS and Azure resellers
             </p>
-            <div className="mt-6">
-              <Button variant="gradient" onClick={onDemoClick} className="!px-5 !py-2.5">Book a Demo <ArrowRight /></Button>
-            </div>
           </div>
-          <div className="md:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
-            {cols.map((c) => (
-              <div key={c.heading}>
-                <h4 className="text-[13px] font-semibold text-white mb-4">{c.heading}</h4>
-                <ul className="space-y-3">
-                  {c.links.map((l) => (
-                    <li key={l.label}><a href={l.href} className="text-[14px] text-ink-secondary hover:text-white transition-colors">{l.label}</a></li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div className="md:col-span-6 grid grid-cols-2 gap-8">
+            <div>
+              <h4 className="text-[13px] font-semibold text-white mb-4">Company</h4>
+              <ul className="space-y-3">
+                <li><button onClick={onDemoClick} className="text-[14px] text-ink-secondary hover:text-white transition-colors">Contact</button></li>
+                <li><a href="mailto:info@monetacloud.com" className="text-[14px] text-ink-secondary hover:text-white transition-colors">info@monetacloud.com</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-[13px] font-semibold text-white mb-4">Connect</h4>
+              <ul className="space-y-3">
+                <li>
+                  <a href="https://www.linkedin.com/company/monetacloud/" target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-[14px] text-ink-secondary hover:text-white transition-colors">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/>
+                    </svg>
+                    LinkedIn
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div className="mt-12 pt-6 border-t border-line-soft flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
-          <p className="text-[13px] text-ink-muted">© 2026 moneta, Inc. All rights reserved.</p>
+          <p className="text-[13px] text-ink-muted">© 2026 moneta. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-[13px] text-ink-muted hover:text-white">Privacy</a>
-            <a href="#" className="text-[13px] text-ink-muted hover:text-white">Terms</a>
-            <a href="#" className="text-[13px] text-ink-muted hover:text-white">Security</a>
+            <a href="https://monetacloud.com/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-[13px] text-ink-muted hover:text-white">Privacy Policy</a>
           </div>
         </div>
       </div>
