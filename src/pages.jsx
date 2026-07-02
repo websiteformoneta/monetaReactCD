@@ -1439,9 +1439,9 @@ function WhyPage({ onDemoClick }) {
                         <linearGradient id="wm2_slate" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#1e3248"/><stop offset="100%" stopColor="#253a52"/></linearGradient>
                         <linearGradient id="wm2_green" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#16a34a"/><stop offset="100%" stopColor="#22c55e"/></linearGradient>
                         <linearGradient id="wm2_bluecon" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#2563eb"/><stop offset="100%" stopColor="#1e3a52"/></linearGradient>
-                        <linearGradient id="wm2_bluecon_l" gradientUnits="userSpaceOnUse" x1="132" y1="0" x2="168" y2="0"><stop offset="0%" stopColor="#1d4ed8"/><stop offset="100%" stopColor="#1e3248"/></linearGradient>
+                        <linearGradient id="wm2_bluecon_l" gradientUnits="userSpaceOnUse" x1="286" y1="0" x2="322" y2="0"><stop offset="0%" stopColor="#1e3a52"/><stop offset="100%" stopColor="#1d4ed8"/></linearGradient>
                         <linearGradient id="wm2_ambercon" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#92400e"/><stop offset="100%" stopColor="#1e3a52"/></linearGradient>
-                        <linearGradient id="wm2_ambercon_l" gradientUnits="userSpaceOnUse" x1="132" y1="0" x2="168" y2="0"><stop offset="0%" stopColor="#78350f"/><stop offset="100%" stopColor="#1e3248"/></linearGradient>
+                        <linearGradient id="wm2_ambercon_l" gradientUnits="userSpaceOnUse" x1="286" y1="0" x2="322" y2="0"><stop offset="0%" stopColor="#1e3a52"/><stop offset="100%" stopColor="#78350f"/></linearGradient>
                         <linearGradient id="wm2_greencon" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#1e3a52"/><stop offset="100%" stopColor="#16a34a"/></linearGradient>
                         <filter id="wm2_glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                       </defs>
@@ -1456,7 +1456,7 @@ function WhyPage({ onDemoClick }) {
                       {/* right taper */}
                       <path d="M286,18 C304,18 304,8 322,8 L322,72 C304,72 304,62 286,62 Z" fill="url(#wm2_greencon)"/>
                       {/* cards */}
-                      <rect x="8"   y="8"  width="124" height="64" rx="8" fill="url(#wm2_blue)"/>
+                      <rect x="8"   y="2"  width="124" height="76" rx="8" fill="url(#wm2_blue)"/>
                       <rect x="168" y="18" width="118" height="44" rx="7" fill="url(#wm2_slate)"/>
                       <rect x="322" y="2"  width="118" height="76" rx="8" fill="url(#wm2_green)" filter="url(#wm2_glow)"/>
                       {/* left taper: matches blue card right edge, fades to slate */}
@@ -1476,7 +1476,7 @@ function WhyPage({ onDemoClick }) {
                       {/* right taper */}
                       <path d="M286,118 C304,118 304,108 322,108 L322,172 C304,172 304,162 286,162 Z" fill="url(#wm2_greencon)"/>
                       {/* cards */}
-                      <rect x="8"   y="108" width="124" height="64" rx="8" fill="url(#wm2_amber)"/>
+                      <rect x="8"   y="102" width="124" height="76" rx="8" fill="url(#wm2_amber)"/>
                       <rect x="168" y="118" width="118" height="44" rx="7" fill="url(#wm2_slate)"/>
                       <rect x="322" y="102" width="118" height="76" rx="8" fill="url(#wm2_green)" filter="url(#wm2_glow)"/>
                       {/* left taper: matches amber card right edge, fades to slate */}
