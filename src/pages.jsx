@@ -1439,29 +1439,53 @@ function WhyPage({ onDemoClick }) {
                         <linearGradient id="wm2_slate" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#1e3248"/><stop offset="100%" stopColor="#253a52"/></linearGradient>
                         <linearGradient id="wm2_green" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#16a34a"/><stop offset="100%" stopColor="#22c55e"/></linearGradient>
                         <linearGradient id="wm2_bluecon" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#2563eb"/><stop offset="100%" stopColor="#1e3a52"/></linearGradient>
+                        <linearGradient id="wm2_bluecon_l" gradientUnits="userSpaceOnUse" x1="132" y1="0" x2="168" y2="0"><stop offset="0%" stopColor="#1d4ed8"/><stop offset="100%" stopColor="#1e3248"/></linearGradient>
                         <linearGradient id="wm2_ambercon" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#92400e"/><stop offset="100%" stopColor="#1e3a52"/></linearGradient>
+                        <linearGradient id="wm2_ambercon_l" gradientUnits="userSpaceOnUse" x1="132" y1="0" x2="168" y2="0"><stop offset="0%" stopColor="#78350f"/><stop offset="100%" stopColor="#1e3248"/></linearGradient>
                         <linearGradient id="wm2_greencon" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#1e3a52"/><stop offset="100%" stopColor="#16a34a"/></linearGradient>
                         <filter id="wm2_glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                       </defs>
 
-                      {/* ── TOP FLOW — y: 8→72, mid=40 ── */}
-                      <rect x="8" y="8" width="124" height="64" rx="8" fill="url(#wm2_blue)"/>
-                      <text x="70" y="45" textAnchor="middle" style={{ fontSize: 13, fontWeight: 600, fill: "#fff", fontFamily: "Inter, sans-serif" }}>Cloud cost</text>
-                      <path d="M132,8 C150,8 150,18 168,18 L168,62 C150,62 150,72 132,72 Z" fill="url(#wm2_bluecon)"/>
-                      <rect x="168" y="18" width="118" height="44" rx="7" fill="url(#wm2_slate)"/>
-                      <text x="227" y="45" textAnchor="middle" style={{ fontSize: 12, fontWeight: 500, fill: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Customer bill</text>
+                      {/* ══ TOP ROW ══
+                          Blue card:   x=8→132,  y=8→72   (center y=40)
+                          Slate card:  x=168→286, y=18→62  (center y=40)
+                          Green card:  x=322→440, y=2→76   (center y=39)
+                          Connector band height = 10px, centered at y=40 → y=35→45
+                          Taper zone: 18px wide on each join edge
+                      */}
+                      {/* right taper */}
                       <path d="M286,18 C304,18 304,8 322,8 L322,72 C304,72 304,62 286,62 Z" fill="url(#wm2_greencon)"/>
-                      <rect x="322" y="2" width="118" height="76" rx="8" fill="url(#wm2_green)" filter="url(#wm2_glow)"/>
+                      {/* cards */}
+                      <rect x="8"   y="8"  width="124" height="64" rx="8" fill="url(#wm2_blue)"/>
+                      <rect x="168" y="18" width="118" height="44" rx="7" fill="url(#wm2_slate)"/>
+                      <rect x="322" y="2"  width="118" height="76" rx="8" fill="url(#wm2_green)" filter="url(#wm2_glow)"/>
+                      {/* left taper: matches blue card right edge, fades to slate */}
+                      <path d="M286,18 C304,18 304,8 322,8 L322,72 C304,72 304,62 286,62 Z"
+                        fill="url(#wm2_bluecon_l)"
+                        transform="scale(-1,1) translate(-454,0)"/>
+                      <text x="70"  y="45" textAnchor="middle" style={{ fontSize: 13, fontWeight: 600, fill: "#fff",     fontFamily: "Inter, sans-serif" }}>Cloud cost</text>
+                      <text x="227" y="45" textAnchor="middle" style={{ fontSize: 12, fontWeight: 500, fill: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Customer bill</text>
                       <text x="381" y="45" textAnchor="middle" style={{ fontSize: 13, fontWeight: 700, fill: "#f0fdf4", fontFamily: "Inter, sans-serif" }}>Revenue</text>
 
-                      {/* ── BOTTOM FLOW — y: 108→172, mid=140 ── */}
-                      <rect x="8" y="108" width="124" height="64" rx="8" fill="url(#wm2_amber)"/>
-                      <text x="70" y="145" textAnchor="middle" style={{ fontSize: 13, fontWeight: 600, fill: "#fef3c7", fontFamily: "Inter, sans-serif" }}>Commitments</text>
-                      <path d="M132,108 C150,108 150,118 168,118 L168,162 C150,162 150,172 132,172 Z" fill="url(#wm2_ambercon)"/>
-                      <rect x="168" y="118" width="118" height="44" rx="7" fill="url(#wm2_slate)"/>
-                      <text x="227" y="145" textAnchor="middle" style={{ fontSize: 12, fontWeight: 500, fill: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Discount engine</text>
+                      {/* ══ BOTTOM ROW ══
+                          Amber card:  x=8→132,  y=108→172 (center y=140)
+                          Slate card:  x=168→286, y=118→162 (center y=140)
+                          Green card:  x=322→440, y=102→178 (center y=140)
+                          Band: y=135→145, taper zone: 18px
+                      */}
+                      {/* right taper */}
                       <path d="M286,118 C304,118 304,108 322,108 L322,172 C304,172 304,162 286,162 Z" fill="url(#wm2_greencon)"/>
+                      {/* cards */}
+                      <rect x="8"   y="108" width="124" height="64" rx="8" fill="url(#wm2_amber)"/>
+                      <rect x="168" y="118" width="118" height="44" rx="7" fill="url(#wm2_slate)"/>
                       <rect x="322" y="102" width="118" height="76" rx="8" fill="url(#wm2_green)" filter="url(#wm2_glow)"/>
+                      {/* left taper: matches amber card right edge, fades to slate */}
+                      <path d="M286,118 C304,118 304,108 322,108 L322,172 C304,172 304,162 286,162 Z"
+                        fill="url(#wm2_ambercon_l)"
+                        transform="scale(-1,1) translate(-454,0)"/>
+                      <text x="70"  y="145" textAnchor="middle" style={{ fontSize: 13, fontWeight: 600, fill: "#fef3c7", fontFamily: "Inter, sans-serif" }}>Commitments</text>
+
+                      <text x="227" y="145" textAnchor="middle" style={{ fontSize: 12, fontWeight: 500, fill: "#94a3b8", fontFamily: "Inter, sans-serif" }}>Discount engine</text>
                       <text x="381" y="145" textAnchor="middle" style={{ fontSize: 13, fontWeight: 700, fill: "#f0fdf4", fontFamily: "Inter, sans-serif" }}>Net margin</text>
                     </svg>
                   </div>
