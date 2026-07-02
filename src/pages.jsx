@@ -1323,37 +1323,6 @@ function FinOpsPage({ onDemoClick }) {
         </p>
       </SectionShell>
 
-      <SectionShell className="border-t border-line-soft" style={{ background: "#0F2040" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-5">
-            <Eyebrow className="mb-5">Why moneta</Eyebrow>
-            <h2 className="text-balance" style={{ fontSize: "clamp(28px, 3vw, 42px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
-              Built for <span className="grad-text-bp">AWS and Azure</span> resellers managing multiple customers, pricing models, and discount programs.
-            </h2>
-            <p className="mt-5 text-[15.5px] leading-[1.7] text-ink-secondary">
-              Every feature is shaped by how resellers actually operate — not adapted from single-tenant tools.
-            </p>
-          </div>
-          <div className="lg:col-span-7 space-y-2.5">
-            {[
-              { t: "Customer review reporting",   b: "Branded, repeatable cost & savings reviews built from real billing data.", c: "#3B82F6" },
-              { t: "Optimization playbooks",      b: "Rightsizing, commitment planning, and anomaly detection out of the box.", c: "#22D3EE" },
-              { t: "Discount earn-back tracking", b: "Show customers exactly what their commitments earned this quarter.", c: "#A855F7" },
-              { t: "One source of truth",         b: "Same data behind invoices powers FinOps insights — no parallel pipeline.", c: "#5B7BFF" },
-            ].map((f, i) => (
-              <div key={f.t} className="flex items-start gap-4 px-5 py-4 rounded-xl"
-                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderLeft: `3px solid ${f.c}` }}>
-                <span className="text-[11px] font-bold mt-0.5 shrink-0" style={{ color: f.c }}>0{i + 1}</span>
-                <div>
-                  <h4 className="text-[15px] font-semibold mb-1 text-white">{f.t}</h4>
-                  <p className="text-[13.5px] text-ink-secondary leading-[1.6]">{f.b}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </SectionShell>
-
       <FinalCTA
         className="!pt-4 md:!pt-6"
         eyebrow="Ready to Deliver Cloud FinOps at Scale?"
